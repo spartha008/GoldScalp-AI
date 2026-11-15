@@ -1,0 +1,48 @@
+{
+  "archival_classification": "promising at an earlier stage, subsequently rejected",
+  "evidence": "5.2 +0.054 (147, promising); 5.3 -0.054 (273, rejected).",
+  "recorded": [
+    {
+      "source": "store:research_versions:rb_7ca33b7b5a81_R2",
+      "phase": "5.2",
+      "definition": "verdicts@1",
+      "verdict": "positive but inconsistent"
+    },
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "redesign",
+      "class": "promising",
+      "why": "passes every pre-declared criterion on unseen months"
+    },
+    {
+      "source": "var/monthly/reports/vl_747cce289048-validation.json",
+      "phase": "5.3",
+      "definition": "validation@1",
+      "role": "candidate",
+      "class": "rejected",
+      "why": "pooled expectancy -0.054 R/trade after costs (273 trades)"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:research_versions",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R2|v-d-Xb",
+      "label": "R2 v2"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R2|v-d-Xb",
+      "label": "R2|v-d-Xb"
+    },
+    {
+      "source": "store:validation_studies",
+      "study": "vl_747cce289048",
+      "key": "R2|v-d-Xb",
+      "label": "R2|v-d-Xb"
+    }
+  ]
+}

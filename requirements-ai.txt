@@ -1,0 +1,3 @@
+# OPTIONAL: only for the research assistant's Claude mode (GOLDSCALP_ASSISTANT_LLM_ENABLED=true).
+# GoldScalp runs fully without it; the default assistant answers locally from stored data.
+anthropic>=1.0

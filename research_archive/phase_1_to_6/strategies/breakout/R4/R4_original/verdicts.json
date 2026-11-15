@@ -1,0 +1,112 @@
+{
+  "archival_classification": "rejected",
+  "evidence": "5.2 -0.087 (40).",
+  "recorded": [
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "original",
+      "class": "rejected",
+      "why": "OOS expectancy -0.087 R/trade after costs (40 trades)"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:candidates",
+      "study": "me_23932a71a56a",
+      "key": "R4",
+      "label": "R4 original"
+    },
+    {
+      "source": "store:candidates",
+      "study": "me_697122f9e14b",
+      "key": "R4",
+      "label": "R4 original"
+    },
+    {
+      "source": "store:candidates",
+      "study": "me_cb6b197c4c6b",
+      "key": "R4",
+      "label": "R4 original"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R4|M1",
+      "label": "R4"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R4|M15",
+      "label": "R4"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R4|M5",
+      "label": "R4"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R4|M1",
+      "label": "R4"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R4|M15",
+      "label": "R4"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R4|M5",
+      "label": "R4"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R4|M1",
+      "label": "R4"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R4|M15",
+      "label": "R4"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R4|M5",
+      "label": "R4"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R4|original",
+      "label": "R4|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_825da1543f0f",
+      "key": "R4|original",
+      "label": "R4|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_a732696e0c83",
+      "key": "R4|original",
+      "label": "R4|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_da267aa33110",
+      "key": "R4|original",
+      "label": "R4|original"
+    }
+  ]
+}

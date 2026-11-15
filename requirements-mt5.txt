@@ -1,0 +1,3 @@
+# OPTIONAL, Windows only: read-only MetaTrader 5 market-data provider.
+# Requires a locally installed MT5 terminal. Never needed for tests or other providers.
+MetaTrader5>=5.0.5000,<6; sys_platform == "win32"

@@ -1,0 +1,722 @@
+[
+  {
+    "name": "Example A: aligned structure + M5 BOS",
+    "archived": 1,
+    "strategy_id": 1,
+    "version": 1,
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "h1",
+          "state": "with",
+          "timeframe": "H1",
+          "type": "structure_state"
+        },
+        {
+          "enabled": true,
+          "id": "m15",
+          "state": "with",
+          "timeframe": "M15",
+          "type": "structure_state"
+        },
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "BOS",
+          "id": "bos",
+          "timeframe": "M5",
+          "type": "structure_event",
+          "within_candles": 3
+        },
+        {
+          "enabled": true,
+          "id": "spread",
+          "if_unknown": "fail",
+          "max_spread": 0.5,
+          "max_spread_atr": null,
+          "type": "spread"
+        }
+      ],
+      "description": "H1 and M15 structure in the trade direction, a fresh M5 BOS in the same direction, and an acceptable spread. An example, not a claim of profitability.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "Example A: aligned structure + M5 BOS",
+      "risk": {
+        "lots": "0.10",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "931f63653a7974f9cdd527e8197925acb1ce19fefb70eb5713e19db6f00b079c",
+    "created_at": "2026-11-14T05:43:24.490343Z",
+    "note": "example template"
+  },
+  {
+    "name": "Example A: aligned structure + M5 BOS",
+    "archived": 1,
+    "strategy_id": 1,
+    "version": 2,
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "h1",
+          "state": "with",
+          "timeframe": "H1",
+          "type": "structure_state"
+        },
+        {
+          "enabled": true,
+          "id": "m15",
+          "state": "with",
+          "timeframe": "M15",
+          "type": "structure_state"
+        },
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "BOS",
+          "id": "bos",
+          "timeframe": "M5",
+          "type": "structure_event",
+          "within_candles": 3
+        },
+        {
+          "enabled": true,
+          "id": "spread",
+          "if_unknown": "fail",
+          "max_spread": 0.5,
+          "max_spread_atr": null,
+          "type": "spread"
+        }
+      ],
+      "description": "H1 and M15 structure in the trade direction, a fresh M5 BOS in the same direction, and an acceptable spread. An example, not a claim of profitability.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "Example A: aligned structure + M5 BOS",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "c7bc3da5f4228b37b0b630fde52797e6ca8a5dd5ac4dc63218b4717eb8926d03",
+    "created_at": "2026-11-14T05:58:48.415932Z",
+    "note": "lots 0.02: fits the default 10,000 USD, 1:1 paper account margin"
+  },
+  {
+    "name": "Example B: sweep + CHoCH + FVG in session",
+    "archived": 1,
+    "strategy_id": 2,
+    "version": 1,
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "sweep",
+          "level_types": [
+            "EQ",
+            "PD",
+            "PW",
+            "session"
+          ],
+          "timeframe": "M5",
+          "type": "liquidity_sweep",
+          "within_candles": 12
+        },
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "CHoCH",
+          "id": "choch",
+          "timeframe": "M5",
+          "type": "structure_event",
+          "within_candles": 6
+        },
+        {
+          "allow_partial": true,
+          "enabled": true,
+          "id": "fvg",
+          "relation": "recent",
+          "timeframe": "M5",
+          "type": "fvg",
+          "within_candles": 6
+        },
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "London",
+            "New York"
+          ],
+          "type": "session"
+        }
+      ],
+      "description": "A recent liquidity sweep, an M5 CHoCH and a same-direction FVG, during London or New York. An example, not a claim of profitability.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "Example B: sweep + CHoCH + FVG in session",
+      "risk": {
+        "lots": "0.10",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "1868cade122eea0fd007ef15a9cc550a4b9cf8dc4a91b108070ca3b58991eba8",
+    "created_at": "2026-11-14T05:43:26.213556Z",
+    "note": "example template"
+  },
+  {
+    "name": "Example B: sweep + CHoCH + FVG in session",
+    "archived": 1,
+    "strategy_id": 2,
+    "version": 2,
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "sweep",
+          "level_types": [
+            "EQ",
+            "PD",
+            "PW",
+            "session"
+          ],
+          "timeframe": "M5",
+          "type": "liquidity_sweep",
+          "within_candles": 12
+        },
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "CHoCH",
+          "id": "choch",
+          "timeframe": "M5",
+          "type": "structure_event",
+          "within_candles": 6
+        },
+        {
+          "allow_partial": true,
+          "enabled": true,
+          "id": "fvg",
+          "relation": "recent",
+          "timeframe": "M5",
+          "type": "fvg",
+          "within_candles": 6
+        },
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "London",
+            "New York"
+          ],
+          "type": "session"
+        }
+      ],
+      "description": "A recent liquidity sweep, an M5 CHoCH and a same-direction FVG, during London or New York. An example, not a claim of profitability.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "Example B: sweep + CHoCH + FVG in session",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "5d8d81c6979495100a09039d6b323dde17c4b20d05c9eebd5b3781286a88c2c0",
+    "created_at": "2026-11-14T05:58:48.380591Z",
+    "note": "lots 0.02: fits the default 10,000 USD, 1:1 paper account margin"
+  },
+  {
+    "name": "Example C: alignment + confirmation + volatility",
+    "archived": 1,
+    "strategy_id": 3,
+    "version": 1,
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "align",
+          "min_agree": 2,
+          "none_against": true,
+          "timeframes": [
+            "M15",
+            "H1"
+          ],
+          "type": "htf_alignment"
+        },
+        {
+          "enabled": true,
+          "id": "swing",
+          "pattern": "pullback",
+          "timeframe": "M5",
+          "type": "swing_sequence"
+        },
+        {
+          "allowed": [
+            "normal",
+            "expanding"
+          ],
+          "enabled": true,
+          "id": "vol",
+          "timeframe": "M5",
+          "type": "volatility_regime"
+        }
+      ],
+      "description": "H1/M15 alignment, M5 swing confirmation and a non-contracting M5 volatility regime. An example, not a claim of profitability.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "Example C: alignment + confirmation + volatility",
+      "risk": {
+        "lots": "0.10",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "2d578c1230ecedf445b8db9b17de89bf807231310c2877ecd76cca4e52d3e063",
+    "created_at": "2026-11-14T05:43:27.935251Z",
+    "note": "example template"
+  },
+  {
+    "name": "Example C: alignment + confirmation + volatility",
+    "archived": 1,
+    "strategy_id": 3,
+    "version": 2,
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "align",
+          "min_agree": 2,
+          "none_against": true,
+          "timeframes": [
+            "M15",
+            "H1"
+          ],
+          "type": "htf_alignment"
+        },
+        {
+          "enabled": true,
+          "id": "swing",
+          "pattern": "pullback",
+          "timeframe": "M5",
+          "type": "swing_sequence"
+        },
+        {
+          "allowed": [
+            "normal",
+            "expanding"
+          ],
+          "enabled": true,
+          "id": "vol",
+          "timeframe": "M5",
+          "type": "volatility_regime"
+        }
+      ],
+      "description": "H1/M15 alignment, M5 swing confirmation and a non-contracting M5 volatility regime. An example, not a claim of profitability.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 90,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "Example C: alignment + confirmation + volatility",
+      "risk": {
+        "lots": "0.10",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "6c2073a85d743be82e9968705b47ab4efccadf0f9a64f0d103fa838f27c94b6c",
+    "created_at": "2026-11-14T05:43:29.467706Z",
+    "note": null
+  },
+  {
+    "name": "Example C: alignment + confirmation + volatility",
+    "archived": 1,
+    "strategy_id": 3,
+    "version": 3,
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "align",
+          "min_agree": 2,
+          "none_against": true,
+          "timeframes": [
+            "M15",
+            "H1"
+          ],
+          "type": "htf_alignment"
+        },
+        {
+          "enabled": true,
+          "id": "swing",
+          "pattern": "pullback",
+          "timeframe": "M5",
+          "type": "swing_sequence"
+        },
+        {
+          "allowed": [
+            "normal",
+            "expanding"
+          ],
+          "enabled": true,
+          "id": "vol",
+          "timeframe": "M5",
+          "type": "volatility_regime"
+        }
+      ],
+      "description": "H1/M15 alignment, M5 swing confirmation and a non-contracting M5 volatility regime. An example, not a claim of profitability.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "Example C: alignment + confirmation + volatility",
+      "risk": {
+        "lots": "0.10",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "2d578c1230ecedf445b8db9b17de89bf807231310c2877ecd76cca4e52d3e063",
+    "created_at": "2026-11-14T05:43:43.243261Z",
+    "note": "back to the template holding time"
+  },
+  {
+    "name": "Example C: alignment + confirmation + volatility",
+    "archived": 1,
+    "strategy_id": 3,
+    "version": 4,
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "align",
+          "min_agree": 2,
+          "none_against": true,
+          "timeframes": [
+            "M15",
+            "H1"
+          ],
+          "type": "htf_alignment"
+        },
+        {
+          "enabled": true,
+          "id": "swing",
+          "pattern": "pullback",
+          "timeframe": "M5",
+          "type": "swing_sequence"
+        },
+        {
+          "allowed": [
+            "normal",
+            "expanding"
+          ],
+          "enabled": true,
+          "id": "vol",
+          "timeframe": "M5",
+          "type": "volatility_regime"
+        }
+      ],
+      "description": "H1/M15 alignment, M5 swing confirmation and a non-contracting M5 volatility regime. An example, not a claim of profitability.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "Example C: alignment + confirmation + volatility",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+    "created_at": "2026-11-14T05:58:48.350349Z",
+    "note": "lots 0.02: fits the default 10,000 USD, 1:1 paper account margin"
+  }
+]

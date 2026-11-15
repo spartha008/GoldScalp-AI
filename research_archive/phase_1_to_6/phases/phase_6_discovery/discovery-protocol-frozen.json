@@ -1,0 +1,203 @@
+{
+ "version": 1,
+ "definition": "discovery@1",
+ "frozen_at": "2026-11-15T09:39:26.763129+00:00",
+ "note": "Phase 6 discovery@1 pre-registered at the user's request BEFORE any Phase 6 trial or rule had run (0 trials). Three hypotheses (H6.1 volatility regime, H6.2 H1 change of character, H6.3 session breaks), their baseline rules, predictions, the development gate, the 4-trial cap, the development windows (Jan-13 Nov 2026), the sealed block (Nov 2023-Oct 2025, plus Oct 2023 warm-up) and the forward reserve (from 14 Nov 2026) and the sealed-validation criteria.",
+ "files": {
+  "config/discovery/phase6.json": "75b5a82ed6ba10cd2962fac9929bda1629eb1d8fcb49031fb81c02ddb4b6e6c5",
+  "PHASE_6_PROTOCOL.md": "368097ce5ae49b13b831a7af90fdc6582bcb2ca59a427c2cda08946e6630e00b",
+  "goldscalp/monthly/discovery.py": "6555edaa6c6af80bfc0f5ca31ba55ab6d17eb0e3876a7307af7f29f4009599ff",
+  "goldscalp/monthly/discovery_report.py": "d42d2f37afe8a950fa50c9fc4b9f45e0edd932e4e69546bdf6370a26cb94d50b"
+ },
+ "trials_at_freeze": 0,
+ "code_version": "goldscalp 0.1.0 / code f745e9f1ca74bbab",
+ "hypotheses": [
+  {
+   "id": "H6.1",
+   "title": "Volatility regime decides the behaviour",
+   "question": "Do different market conditions require different strategy behaviours?",
+   "hypothesis": "Trend continuation works when M15 volatility is expanding and fails when it is contracting; a liquidity-sweep reversal behaves the opposite way. The sign of each behaviour's expectancy depends on the regime (an interaction), not just its size.",
+   "baselines": [
+    "VOL-C",
+    "VOL-F"
+   ],
+   "prediction": {
+    "type": "regime_interaction",
+    "field": "vol_m15",
+    "continuation": "VOL-C",
+    "reversal": "VOL-F",
+    "min_trades_per_cell": 20,
+    "text": "Expectancy of VOL-C in expanding > in contracting, AND expectancy of VOL-F in contracting > in expanding; the favoured cells (VOL-C expanding, VOL-F contracting) are each positive after costs with at least 20 trades."
+   }
+  },
+  {
+   "id": "H6.2",
+   "title": "A higher-timeframe change of character adds information",
+   "question": "Can structural changes provide useful information beyond the existing entry conditions?",
+   "hypothesis": "An H1 change of character (CHoCH) starts a new directional leg. M15 continuation entries in the new direction during the first 12 H1 candles after it do better than the same M15 entries when H1 merely trends (the condition the earlier strategies used).",
+   "baselines": [
+    "STR-X",
+    "STR-0"
+   ],
+   "prediction": {
+    "type": "context_adds",
+    "with": "STR-X",
+    "without": "STR-0",
+    "min_trades": 60,
+    "text": "Expectancy of STR-X > expectancy of STR-0, and STR-X is positive after costs with at least 60 trades."
+   }
+  },
+  {
+   "id": "H6.3",
+   "title": "Session breaks behave differently and persistently",
+   "question": "Are there repeatable differences between trading sessions that persist across months?",
+   "hypothesis": "A confirmed M15 break of a session high or low that happens around the London open (Asian/London overlap or London) tends to keep going for several hours, while the same breaks during the Asian session tend to fail. The difference persists month after month.",
+   "baselines": [
+    "SES-B"
+   ],
+   "prediction": {
+    "type": "session_persistence",
+    "config": "SES-B",
+    "favoured": [
+     "Asian / London",
+     "London"
+    ],
+    "compare": [
+     "Asian"
+    ],
+    "min_month_share": 0.6,
+    "min_trades_per_month": 5,
+    "min_trades": 60,
+    "text": "London-open trades are positive after costs with at least 60 trades, better than Asian-session trades, and positive in at least 60 % of the development months that have at least 5 such trades."
+   }
+  }
+ ],
+ "fingerprints": {
+  "VOL-C": "64d2a3b37538efbd0b19f9336c8d4e18f1bbce11330f48b645b769ca79429db9",
+  "VOL-F": "83ea92fb8627fc48ba6dffbe2afe6d50065b0b72daa415edca4e0a785613d310",
+  "STR-X": "33a8b2547fad212fc862f7c779255ac23df9907cb85f2113b613a4fe4776ec69",
+  "STR-0": "17c136ab9a6bd62ddf955f51bade1bdc62050bbd02815e9d237f72ddf612aae3",
+  "SES-B": "0de7025d5ca9bb4404e78af26f92ee2e7f1fbaf8dfb733887e2124524a28ff0f"
+ },
+ "development_windows": [
+  {
+   "key": "D1",
+   "start": "2026-01-01T00:00:00Z",
+   "end": "2026-02-01T00:00:00Z",
+   "month": "2026-01",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+   "partial": false
+  },
+  {
+   "key": "D2",
+   "start": "2026-02-01T00:00:00Z",
+   "end": "2026-03-01T00:00:00Z",
+   "month": "2026-02",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+   "partial": false
+  },
+  {
+   "key": "D3",
+   "start": "2026-03-01T00:00:00Z",
+   "end": "2026-04-01T00:00:00Z",
+   "month": "2026-03",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+   "partial": false
+  },
+  {
+   "key": "D4",
+   "start": "2026-04-01T00:00:00Z",
+   "end": "2026-05-01T00:00:00Z",
+   "month": "2026-04",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+   "partial": false
+  },
+  {
+   "key": "D5",
+   "start": "2026-05-01T00:00:00Z",
+   "end": "2026-06-01T00:00:00Z",
+   "month": "2026-05",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+   "partial": false
+  },
+  {
+   "key": "D6",
+   "start": "2026-06-22T00:00:00Z",
+   "end": "2026-07-01T00:00:00Z",
+   "month": "2026-06",
+   "store": "app",
+   "series": "live:mt5:XAUUSD",
+   "partial": true
+  },
+  {
+   "key": "D7",
+   "start": "2026-07-01T00:00:00Z",
+   "end": "2026-08-01T00:00:00Z",
+   "month": "2026-07",
+   "store": "app",
+   "series": "live:mt5:XAUUSD",
+   "partial": false
+  },
+  {
+   "key": "D8",
+   "start": "2026-08-01T00:00:00Z",
+   "end": "2026-09-01T00:00:00Z",
+   "month": "2026-08",
+   "store": "app",
+   "series": "live:mt5:XAUUSD",
+   "partial": false
+  },
+  {
+   "key": "D9",
+   "start": "2026-09-01T00:00:00Z",
+   "end": "2026-10-01T00:00:00Z",
+   "month": "2026-09",
+   "store": "app",
+   "series": "live:mt5:XAUUSD",
+   "partial": false
+  },
+  {
+   "key": "D10",
+   "start": "2026-10-01T00:00:00Z",
+   "end": "2026-11-01T00:00:00Z",
+   "month": "2026-10",
+   "store": "app",
+   "series": "live:mt5:XAUUSD",
+   "partial": false
+  },
+  {
+   "key": "D11",
+   "start": "2026-11-01T00:00:00Z",
+   "end": "2026-11-14T00:00:00Z",
+   "month": "2026-11",
+   "store": "app",
+   "series": "live:mt5:XAUUSD",
+   "partial": true
+  }
+ ],
+ "sealed": [
+  "2023-10-01T00:00:00+00:00",
+  "2025-11-01T00:00:00+00:00"
+ ],
+ "sealed_evaluation": [
+  "2023-11-01T00:00:00+00:00",
+  "2025-11-01T00:00:00+00:00"
+ ],
+ "forward_from": "2026-11-14T00:00:00+00:00",
+ "max_trials": 4,
+ "sealed_criteria": [
+  "data: at least 18 of the 24 months have sufficient data (95 % coverage and warm-up); other months are INCOMPLETE and excluded",
+  "expectancy: pooled expectancy after costs > 0 R per trade",
+  "trade_count: at least 100 pooled trades (a minimum screen, not proof)",
+  "profit_factor: pooled profit factor at least 1.1",
+  "consistency: positive in at least 60 % of valid months, positive in each 12-month half (Nov 2023-Oct 2024 and Nov 2024-Oct 2025), and positive without its best month",
+  "prediction: the hypothesis's own prediction (regime, context or session difference) also holds on the sealed data",
+  "execution: still positive with spread and slippage doubled (tripled is reported only)",
+  "timeframes: run on M5 and on M15 execution; M15 positive as well"
+ ]
+}

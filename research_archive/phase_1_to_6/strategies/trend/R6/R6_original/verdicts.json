@@ -1,0 +1,112 @@
+{
+  "archival_classification": "rejected",
+  "evidence": "5.2 -0.170 (62).",
+  "recorded": [
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "original",
+      "class": "rejected",
+      "why": "OOS expectancy -0.170 R/trade after costs (62 trades)"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:candidates",
+      "study": "me_23932a71a56a",
+      "key": "R6",
+      "label": "R6 original"
+    },
+    {
+      "source": "store:candidates",
+      "study": "me_697122f9e14b",
+      "key": "R6",
+      "label": "R6 original"
+    },
+    {
+      "source": "store:candidates",
+      "study": "me_cb6b197c4c6b",
+      "key": "R6",
+      "label": "R6 original"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R6|M1",
+      "label": "R6"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R6|M15",
+      "label": "R6"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R6|M5",
+      "label": "R6"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R6|M1",
+      "label": "R6"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R6|M15",
+      "label": "R6"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R6|M5",
+      "label": "R6"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R6|M1",
+      "label": "R6"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R6|M15",
+      "label": "R6"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R6|M5",
+      "label": "R6"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R6|original",
+      "label": "R6|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_825da1543f0f",
+      "key": "R6|original",
+      "label": "R6|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_a732696e0c83",
+      "key": "R6|original",
+      "label": "R6|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_da267aa33110",
+      "key": "R6|original",
+      "label": "R6|original"
+    }
+  ]
+}

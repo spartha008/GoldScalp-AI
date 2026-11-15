@@ -1,0 +1,67 @@
+{
+ "version": 1,
+ "definition": "validation@1",
+ "frozen_at": "2026-11-15T07:06:49.254328+00:00",
+ "note": "validation@1 frozen at the user's request BEFORE any January-May 2026 candle was imported (0 candles in the validation series). Locked shortlist from rb_7ca33b7b5a81: R2|v-d-Xb, R1|v-b-Xd, R5|v-d-Xd-tr, R7|v-c-Xe-tr plus their unchanged originals; no selection; Phase 5.2 thresholds with explicit five-month rules (ceil(0.75 x valid months) = 4 of 5; at least 4 months with sufficient data; a month with no trade is not positive). Results are reported separately and never change a Phase 5.2 classification.",
+ "files": {
+  "goldscalp/monthly/validation.py": "b5fd3c45a3ce8f8a6b930e332018965b70bdab54041fc4ec39fa06d7a1bce9ee",
+  "goldscalp/monthly/validation_report.py": "86929b4fc7022e1eb377e14eb7e5f69afaa87ee05b56100a0a6a12818bc41d98"
+ },
+ "source_study": "rb_7ca33b7b5a81",
+ "candidates": {
+  "R2": "R2|v-d-Xb",
+  "R1": "R1|v-b-Xd",
+  "R5": "R5|v-d-Xd-tr",
+  "R7": "R7|v-c-Xe-tr"
+ },
+ "fingerprints": {
+  "R2|v-d-Xb": "655888c68fa6b289",
+  "R1|v-b-Xd": "4a48dc6838b22687",
+  "R5|v-d-Xd-tr": "a071703036513072",
+  "R7|v-c-Xe-tr": "566c147b5370418e",
+  "R2|original": "eb622d47fb2ffb99",
+  "R1|original": "b549a86b00d99229",
+  "R5|original": "952765a67b99e71a",
+  "R7|original": "40d023f434fe1049"
+ },
+ "period": [
+  "2026-01-01T00:00:00+00:00",
+  "2026-06-01T00:00:00+00:00"
+ ],
+ "series": [
+  "research",
+  "csv:vantage-mt5-xauusd-2026-jan-may"
+ ],
+ "timeframes": [
+  "M5",
+  "M15"
+ ],
+ "min_months": 4,
+ "share": 0.75,
+ "candles_in_validation_series_at_freeze": 0,
+ "code_version": "goldscalp 0.1.0 / code f745e9f1ca74bbab",
+ "phase52_at_freeze": {
+  "files": {
+   "var/monthly/reports/verdicts-framework-frozen.json": "a31fb0d0d5b2becf7459765c58f35069e532bf7b7dcb3af222dc4c0a3ce8bfbe",
+   "var/monthly/reports/verdicts-framework-frozen-v2.json": "1ccb8c6649afa941e8bca3096204add8eda772f2685a0e5180e521659993a6f8",
+   "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.md": "8dad7a7f19e400f8e89791d292a591f1a8df192e6f576db85240c2611fd82294",
+   "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json": "2876fde0bed9a42580d155bc6da6ffe4e111a5ced7fca110bae989b1549a2cc3",
+   "var/monthly/reports/rb_7ca33b7b5a81-variants.csv": "8d9e7d88a82a23250e27393d16406179547ced05fcd4b7130faa3199c3386069",
+   "var/monthly/reports/rb_7ca33b7b5a81-configurations.csv": "140e2e70f2d731aa8959c04774425d1309cdf7531c3b642e3788a554714be9ee",
+   "PHASE_5_2_RESEARCH_REPORT.md": "f038436620e2e73f24ac26c664890a76d6c9caef6097eaa9807733483a14e90c",
+   "goldscalp/monthly/verdicts.py": "815701b71b77a50c1a0dd6dea13270e7a11756a11819b542010577c4a39f5331",
+   "goldscalp/monthly/robustness.py": "8e6fdc9420df9872291ad5a6e5b9be066c39be9f758f9aa6a702908c8025f267",
+   "goldscalp/monthly/verdicts_report.py": "69032138a0f8f0007f1b5962e9c09187f65d934ca1ee5c528e01d1c379d7ec77"
+  },
+  "results": {
+   "rows": 3894,
+   "sha256": "d34180e99a9dea043fb551b7a91c1069cf483c82ff61ef9f457819ebfc9baa29"
+  },
+  "configs_sha256": "8ea58a2c6844c57f7b220a9543fa7364c14037f0e110ff5a824b6e46cd069860",
+  "study": {
+   "status": "COMPLETED",
+   "analysis_sha256": "1658be2db57ce6528952ddad5012ac5697f032a60f910ff09c318ca853ce0746"
+  }
+ },
+ "criteria": "Phase 5.3: frozen pre-June historical validation (definition validation@1). Simulation only.\n\nPROTOCOL (frozen before any January-May 2026 data was imported):\n  candidates   exactly four variants already selected in Phase 5.2 (study rb_7ca33b7b5a81), rules copied byte for byte\n               and fingerprint-checked: R2|v-d-Xb, R1|v-b-Xd, R5|v-d-Xd-tr, R7|v-c-Xe-tr\n  benchmarks   their originals R2, R1, R5, R7, unchanged (fingerprint-checked against the same study)\n  period       1 January - 31 May 2026: five calendar months, each a SEPARATE hypothetical $1,000 account\n  data         Vantage MT5 XAUUSD bid candles exported by the user (M5, M15, H1) into its own research-store series\n               (SERIES below); analysis base M5; decisions and execution on M5 and on M15 (M1 is not part of this round)\n  execution    identical to Phase 5.2: the same engine code, costs (candle spread else $0.30; $3.50 per lot per side;\n               $0.05 adverse slippage), 0.02 lots as configured, next-open fills, stop-first, month-end close\n  selection    NONE. January-May is never used to choose, tune or replace anything. Results are reported separately and\n               never change a Phase 5.2 classification.\nCRITERIA (Phase 5.2 numerical thresholds; R after costs per trade; M5 unless stated; months = the five months that\nhave sufficient data):\n  expectancy     pooled expectancy > 0\n  trade_count    at least 30 pooled trades - a minimum SCREEN, not proof of statistical reliability\n  profit_factor  pooled PF >= 1.1 AND PF > 1 in at least ceil(0.75 x months) months (4 of 5)\n  drawdown       recovery factor (pooled sum R / max drawdown in R, all trades in time order) >= 1\n  consistency    at least ceil(0.75 x months) months with a positive sum of R (4 of 5) AND the pooled sum stays positive\n                 without the best month. A month with sufficient data but no trade counts as NOT positive.\n  timeframes     pooled M15 expectancy > 0 as well as M5\n  execution      pooled expectancy still > 0 with spread + slippage doubled (tripled is reported, not a criterion)\n  data           at least 4 of the 5 months must have sufficient data (95 % coverage and 5 days of history); a month\n                 without sufficient data is INCOMPLETE and excluded from every count above\nCLASSES (historical research candidates, not trading readiness; overfit does not apply - nothing is developed here):\n  promising     every criterion passes\n  inconclusive  pooled expectancy > 0 but at least one criterion fails (including too few trades or too few months)\n  rejected      pooled expectancy <= 0, or fewer than 30 trades and not positive"
+}

@@ -1,0 +1,45 @@
+{
+  "archival_classification": "sealed-validation result: rejected",
+  "evidence": "Development +0.113 (269); sealed 2023-2025 -0.006 (663).",
+  "recorded": [
+    {
+      "source": "store:sealed_runs:sr_7c063d1e50d8",
+      "phase": "6",
+      "purpose": "development",
+      "config": "H6.4",
+      "role": "candidate",
+      "class": null,
+      "failed": null
+    },
+    {
+      "source": "store:sealed_runs:sr_ed2c472a7559",
+      "phase": "6",
+      "purpose": "sealed",
+      "config": "H6.4",
+      "role": "candidate",
+      "class": "rejected",
+      "failed": [
+        "expectancy",
+        "profit_factor",
+        "consistency",
+        "prediction",
+        "execution",
+        "timeframes"
+      ]
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:sealed_runs",
+      "study": "sr_7c063d1e50d8",
+      "key": "H6.4",
+      "label": "H6.4"
+    },
+    {
+      "source": "store:sealed_runs",
+      "study": "sr_ed2c472a7559",
+      "key": "H6.4",
+      "label": "H6.4"
+    }
+  ]
+}

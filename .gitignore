@@ -1,0 +1,36 @@
+# Python and tooling
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Local settings (may hold tokens or account details): see .env.example
+.env
+.env.*
+!.env.example
+
+# Runtime databases, backups and staging: large, and they contain broker market data.
+# The frozen research reports and manifests in var/monthly/reports ARE published.
+var/*
+!var/monthly/
+var/monthly/*
+!var/monthly/reports/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Raw broker data stays local: see data/mt5_exports/README.md (README and MANIFEST.json are published)
+data/mt5_exports/**/*.csv
+
+# Database snapshots inside the archives (over GitHub's 100 MB limit; broker data). Their SHA-256 hashes are in the
+# archive manifests, so a local copy can still be verified.
+archive/generation-1/data/
+research_archive/phase_1_to_6/snapshots/generation-1/data/
+
+# OS and temporary files
+Thumbs.db
+.DS_Store
+*.log
+*.partial/

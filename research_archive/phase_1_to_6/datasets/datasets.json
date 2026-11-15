@@ -1,0 +1,1530 @@
+{
+  "application_series": [
+    {
+      "id": 1,
+      "key": "live:gold-api:XAU",
+      "symbol": "XAUUSD",
+      "kind": "live",
+      "source_id": "gold-api",
+      "source_symbol": "XAU",
+      "candle_side": "unknown",
+      "price_decimals": 5,
+      "description": "Candles for XAUUSD from gold-api.com. Recent M1 bars are built by GoldScalp from price snapshots ~30 s apart (highs/lows approximate).",
+      "created_at": "2026-11-13T18:04:08.894678Z"
+    },
+    {
+      "id": 2,
+      "key": "live:mt5:XAUUSD",
+      "symbol": "XAUUSD",
+      "kind": "live",
+      "source_id": "mt5",
+      "source_symbol": "XAUUSD",
+      "candle_side": "bid",
+      "price_decimals": 2,
+      "description": "Candles for XAUUSD (XAUUSD) from MetaTrader 5; recent M1 bars from the provider's own candles.",
+      "created_at": "2026-11-13T18:37:11.627221Z"
+    }
+  ],
+  "application_imports": [],
+  "research_series": [
+    {
+      "id": 1,
+      "key": "csv:vantage-mt5-xauusd",
+      "symbol": "XAUUSD",
+      "kind": "historical",
+      "source_id": "csv:mt5_export",
+      "source_symbol": "XAUUSD",
+      "candle_side": "bid",
+      "price_decimals": 2,
+      "description": "Historical candles imported from CSV (mt5_export); provenance per import",
+      "created_at": "2026-11-14T13:55:36.225847Z"
+    },
+    {
+      "id": 2,
+      "key": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "symbol": "XAUUSD",
+      "kind": "historical",
+      "source_id": "csv:mt5_export",
+      "source_symbol": "XAUUSD",
+      "candle_side": "bid",
+      "price_decimals": 2,
+      "description": "Historical candles imported from CSV (mt5_export); provenance per import",
+      "created_at": "2026-11-15T07:11:01.223814Z"
+    },
+    {
+      "id": 3,
+      "key": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+      "symbol": "XAUUSD",
+      "kind": "historical",
+      "source_id": "csv:mt5_export",
+      "source_symbol": "XAUUSD",
+      "candle_side": "bid",
+      "price_decimals": 2,
+      "description": "Historical candles imported from CSV (mt5_export); provenance per import",
+      "created_at": "2026-11-15T10:10:21.867504Z"
+    }
+  ],
+  "research_imports": [
+    {
+      "id": 1,
+      "series_id": 1,
+      "tf": "M1",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_M1_202609280100_202610302356.csv",
+      "content_sha256": "050a35036b383043783d6ad4329a98aa21e0440c495f8141fae85e6a84badc4d",
+      "time_basis": "rule:ny_close",
+      "rows_read": 34403,
+      "rows_stored": 34403,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1790546400,
+      "last_ts": 1793393760,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2026-09-27T22:00:00Z",
+        "gaps": {
+          "expected": 34497,
+          "missing": 94,
+          "missing_ranges": [
+            {
+              "bars": 5,
+              "from": "2026-09-28T16:13:00Z",
+              "to": "2026-09-28T16:18:00Z"
+            },
+            {
+              "bars": 7,
+              "from": "2026-09-28T18:58:00Z",
+              "to": "2026-09-28T19:05:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-09-28T20:58:00Z",
+              "to": "2026-09-28T21:00:00Z"
+            },
+            {
+              "bars": 5,
+              "from": "2026-09-29T07:05:00Z",
+              "to": "2026-09-29T07:10:00Z"
+            },
+            {
+              "bars": 9,
+              "from": "2026-09-29T07:59:00Z",
+              "to": "2026-09-29T08:08:00Z"
+            },
+            {
+              "bars": 7,
+              "from": "2026-09-29T09:58:00Z",
+              "to": "2026-09-29T10:05:00Z"
+            },
+            {
+              "bars": 8,
+              "from": "2026-09-29T13:24:00Z",
+              "to": "2026-09-29T13:32:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-09-29T20:58:00Z",
+              "to": "2026-09-29T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-09-30T20:58:00Z",
+              "to": "2026-09-30T21:00:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-10-01T05:00:00Z",
+              "to": "2026-10-01T05:01:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-01T20:58:00Z",
+              "to": "2026-10-01T21:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2026-10-02T20:57:00Z",
+              "to": "2026-10-02T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-05T20:58:00Z",
+              "to": "2026-10-05T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-06T20:58:00Z",
+              "to": "2026-10-06T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-07T20:58:00Z",
+              "to": "2026-10-07T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-08T20:58:00Z",
+              "to": "2026-10-08T21:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2026-10-09T20:57:00Z",
+              "to": "2026-10-09T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-12T20:58:00Z",
+              "to": "2026-10-12T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-13T20:58:00Z",
+              "to": "2026-10-13T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-14T20:58:00Z",
+              "to": "2026-10-14T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-15T20:58:00Z",
+              "to": "2026-10-15T21:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2026-10-16T20:57:00Z",
+              "to": "2026-10-16T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-19T20:58:00Z",
+              "to": "2026-10-19T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-20T20:58:00Z",
+              "to": "2026-10-20T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-21T20:58:00Z",
+              "to": "2026-10-21T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-22T20:58:00Z",
+              "to": "2026-10-22T21:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2026-10-23T20:57:00Z",
+              "to": "2026-10-23T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-26T20:58:00Z",
+              "to": "2026-10-26T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-27T20:58:00Z",
+              "to": "2026-10-27T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-28T20:58:00Z",
+              "to": "2026-10-28T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-10-29T20:58:00Z",
+              "to": "2026-10-29T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 34403,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2026-10-30T20:56:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 34403,
+        "rows_rejected": 0,
+        "rows_stored": 34403,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd",
+        "tf": "M1"
+      },
+      "imported_at": "2026-11-14T13:55:36.225847Z"
+    },
+    {
+      "id": 2,
+      "series_id": 1,
+      "tf": "H1",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_H1_202605010100_202610302300.csv",
+      "content_sha256": "b6b82c455ecfd48223ea48b7f5e567a1ea8bdd42f0a239da12d722814bb0295c",
+      "time_basis": "rule:ny_close",
+      "rows_read": 3001,
+      "rows_stored": 3001,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1777586400,
+      "last_ts": 1793390400,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2026-04-30T22:00:00Z",
+        "gaps": {
+          "expected": 3013,
+          "missing": 12,
+          "missing_ranges": [
+            {
+              "bars": 2,
+              "from": "2026-05-25T19:00:00Z",
+              "to": "2026-05-25T21:00:00Z"
+            },
+            {
+              "bars": 4,
+              "from": "2026-06-19T17:00:00Z",
+              "to": "2026-06-19T21:00:00Z"
+            },
+            {
+              "bars": 4,
+              "from": "2026-07-03T17:00:00Z",
+              "to": "2026-07-03T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-09-07T19:00:00Z",
+              "to": "2026-09-07T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 3001,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2026-10-30T20:00:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 3001,
+        "rows_rejected": 0,
+        "rows_stored": 3001,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd",
+        "tf": "H1"
+      },
+      "imported_at": "2026-11-14T14:04:57.707317Z"
+    },
+    {
+      "id": 3,
+      "series_id": 1,
+      "tf": "M15",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_M15_202607200100_202610302345.csv",
+      "content_sha256": "20846f823cc0913db55b449a53562c63a3809e8d083eb59377ab1aceb3dc8316",
+      "time_basis": "rule:ny_close",
+      "rows_read": 6890,
+      "rows_stored": 6890,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1784498400,
+      "last_ts": 1793393100,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2026-07-19T22:00:00Z",
+        "gaps": {
+          "expected": 6900,
+          "missing": 10,
+          "missing_ranges": [
+            {
+              "bars": 10,
+              "from": "2026-09-07T18:30:00Z",
+              "to": "2026-09-07T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 6890,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2026-10-30T20:45:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 6890,
+        "rows_rejected": 0,
+        "rows_stored": 6890,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd",
+        "tf": "M15"
+      },
+      "imported_at": "2026-11-14T14:04:57.910743Z"
+    },
+    {
+      "id": 4,
+      "series_id": 1,
+      "tf": "M5",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_M5_202607200100_202610302355.csv",
+      "content_sha256": "669c6dd9313a39e110f4b32f7bc97474bfa07c8aaf6acf58433d2bb856ad0b5a",
+      "time_basis": "rule:ny_close",
+      "rows_read": 20665,
+      "rows_stored": 20665,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1784498400,
+      "last_ts": 1793393700,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2026-07-19T22:00:00Z",
+        "gaps": {
+          "expected": 20700,
+          "missing": 35,
+          "missing_ranges": [
+            {
+              "bars": 30,
+              "from": "2026-09-07T18:30:00Z",
+              "to": "2026-09-07T21:00:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-28T19:00:00Z",
+              "to": "2026-09-28T19:05:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T07:05:00Z",
+              "to": "2026-09-29T07:10:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T08:00:00Z",
+              "to": "2026-09-29T08:05:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T10:00:00Z",
+              "to": "2026-09-29T10:05:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T13:25:00Z",
+              "to": "2026-09-29T13:30:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 20665,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2026-10-30T20:55:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 20665,
+        "rows_rejected": 0,
+        "rows_stored": 20665,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd",
+        "tf": "M5"
+      },
+      "imported_at": "2026-11-14T14:04:58.208866Z"
+    },
+    {
+      "id": 5,
+      "series_id": 2,
+      "tf": "H1",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_H1_202511030100_202605292300.csv",
+      "content_sha256": "3d5c55a56051d753037387288d85f88764261a02f4085269d175b74dc9f7eb3f",
+      "time_basis": "rule:ny_close",
+      "rows_read": 3367,
+      "rows_stored": 3367,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1762124400,
+      "last_ts": 1780084800,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2025-11-02T23:00:00Z",
+        "gaps": {
+          "expected": 3450,
+          "missing": 83,
+          "missing_ranges": [
+            {
+              "bars": 2,
+              "from": "2025-11-27T20:00:00Z",
+              "to": "2025-11-27T22:00:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2025-11-28T09:00:00Z",
+              "to": "2025-11-28T10:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2025-11-28T20:00:00Z",
+              "to": "2025-11-28T22:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2025-12-24T19:00:00Z",
+              "to": "2025-12-24T22:00:00Z"
+            },
+            {
+              "bars": 23,
+              "from": "2025-12-24T23:00:00Z",
+              "to": "2025-12-25T22:00:00Z"
+            },
+            {
+              "bars": 23,
+              "from": "2025-12-31T23:00:00Z",
+              "to": "2026-01-01T22:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-01-19T20:00:00Z",
+              "to": "2026-01-19T22:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-02-16T20:00:00Z",
+              "to": "2026-02-16T22:00:00Z"
+            },
+            {
+              "bars": 23,
+              "from": "2026-04-02T22:00:00Z",
+              "to": "2026-04-03T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2026-05-25T19:00:00Z",
+              "to": "2026-05-25T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 3367,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2026-05-29T20:00:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 3367,
+        "rows_rejected": 0,
+        "rows_stored": 3367,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd-2026-jan-may",
+        "tf": "H1"
+      },
+      "imported_at": "2026-11-15T07:11:01.223814Z"
+    },
+    {
+      "id": 6,
+      "series_id": 2,
+      "tf": "M15",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_M15_202512150100_202605292345.csv",
+      "content_sha256": "2841d8fa4a46c05ac026bb4e5c00dee026f2fa8fe4e4d5c174b283b912ded745",
+      "time_basis": "rule:ny_close",
+      "rows_read": 10721,
+      "rows_stored": 10721,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1765753200,
+      "last_ts": 1780087500,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2025-12-14T23:00:00Z",
+        "gaps": {
+          "expected": 11040,
+          "missing": 319,
+          "missing_ranges": [
+            {
+              "bars": 13,
+              "from": "2025-12-24T18:45:00Z",
+              "to": "2025-12-24T22:00:00Z"
+            },
+            {
+              "bars": 92,
+              "from": "2025-12-24T23:00:00Z",
+              "to": "2025-12-25T22:00:00Z"
+            },
+            {
+              "bars": 92,
+              "from": "2025-12-31T23:00:00Z",
+              "to": "2026-01-01T22:00:00Z"
+            },
+            {
+              "bars": 10,
+              "from": "2026-01-19T19:30:00Z",
+              "to": "2026-01-19T22:00:00Z"
+            },
+            {
+              "bars": 10,
+              "from": "2026-02-16T19:30:00Z",
+              "to": "2026-02-16T22:00:00Z"
+            },
+            {
+              "bars": 92,
+              "from": "2026-04-02T22:00:00Z",
+              "to": "2026-04-03T21:00:00Z"
+            },
+            {
+              "bars": 10,
+              "from": "2026-05-25T18:30:00Z",
+              "to": "2026-05-25T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 10721,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2026-05-29T20:45:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 10721,
+        "rows_rejected": 0,
+        "rows_stored": 10721,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd-2026-jan-may",
+        "tf": "M15"
+      },
+      "imported_at": "2026-11-15T07:11:01.406852Z"
+    },
+    {
+      "id": 7,
+      "series_id": 2,
+      "tf": "M5",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_M5_202512150100_202605292355.csv",
+      "content_sha256": "984ae5e1b26d6846951160280587589b98fa0fcce74b51c5c2ae3f31e2ada675",
+      "time_basis": "rule:ny_close",
+      "rows_read": 32160,
+      "rows_stored": 32160,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1765753200,
+      "last_ts": 1780088100,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2025-12-14T23:00:00Z",
+        "gaps": {
+          "expected": 33120,
+          "missing": 960,
+          "missing_ranges": [
+            {
+              "bars": 39,
+              "from": "2025-12-24T18:45:00Z",
+              "to": "2025-12-24T22:00:00Z"
+            },
+            {
+              "bars": 276,
+              "from": "2025-12-24T23:00:00Z",
+              "to": "2025-12-25T22:00:00Z"
+            },
+            {
+              "bars": 276,
+              "from": "2025-12-31T23:00:00Z",
+              "to": "2026-01-01T22:00:00Z"
+            },
+            {
+              "bars": 30,
+              "from": "2026-01-19T19:30:00Z",
+              "to": "2026-01-19T22:00:00Z"
+            },
+            {
+              "bars": 30,
+              "from": "2026-02-16T19:30:00Z",
+              "to": "2026-02-16T22:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2026-03-03T04:25:00Z",
+              "to": "2026-03-03T04:40:00Z"
+            },
+            {
+              "bars": 276,
+              "from": "2026-04-02T22:00:00Z",
+              "to": "2026-04-03T21:00:00Z"
+            },
+            {
+              "bars": 30,
+              "from": "2026-05-25T18:30:00Z",
+              "to": "2026-05-25T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 32160,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2026-05-29T20:55:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 32160,
+        "rows_rejected": 0,
+        "rows_stored": 32160,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd-2026-jan-may",
+        "tf": "M5"
+      },
+      "imported_at": "2026-11-15T07:11:01.784293Z"
+    },
+    {
+      "id": 8,
+      "series_id": 3,
+      "tf": "H1",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_H1_202309150100_202510312300.csv",
+      "content_sha256": "ba96dbc01cc56d13d8d9cc3ea2827f36d6cc542821630d565732c5fcfa2c1732",
+      "time_basis": "rule:ny_close",
+      "rows_read": 12606,
+      "rows_stored": 12606,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1694728800,
+      "last_ts": 1761940800,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2023-09-14T22:00:00Z",
+        "gaps": {
+          "expected": 12788,
+          "missing": 182,
+          "missing_ranges": [
+            {
+              "bars": 2,
+              "from": "2023-11-23T20:00:00Z",
+              "to": "2023-11-23T22:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2023-11-24T19:00:00Z",
+              "to": "2023-11-24T22:00:00Z"
+            },
+            {
+              "bars": 23,
+              "from": "2023-12-24T23:00:00Z",
+              "to": "2023-12-25T22:00:00Z"
+            },
+            {
+              "bars": 23,
+              "from": "2023-12-31T23:00:00Z",
+              "to": "2024-01-01T22:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2024-01-15T20:00:00Z",
+              "to": "2024-01-15T22:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2024-02-19T20:00:00Z",
+              "to": "2024-02-19T22:00:00Z"
+            },
+            {
+              "bars": 23,
+              "from": "2024-03-28T22:00:00Z",
+              "to": "2024-03-29T21:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2024-05-27T18:00:00Z",
+              "to": "2024-05-27T21:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2024-06-19T18:00:00Z",
+              "to": "2024-06-19T21:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2024-07-04T18:00:00Z",
+              "to": "2024-07-04T21:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2024-09-02T18:00:00Z",
+              "to": "2024-09-02T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2024-11-28T20:00:00Z",
+              "to": "2024-11-28T22:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2024-11-29T20:00:00Z",
+              "to": "2024-11-29T22:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2024-12-24T19:00:00Z",
+              "to": "2024-12-24T22:00:00Z"
+            },
+            {
+              "bars": 23,
+              "from": "2024-12-24T23:00:00Z",
+              "to": "2024-12-25T22:00:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2024-12-25T23:00:00Z",
+              "to": "2024-12-26T00:00:00Z"
+            },
+            {
+              "bars": 23,
+              "from": "2024-12-31T23:00:00Z",
+              "to": "2025-01-01T22:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2025-01-20T20:00:00Z",
+              "to": "2025-01-20T22:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2025-02-17T20:00:00Z",
+              "to": "2025-02-17T22:00:00Z"
+            },
+            {
+              "bars": 23,
+              "from": "2025-04-17T22:00:00Z",
+              "to": "2025-04-18T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2025-05-26T19:00:00Z",
+              "to": "2025-05-26T21:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2025-06-19T18:00:00Z",
+              "to": "2025-06-19T21:00:00Z"
+            },
+            {
+              "bars": 4,
+              "from": "2025-07-04T17:00:00Z",
+              "to": "2025-07-04T21:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2025-09-01T19:00:00Z",
+              "to": "2025-09-01T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 12606,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2025-10-31T20:00:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 12606,
+        "rows_rejected": 0,
+        "rows_stored": 12606,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+        "tf": "H1"
+      },
+      "imported_at": "2026-11-15T10:10:21.867504Z"
+    },
+    {
+      "id": 9,
+      "series_id": 3,
+      "tf": "M15",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_M15_202310160100_202510312345.csv",
+      "content_sha256": "877981043457631f52fcaa4399ba2e36d993d13b22ab28fe1167896127ea940d",
+      "time_basis": "rule:ny_close",
+      "rows_read": 48454,
+      "rows_stored": 48454,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1697407200,
+      "last_ts": 1761943500,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2023-10-15T22:00:00Z",
+        "gaps": {
+          "expected": 49220,
+          "missing": 766,
+          "missing_ranges": [
+            {
+              "bars": 10,
+              "from": "2023-11-23T19:30:00Z",
+              "to": "2023-11-23T22:00:00Z"
+            },
+            {
+              "bars": 13,
+              "from": "2023-11-24T18:45:00Z",
+              "to": "2023-11-24T22:00:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2023-11-29T15:15:00Z",
+              "to": "2023-11-29T15:30:00Z"
+            },
+            {
+              "bars": 92,
+              "from": "2023-12-24T23:00:00Z",
+              "to": "2023-12-25T22:00:00Z"
+            },
+            {
+              "bars": 92,
+              "from": "2023-12-31T23:00:00Z",
+              "to": "2024-01-01T22:00:00Z"
+            },
+            {
+              "bars": 10,
+              "from": "2024-01-15T19:30:00Z",
+              "to": "2024-01-15T22:00:00Z"
+            },
+            {
+              "bars": 11,
+              "from": "2024-02-19T19:15:00Z",
+              "to": "2024-02-19T22:00:00Z"
+            },
+            {
+              "bars": 92,
+              "from": "2024-03-28T22:00:00Z",
+              "to": "2024-03-29T21:00:00Z"
+            },
+            {
+              "bars": 15,
+              "from": "2024-05-27T17:15:00Z",
+              "to": "2024-05-27T21:00:00Z"
+            },
+            {
+              "bars": 15,
+              "from": "2024-06-19T17:15:00Z",
+              "to": "2024-06-19T21:00:00Z"
+            },
+            {
+              "bars": 15,
+              "from": "2024-07-04T17:15:00Z",
+              "to": "2024-07-04T21:00:00Z"
+            },
+            {
+              "bars": 14,
+              "from": "2024-09-02T17:30:00Z",
+              "to": "2024-09-02T21:00:00Z"
+            },
+            {
+              "bars": 10,
+              "from": "2024-11-28T19:30:00Z",
+              "to": "2024-11-28T22:00:00Z"
+            },
+            {
+              "bars": 9,
+              "from": "2024-11-29T19:45:00Z",
+              "to": "2024-11-29T22:00:00Z"
+            },
+            {
+              "bars": 13,
+              "from": "2024-12-24T18:45:00Z",
+              "to": "2024-12-24T22:00:00Z"
+            },
+            {
+              "bars": 92,
+              "from": "2024-12-24T23:00:00Z",
+              "to": "2024-12-25T22:00:00Z"
+            },
+            {
+              "bars": 4,
+              "from": "2024-12-25T23:00:00Z",
+              "to": "2024-12-26T00:00:00Z"
+            },
+            {
+              "bars": 92,
+              "from": "2024-12-31T23:00:00Z",
+              "to": "2025-01-01T22:00:00Z"
+            },
+            {
+              "bars": 10,
+              "from": "2025-01-20T19:30:00Z",
+              "to": "2025-01-20T22:00:00Z"
+            },
+            {
+              "bars": 11,
+              "from": "2025-02-17T19:15:00Z",
+              "to": "2025-02-17T22:00:00Z"
+            },
+            {
+              "bars": 92,
+              "from": "2025-04-17T22:00:00Z",
+              "to": "2025-04-18T21:00:00Z"
+            },
+            {
+              "bars": 11,
+              "from": "2025-05-26T18:15:00Z",
+              "to": "2025-05-26T21:00:00Z"
+            },
+            {
+              "bars": 15,
+              "from": "2025-06-19T17:15:00Z",
+              "to": "2025-06-19T21:00:00Z"
+            },
+            {
+              "bars": 16,
+              "from": "2025-07-04T17:00:00Z",
+              "to": "2025-07-04T21:00:00Z"
+            },
+            {
+              "bars": 11,
+              "from": "2025-09-01T18:15:00Z",
+              "to": "2025-09-01T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 48454,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2025-10-31T20:45:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 48454,
+        "rows_rejected": 0,
+        "rows_stored": 48454,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+        "tf": "M15"
+      },
+      "imported_at": "2026-11-15T10:10:23.026803Z"
+    },
+    {
+      "id": 10,
+      "series_id": 3,
+      "tf": "M5",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_M5_202506182250_202510312355.csv",
+      "content_sha256": "7dc7f1d834d49c77f1480a8915930d538e26bbd5e14b84eb587fde759f4fd9a1",
+      "time_basis": "rule:ny_close",
+      "rows_read": 26658,
+      "rows_stored": 26658,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1750276200,
+      "last_ts": 1761944100,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2025-06-18T19:50:00Z",
+        "gaps": {
+          "expected": 26786,
+          "missing": 128,
+          "missing_ranges": [
+            {
+              "bars": 45,
+              "from": "2025-06-19T17:15:00Z",
+              "to": "2025-06-19T21:00:00Z"
+            },
+            {
+              "bars": 50,
+              "from": "2025-07-04T16:50:00Z",
+              "to": "2025-07-04T21:00:00Z"
+            },
+            {
+              "bars": 33,
+              "from": "2025-09-01T18:15:00Z",
+              "to": "2025-09-01T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 26658,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2025-10-31T20:55:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 26658,
+        "rows_rejected": 0,
+        "rows_stored": 26658,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+        "tf": "M5"
+      },
+      "imported_at": "2026-11-15T10:10:28.392579Z"
+    },
+    {
+      "id": 11,
+      "series_id": 3,
+      "tf": "M5",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_M5_202310160100_202405312355.csv",
+      "content_sha256": "6eca1858f9c4d88a8923b33c3b4f9d5b3f873f07289e0b41df8624d142a29205",
+      "time_basis": "rule:ny_close",
+      "rows_read": 44524,
+      "rows_stored": 44524,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1697407200,
+      "last_ts": 1717188900,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2023-10-15T22:00:00Z",
+        "gaps": {
+          "expected": 45540,
+          "missing": 1016,
+          "missing_ranges": [
+            {
+              "bars": 2,
+              "from": "2023-11-22T13:45:00Z",
+              "to": "2023-11-22T13:55:00Z"
+            },
+            {
+              "bars": 30,
+              "from": "2023-11-23T19:30:00Z",
+              "to": "2023-11-23T22:00:00Z"
+            },
+            {
+              "bars": 39,
+              "from": "2023-11-24T18:45:00Z",
+              "to": "2023-11-24T22:00:00Z"
+            },
+            {
+              "bars": 3,
+              "from": "2023-11-29T15:15:00Z",
+              "to": "2023-11-29T15:30:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2023-11-29T23:05:00Z",
+              "to": "2023-11-29T23:10:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2023-11-29T23:40:00Z",
+              "to": "2023-11-29T23:50:00Z"
+            },
+            {
+              "bars": 276,
+              "from": "2023-12-24T23:00:00Z",
+              "to": "2023-12-25T22:00:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2023-12-26T23:50:00Z",
+              "to": "2023-12-26T23:55:00Z"
+            },
+            {
+              "bars": 276,
+              "from": "2023-12-31T23:00:00Z",
+              "to": "2024-01-01T22:00:00Z"
+            },
+            {
+              "bars": 30,
+              "from": "2024-01-15T19:30:00Z",
+              "to": "2024-01-15T22:00:00Z"
+            },
+            {
+              "bars": 33,
+              "from": "2024-02-19T19:15:00Z",
+              "to": "2024-02-19T22:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2024-03-07T17:20:00Z",
+              "to": "2024-03-07T17:30:00Z"
+            },
+            {
+              "bars": 276,
+              "from": "2024-03-28T22:00:00Z",
+              "to": "2024-03-29T21:00:00Z"
+            },
+            {
+              "bars": 45,
+              "from": "2024-05-27T17:15:00Z",
+              "to": "2024-05-27T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 44524,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2024-05-31T20:55:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 44524,
+        "rows_rejected": 0,
+        "rows_stored": 44524,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+        "tf": "M5"
+      },
+      "imported_at": "2026-11-15T10:45:34.936728Z"
+    },
+    {
+      "id": 12,
+      "series_id": 3,
+      "tf": "M5",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_M5_202406030100_202412312355.csv",
+      "content_sha256": "16e0fdac902e1291387208d977102630704cce183a75857c9dfd354564851d16",
+      "time_basis": "rule:ny_close",
+      "rows_read": 41433,
+      "rows_stored": 41433,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1717365600,
+      "last_ts": 1735682100,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2024-06-02T22:00:00Z",
+        "gaps": {
+          "expected": 41952,
+          "missing": 519,
+          "missing_ranges": [
+            {
+              "bars": 45,
+              "from": "2024-06-19T17:15:00Z",
+              "to": "2024-06-19T21:00:00Z"
+            },
+            {
+              "bars": 45,
+              "from": "2024-07-04T17:15:00Z",
+              "to": "2024-07-04T21:00:00Z"
+            },
+            {
+              "bars": 42,
+              "from": "2024-09-02T17:30:00Z",
+              "to": "2024-09-02T21:00:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2024-09-10T03:35:00Z",
+              "to": "2024-09-10T03:40:00Z"
+            },
+            {
+              "bars": 30,
+              "from": "2024-11-28T19:30:00Z",
+              "to": "2024-11-28T22:00:00Z"
+            },
+            {
+              "bars": 27,
+              "from": "2024-11-29T19:45:00Z",
+              "to": "2024-11-29T22:00:00Z"
+            },
+            {
+              "bars": 2,
+              "from": "2024-12-10T23:00:00Z",
+              "to": "2024-12-10T23:10:00Z"
+            },
+            {
+              "bars": 39,
+              "from": "2024-12-24T18:45:00Z",
+              "to": "2024-12-24T22:00:00Z"
+            },
+            {
+              "bars": 276,
+              "from": "2024-12-24T23:00:00Z",
+              "to": "2024-12-25T22:00:00Z"
+            },
+            {
+              "bars": 12,
+              "from": "2024-12-25T23:00:00Z",
+              "to": "2024-12-26T00:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 41433,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2024-12-31T21:55:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 41433,
+        "rows_rejected": 0,
+        "rows_stored": 41433,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+        "tf": "M5"
+      },
+      "imported_at": "2026-11-15T10:45:39.013983Z"
+    },
+    {
+      "id": 13,
+      "series_id": 3,
+      "tf": "M5",
+      "origin": "csv",
+      "dialect": "mt5_export",
+      "file_name": "XAUUSD_M5_202501020100_202506192010.csv",
+      "content_sha256": "a75d4e5435554f430afe33806cb5fc06bc3931f21d7989d61fb3c30b8f6c4614",
+      "time_basis": "rule:ny_close",
+      "rows_read": 32979,
+      "rows_stored": 32979,
+      "rows_rejected": 0,
+      "duplicates_dropped": 0,
+      "first_ts": 1735772400,
+      "last_ts": 1750353000,
+      "report_json": {
+        "already_imported": false,
+        "duplicates_dropped": 0,
+        "first": "2025-01-01T23:00:00Z",
+        "gaps": {
+          "expected": 33351,
+          "missing": 372,
+          "missing_ranges": [
+            {
+              "bars": 30,
+              "from": "2025-01-20T19:30:00Z",
+              "to": "2025-01-20T22:00:00Z"
+            },
+            {
+              "bars": 33,
+              "from": "2025-02-17T19:15:00Z",
+              "to": "2025-02-17T22:00:00Z"
+            },
+            {
+              "bars": 276,
+              "from": "2025-04-17T22:00:00Z",
+              "to": "2025-04-18T21:00:00Z"
+            },
+            {
+              "bars": 33,
+              "from": "2025-05-26T18:15:00Z",
+              "to": "2025-05-26T21:00:00Z"
+            }
+          ],
+          "outside_schedule": 0,
+          "present": 32979,
+          "ranges_truncated": false
+        },
+        "import_id": null,
+        "last": "2025-06-19T17:10:00Z",
+        "outside_schedule_fraction": 0.0,
+        "rejected_by_reason": {},
+        "rows_read": 32979,
+        "rows_rejected": 0,
+        "rows_stored": 32979,
+        "samples": [],
+        "series_key": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+        "tf": "M5"
+      },
+      "imported_at": "2026-11-15T10:45:42.474748Z"
+    }
+  ],
+  "research_import_labels": [
+    {
+      "import_id": 5,
+      "label": "Vantage MT5 XAUUSD H1 Jan-May 2026 (Phase 5.3 validation)",
+      "instrument": "XAUUSD",
+      "created_at": "2026-11-15T07:11:01.372853Z"
+    },
+    {
+      "import_id": 6,
+      "label": "Vantage MT5 XAUUSD M15 Jan-May 2026 (Phase 5.3 validation)",
+      "instrument": "XAUUSD",
+      "created_at": "2026-11-15T07:11:01.687277Z"
+    },
+    {
+      "import_id": 7,
+      "label": "Vantage MT5 XAUUSD M5 Jan-May 2026 (Phase 5.3 validation)",
+      "instrument": "XAUUSD",
+      "created_at": "2026-11-15T07:11:02.476099Z"
+    },
+    {
+      "import_id": 8,
+      "label": "Vantage MT5 XAUUSD H1 Nov 2023-Oct 2025 (Phase 6 SEALED validation block)",
+      "instrument": "XAUUSD",
+      "created_at": "2026-11-15T10:10:22.874303Z"
+    },
+    {
+      "import_id": 9,
+      "label": "Vantage MT5 XAUUSD M15 Nov 2023-Oct 2025 (Phase 6 SEALED validation block)",
+      "instrument": "XAUUSD",
+      "created_at": "2026-11-15T10:10:28.267733Z"
+    },
+    {
+      "import_id": 10,
+      "label": "Vantage MT5 XAUUSD M5 Nov 2023-Oct 2025 (Phase 6 SEALED validation block)",
+      "instrument": "XAUUSD",
+      "created_at": "2026-11-15T10:10:31.174524Z"
+    },
+    {
+      "import_id": 11,
+      "label": "Vantage MT5 XAUUSD M5 Nov 2023-Oct 2025 (Phase 6 SEALED validation block)",
+      "instrument": "XAUUSD",
+      "created_at": "2026-11-15T10:45:38.797933Z"
+    },
+    {
+      "import_id": 12,
+      "label": "Vantage MT5 XAUUSD M5 Nov 2023-Oct 2025 (Phase 6 SEALED validation block)",
+      "instrument": "XAUUSD",
+      "created_at": "2026-11-15T10:45:42.315628Z"
+    },
+    {
+      "import_id": 13,
+      "label": "Vantage MT5 XAUUSD M5 Nov 2023-Oct 2025 (Phase 6 SEALED validation block)",
+      "instrument": "XAUUSD",
+      "created_at": "2026-11-15T10:45:45.328521Z"
+    }
+  ],
+  "candle_ranges": [
+    {
+      "database": "application",
+      "key": "live:gold-api:XAU",
+      "tf": "M1",
+      "n": 34,
+      "first": "2026-11-13T18:03:00+00:00",
+      "last": "2026-11-13T18:36:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "application",
+      "key": "live:mt5:XAUUSD",
+      "tf": "H1",
+      "n": 30000,
+      "first": "2021-10-19T23:00:00+00:00",
+      "last": "2026-11-13T21:00:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "application",
+      "key": "live:mt5:XAUUSD",
+      "tf": "M1",
+      "n": 100000,
+      "first": "2026-08-05T04:29:00+00:00",
+      "last": "2026-11-13T21:56:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "application",
+      "key": "live:mt5:XAUUSD",
+      "tf": "M15",
+      "n": 10000,
+      "first": "2026-06-15T17:30:00+00:00",
+      "last": "2026-11-13T21:45:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "application",
+      "key": "live:mt5:XAUUSD",
+      "tf": "M5",
+      "n": 30000,
+      "first": "2026-06-15T17:05:00+00:00",
+      "last": "2026-11-13T21:55:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "research",
+      "key": "csv:vantage-mt5-xauusd",
+      "tf": "H1",
+      "n": 3001,
+      "first": "2026-04-30T22:00:00+00:00",
+      "last": "2026-10-30T20:00:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "research",
+      "key": "csv:vantage-mt5-xauusd",
+      "tf": "M1",
+      "n": 34403,
+      "first": "2026-09-27T22:00:00+00:00",
+      "last": "2026-10-30T20:56:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "research",
+      "key": "csv:vantage-mt5-xauusd",
+      "tf": "M15",
+      "n": 6890,
+      "first": "2026-07-19T22:00:00+00:00",
+      "last": "2026-10-30T20:45:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "research",
+      "key": "csv:vantage-mt5-xauusd",
+      "tf": "M5",
+      "n": 20665,
+      "first": "2026-07-19T22:00:00+00:00",
+      "last": "2026-10-30T20:55:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "research",
+      "key": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "tf": "H1",
+      "n": 3367,
+      "first": "2025-11-02T23:00:00+00:00",
+      "last": "2026-05-29T20:00:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "research",
+      "key": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "tf": "M15",
+      "n": 10721,
+      "first": "2025-12-14T23:00:00+00:00",
+      "last": "2026-05-29T20:45:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "research",
+      "key": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "tf": "M5",
+      "n": 32160,
+      "first": "2025-12-14T23:00:00+00:00",
+      "last": "2026-05-29T20:55:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "research",
+      "key": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+      "tf": "H1",
+      "n": 12606,
+      "first": "2023-09-14T22:00:00+00:00",
+      "last": "2025-10-31T20:00:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "research",
+      "key": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+      "tf": "M15",
+      "n": 48454,
+      "first": "2023-10-15T22:00:00+00:00",
+      "last": "2025-10-31T20:45:00+00:00",
+      "forward": 0
+    },
+    {
+      "database": "research",
+      "key": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+      "tf": "M5",
+      "n": 145349,
+      "first": "2023-10-15T22:00:00+00:00",
+      "last": "2025-10-31T20:55:00+00:00",
+      "forward": 0
+    }
+  ]
+}

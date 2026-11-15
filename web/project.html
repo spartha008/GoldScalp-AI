@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Overview · GoldScalp AI</title>
+<meta name="description" content="Every GoldScalp AI phase so far: what each one built, what it found, and what comes next.">
+<link rel="stylesheet" href="/static/css/tokens.css">
+<link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><span class="mark" aria-hidden="true">&#9670;</span><span>GoldScalp AI</span><span class="sub">XAUUSD &middot; educational</span></div>
+  <nav class="nav" aria-label="Main">
+    <a href="/">Dashboard</a>
+    <a href="/paper">Paper Trading</a>
+    <a href="/replay">Replay</a>
+    <a href="/performance">Performance</a>
+    <a href="/lab">Strategy Lab</a>
+    <a href="/live">Live Validation</a>
+    <a href="http://127.0.0.1:8001/monthly-backtest" title="Monthly backtests run in the separate research service (python -m goldscalp.monthly)">Monthly Backtest</a>
+    <a href="/static/project.html" aria-current="page">Project</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="badge kind-historical">Project history</span>
+</header>
+
+<main id="main" class="page project">
+  <section class="hero" aria-labelledby="hero-title">
+    <span class="view-head"><span class="eyebrow">Project overview &middot; updated 15 November 2026</span></span>
+    <h1 id="hero-title">Every phase of <span class="gold">GoldScalp AI</span>, in one place</h1>
+    <p>GoldScalp AI is an educational XAUUSD research and paper-trading application. Between 13 and 15 November 2026 it grew from live market data and a lot-based paper simulator into market-intelligence analysis, a Strategy Lab, live strategy validation on the Vantage MT5 demo feed, and a separate monthly research service. The research found no strategy edge that held up out of sample, and the strategy search is now closed.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="label">Build period</div><div class="value">13&ndash;15 Nov 2026</div></div>
+      <div class="stat"><div class="label">Phases</div><div class="value">10 + audit, all concluded</div></div>
+      <div class="stat"><div class="label">Automated tests passing</div><div class="value">653</div></div>
+      <div class="stat"><div class="label">Pages</div><div class="value">8</div></div>
+      <div class="stat"><div class="label">Edge that held up out of sample</div><div class="value">None found</div></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="principles-title">
+    <div class="section-title"><h2 id="principles-title">Ground rules that applied to every phase</h2></div>
+    <div class="principles">
+      <div class="principle"><b>Simulation first</b><span>Every strategy trade is SIMULATED in the paper simulator. No real-money order path exists; the only order feature is optional, off by default and limited to an MT5 demo account.</span></div>
+      <div class="principle"><b>MT5 is read-only for data</b><span>Market data comes through an allowlist of read functions. GoldScalp never asks for, stores or logs the MT5 login or password, and never starts the terminal.</span></div>
+      <div class="principle"><b>Research is isolated</b><span>The research service reads the application database read-only, writes only to its own store and never connects to MT5.</span></div>
+      <div class="principle"><b>Data is never invented</b><span>Missing, invalid or duplicate candles are reported, never filled. Months without enough data are marked INCOMPLETE.</span></div>
+      <div class="principle"><b>Criteria frozen before results</b><span>Evaluation rules are hash-frozen before the data they judge exists, and failed experiments are kept, not hidden.</span></div>
+      <div class="principle"><b>Local and transparent</b><span>The app binds to 127.0.0.1, providers never switch silently, and every figure is labelled current, historical or simulated.</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="timeline-title">
+    <div class="section-title"><h2 id="timeline-title">Phase by phase</h2><span>oldest first</span></div>
+    <nav class="phase-index" aria-label="Jump to a phase">
+      <a href="#p0">Audit</a><a href="#p1">1</a><a href="#p11">1.1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a>
+      <a href="#pdemo">Demo execution</a><a href="#p5">5</a><a href="#p51">5.1</a><a href="#p52">5.2</a><a href="#p53">5.3</a>
+      <a href="#pclose">Closure</a><a href="#pui">Interface refresh</a><a href="#p6">6</a><a href="#strategies">All strategies</a>
+    </nav>
+
+    <div class="timeline">
+      <article class="phase" id="p0">
+        <section class="panel">
+          <header><span class="id">Phase 0</span><h2>Audit and architecture review</h2><span class="spacer"></span><span class="when">13 Nov 2026</span><span class="chip ok">done</span></header>
+          <div class="body">
+            <p class="lede">A planning phase. The earlier SpicyStock repository was audited, and the decision was a clean rebuild: no module copied whole, about 25 functions adapted and its engineering patterns kept as design rules.</p>
+            <div class="docs"><code>ARCHITECTURE_AUDIT.md</code><code>REUSE_VS_REBUILD.md</code><code>PROPOSED_ARCHITECTURE.md</code><code>IMPLEMENTATION_ROADMAP.md</code></div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="p1">
+        <section class="panel">
+          <header><span class="id">Phase 1</span><h2>Live data, lot-based paper trading and the dashboard</h2><span class="spacer"></span><span class="when">13 Nov 2026</span><span class="chip ok">implemented</span></header>
+          <div class="body">
+            <p class="lede">The foundation: market data with explicit LIVE / DELAYED / HISTORICAL / DISCONNECTED states and a paper simulator that trades in lots.</p>
+            <div class="phase-cols">
+              <div><h4>What it built</h4><ul>
+                <li>Core settings, UTC clock, timeframes, trading schedule, and SQLite (WAL) with numbered migrations.</li>
+                <li>Data providers: gold-api.com (verified live) and Tiingo (built, not verified live), plus CSV import for generic, MT5-export and HistData files with validation and gap reports.</li>
+                <li>Lot-based paper simulator: market orders with stop-loss and take-profit, spread, commission, slippage, margin, and a Decimal balance ledger.</li>
+                <li>The dashboard and Paper Trading pages, basic structure / sessions / volatility analysis, and an optional display-only TradingView chart.</li>
+              </ul></div>
+              <div><h4>Result</h4><div class="result-box"><span class="small">167 tests; all 4 planted faults caught by mutation checks.</span></div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="p11">
+        <section class="panel">
+          <header><span class="id">Phase 1.1</span><h2>MetaTrader 5 demo data (read-only)</h2><span class="spacer"></span><span class="when">13 Nov 2026</span><span class="chip ok">verified live</span></header>
+          <div class="body">
+            <p class="lede">Prices and candles from the user's logged-in Vantage MT5 demo terminal, read through an allowlist that makes trading and account functions unreachable.</p>
+            <div class="phase-cols">
+              <div><h4>What it built</h4><ul>
+                <li>MT5 provider on a dedicated thread: never launches the terminal, passes no credentials, ranks gold symbols and maps server time to the New York-close rule.</li>
+                <li>Provider hub with priority, user selection and manual fallback by default; every source change is logged and shown.</li>
+                <li>Dashboard provider selector, Reconnect button and an MT5 details panel; CSRF header on every state-changing call.</li>
+              </ul></div>
+              <div><h4>Result</h4><div class="result-box"><span class="small">Verified with the market open: terminal build 6317, LIVE ticks 0.4&ndash;0.5 s old, spread 0.28&ndash;0.29; 0 rejected or duplicate bars; 231 tests.</span></div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="p2">
+        <section class="panel">
+          <header><span class="id">Phase 2</span><h2>Smart Market Intelligence</h2><span class="spacer"></span><span class="when">14 Nov 2026</span><span class="chip ok">implemented</span></header>
+          <div class="body">
+            <p class="lede">Deterministic market analysis that only ever uses candles closed at the time being analysed, plus replay and historical evaluation.</p>
+            <div class="phase-cols">
+              <div><h4>What it built</h4><ul>
+                <li>Inspection first: found and fixed a look-ahead defect where derived higher-timeframe candles were marked closed too early.</li>
+                <li>Versioned engines for structure (BOS / CHoCH), liquidity and sweeps, fair value gaps, order-block candidates, multi-timeframe state, sessions (DST-correct) and volatility.</li>
+                <li>Signal Centre: bullish / bearish / neutral / no signal with gates, evidence and an evidence agreement score that is explicitly not a probability.</li>
+                <li>New Replay and Performance pages, and per-timeframe chart annotations.</li>
+              </ul></div>
+              <div><h4>Result</h4><div class="result-box"><span class="small">372 tests; 21 planted defects caught. A historical signal evaluation ran on all recorded MT5 data (816 steps). No profitability figures were claimed.</span></div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="p3">
+        <section class="panel">
+          <header><span class="id">Phase 3</span><h2>Strategy Lab: strategy intelligence and advanced backtesting</h2><span class="spacer"></span><span class="when">14 Nov 2026</span><span class="chip ok">complete</span></header>
+          <div class="body">
+            <p class="lede">Versioned rule-based strategies and a look-ahead-free backtester, with walk-forward testing and comparisons.</p>
+            <div class="phase-cols">
+              <div><h4>What it built</h4><ul>
+                <li>Strategy Builder: 12 condition types, versions with logic fingerprints, JSON import / export, and example strategies A, B and C (examples, not claims of profitability).</li>
+                <li>Backtester: next-candle-open fills, spread / commission / slippage / margin, structure, ATR or fixed stops, and stop-first on ambiguous candles; dataset and result hashes.</li>
+                <li>Metrics with ratios withheld below 30 trades, walk-forward folds (rolling or anchored), a comparison lab, saved reports and exports.</li>
+              </ul></div>
+              <div><h4>Results (29 Oct &ndash; 13 Nov, M5)</h4><div class="result-box">
+                <span class="small">Example C: 53 trades, +80.68 USD, PF 1.23, +0.014 R. Example A: 37 trades, +49.63 USD, PF 1.13, &minus;0.029 R. Example B: 2 trades (too few).</span>
+                <span class="small">Walk-forward: in-sample +106 USD against &minus;56 USD out of sample; 2 of 5 folds positive. 444 tests.</span>
+              </div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="p4">
+        <section class="panel">
+          <header><span class="id">Phase 4</span><h2>Live strategy validation, MT5 verification and research assistant</h2><span class="spacer"></span><span class="when">14 Nov 2026</span><span class="chip info">archived</span></header>
+          <div class="body">
+            <p class="lede">The example strategies are watched on the live Vantage demo feed and traded in SIMULATED validation accounts, with a journal and per-trade evaluations.</p>
+            <div class="phase-cols">
+              <div><h4>What it built</h4><ul>
+                <li>Vantage MT5 verification (a 14-check record), candle integrity checks and feed health.</li>
+                <li>Live strategy monitor using the backtest's own as-of logic; one SIMULATED position per qualifying signal in each version's own validation account.</li>
+                <li>Journal with CSV export and a permanent seven-question evaluation of every trade.</li>
+                <li>Improvement engine (discovery, embargo and unseen hold-out windows) where a change is adopted only when the user approves it.</li>
+                <li>Research assistant with read-only tools; the optional Claude mode is off by default. All of it on the Live Validation page.</li>
+              </ul></div>
+              <div><h4>Status</h4><div class="result-box">
+                <span class="small">Monitoring A v2, B v2 and C v4 since 14 Nov, 11:57 UTC (paper mode, active).</span>
+                <span class="small">Terminal record PARTIAL (11 pass, 3 warn, 0 fail); a fresh-tick VERIFIED run is pending the market open.</span>
+                <span class="small">C v4 improvement proposal: inconclusive, not adopted. 505 tests.</span>
+              </div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="pdemo">
+        <section class="panel">
+          <header><span class="id">Feature</span><h2>MT5 demo-account execution (optional)</h2><span class="spacer"></span><span class="when">14 Nov 2026</span><span class="chip muted">off by default</span></header>
+          <div class="body">
+            <p class="lede">An unnumbered addition, documented in the README. When switched on and linked, it mirrors the SIMULATED validation trades of a linked strategy version as market orders on an MT5 <strong>demo</strong> account so broker fills can be compared.</p>
+            <div class="phase-cols">
+              <div><h4>Safeguards</h4><ul>
+                <li>The account is re-read before every order; anything that is not the linked DEMO account is refused, and a real-money account disables every link.</li>
+                <li>Limits: 0.10 lots per order, 3 open demo positions, no late entries, no retries; a "Stop all demo execution" kill switch.</li>
+                <li>Disabled unless <code>GOLDSCALP_DEMO_EXECUTION_ENABLED</code> is set; it is not enabled in this installation.</li>
+              </ul></div>
+              <div><h4>Note</h4><div class="result-box"><span class="small">Some older documents still say no order path exists at all. That remains true for real-money accounts; this demo-only feature is the one exception.</span></div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase research" id="p5">
+        <section class="panel">
+          <header><span class="id">Phase 5</span><h2>Monthly multi-timeframe research and backtesting</h2><span class="spacer"></span><span class="when">14 Nov 2026</span><span class="chip ok">built and tested</span></header>
+          <div class="body">
+            <p class="lede">A separate research service (port 8001) that evaluates the exact strategy versions on a single month, each run in its own hypothetical $1,000 account.</p>
+            <div class="phase-cols">
+              <div><h4>What it built</h4><ul>
+                <li>Isolated service with its own store; reads the application database read-only and never connects to MT5.</li>
+                <li>Nine runs per month (A v2, B v2, C v4 on M15, M5 and M1) with 1:500 leverage used for margin only.</li>
+                <li>Research candidates R1&ndash;R9 developed strictly on data before the month; PDF, CSV and JSON reports with exact reproduction.</li>
+                <li>Repaired an MT5 time-basis incident that had re-dated stored candles (2,068 of 2,068 bars restored), with one user-approved restart.</li>
+              </ul></div>
+              <div><h4>Result (October 2026)</h4><div class="result-box negative"><span class="small">A, B and C lost on every completed run, for example A on M15 &minus;22.7 % and C on M15 &minus;24.1 %. M1 was INCOMPLETE (no M1 data yet). 534 tests.</span></div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase research" id="p51">
+        <section class="panel">
+          <header><span class="id">Phase 5.1</span><h2>M1 history import and percentage-risk scenarios</h2><span class="spacer"></span><span class="when">14 Nov 2026</span><span class="chip ok">done</span></header>
+          <div class="body">
+            <p class="lede">Real October M1 history from the user's MT5 export, and hypothetical stress tests that size every entry from current equity.</p>
+            <div class="phase-cols">
+              <div><h4>What it built</h4><ul>
+                <li>Historical import with a store-nothing preview, idempotent imports and per-month coverage checks (October M1: 99.8 % coverage).</li>
+                <li>Percentage-of-equity sizing at 5 %, 7.5 % and 10 %, each in its own $1,000 account: 27 runs.</li>
+              </ul></div>
+              <div><h4>Result</h4><div class="result-box negative"><span class="small">All 27 risk-scenario runs lost money, and higher risk magnified the losses (A at 10 % ended at $245.66, &minus;75.4 %). For these rules M1 matched M5: it adds execution detail, not independent evidence.</span></div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase research" id="p52">
+        <section class="panel">
+          <header><span class="id">Phase 5.2</span><h2>Strategy redesign and multi-month robustness</h2><span class="spacer"></span><span class="when">14&ndash;15 Nov 2026</span><span class="chip ok">completed</span></header>
+          <div class="body">
+            <p class="lede">Why the originals lose, then redesigned research versions tested across June&ndash;November with walk-forward folds and a November hold-out. Criteria were frozen before any hold-out result existed.</p>
+            <div class="phase-cols">
+              <div><h4>What it built</h4><ul>
+                <li>Diagnostics of the 12 originals, with exit experiments changing one exit dimension at a time.</li>
+                <li>Redesigned versions A v3, B v3, C v5 and R1&ndash;R9 v2 chosen on development months only; 565 configurations in the full study.</li>
+                <li>Optional break-even and trailing stops, and a frozen verdict framework (promising / inconclusive / rejected / overfit).</li>
+              </ul></div>
+              <div><h4>Result</h4><div class="result-box">
+                <span class="small"><strong>Promising:</strong> R2 v2 only (+0.054 R/trade out of sample), a thin edge that depended on October being secondary.</span>
+                <span class="small"><strong>Inconclusive:</strong> B v3, R1 v2, R4 v2, R5 v2, R7 v2. <strong>Rejected:</strong> A v3, C v5, R3 v2, R6 v2, R8 v2, R9 v2.</span>
+                <span class="small">Break-even and trailing stops made no measurable difference.</span>
+              </div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase research" id="p53">
+        <section class="panel">
+          <header><span class="id">Phase 5.3</span><h2>Frozen pre-June historical validation</h2><span class="spacer"></span><span class="when">15 Nov 2026</span><span class="chip ok">completed</span></header>
+          <div class="body">
+            <p class="lede">The Phase 5.2 shortlist, locked unchanged, run on January&ndash;May 2026 history it had never seen. The protocol was frozen while that history did not yet exist in the store, and nothing was selected.</p>
+            <div class="phase-cols">
+              <div><h4>What it built</h4><ul>
+                <li>A versioned, hash-frozen protocol with explicit five-month rules (at least 4 of 5 months).</li>
+                <li>Four locked candidates plus their originals, on M5 and M15, with costs at baseline, &times;2 and &times;3: 80 runs.</li>
+              </ul></div>
+              <div><h4>Result</h4><div class="result-box negative">
+                <span class="small">None held up. R2 v2 &minus;0.054 R/trade (273 trades), R5 v2 &minus;0.053, R7 v2 &minus;0.107: rejected. R1 v2 +0.006 (about break-even): inconclusive.</span>
+                <span class="small">Costs were not the cause (0.012&ndash;0.025 R per trade).</span>
+              </div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase closed" id="pclose">
+        <section class="panel">
+          <header><span class="id">Closure</span><h2>Phase 5 strategy search closed</h2><span class="spacer"></span><span class="when">15 Nov 2026</span><span class="chip info">closed</span></header>
+          <div class="body">
+            <p class="lede">Phase 5.2 found an apparently promising candidate; independent validation showed it did not generalize. Rather than tune again, the cycle was closed.</p>
+            <ul>
+              <li>Phase 5.3 frozen by hash: report, protocol, results and classifications cannot change unnoticed; no further validation run is accepted.</li>
+              <li>All four candidates retired from promotion; none goes to paper-monitor observation. Phase 4 continues unchanged.</li>
+              <li>Every candle stored so far (2 Nov 2025 &ndash; 13 Nov 2026) counts as used: a new idea must be tested on fresh data.</li>
+            </ul>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="pui">
+        <section class="panel">
+          <header><span class="id">Interface</span><h2>Interface refresh and this overview</h2><span class="spacer"></span><span class="when">15 Nov 2026</span><span class="chip ok">done</span></header>
+          <div class="body">
+            <p class="lede">A cleaner, consistent design across every page: one set of controls, tables and status chips; the Monthly Backtest page reorganised into four steps with a sidebar; the Strategy Lab backtest form simplified; and this project overview added.</p>
+            <p class="lede">The dashboard chart now pages back through all stored MT5 history as you scroll, and has 1M and 1Y views: calendar months and years built from the stored hourly candles (MT5 H1 history since 19 October 2021), display only, with partly covered periods marked.</p>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase research" id="p6">
+        <section class="panel">
+          <header><span class="id">Phase 6</span><h2>New strategy discovery</h2><span class="spacer"></span><span class="when">15 Nov 2026</span><span class="chip info">concluded</span></header>
+          <div class="body">
+            <p class="lede">A new method, not a new round of tuning: three genuinely different hypotheses, each written down before any code ran, tested on development data, and validated once on a sealed period nothing has touched.</p>
+            <div class="phase-cols">
+              <div><h4>The questions</h4><ul>
+                <li>H6.1: does the volatility regime decide whether trend continuation or a liquidity-sweep reversal works?</li>
+                <li>H6.2: does a fresh H1 change of character add information beyond a plain H1 trend?</li>
+                <li>H6.3: do session-level breaks around the London open keep going while Asian-session breaks fail, month after month?</li>
+              </ul></div>
+              <div><h4>The rules</h4><div class="result-box">
+                <span class="small">Development: January&ndash;13 November 2026 only. Sealed: November 2023 &ndash; October 2025 (24 months), unreadable by development code. Forward data from 14 November 2026 is kept for confirmation.</span>
+                <span class="small">At most four trials per hypothesis, refinements built by the tool with a written rationale, and rejection accepted.</span>
+              </div></div>
+            </div>
+            <div class="phase-cols">
+              <div><h4>On development data</h4><ul>
+                <li>H6.1 was not supported as predicted, H6.2 was rejected (the extra structure made results worse) and H6.3 was inconclusive (too few London-open trades). None went to the sealed data.</li>
+                <li>Plain trend continuation (VOL-C) looked strong: +0.102 R per trade over 294 trades, 9 of 11 months positive.</li>
+              </ul></div>
+              <div><h4>The one sealed test</h4><div class="result-box">
+                <span><b>H6.4 rejected.</b> VOL-C outside contracting M15 volatility, registered after development with its origin disclosed, ran once on November 2023 &ndash; October 2025.</span>
+                <span class="small">&minus;0.006 R per trade over 663 trades, 11 of 24 months positive, negative with doubled costs and on M15. The unfiltered VOL-C made &minus;0.029 R per trade: the development edge did not carry over. Nothing is retuned or promoted.</span>
+              </div></div>
+            </div>
+            <p class="small muted">Every Phase 5 and Phase 6 study can now be compared side by side, with charts, in the Research library (Monthly Backtest, step 5).</p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="strategies-title" id="strategies">
+    <div class="section-title"><h2 id="strategies-title">Every strategy tested</h2><span>historical simulations only</span></div>
+    <p class="strat-note">Average R per trade after costs, with the number of trades in brackets, on M5 execution. <b>Oct</b> is the Phase 5 October 2026 evaluation, <b>5.2</b> the pooled out-of-sample months of June&ndash;November 2026, <b>5.3</b> the frozen January&ndash;May 2026 validation, and <b>sealed</b> the untouched November 2023 &ndash; October 2025 block. The verdict is the latest one each strategy received.</p>
+    <div class="strategies">
+      <div class="strat-group">
+        <h3>Original examples (monitored in Phase 4 as A v2, B v2 and C v4 until it was archived)</h3>
+        <div class="table-wrap"><table class="data strat-table">
+          <thead><tr><th scope="col">Strategy</th><th scope="col">What it is</th><th scope="col">How it did</th><th scope="col">Verdict</th></tr></thead>
+          <tbody>
+        <tr><td class="s">A</td><td class="wrap">H1 and M15 structure agree; enter on an M5 break of structure</td><td class="wrap">Oct &minus;0.22 (69); Phase 5.2 &minus;0.005 (157)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">B</td><td class="wrap">Liquidity sweep, then a change of character and a fair-value gap, in session</td><td class="wrap">Oct &minus;0.14 (15); Phase 5.2 +0.029 (24), too few trades</td><td><span class="chip warn">inconclusive</span></td></tr>
+        <tr><td class="s">C</td><td class="wrap">Timeframe alignment plus confirmation plus a volatility filter</td><td class="wrap">Oct &minus;0.08 (97); Phase 5.2 &minus;0.005 (249)</td><td><span class="chip err">rejected</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="strat-group">
+        <h3>Phase 5 candidates R1–R9 (original rules)</h3>
+        <div class="table-wrap"><table class="data strat-table">
+          <thead><tr><th scope="col">Strategy</th><th scope="col">What it is</th><th scope="col">How it did</th><th scope="col">Verdict</th></tr></thead>
+          <tbody>
+        <tr><td class="s">R1</td><td class="wrap">EMA trend pullback, 2R target</td><td class="wrap">Oct &minus;0.085 (158); 5.2 +0.042 (358); 5.3 +0.003 (726), break-even</td><td><span class="chip warn">inconclusive</span></td></tr>
+        <tr><td class="s">R2</td><td class="wrap">Momentum breakout, 2R</td><td class="wrap">Oct &minus;0.062 (80); 5.2 +0.022 (195); 5.3 &minus;0.190 (413)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R3</td><td class="wrap">Range sweep, then fade back into the range</td><td class="wrap">Oct &minus;0.35 (12); 5.2 &minus;0.045 (34)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R4</td><td class="wrap">Session breakout, then retest</td><td class="wrap">Oct +0.16 (15); 5.2 &minus;0.087 (40)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R5</td><td class="wrap">Trend entries only in suitable volatility</td><td class="wrap">Oct &minus;0.17 (70); 5.2 &minus;0.017 (167); 5.3 &minus;0.098 (311)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R6</td><td class="wrap">Pullback to an order block after a change of character, 1.5R</td><td class="wrap">Oct &minus;0.017 (39); 5.2 &minus;0.17 (62)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R7</td><td class="wrap">Breakout accepted during the London / New York overlap</td><td class="wrap">Oct &minus;0.47 (4); 5.2 +0.69 (9); 5.3 &minus;0.353 (16)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R8</td><td class="wrap">London-session sweep reversal</td><td class="wrap">Oct 0 trades; 5.2 &minus;0.17 (3)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R9</td><td class="wrap">Breakout after a volatility squeeze, 1.5R</td><td class="wrap">Oct +0.024 (16); 5.2 &minus;0.15 (51)</td><td><span class="chip err">rejected</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="strat-group">
+        <h3>Phase 5.2 redesigns (one chosen variant per strategy)</h3>
+        <div class="table-wrap"><table class="data strat-table">
+          <thead><tr><th scope="col">Strategy</th><th scope="col">What changed</th><th scope="col">How it did</th><th scope="col">Verdict</th></tr></thead>
+          <tbody>
+        <tr><td class="s">A v3</td><td class="wrap">Normal M15 volatility only, London / New York only, 60-minute limit</td><td class="wrap">&minus;0.018 (148)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">B v3</td><td class="wrap">Retest of an accepted M15 breakout, New York only, ATR stop plus break-even</td><td class="wrap">+0.025 (35)</td><td><span class="chip warn">inconclusive</span></td></tr>
+        <tr><td class="s">C v5</td><td class="wrap">Sweep taken with the trend instead of in a range, trailing stop</td><td class="wrap">&minus;0.33 (9)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R1 v2</td><td class="wrap">Clear H1 trend required, 120-minute limit</td><td class="wrap">+0.026 (258); 5.3 +0.006 (368)</td><td><span class="chip warn">inconclusive, retired</span></td></tr>
+        <tr><td class="s">R2 v2</td><td class="wrap">Normal M15 volatility only, 1.5R target, 60-minute limit</td><td class="wrap">+0.054 (147), the only one rated promising; 5.3 &minus;0.054 (273)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R3 v2</td><td class="wrap">Excludes expanding volatility, break-even stop</td><td class="wrap">&minus;0.16 (28)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R4 v2</td><td class="wrap">Normal volatility only, ATR stop plus break-even</td><td class="wrap">+0.12 (37)</td><td><span class="chip warn">inconclusive</span></td></tr>
+        <tr><td class="s">R5 v2</td><td class="wrap">Asian and London sessions only, trailing stop</td><td class="wrap">+0.034 (123); 5.3 &minus;0.053 (222)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R6 v2</td><td class="wrap">Asian and London only, break-even stop</td><td class="wrap">&minus;0.14 (45)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R7 v2</td><td class="wrap">Overlap rule loosened to London plus New York, ATR stop, trailing stop</td><td class="wrap">+0.40 (21); 5.3 &minus;0.107 (37)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R8 v2</td><td class="wrap">Loosened to London plus New York, 1.5R</td><td class="wrap">&minus;0.062 (25)</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">R9 v2</td><td class="wrap">ATR stop plus trailing stop</td><td class="wrap">&minus;0.21 (51)</td><td><span class="chip err">rejected</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="strat-group">
+        <h3>Phase 6 discovery (development January–November 2026, then one sealed test)</h3>
+        <div class="table-wrap"><table class="data strat-table">
+          <thead><tr><th scope="col">Strategy</th><th scope="col">What it is</th><th scope="col">How it did</th><th scope="col">Verdict</th></tr></thead>
+          <tbody>
+        <tr><td class="s">VOL-C</td><td class="wrap">H1 trend plus a fresh M15 break of structure: trend continuation at 2R</td><td class="wrap">Development +0.102 (294), 9 of 11 months positive; sealed 2023-2025 &minus;0.029 (762)</td><td><span class="chip err">failed sealed test</span></td></tr>
+        <tr><td class="s">VOL-F</td><td class="wrap">M15 liquidity sweep plus an M5 change of character: reversal</td><td class="wrap">&minus;0.012 (129); H6.1 not supported</td><td><span class="chip err">not supported</span></td></tr>
+        <tr><td class="s">STR-0</td><td class="wrap">The same continuation with H1 trend only (the H6.2 control)</td><td class="wrap">+0.101 (241)</td><td><span class="chip muted">control</span></td></tr>
+        <tr><td class="s">STR-X</td><td class="wrap">Continuation only after a fresh H1 change of character</td><td class="wrap">+0.062 (111), worse than its control</td><td><span class="chip err">rejected</span></td></tr>
+        <tr><td class="s">SES-B</td><td class="wrap">M15 break of a session high or low</td><td class="wrap">+0.110 (127), but only 22 London-open trades</td><td><span class="chip warn">inconclusive</span></td></tr>
+        <tr><td class="s">H6.4</td><td class="wrap">VOL-C, skipping contracting M15 volatility</td><td class="wrap">Development +0.113 (269); sealed &minus;0.006 (663), 11 of 24 months positive</td><td><span class="chip err">rejected</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="result-box strat-summary">
+      <span><b>Overall: none showed a reliable edge.</b> Every strategy that looked good on one period lost it on another: R2 v2 went from promising to rejected, and VOL-C from +0.102 in development to negative on 2023&ndash;2025.</span>
+      <span class="small">R1 and R1 v2 came closest, staying roughly break-even in both later tests. The large positive figures (R7, R4 v2) came from fewer than 40 trades.</span>
+    </div>
+  </section>
+
+  <section aria-labelledby="next-title">
+    <div class="section-title"><h2 id="next-title">Where things stand and what comes next</h2></div>
+    <div class="next-grid">
+      <div class="principle"><b>Archived</b><span>Phases 1&ndash;6 are archived read-only in <code>research_archive/phase_1_to_6</code>: 883 strategy versions, their evaluations, trade records and verdicts. The Phase 4 monitors were stopped on 15 November 2026 before they recorded any live evaluation, and A, B and C are archived in the app. Nothing is running.</span></div>
+      <div class="principle"><b>Unseen data left</b><span>The sealed November 2023 &ndash; October 2025 block has now been used by H6.4. Only forward data from 14 November 2026 is still untouched; any new hypothesis must be confirmed there.</span></div>
+      <div class="principle"><b>Never completed</b><span>A fresh-tick VERIFIED MT5 record after a market open was never obtained, and Phase 4 was archived without live signals or trades, so its live acceptance checks were not completed.</span></div>
+      <div class="principle"><b>Carried forward</b><span>Tiingo live verification, pending (limit / stop) paper orders, a holiday calendar, Docker image checks and a browser smoke test in CI.</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="docs-title">
+    <div class="section-title"><h2 id="docs-title">Where the details live</h2><span>files in the project folder</span></div>
+    <div class="table-wrap"><table class="data">
+      <thead><tr><th>Document</th><th>Covers</th></tr></thead>
+      <tbody>
+        <tr><td><code>README.md</code></td><td>Setup, pages, safety principles</td></tr>
+        <tr><td><code>IMPLEMENTATION_ROADMAP.md</code></td><td>Status of every phase</td></tr>
+        <tr><td><code>PHASE2_ARCHITECTURE.md</code>, <code>PHASE_2_IMPLEMENTATION_REPORT.md</code></td><td>Phase 2</td></tr>
+        <tr><td><code>PHASE3_ARCHITECTURE.md</code>, <code>PHASE_3_IMPLEMENTATION_REPORT.md</code></td><td>Phase 3</td></tr>
+        <tr><td><code>PHASE4_ARCHITECTURE.md</code>, <code>PHASE_4_IMPLEMENTATION_REPORT.md</code></td><td>Phase 4</td></tr>
+        <tr><td><code>PHASE5_ARCHITECTURE.md</code>, <code>PHASE_5_IMPLEMENTATION_REPORT.md</code></td><td>Phases 5 and 5.1, plus the design of 5.2, 5.3 and the closure</td></tr>
+        <tr><td><code>PHASE_5_2_RESEARCH_REPORT.md</code></td><td>Phase 5.2 results</td></tr>
+        <tr><td><code>PHASE_5_3_VALIDATION_REPORT.md</code></td><td>Phase 5.3 results</td></tr>
+        <tr><td><code>PHASE_6_PROTOCOL.md</code>, <code>PHASE_6_H64_REGISTRATION.md</code></td><td>Phase 6 hypotheses, rules and the H6.4 registration</td></tr>
+        <tr><td><code>PHASE_1_TO_6_ARCHIVE_REPORT.md</code>, <code>research_archive/phase_1_to_6/</code></td><td>The read-only archive of every strategy, variant, result and verdict from Phases 1&ndash;6</td></tr>
+        <tr><td><code>var/monthly/reports/phase6-development.md</code>, <code>var/monthly/reports/h64-report.md</code></td><td>Phase 6 development results and the H6.4 sealed result</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</main>
+
+<footer class="site">
+  <span>GoldScalp AI is an educational research and paper-trading tool. Results on this page are historical simulations; they are not trading results and do not predict future performance. Nothing here is financial advice.</span>
+</footer>
+</body>
+</html>

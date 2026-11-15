@@ -1,0 +1,1925 @@
+[
+  {
+    "id": "me_cb6b197c4c6b",
+    "month": "2026-10",
+    "range_start": "2026-10-01T00:00:00Z",
+    "range_end": "2026-11-01T00:00:00Z",
+    "status": "INCOMPLETE",
+    "research_done": 1,
+    "created_at": "2026-11-14T12:52:00.238131Z",
+    "updated_at": "2026-11-14T13:09:36.155881Z",
+    "params": {
+      "commission": "3.50",
+      "configured_spread": "0.30",
+      "leverage": 500,
+      "lookback_days": 5,
+      "month": "2026-10",
+      "research_days": 60,
+      "risk_percent_override": null,
+      "series": "live:mt5:XAUUSD",
+      "slippage": "0.05",
+      "starting_balance": "1000",
+      "store": "app",
+      "strategies": [
+        {
+          "id": 1,
+          "version": 2
+        },
+        {
+          "id": 2,
+          "version": 2
+        },
+        {
+          "id": 3,
+          "version": 4
+        }
+      ],
+      "timeframes": [
+        "M15",
+        "M5",
+        "M1"
+      ]
+    },
+    "availability": {
+      "h1_history_bars_before_month": 1104,
+      "missing": [
+        "M1 execution candles cover 0% of the month (need 95%; stored M1 has none in the month)",
+        "M1 analysis history before the month starts nowhere; 5 days are needed"
+      ],
+      "month": "2026-10",
+      "range": {
+        "end": "2026-11-01T00:00:00Z",
+        "start": "2026-10-01T00:00:00Z"
+      },
+      "ready": [
+        "M15",
+        "M5"
+      ],
+      "research": {
+        "coverage": {
+          "expected": 11892,
+          "first": "2026-08-02T22:00:00Z",
+          "last": "2026-09-30T23:55:00Z",
+          "missing_ranges": [
+            {
+              "bars": 30,
+              "from": "2026-09-07T18:30:00Z",
+              "to": "2026-09-07T21:00:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-28T19:00:00Z",
+              "to": "2026-09-28T19:05:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T07:05:00Z",
+              "to": "2026-09-29T07:10:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T08:00:00Z",
+              "to": "2026-09-29T08:05:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T10:00:00Z",
+              "to": "2026-09-29T10:05:00Z"
+            }
+          ],
+          "present": 11857,
+          "share": 0.9971,
+          "timeframe": "M5"
+        },
+        "days_available": 59,
+        "reason": null,
+        "sufficient": true,
+        "window": {
+          "end": "2026-10-01T00:00:00Z",
+          "start": "2026-08-02T22:00:00Z"
+        }
+      },
+      "series": "live:mt5:XAUUSD",
+      "store": "app",
+      "timeframes": {
+        "M1": {
+          "analysis": null,
+          "analysis_base": "M1",
+          "execution": {
+            "expected": 30240,
+            "first": null,
+            "last": null,
+            "missing_ranges": [],
+            "present": 0,
+            "share": 0.0,
+            "timeframe": "M1"
+          },
+          "history_from": null,
+          "problems": [
+            "M1 execution candles cover 0% of the month (need 95%; stored M1 has none in the month)",
+            "M1 analysis history before the month starts nowhere; 5 days are needed"
+          ],
+          "sufficient": false
+        },
+        "M15": {
+          "analysis": {
+            "expected": 6048,
+            "first": "2026-10-01T00:00:00Z",
+            "last": "2026-10-30T20:55:00Z",
+            "missing_ranges": [],
+            "present": 6048,
+            "share": 1.0,
+            "timeframe": "M5"
+          },
+          "analysis_base": "M5",
+          "execution": {
+            "expected": 2016,
+            "first": "2026-10-01T00:00:00Z",
+            "last": "2026-10-30T20:45:00Z",
+            "missing_ranges": [],
+            "present": 2016,
+            "share": 1.0,
+            "timeframe": "M15"
+          },
+          "history_from": "2026-07-26T22:00:00Z",
+          "problems": [],
+          "sufficient": true
+        },
+        "M5": {
+          "analysis": null,
+          "analysis_base": "M5",
+          "execution": {
+            "expected": 6048,
+            "first": "2026-10-01T00:00:00Z",
+            "last": "2026-10-30T20:55:00Z",
+            "missing_ranges": [],
+            "present": 6048,
+            "share": 1.0,
+            "timeframe": "M5"
+          },
+          "history_from": "2026-07-26T22:00:00Z",
+          "problems": [],
+          "sufficient": true
+        }
+      }
+    },
+    "frozen": {
+      "assumptions": {
+        "contract": {
+          "contract_size": 100.0,
+          "digits": 2,
+          "lot_step": 0.01,
+          "margin_note": "1:500 is a hypothetical margin parameter (notional / 500); the broker's own margin rules may differ",
+          "max_lot": 100.0,
+          "min_lot": 0.01,
+          "record": "mv_214ba65715fb0f86",
+          "symbol": "XAUUSD",
+          "tick_size": 0.01,
+          "tick_value_note": "derived: contract size x tick size (USD-quoted XAUUSD); not read from the terminal",
+          "tick_value_per_lot": 1.0,
+          "verified": true
+        },
+        "engine": {
+          "commission_per_lot_per_side": "3.50",
+          "configured_spread": "0.30",
+          "intrabar": "stop_first",
+          "leverage": 500,
+          "min_trades_for_ratios": 30,
+          "sizing_override": null,
+          "slippage": "0.05",
+          "starting_balance": "1000"
+        },
+        "spec": {
+          "contract_size": "100.0",
+          "is_hypothetical": true,
+          "lot_presets": {
+            "micro": "0.01",
+            "mini": "0.10",
+            "standard": "1.00"
+          },
+          "lot_step": "0.01",
+          "max_lot": "100.0",
+          "min_lot": "0.01",
+          "name": "XAUUSD (contract from MT5 terminal verification mv_214ba65715fb0f86)",
+          "price_decimals": 2,
+          "quote_currency": "USD",
+          "schedule": {
+            "daily_close": "17:00",
+            "daily_reopen": "18:00",
+            "timezone": "America/New_York"
+          },
+          "spec_origin": "Contract size, lot limits, digits and tick size read from the actual MT5 terminal (verification mv_214ba65715fb0f86, 2026-11-14T11:52:37.706999Z). The trading schedule is the application's hypothetical one; tick value is derived, not read from the terminal.",
+          "symbol": "XAUUSD",
+          "tick_size": "0.01",
+          "unit": "troy_oz"
+        }
+      },
+      "at": "2026-11-14T13:02:44.072987Z",
+      "candidates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6"
+      ],
+      "strategies": [
+        {
+          "config": {
+            "conditions": [
+              {
+                "enabled": true,
+                "id": "h1",
+                "state": "with",
+                "timeframe": "H1",
+                "type": "structure_state"
+              },
+              {
+                "enabled": true,
+                "id": "m15",
+                "state": "with",
+                "timeframe": "M15",
+                "type": "structure_state"
+              },
+              {
+                "direction": "with",
+                "enabled": true,
+                "event": "BOS",
+                "id": "bos",
+                "timeframe": "M5",
+                "type": "structure_event",
+                "within_candles": 3
+              },
+              {
+                "enabled": true,
+                "id": "spread",
+                "if_unknown": "fail",
+                "max_spread": 0.5,
+                "max_spread_atr": null,
+                "type": "spread"
+              }
+            ],
+            "description": "H1 and M15 structure in the trade direction, a fresh M5 BOS in the same direction, and an acceptable spread. An example, not a claim of profitability.",
+            "direction": "both",
+            "entry": {
+              "max_entry_delay_minutes": 10,
+              "trigger": "on_change"
+            },
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "days": 10,
+                "end": null,
+                "mode": "all",
+                "start": null
+              }
+            },
+            "exit": {
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 60,
+              "stop": {
+                "atr_multiple": 1.5,
+                "buffer_atr": 0.1,
+                "distance": null,
+                "timeframe": "M5",
+                "type": "structure"
+              },
+              "target": {
+                "atr_multiple": null,
+                "distance": null,
+                "r": 2.0,
+                "timeframe": "M5",
+                "type": "r_multiple"
+              }
+            },
+            "name": "Example A: aligned structure + M5 BOS",
+            "risk": {
+              "lots": "0.02",
+              "max_exposure_lots": "1.00",
+              "max_open_positions": 1,
+              "risk_percent": 0.5,
+              "sizing": "fixed_lots"
+            },
+            "schema": "strategy@1"
+          },
+          "fingerprint": "c7bc3da5f4228b37b0b630fde52797e6ca8a5dd5ac4dc63218b4717eb8926d03",
+          "key": "A",
+          "name": "Example A: aligned structure + M5 BOS",
+          "readiness": {
+            "max_holding_minutes": 60,
+            "max_open_positions": 1,
+            "ready": true,
+            "rr": {
+              "in_range": true,
+              "note": "take-profit at 2 R (1:2)",
+              "planned_rr": 2.0
+            },
+            "sizing": {
+              "lots": "0.02",
+              "mode": "fixed_lots (as configured)",
+              "note": "monetary risk per trade = |entry - stop| x lots x contract size, computed per entry"
+            },
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "strategy_id": 1,
+          "version": 2,
+          "version_created_at": "2026-11-14T05:58:48.415932Z"
+        },
+        {
+          "config": {
+            "conditions": [
+              {
+                "enabled": true,
+                "id": "sweep",
+                "level_types": [
+                  "EQ",
+                  "PD",
+                  "PW",
+                  "session"
+                ],
+                "timeframe": "M5",
+                "type": "liquidity_sweep",
+                "within_candles": 12
+              },
+              {
+                "direction": "with",
+                "enabled": true,
+                "event": "CHoCH",
+                "id": "choch",
+                "timeframe": "M5",
+                "type": "structure_event",
+                "within_candles": 6
+              },
+              {
+                "allow_partial": true,
+                "enabled": true,
+                "id": "fvg",
+                "relation": "recent",
+                "timeframe": "M5",
+                "type": "fvg",
+                "within_candles": 6
+              },
+              {
+                "enabled": true,
+                "id": "sess",
+                "overlap": "any",
+                "sessions": [
+                  "London",
+                  "New York"
+                ],
+                "type": "session"
+              }
+            ],
+            "description": "A recent liquidity sweep, an M5 CHoCH and a same-direction FVG, during London or New York. An example, not a claim of profitability.",
+            "direction": "both",
+            "entry": {
+              "max_entry_delay_minutes": 10,
+              "trigger": "on_change"
+            },
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "days": 10,
+                "end": null,
+                "mode": "all",
+                "start": null
+              }
+            },
+            "exit": {
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 60,
+              "stop": {
+                "atr_multiple": 1.5,
+                "buffer_atr": 0.1,
+                "distance": null,
+                "timeframe": "M5",
+                "type": "structure"
+              },
+              "target": {
+                "atr_multiple": null,
+                "distance": null,
+                "r": 2.0,
+                "timeframe": "M5",
+                "type": "r_multiple"
+              }
+            },
+            "name": "Example B: sweep + CHoCH + FVG in session",
+            "risk": {
+              "lots": "0.02",
+              "max_exposure_lots": "1.00",
+              "max_open_positions": 1,
+              "risk_percent": 0.5,
+              "sizing": "fixed_lots"
+            },
+            "schema": "strategy@1"
+          },
+          "fingerprint": "5d8d81c6979495100a09039d6b323dde17c4b20d05c9eebd5b3781286a88c2c0",
+          "key": "B",
+          "name": "Example B: sweep + CHoCH + FVG in session",
+          "readiness": {
+            "max_holding_minutes": 60,
+            "max_open_positions": 1,
+            "ready": true,
+            "rr": {
+              "in_range": true,
+              "note": "take-profit at 2 R (1:2)",
+              "planned_rr": 2.0
+            },
+            "sizing": {
+              "lots": "0.02",
+              "mode": "fixed_lots (as configured)",
+              "note": "monetary risk per trade = |entry - stop| x lots x contract size, computed per entry"
+            },
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "strategy_id": 2,
+          "version": 2,
+          "version_created_at": "2026-11-14T05:58:48.380591Z"
+        },
+        {
+          "config": {
+            "conditions": [
+              {
+                "enabled": true,
+                "id": "align",
+                "min_agree": 2,
+                "none_against": true,
+                "timeframes": [
+                  "M15",
+                  "H1"
+                ],
+                "type": "htf_alignment"
+              },
+              {
+                "enabled": true,
+                "id": "swing",
+                "pattern": "pullback",
+                "timeframe": "M5",
+                "type": "swing_sequence"
+              },
+              {
+                "allowed": [
+                  "normal",
+                  "expanding"
+                ],
+                "enabled": true,
+                "id": "vol",
+                "timeframe": "M5",
+                "type": "volatility_regime"
+              }
+            ],
+            "description": "H1/M15 alignment, M5 swing confirmation and a non-contracting M5 volatility regime. An example, not a claim of profitability.",
+            "direction": "both",
+            "entry": {
+              "max_entry_delay_minutes": 10,
+              "trigger": "on_change"
+            },
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "days": 10,
+                "end": null,
+                "mode": "all",
+                "start": null
+              }
+            },
+            "exit": {
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 60,
+              "stop": {
+                "atr_multiple": 1.5,
+                "buffer_atr": 0.1,
+                "distance": null,
+                "timeframe": "M5",
+                "type": "structure"
+              },
+              "target": {
+                "atr_multiple": null,
+                "distance": null,
+                "r": 2.0,
+                "timeframe": "M5",
+                "type": "r_multiple"
+              }
+            },
+            "name": "Example C: alignment + confirmation + volatility",
+            "risk": {
+              "lots": "0.02",
+              "max_exposure_lots": "1.00",
+              "max_open_positions": 1,
+              "risk_percent": 0.5,
+              "sizing": "fixed_lots"
+            },
+            "schema": "strategy@1"
+          },
+          "fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+          "key": "C",
+          "name": "Example C: alignment + confirmation + volatility",
+          "readiness": {
+            "max_holding_minutes": 60,
+            "max_open_positions": 1,
+            "ready": true,
+            "rr": {
+              "in_range": true,
+              "note": "take-profit at 2 R (1:2)",
+              "planned_rr": 2.0
+            },
+            "sizing": {
+              "lots": "0.02",
+              "mode": "fixed_lots (as configured)",
+              "note": "monetary risk per trade = |entry - stop| x lots x contract size, computed per entry"
+            },
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "strategy_id": 3,
+          "version": 4,
+          "version_created_at": "2026-11-14T05:58:48.350349Z"
+        }
+      ]
+    },
+    "research": {
+      "cadence": "M5 decisions on M5 analysis and execution candles",
+      "dataset": {
+        "analysis_base": "M5",
+        "analysis_candles": 12685,
+        "analysis_first": "2026-07-28T22:00:00Z",
+        "analysis_last": "2026-09-30T23:55:00Z",
+        "dataset_hash": "8104d2f97544ca9b0b0671322a60380542c1209210058ea64bfe1b7902c116b8",
+        "decision_cutoffs": 11857,
+        "detail": [
+          "M5"
+        ],
+        "execution_candles": 11857,
+        "execution_first": "2026-08-02T22:00:00Z",
+        "execution_hash": "9b06efc623c391a89b8a739b740e74cbcf0f8bea071811ff4d032f650f88d46a",
+        "execution_last": "2026-09-30T23:55:00Z",
+        "execution_origin": "native",
+        "history_before_base": {
+          "H1": 400,
+          "M15": 600
+        },
+        "lookback_days": 5,
+        "range": {
+          "end": "2026-10-01T00:00:00Z",
+          "start": "2026-08-02T22:00:00Z"
+        },
+        "run_timeframe": "M5",
+        "series": "live:mt5:XAUUSD",
+        "source_id": "mt5",
+        "spread_known_share": 1.0,
+        "store": "app"
+      },
+      "definition": "monthly@1",
+      "note": "Developed and frozen on data strictly before the evaluation month; the month's results never influenced these rules.",
+      "window": {
+        "development_end": "2026-09-13T06:36:00Z",
+        "end": "2026-10-01T00:00:00Z",
+        "start": "2026-08-02T22:00:00Z"
+      }
+    },
+    "phase": null,
+    "progress": 6048,
+    "total": 0,
+    "app_version": "goldscalp 0.1.0 / code e148672a399c28cc",
+    "error": null,
+    "finished_at": "2026-11-14T13:09:36.155881Z"
+  },
+  {
+    "id": "me_697122f9e14b",
+    "month": "2026-10",
+    "range_start": "2026-10-01T00:00:00Z",
+    "range_end": "2026-11-01T00:00:00Z",
+    "status": "INCOMPLETE",
+    "research_done": 1,
+    "created_at": "2026-11-14T13:10:58.680397Z",
+    "updated_at": "2026-11-14T13:32:50.570120Z",
+    "params": {
+      "commission": "3.50",
+      "configured_spread": "0.30",
+      "leverage": 500,
+      "lookback_days": 5,
+      "month": "2026-10",
+      "research_days": 60,
+      "risk_percent_override": null,
+      "series": "live:mt5:XAUUSD",
+      "slippage": "0.05",
+      "starting_balance": "1000",
+      "store": "app",
+      "strategies": [
+        {
+          "id": 1,
+          "version": 2
+        },
+        {
+          "id": 2,
+          "version": 2
+        },
+        {
+          "id": 3,
+          "version": 4
+        }
+      ],
+      "timeframes": [
+        "M15",
+        "M5",
+        "M1"
+      ]
+    },
+    "availability": {
+      "h1_history_bars_before_month": 1104,
+      "missing": [
+        "M1 execution candles cover 0% of the month (need 95%; stored M1 has none in the month)",
+        "M1 analysis history before the month starts nowhere; 5 days are needed"
+      ],
+      "month": "2026-10",
+      "range": {
+        "end": "2026-11-01T00:00:00Z",
+        "start": "2026-10-01T00:00:00Z"
+      },
+      "ready": [
+        "M15",
+        "M5"
+      ],
+      "research": {
+        "coverage": {
+          "expected": 11892,
+          "first": "2026-08-02T22:00:00Z",
+          "last": "2026-09-30T23:55:00Z",
+          "missing_ranges": [
+            {
+              "bars": 30,
+              "from": "2026-09-07T18:30:00Z",
+              "to": "2026-09-07T21:00:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-28T19:00:00Z",
+              "to": "2026-09-28T19:05:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T07:05:00Z",
+              "to": "2026-09-29T07:10:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T08:00:00Z",
+              "to": "2026-09-29T08:05:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T10:00:00Z",
+              "to": "2026-09-29T10:05:00Z"
+            }
+          ],
+          "present": 11857,
+          "share": 0.9971,
+          "timeframe": "M5"
+        },
+        "days_available": 59,
+        "reason": null,
+        "sufficient": true,
+        "window": {
+          "end": "2026-10-01T00:00:00Z",
+          "start": "2026-08-02T22:00:00Z"
+        }
+      },
+      "series": "live:mt5:XAUUSD",
+      "store": "app",
+      "timeframes": {
+        "M1": {
+          "analysis": null,
+          "analysis_base": "M1",
+          "execution": {
+            "expected": 30240,
+            "first": null,
+            "last": null,
+            "missing_ranges": [],
+            "present": 0,
+            "share": 0.0,
+            "timeframe": "M1"
+          },
+          "history_from": null,
+          "problems": [
+            "M1 execution candles cover 0% of the month (need 95%; stored M1 has none in the month)",
+            "M1 analysis history before the month starts nowhere; 5 days are needed"
+          ],
+          "sufficient": false
+        },
+        "M15": {
+          "analysis": {
+            "expected": 6048,
+            "first": "2026-10-01T00:00:00Z",
+            "last": "2026-10-30T20:55:00Z",
+            "missing_ranges": [],
+            "present": 6048,
+            "share": 1.0,
+            "timeframe": "M5"
+          },
+          "analysis_base": "M5",
+          "execution": {
+            "expected": 2016,
+            "first": "2026-10-01T00:00:00Z",
+            "last": "2026-10-30T20:45:00Z",
+            "missing_ranges": [],
+            "present": 2016,
+            "share": 1.0,
+            "timeframe": "M15"
+          },
+          "history_from": "2026-07-26T22:00:00Z",
+          "problems": [],
+          "sufficient": true
+        },
+        "M5": {
+          "analysis": null,
+          "analysis_base": "M5",
+          "execution": {
+            "expected": 6048,
+            "first": "2026-10-01T00:00:00Z",
+            "last": "2026-10-30T20:55:00Z",
+            "missing_ranges": [],
+            "present": 6048,
+            "share": 1.0,
+            "timeframe": "M5"
+          },
+          "history_from": "2026-07-26T22:00:00Z",
+          "problems": [],
+          "sufficient": true
+        }
+      }
+    },
+    "frozen": {
+      "assumptions": {
+        "contract": {
+          "contract_size": 100.0,
+          "digits": 2,
+          "lot_step": 0.01,
+          "margin_note": "1:500 is a hypothetical margin parameter (notional / 500); the broker's own margin rules may differ",
+          "max_lot": 100.0,
+          "min_lot": 0.01,
+          "record": "mv_214ba65715fb0f86",
+          "symbol": "XAUUSD",
+          "tick_size": 0.01,
+          "tick_value_note": "derived: contract size x tick size (USD-quoted XAUUSD); not read from the terminal",
+          "tick_value_per_lot": 1.0,
+          "verified": true
+        },
+        "engine": {
+          "commission_per_lot_per_side": "3.50",
+          "configured_spread": "0.30",
+          "intrabar": "stop_first",
+          "leverage": 500,
+          "min_trades_for_ratios": 30,
+          "sizing_override": null,
+          "slippage": "0.05",
+          "starting_balance": "1000"
+        },
+        "spec": {
+          "contract_size": "100.0",
+          "is_hypothetical": true,
+          "lot_presets": {
+            "micro": "0.01",
+            "mini": "0.10",
+            "standard": "1.00"
+          },
+          "lot_step": "0.01",
+          "max_lot": "100.0",
+          "min_lot": "0.01",
+          "name": "XAUUSD (contract from MT5 terminal verification mv_214ba65715fb0f86)",
+          "price_decimals": 2,
+          "quote_currency": "USD",
+          "schedule": {
+            "daily_close": "17:00",
+            "daily_reopen": "18:00",
+            "timezone": "America/New_York"
+          },
+          "spec_origin": "Contract size, lot limits, digits and tick size read from the actual MT5 terminal (verification mv_214ba65715fb0f86, 2026-11-14T11:52:37.706999Z). The trading schedule is the application's hypothetical one; tick value is derived, not read from the terminal.",
+          "symbol": "XAUUSD",
+          "tick_size": "0.01",
+          "unit": "troy_oz"
+        }
+      },
+      "at": "2026-11-14T13:26:16.469767Z",
+      "candidates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9"
+      ],
+      "strategies": [
+        {
+          "config": {
+            "conditions": [
+              {
+                "enabled": true,
+                "id": "h1",
+                "state": "with",
+                "timeframe": "H1",
+                "type": "structure_state"
+              },
+              {
+                "enabled": true,
+                "id": "m15",
+                "state": "with",
+                "timeframe": "M15",
+                "type": "structure_state"
+              },
+              {
+                "direction": "with",
+                "enabled": true,
+                "event": "BOS",
+                "id": "bos",
+                "timeframe": "M5",
+                "type": "structure_event",
+                "within_candles": 3
+              },
+              {
+                "enabled": true,
+                "id": "spread",
+                "if_unknown": "fail",
+                "max_spread": 0.5,
+                "max_spread_atr": null,
+                "type": "spread"
+              }
+            ],
+            "description": "H1 and M15 structure in the trade direction, a fresh M5 BOS in the same direction, and an acceptable spread. An example, not a claim of profitability.",
+            "direction": "both",
+            "entry": {
+              "max_entry_delay_minutes": 10,
+              "trigger": "on_change"
+            },
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "days": 10,
+                "end": null,
+                "mode": "all",
+                "start": null
+              }
+            },
+            "exit": {
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 60,
+              "stop": {
+                "atr_multiple": 1.5,
+                "buffer_atr": 0.1,
+                "distance": null,
+                "timeframe": "M5",
+                "type": "structure"
+              },
+              "target": {
+                "atr_multiple": null,
+                "distance": null,
+                "r": 2.0,
+                "timeframe": "M5",
+                "type": "r_multiple"
+              }
+            },
+            "name": "Example A: aligned structure + M5 BOS",
+            "risk": {
+              "lots": "0.02",
+              "max_exposure_lots": "1.00",
+              "max_open_positions": 1,
+              "risk_percent": 0.5,
+              "sizing": "fixed_lots"
+            },
+            "schema": "strategy@1"
+          },
+          "fingerprint": "c7bc3da5f4228b37b0b630fde52797e6ca8a5dd5ac4dc63218b4717eb8926d03",
+          "key": "A",
+          "name": "Example A: aligned structure + M5 BOS",
+          "readiness": {
+            "max_holding_minutes": 60,
+            "max_open_positions": 1,
+            "ready": true,
+            "rr": {
+              "in_range": true,
+              "note": "take-profit at 2 R (1:2)",
+              "planned_rr": 2.0
+            },
+            "sizing": {
+              "lots": "0.02",
+              "mode": "fixed_lots (as configured)",
+              "note": "monetary risk per trade = |entry - stop| x lots x contract size, computed per entry"
+            },
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "strategy_id": 1,
+          "version": 2,
+          "version_created_at": "2026-11-14T05:58:48.415932Z"
+        },
+        {
+          "config": {
+            "conditions": [
+              {
+                "enabled": true,
+                "id": "sweep",
+                "level_types": [
+                  "EQ",
+                  "PD",
+                  "PW",
+                  "session"
+                ],
+                "timeframe": "M5",
+                "type": "liquidity_sweep",
+                "within_candles": 12
+              },
+              {
+                "direction": "with",
+                "enabled": true,
+                "event": "CHoCH",
+                "id": "choch",
+                "timeframe": "M5",
+                "type": "structure_event",
+                "within_candles": 6
+              },
+              {
+                "allow_partial": true,
+                "enabled": true,
+                "id": "fvg",
+                "relation": "recent",
+                "timeframe": "M5",
+                "type": "fvg",
+                "within_candles": 6
+              },
+              {
+                "enabled": true,
+                "id": "sess",
+                "overlap": "any",
+                "sessions": [
+                  "London",
+                  "New York"
+                ],
+                "type": "session"
+              }
+            ],
+            "description": "A recent liquidity sweep, an M5 CHoCH and a same-direction FVG, during London or New York. An example, not a claim of profitability.",
+            "direction": "both",
+            "entry": {
+              "max_entry_delay_minutes": 10,
+              "trigger": "on_change"
+            },
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "days": 10,
+                "end": null,
+                "mode": "all",
+                "start": null
+              }
+            },
+            "exit": {
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 60,
+              "stop": {
+                "atr_multiple": 1.5,
+                "buffer_atr": 0.1,
+                "distance": null,
+                "timeframe": "M5",
+                "type": "structure"
+              },
+              "target": {
+                "atr_multiple": null,
+                "distance": null,
+                "r": 2.0,
+                "timeframe": "M5",
+                "type": "r_multiple"
+              }
+            },
+            "name": "Example B: sweep + CHoCH + FVG in session",
+            "risk": {
+              "lots": "0.02",
+              "max_exposure_lots": "1.00",
+              "max_open_positions": 1,
+              "risk_percent": 0.5,
+              "sizing": "fixed_lots"
+            },
+            "schema": "strategy@1"
+          },
+          "fingerprint": "5d8d81c6979495100a09039d6b323dde17c4b20d05c9eebd5b3781286a88c2c0",
+          "key": "B",
+          "name": "Example B: sweep + CHoCH + FVG in session",
+          "readiness": {
+            "max_holding_minutes": 60,
+            "max_open_positions": 1,
+            "ready": true,
+            "rr": {
+              "in_range": true,
+              "note": "take-profit at 2 R (1:2)",
+              "planned_rr": 2.0
+            },
+            "sizing": {
+              "lots": "0.02",
+              "mode": "fixed_lots (as configured)",
+              "note": "monetary risk per trade = |entry - stop| x lots x contract size, computed per entry"
+            },
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "strategy_id": 2,
+          "version": 2,
+          "version_created_at": "2026-11-14T05:58:48.380591Z"
+        },
+        {
+          "config": {
+            "conditions": [
+              {
+                "enabled": true,
+                "id": "align",
+                "min_agree": 2,
+                "none_against": true,
+                "timeframes": [
+                  "M15",
+                  "H1"
+                ],
+                "type": "htf_alignment"
+              },
+              {
+                "enabled": true,
+                "id": "swing",
+                "pattern": "pullback",
+                "timeframe": "M5",
+                "type": "swing_sequence"
+              },
+              {
+                "allowed": [
+                  "normal",
+                  "expanding"
+                ],
+                "enabled": true,
+                "id": "vol",
+                "timeframe": "M5",
+                "type": "volatility_regime"
+              }
+            ],
+            "description": "H1/M15 alignment, M5 swing confirmation and a non-contracting M5 volatility regime. An example, not a claim of profitability.",
+            "direction": "both",
+            "entry": {
+              "max_entry_delay_minutes": 10,
+              "trigger": "on_change"
+            },
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "days": 10,
+                "end": null,
+                "mode": "all",
+                "start": null
+              }
+            },
+            "exit": {
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 60,
+              "stop": {
+                "atr_multiple": 1.5,
+                "buffer_atr": 0.1,
+                "distance": null,
+                "timeframe": "M5",
+                "type": "structure"
+              },
+              "target": {
+                "atr_multiple": null,
+                "distance": null,
+                "r": 2.0,
+                "timeframe": "M5",
+                "type": "r_multiple"
+              }
+            },
+            "name": "Example C: alignment + confirmation + volatility",
+            "risk": {
+              "lots": "0.02",
+              "max_exposure_lots": "1.00",
+              "max_open_positions": 1,
+              "risk_percent": 0.5,
+              "sizing": "fixed_lots"
+            },
+            "schema": "strategy@1"
+          },
+          "fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+          "key": "C",
+          "name": "Example C: alignment + confirmation + volatility",
+          "readiness": {
+            "max_holding_minutes": 60,
+            "max_open_positions": 1,
+            "ready": true,
+            "rr": {
+              "in_range": true,
+              "note": "take-profit at 2 R (1:2)",
+              "planned_rr": 2.0
+            },
+            "sizing": {
+              "lots": "0.02",
+              "mode": "fixed_lots (as configured)",
+              "note": "monetary risk per trade = |entry - stop| x lots x contract size, computed per entry"
+            },
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "strategy_id": 3,
+          "version": 4,
+          "version_created_at": "2026-11-14T05:58:48.350349Z"
+        }
+      ]
+    },
+    "research": {
+      "cadence": "M5 decisions on M5 analysis and execution candles",
+      "dataset": {
+        "analysis_base": "M5",
+        "analysis_candles": 12685,
+        "analysis_first": "2026-07-28T22:00:00Z",
+        "analysis_last": "2026-09-30T23:55:00Z",
+        "dataset_hash": "8104d2f97544ca9b0b0671322a60380542c1209210058ea64bfe1b7902c116b8",
+        "decision_cutoffs": 11857,
+        "detail": [
+          "M5"
+        ],
+        "execution_candles": 11857,
+        "execution_first": "2026-08-02T22:00:00Z",
+        "execution_hash": "9b06efc623c391a89b8a739b740e74cbcf0f8bea071811ff4d032f650f88d46a",
+        "execution_last": "2026-09-30T23:55:00Z",
+        "execution_origin": "native",
+        "history_before_base": {
+          "H1": 400,
+          "M15": 600
+        },
+        "lookback_days": 5,
+        "range": {
+          "end": "2026-10-01T00:00:00Z",
+          "start": "2026-08-02T22:00:00Z"
+        },
+        "run_timeframe": "M5",
+        "series": "live:mt5:XAUUSD",
+        "source_id": "mt5",
+        "spread_known_share": 1.0,
+        "store": "app"
+      },
+      "definition": "monthly@1",
+      "note": "Developed and frozen on data strictly before the evaluation month; the month's results never influenced these rules.",
+      "window": {
+        "development_end": "2026-09-13T06:36:00Z",
+        "end": "2026-10-01T00:00:00Z",
+        "start": "2026-08-02T22:00:00Z"
+      }
+    },
+    "phase": null,
+    "progress": 6048,
+    "total": 0,
+    "app_version": "goldscalp 0.1.0 / code f21665b8d48ecdd3",
+    "error": null,
+    "finished_at": "2026-11-14T13:32:50.570120Z"
+  },
+  {
+    "id": "me_23932a71a56a",
+    "month": "2026-10",
+    "range_start": "2026-10-01T00:00:00Z",
+    "range_end": "2026-11-01T00:00:00Z",
+    "status": "COMPLETED",
+    "research_done": 1,
+    "created_at": "2026-11-14T14:07:21.259057Z",
+    "updated_at": "2026-11-14T14:57:10.486491Z",
+    "params": {
+      "commission": "3.50",
+      "configured_spread": "0.30",
+      "leverage": 500,
+      "lookback_days": 5,
+      "month": "2026-10",
+      "research_days": 60,
+      "risk_percent_override": null,
+      "series": "csv:vantage-mt5-xauusd",
+      "slippage": "0.05",
+      "starting_balance": "1000",
+      "store": "research",
+      "strategies": [
+        {
+          "id": 1,
+          "version": 2
+        },
+        {
+          "id": 2,
+          "version": 2
+        },
+        {
+          "id": 3,
+          "version": 4
+        }
+      ],
+      "timeframes": [
+        "M15",
+        "M5",
+        "M1"
+      ]
+    },
+    "availability": {
+      "h1_history_bars_before_month": 1104,
+      "missing": [],
+      "month": "2026-10",
+      "range": {
+        "end": "2026-11-01T00:00:00Z",
+        "start": "2026-10-01T00:00:00Z"
+      },
+      "ready": [
+        "M15",
+        "M5",
+        "M1"
+      ],
+      "research": {
+        "coverage": {
+          "expected": 11892,
+          "first": "2026-08-02T22:00:00Z",
+          "last": "2026-09-30T23:55:00Z",
+          "missing_ranges": [
+            {
+              "bars": 30,
+              "from": "2026-09-07T18:30:00Z",
+              "to": "2026-09-07T21:00:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-28T19:00:00Z",
+              "to": "2026-09-28T19:05:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T07:05:00Z",
+              "to": "2026-09-29T07:10:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T08:00:00Z",
+              "to": "2026-09-29T08:05:00Z"
+            },
+            {
+              "bars": 1,
+              "from": "2026-09-29T10:00:00Z",
+              "to": "2026-09-29T10:05:00Z"
+            }
+          ],
+          "present": 11857,
+          "share": 0.9971,
+          "timeframe": "M5"
+        },
+        "days_available": 59,
+        "reason": null,
+        "sufficient": true,
+        "window": {
+          "end": "2026-10-01T00:00:00Z",
+          "start": "2026-08-02T22:00:00Z"
+        }
+      },
+      "series": "csv:vantage-mt5-xauusd",
+      "store": "research",
+      "timeframes": {
+        "M1": {
+          "analysis": null,
+          "analysis_base": "M1",
+          "execution": {
+            "expected": 30240,
+            "first": "2026-10-01T00:00:00Z",
+            "last": "2026-10-30T20:56:00Z",
+            "missing_ranges": [
+              {
+                "bars": 1,
+                "from": "2026-10-01T05:00:00Z",
+                "to": "2026-10-01T05:01:00Z"
+              },
+              {
+                "bars": 2,
+                "from": "2026-10-01T20:58:00Z",
+                "to": "2026-10-01T21:00:00Z"
+              },
+              {
+                "bars": 3,
+                "from": "2026-10-02T20:57:00Z",
+                "to": "2026-10-02T21:00:00Z"
+              },
+              {
+                "bars": 2,
+                "from": "2026-10-05T20:58:00Z",
+                "to": "2026-10-05T21:00:00Z"
+              },
+              {
+                "bars": 2,
+                "from": "2026-10-06T20:58:00Z",
+                "to": "2026-10-06T21:00:00Z"
+              }
+            ],
+            "present": 30190,
+            "share": 0.9983,
+            "timeframe": "M1"
+          },
+          "history_from": "2026-09-27T22:00:00Z",
+          "problems": [],
+          "sufficient": true
+        },
+        "M15": {
+          "analysis": {
+            "expected": 6048,
+            "first": "2026-10-01T00:00:00Z",
+            "last": "2026-10-30T20:55:00Z",
+            "missing_ranges": [],
+            "present": 6048,
+            "share": 1.0,
+            "timeframe": "M5"
+          },
+          "analysis_base": "M5",
+          "execution": {
+            "expected": 2016,
+            "first": "2026-10-01T00:00:00Z",
+            "last": "2026-10-30T20:45:00Z",
+            "missing_ranges": [],
+            "present": 2016,
+            "share": 1.0,
+            "timeframe": "M15"
+          },
+          "history_from": "2026-07-26T22:00:00Z",
+          "problems": [],
+          "sufficient": true
+        },
+        "M5": {
+          "analysis": null,
+          "analysis_base": "M5",
+          "execution": {
+            "expected": 6048,
+            "first": "2026-10-01T00:00:00Z",
+            "last": "2026-10-30T20:55:00Z",
+            "missing_ranges": [],
+            "present": 6048,
+            "share": 1.0,
+            "timeframe": "M5"
+          },
+          "history_from": "2026-07-26T22:00:00Z",
+          "problems": [],
+          "sufficient": true
+        }
+      }
+    },
+    "frozen": {
+      "assumptions": {
+        "contract": {
+          "contract_size": 100.0,
+          "digits": 2,
+          "lot_step": 0.01,
+          "margin_note": "1:500 is a hypothetical margin parameter (notional / 500); the broker's own margin rules may differ",
+          "max_lot": 100.0,
+          "min_lot": 0.01,
+          "record": "mv_214ba65715fb0f86",
+          "symbol": "XAUUSD",
+          "tick_size": 0.01,
+          "tick_value_note": "derived: contract size x tick size (USD-quoted XAUUSD); not read from the terminal",
+          "tick_value_per_lot": 1.0,
+          "verified": true
+        },
+        "engine": {
+          "commission_per_lot_per_side": "3.50",
+          "configured_spread": "0.30",
+          "intrabar": "stop_first",
+          "leverage": 500,
+          "min_trades_for_ratios": 30,
+          "sizing_override": null,
+          "slippage": "0.05",
+          "starting_balance": "1000"
+        },
+        "spec": {
+          "contract_size": "100.0",
+          "is_hypothetical": true,
+          "lot_presets": {
+            "micro": "0.01",
+            "mini": "0.10",
+            "standard": "1.00"
+          },
+          "lot_step": "0.01",
+          "max_lot": "100.0",
+          "min_lot": "0.01",
+          "name": "XAUUSD (contract from MT5 terminal verification mv_214ba65715fb0f86)",
+          "price_decimals": 2,
+          "quote_currency": "USD",
+          "schedule": {
+            "daily_close": "17:00",
+            "daily_reopen": "18:00",
+            "timezone": "America/New_York"
+          },
+          "spec_origin": "Contract size, lot limits, digits and tick size read from the actual MT5 terminal (verification mv_214ba65715fb0f86, 2026-11-14T11:52:37.706999Z). The trading schedule is the application's hypothetical one; tick value is derived, not read from the terminal.",
+          "symbol": "XAUUSD",
+          "tick_size": "0.01",
+          "unit": "troy_oz"
+        }
+      },
+      "at": "2026-11-14T14:17:22.381398Z",
+      "candidates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9"
+      ],
+      "strategies": [
+        {
+          "config": {
+            "conditions": [
+              {
+                "enabled": true,
+                "id": "h1",
+                "state": "with",
+                "timeframe": "H1",
+                "type": "structure_state"
+              },
+              {
+                "enabled": true,
+                "id": "m15",
+                "state": "with",
+                "timeframe": "M15",
+                "type": "structure_state"
+              },
+              {
+                "direction": "with",
+                "enabled": true,
+                "event": "BOS",
+                "id": "bos",
+                "timeframe": "M5",
+                "type": "structure_event",
+                "within_candles": 3
+              },
+              {
+                "enabled": true,
+                "id": "spread",
+                "if_unknown": "fail",
+                "max_spread": 0.5,
+                "max_spread_atr": null,
+                "type": "spread"
+              }
+            ],
+            "description": "H1 and M15 structure in the trade direction, a fresh M5 BOS in the same direction, and an acceptable spread. An example, not a claim of profitability.",
+            "direction": "both",
+            "entry": {
+              "max_entry_delay_minutes": 10,
+              "trigger": "on_change"
+            },
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "days": 10,
+                "end": null,
+                "mode": "all",
+                "start": null
+              }
+            },
+            "exit": {
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 60,
+              "stop": {
+                "atr_multiple": 1.5,
+                "buffer_atr": 0.1,
+                "distance": null,
+                "timeframe": "M5",
+                "type": "structure"
+              },
+              "target": {
+                "atr_multiple": null,
+                "distance": null,
+                "r": 2.0,
+                "timeframe": "M5",
+                "type": "r_multiple"
+              }
+            },
+            "name": "Example A: aligned structure + M5 BOS",
+            "risk": {
+              "lots": "0.02",
+              "max_exposure_lots": "1.00",
+              "max_open_positions": 1,
+              "risk_percent": 0.5,
+              "sizing": "fixed_lots"
+            },
+            "schema": "strategy@1"
+          },
+          "fingerprint": "c7bc3da5f4228b37b0b630fde52797e6ca8a5dd5ac4dc63218b4717eb8926d03",
+          "key": "A",
+          "name": "Example A: aligned structure + M5 BOS",
+          "readiness": {
+            "max_holding_minutes": 60,
+            "max_open_positions": 1,
+            "ready": true,
+            "rr": {
+              "in_range": true,
+              "note": "take-profit at 2 R (1:2)",
+              "planned_rr": 2.0
+            },
+            "sizing": {
+              "lots": "0.02",
+              "mode": "fixed_lots (as configured)",
+              "note": "monetary risk per trade = |entry - stop| x lots x contract size, computed per entry"
+            },
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "strategy_id": 1,
+          "version": 2,
+          "version_created_at": "2026-11-14T05:58:48.415932Z"
+        },
+        {
+          "config": {
+            "conditions": [
+              {
+                "enabled": true,
+                "id": "sweep",
+                "level_types": [
+                  "EQ",
+                  "PD",
+                  "PW",
+                  "session"
+                ],
+                "timeframe": "M5",
+                "type": "liquidity_sweep",
+                "within_candles": 12
+              },
+              {
+                "direction": "with",
+                "enabled": true,
+                "event": "CHoCH",
+                "id": "choch",
+                "timeframe": "M5",
+                "type": "structure_event",
+                "within_candles": 6
+              },
+              {
+                "allow_partial": true,
+                "enabled": true,
+                "id": "fvg",
+                "relation": "recent",
+                "timeframe": "M5",
+                "type": "fvg",
+                "within_candles": 6
+              },
+              {
+                "enabled": true,
+                "id": "sess",
+                "overlap": "any",
+                "sessions": [
+                  "London",
+                  "New York"
+                ],
+                "type": "session"
+              }
+            ],
+            "description": "A recent liquidity sweep, an M5 CHoCH and a same-direction FVG, during London or New York. An example, not a claim of profitability.",
+            "direction": "both",
+            "entry": {
+              "max_entry_delay_minutes": 10,
+              "trigger": "on_change"
+            },
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "days": 10,
+                "end": null,
+                "mode": "all",
+                "start": null
+              }
+            },
+            "exit": {
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 60,
+              "stop": {
+                "atr_multiple": 1.5,
+                "buffer_atr": 0.1,
+                "distance": null,
+                "timeframe": "M5",
+                "type": "structure"
+              },
+              "target": {
+                "atr_multiple": null,
+                "distance": null,
+                "r": 2.0,
+                "timeframe": "M5",
+                "type": "r_multiple"
+              }
+            },
+            "name": "Example B: sweep + CHoCH + FVG in session",
+            "risk": {
+              "lots": "0.02",
+              "max_exposure_lots": "1.00",
+              "max_open_positions": 1,
+              "risk_percent": 0.5,
+              "sizing": "fixed_lots"
+            },
+            "schema": "strategy@1"
+          },
+          "fingerprint": "5d8d81c6979495100a09039d6b323dde17c4b20d05c9eebd5b3781286a88c2c0",
+          "key": "B",
+          "name": "Example B: sweep + CHoCH + FVG in session",
+          "readiness": {
+            "max_holding_minutes": 60,
+            "max_open_positions": 1,
+            "ready": true,
+            "rr": {
+              "in_range": true,
+              "note": "take-profit at 2 R (1:2)",
+              "planned_rr": 2.0
+            },
+            "sizing": {
+              "lots": "0.02",
+              "mode": "fixed_lots (as configured)",
+              "note": "monetary risk per trade = |entry - stop| x lots x contract size, computed per entry"
+            },
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "strategy_id": 2,
+          "version": 2,
+          "version_created_at": "2026-11-14T05:58:48.380591Z"
+        },
+        {
+          "config": {
+            "conditions": [
+              {
+                "enabled": true,
+                "id": "align",
+                "min_agree": 2,
+                "none_against": true,
+                "timeframes": [
+                  "M15",
+                  "H1"
+                ],
+                "type": "htf_alignment"
+              },
+              {
+                "enabled": true,
+                "id": "swing",
+                "pattern": "pullback",
+                "timeframe": "M5",
+                "type": "swing_sequence"
+              },
+              {
+                "allowed": [
+                  "normal",
+                  "expanding"
+                ],
+                "enabled": true,
+                "id": "vol",
+                "timeframe": "M5",
+                "type": "volatility_regime"
+              }
+            ],
+            "description": "H1/M15 alignment, M5 swing confirmation and a non-contracting M5 volatility regime. An example, not a claim of profitability.",
+            "direction": "both",
+            "entry": {
+              "max_entry_delay_minutes": 10,
+              "trigger": "on_change"
+            },
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "days": 10,
+                "end": null,
+                "mode": "all",
+                "start": null
+              }
+            },
+            "exit": {
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 60,
+              "stop": {
+                "atr_multiple": 1.5,
+                "buffer_atr": 0.1,
+                "distance": null,
+                "timeframe": "M5",
+                "type": "structure"
+              },
+              "target": {
+                "atr_multiple": null,
+                "distance": null,
+                "r": 2.0,
+                "timeframe": "M5",
+                "type": "r_multiple"
+              }
+            },
+            "name": "Example C: alignment + confirmation + volatility",
+            "risk": {
+              "lots": "0.02",
+              "max_exposure_lots": "1.00",
+              "max_open_positions": 1,
+              "risk_percent": 0.5,
+              "sizing": "fixed_lots"
+            },
+            "schema": "strategy@1"
+          },
+          "fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+          "key": "C",
+          "name": "Example C: alignment + confirmation + volatility",
+          "readiness": {
+            "max_holding_minutes": 60,
+            "max_open_positions": 1,
+            "ready": true,
+            "rr": {
+              "in_range": true,
+              "note": "take-profit at 2 R (1:2)",
+              "planned_rr": 2.0
+            },
+            "sizing": {
+              "lots": "0.02",
+              "mode": "fixed_lots (as configured)",
+              "note": "monetary risk per trade = |entry - stop| x lots x contract size, computed per entry"
+            },
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "strategy_id": 3,
+          "version": 4,
+          "version_created_at": "2026-11-14T05:58:48.350349Z"
+        }
+      ]
+    },
+    "research": {
+      "cadence": "M5 decisions on M5 analysis and execution candles",
+      "dataset": {
+        "analysis_base": "M5",
+        "analysis_candles": 12685,
+        "analysis_first": "2026-07-28T22:00:00Z",
+        "analysis_last": "2026-09-30T23:55:00Z",
+        "dataset_hash": "8104d2f97544ca9b0b0671322a60380542c1209210058ea64bfe1b7902c116b8",
+        "decision_cutoffs": 11857,
+        "detail": [
+          "M5"
+        ],
+        "execution_candles": 11857,
+        "execution_first": "2026-08-02T22:00:00Z",
+        "execution_hash": "9b06efc623c391a89b8a739b740e74cbcf0f8bea071811ff4d032f650f88d46a",
+        "execution_last": "2026-09-30T23:55:00Z",
+        "execution_origin": "native",
+        "history_before_base": {
+          "H1": 400,
+          "M15": 600
+        },
+        "lookback_days": 5,
+        "range": {
+          "end": "2026-10-01T00:00:00Z",
+          "start": "2026-08-02T22:00:00Z"
+        },
+        "run_timeframe": "M5",
+        "series": "csv:vantage-mt5-xauusd",
+        "source_id": "csv:mt5_export",
+        "spread_known_share": 1.0,
+        "store": "research"
+      },
+      "definition": "monthly@1",
+      "note": "Developed and frozen on data strictly before the evaluation month; the month's results never influenced these rules.",
+      "window": {
+        "development_end": "2026-09-13T06:36:00Z",
+        "end": "2026-10-01T00:00:00Z",
+        "start": "2026-08-02T22:00:00Z"
+      }
+    },
+    "phase": null,
+    "progress": 30190,
+    "total": 0,
+    "app_version": "goldscalp 0.1.0 / code f21665b8d48ecdd3",
+    "error": null,
+    "finished_at": "2026-11-14T14:57:10.486491Z"
+  }
+]

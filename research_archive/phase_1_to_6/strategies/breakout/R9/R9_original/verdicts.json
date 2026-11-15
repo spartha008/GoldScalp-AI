@@ -1,0 +1,88 @@
+{
+  "archival_classification": "rejected",
+  "evidence": "5.2 -0.150 (51).",
+  "recorded": [
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "original",
+      "class": "rejected",
+      "why": "OOS expectancy -0.150 R/trade after costs (51 trades)"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:candidates",
+      "study": "me_23932a71a56a",
+      "key": "R9",
+      "label": "R9 original"
+    },
+    {
+      "source": "store:candidates",
+      "study": "me_697122f9e14b",
+      "key": "R9",
+      "label": "R9 original"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R9|M1",
+      "label": "R9"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R9|M15",
+      "label": "R9"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R9|M5",
+      "label": "R9"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R9|M1",
+      "label": "R9"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R9|M15",
+      "label": "R9"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R9|M5",
+      "label": "R9"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R9|original",
+      "label": "R9|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_825da1543f0f",
+      "key": "R9|original",
+      "label": "R9|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_a732696e0c83",
+      "key": "R9|original",
+      "label": "R9|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_da267aa33110",
+      "key": "R9|original",
+      "label": "R9|original"
+    }
+  ]
+}

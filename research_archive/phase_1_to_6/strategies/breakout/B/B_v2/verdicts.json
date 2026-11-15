@@ -1,0 +1,154 @@
+{
+  "archival_classification": "inconclusive: insufficient evidence",
+  "evidence": "Phase 5.2 out of sample +0.029 R/trade over only 24 trades.",
+  "recorded": [
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "original",
+      "class": "inconclusive",
+      "why": "positive out of sample, but fails: expectancy, trade_count, profit_factor, drawdown, consistency, timeframes"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "app:strategy_versions",
+      "study": null,
+      "key": "2/2",
+      "label": "B v2"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "B|M1",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "B|M15",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "B|M5",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "B|M1",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "B|M15",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "B|M5",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_7553ae541419",
+      "key": "B|M1",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_7553ae541419",
+      "key": "B|M15",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_7553ae541419",
+      "key": "B|M5",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_86208dc6607e",
+      "key": "B|M1",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_86208dc6607e",
+      "key": "B|M15",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_86208dc6607e",
+      "key": "B|M5",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "B|M1",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "B|M15",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "B|M5",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_e62affa41605",
+      "key": "B|M1",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_e62affa41605",
+      "key": "B|M15",
+      "label": "B"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_e62affa41605",
+      "key": "B|M5",
+      "label": "B"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "B|original",
+      "label": "B|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_825da1543f0f",
+      "key": "B|original",
+      "label": "B|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_a732696e0c83",
+      "key": "B|original",
+      "label": "B|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_da267aa33110",
+      "key": "B|original",
+      "label": "B|original"
+    }
+  ]
+}

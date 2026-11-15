@@ -1,0 +1,262 @@
+{
+  "generation": "generation-1",
+  "phases": "1-6",
+  "created_at": "2026-11-15T18:21:33.341823Z",
+  "note": "Phases 1-6 closed on 15 November 2026; Phase 4 monitors stopped at 18:21 UTC; strategies A, B and C archived in the application.",
+  "conclusion": "Phase 4 did not establish a reliable edge. A and C were rejected; B was inconclusive because of its small sample. This is not a claim that every strategy was proven ineffective.",
+  "databases": {
+    "application-database": {
+      "source": "var/goldscalp.sqlite3",
+      "integrity": "ok",
+      "tables": {
+        "account_ledger": 5,
+        "analysis_configs": 1,
+        "assistant_log": 5,
+        "candles": 170034,
+        "data_imports": 0,
+        "demo_links": 0,
+        "demo_trades": 0,
+        "equity_snapshots": 77,
+        "feed_events": 41,
+        "feed_samples": 1144,
+        "instrument_specs": 1,
+        "live_trades": 0,
+        "monitor_evaluations": 0,
+        "monitored_strategies": 3,
+        "mt5_verifications": 2,
+        "paper_accounts": 4,
+        "paper_positions": 1,
+        "performance_runs": 1,
+        "research_runs": 2,
+        "research_studies": 1,
+        "schema_migrations": 7,
+        "series": 2,
+        "signals": 50,
+        "strategies": 3,
+        "strategy_journal": 0,
+        "strategy_proposals": 1,
+        "strategy_signals": 0,
+        "strategy_versions": 8,
+        "trade_evaluations": 0
+      }
+    },
+    "research-store": {
+      "source": "var/monthly/monthly.sqlite3",
+      "integrity": "ok",
+      "tables": {
+        "candidates": 24,
+        "candles": 317616,
+        "data_imports": 13,
+        "discovery_results": 55,
+        "discovery_trials": 3,
+        "evaluations": 6,
+        "import_labels": 9,
+        "research_versions": 12,
+        "risk_studies": 1,
+        "robustness_configs": 1229,
+        "robustness_results": 5818,
+        "robustness_studies": 4,
+        "runs": 126,
+        "schema_migrations": 6,
+        "sealed_results": 118,
+        "sealed_runs": 2,
+        "series": 3,
+        "validation_results": 80,
+        "validation_studies": 1
+      }
+    }
+  },
+  "strategies": {
+    "app_strategy_versions": 8,
+    "research_versions": 12,
+    "candidates": 24
+  },
+  "code_files": 224,
+  "forward_data": "Candles from 2026-11-14T00:00:00Z onward are NOT research data of this generation; they are reserved, untouched, for future confirmation.",
+  "files": {
+    "code/goldscalp-generation-1.zip": {
+      "sha256": "6f26cff5bf09ac8db2da0f2bc818ae17ff7d9341bd54b63200dc5a1789cf00af",
+      "bytes": 964816
+    },
+    "data/goldscalp.sqlite3": {
+      "sha256": "cc22cb514b6eee91ce62dcdd7a06ec713b10c470dda61fcfd2cc573662ad4df8",
+      "bytes": 16375808
+    },
+    "data/monthly.sqlite3": {
+      "sha256": "addb720d3619b0c7c48a436f6b45fc2ad543cddc58114489f0f0df330e061549",
+      "bytes": 251990016
+    },
+    "docs/ARCHITECTURE_AUDIT.md": {
+      "sha256": "d114ee233ae945631cc88e96eafd974c23277a54f1dfb7ec2faf2ed1c222c802",
+      "bytes": 29998
+    },
+    "docs/IMPLEMENTATION_ROADMAP.md": {
+      "sha256": "d8af7eb284c419bb19b8ec6b16a2d77bfd6d5c00d1b65daa007fc261f7d9a120",
+      "bytes": 35322
+    },
+    "docs/MARKET_DATA_PROVIDERS.md": {
+      "sha256": "56eb26af49fe0a05b452e402fd6d85ef43729ac108ad4c5d9863dfe72b19bf99",
+      "bytes": 14554
+    },
+    "docs/PHASE2_ARCHITECTURE.md": {
+      "sha256": "4d41712d6d717f22cf858df2f85beb24b7926e604ff38da66b25c40e36a38378",
+      "bytes": 27109
+    },
+    "docs/PHASE3_ARCHITECTURE.md": {
+      "sha256": "d683c655d1ab595f0fed3473ae4432bfee09431bd1735ead400ad575208b2b1d",
+      "bytes": 19905
+    },
+    "docs/PHASE4_ARCHITECTURE.md": {
+      "sha256": "429af238d8946e05b9a84b8d6a2544b460f5149a8e0f81ac3d1f1b2af9686684",
+      "bytes": 31075
+    },
+    "docs/PHASE5_ARCHITECTURE.md": {
+      "sha256": "3b11b55d799f21d231eb401d2c7353304e92c2ea9cfab24438e2e5aa5c065901",
+      "bytes": 44593
+    },
+    "docs/PHASE_2_IMPLEMENTATION_REPORT.md": {
+      "sha256": "18d1b97c5870438c37294e609ed0332dc70f1ae5b5821a9c78fd15a570d86cca",
+      "bytes": 24055
+    },
+    "docs/PHASE_3_IMPLEMENTATION_REPORT.md": {
+      "sha256": "78647a9d8525995f54baf07a6bbdf9724c4be9fe5886596fa61d443b33ada270",
+      "bytes": 22074
+    },
+    "docs/PHASE_4_IMPLEMENTATION_REPORT.md": {
+      "sha256": "3f3b0714478e0f6c22e23c229f725b8c58e6b0903b74b8b91d523176df322f81",
+      "bytes": 34610
+    },
+    "docs/PHASE_5_2_RESEARCH_REPORT.md": {
+      "sha256": "f038436620e2e73f24ac26c664890a76d6c9caef6097eaa9807733483a14e90c",
+      "bytes": 76688
+    },
+    "docs/PHASE_5_3_VALIDATION_REPORT.md": {
+      "sha256": "50ea89bc651ea0a36c48b5f87b58ac58b97c61df5f51583f87b460c63ad05ba9",
+      "bytes": 17952
+    },
+    "docs/PHASE_5_IMPLEMENTATION_REPORT.md": {
+      "sha256": "3be85086437c6adb7cd1ade389db34916fce01e3385737f2e4a78289059d531d",
+      "bytes": 52626
+    },
+    "docs/PHASE_6_H64_REGISTRATION.md": {
+      "sha256": "babe6aebdd48f8ab0c620961b3aeebc6d91ba834c99288a37c7748395c87f9ba",
+      "bytes": 5083
+    },
+    "docs/PHASE_6_PROTOCOL.md": {
+      "sha256": "368097ce5ae49b13b831a7af90fdc6582bcb2ca59a427c2cda08946e6630e00b",
+      "bytes": 7241
+    },
+    "docs/PROPOSED_ARCHITECTURE.md": {
+      "sha256": "4aeb496baf32db3956da750197798927033d10a5e73d4167f532dadb26e4a78c",
+      "bytes": 62088
+    },
+    "docs/README.md": {
+      "sha256": "cabe84f36a28537d5c3e1560f334f4ca98dcfe9941e29cd36ea86c5e64f7a487",
+      "bytes": 34877
+    },
+    "docs/REUSE_VS_REBUILD.md": {
+      "sha256": "b412ce911731848e793c8e755887b897c2ff6f759d17f286510fe59b6db8fe36",
+      "bytes": 22066
+    },
+    "phase4/phase4-final-state-post-stop.json": {
+      "sha256": "bc88587b10e6f55569525dfb52c3812967dc63d228a00cef50560d2b2d991cdb",
+      "bytes": 34617
+    },
+    "phase4/phase4-final-state-post-stop.md": {
+      "sha256": "4fdd53243de48266015a42ce00df40135f147921b7c8517d861c91605cd9719f",
+      "bytes": 2981
+    },
+    "phase4/phase4-final-state-pre-stop.json": {
+      "sha256": "4df8e5896cff0f879613f97c953ed0588c70ba0737bb5e03bc9a29d39daad83b",
+      "bytes": 34431
+    },
+    "phase4/phase4-final-state-pre-stop.md": {
+      "sha256": "74c184fca98ef1863463f49bc8447e3fab60a199c0daa54f4a0e17c1587a1cc3",
+      "bytes": 2890
+    },
+    "README.md": {
+      "sha256": "5a5b3548dd644d0d0970d06b414c019e6e775544c4c549a0d21848c4b6c917aa",
+      "bytes": 1424
+    },
+    "reports/discovery-protocol-frozen.json": {
+      "sha256": "a0f65ee2cc0ffc2211dfde43331a83ce2e5bde6d81551b039611604a51264608",
+      "bytes": 7599
+    },
+    "reports/h64-protocol-frozen.json": {
+      "sha256": "9349d7faf5b301fc026506481cc2f18571d9714e23db75d7b64b7360a88ca75e",
+      "bytes": 26372
+    },
+    "reports/h64-report.json": {
+      "sha256": "b3e0d7178d912621a26e6ec2b7edb99b1e7f7f2f0060c1eec580397639c69f87",
+      "bytes": 106185
+    },
+    "reports/h64-report.md": {
+      "sha256": "19ecc01ee6c24d1cbff2e821a50ec2ca31ebec07412562a9973ccc5bc04a09f4",
+      "bytes": 8530
+    },
+    "reports/phase5-research-cycle-closed.json": {
+      "sha256": "79156f15ad6686feb1574a3c3ab2b4c570b2e5ce28fdc711191228c90368f16c",
+      "bytes": 8565
+    },
+    "reports/phase6-development.json": {
+      "sha256": "b0a40bd8c3f47522af245cff978d165ff6686ac7116689a6d7568f6604ed38a3",
+      "bytes": 69762
+    },
+    "reports/phase6-development.md": {
+      "sha256": "5b4a4b236e87ecbf5aaa6235b9fb0c134c165b22e97ad8ef83a8e138d8a2e82e",
+      "bytes": 6151
+    },
+    "reports/rb_7ca33b7b5a81-configurations.csv": {
+      "sha256": "140e2e70f2d731aa8959c04774425d1309cdf7531c3b642e3788a554714be9ee",
+      "bytes": 135801
+    },
+    "reports/rb_7ca33b7b5a81-final-verdicts.json": {
+      "sha256": "2876fde0bed9a42580d155bc6da6ffe4e111a5ced7fca110bae989b1549a2cc3",
+      "bytes": 781893
+    },
+    "reports/rb_7ca33b7b5a81-final-verdicts.md": {
+      "sha256": "8dad7a7f19e400f8e89791d292a591f1a8df192e6f576db85240c2611fd82294",
+      "bytes": 59394
+    },
+    "reports/rb_7ca33b7b5a81-variants.csv": {
+      "sha256": "8d9e7d88a82a23250e27393d16406179547ced05fcd4b7130faa3199c3386069",
+      "bytes": 145117
+    },
+    "reports/validation-protocol-frozen.json": {
+      "sha256": "30d71ed7ac45fc86eb0fa04e304c2edae385907dd8358c818e881682d276f371",
+      "bytes": 5963
+    },
+    "reports/verdicts-framework-frozen-v2.json": {
+      "sha256": "1ccb8c6649afa941e8bca3096204add8eda772f2685a0e5180e521659993a6f8",
+      "bytes": 3721
+    },
+    "reports/verdicts-framework-frozen.json": {
+      "sha256": "a31fb0d0d5b2becf7459765c58f35069e532bf7b7dcb3af222dc4c0a3ce8bfbe",
+      "bytes": 2733
+    },
+    "reports/vl_747cce289048-validation.csv": {
+      "sha256": "a2d3ced78ed01054c38a6416c653a8bd7f88471c1797ee7c583cd9681ab9307c",
+      "bytes": 7904
+    },
+    "reports/vl_747cce289048-validation.json": {
+      "sha256": "393000da7db7bf97a7d55f355d8b57abfccdecb6a3b8978efc9ab36ddbac7eca",
+      "bytes": 43267
+    },
+    "reports/vl_747cce289048-validation.md": {
+      "sha256": "e93d0b4291258762b21c59a160c820a00e32a9ae6d58a2c599c421828fa80644",
+      "bytes": 13374
+    },
+    "strategies/app-strategy-versions.json": {
+      "sha256": "4fb4cb4fc09b88af743e04dd942e9e1bf5571daabc19e1afdfe1b63b80808015",
+      "bytes": 19522
+    },
+    "strategies/phase5-candidates.json": {
+      "sha256": "b96edeb95272ebafc8c1dff15c4127ce52d95801869b3e7f86ac194df13e932d",
+      "bytes": 87324
+    },
+    "strategies/research-versions.json": {
+      "sha256": "0cf420d4ddf177674dd5a1162dbffc5d62917165902fce453a858671519b038d",
+      "bytes": 51314
+    }
+  }
+}

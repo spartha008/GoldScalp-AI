@@ -1,0 +1,245 @@
+{
+ "definition": "sealed@1",
+ "registered": "2026-11-15, after the Phase 6 development results and BEFORE any sealed-data result exists",
+ "hypothesis": {
+  "id": "H6.4",
+  "title": "Trend continuation outside contracting volatility",
+  "hypothesis": "H1-trend continuation with an M15 break of structure produces positive expectancy when M15 volatility is not contracting.",
+  "origin": "Development-derived, disclosed: generated on 15 November 2026 from the Phase 6 development results on January-13 November 2026, after five configurations and their breakdowns had been seen. The VOL-C baseline made +0.102 R/trade over 294 trades (9 of 11 months positive); its contracting-volatility trades made -0.171 R/trade over 31 trades. These development figures are the reason for the hypothesis and are NOT evidence for it. H6.4 is a new hypothesis, not a correction of H6.1, which stays recorded as not supported as predicted.",
+  "mechanism": "Contracting M15 volatility marks compressed, range-bound conditions in which a break of structure has less follow-through; outside those conditions an H1-aligned M15 break tends to continue.",
+  "entry": "Exactly VOL-C (H1 structure in the trade direction, a fresh M15 BOS in that direction within 2 candles, spread at most 0.50) plus one condition: M15 volatility normal or expanding (not contracting).",
+  "exit": "Exactly VOL-C: stop beyond the unbroken M15 swing (0.1 ATR buffer), target 2R, at most 240 minutes.",
+  "invalidation": "The stop.",
+  "not_included": "No London-session filter or any other development-derived observation; one variable only."
+ },
+ "candidate": {
+  "key": "H6.4",
+  "config": {
+   "schema": "strategy@1",
+   "name": "Phase 6 H6.4: trend continuation outside contracting M15 volatility",
+   "description": "H6.4 candidate: the VOL-C baseline with exactly one change (no entries while M15 volatility is contracting). Research only.",
+   "direction": "both",
+   "evaluation": {
+    "step_timeframe": "M5",
+    "window": {
+     "mode": "all",
+     "days": 10,
+     "start": null,
+     "end": null
+    }
+   },
+   "conditions": [
+    {
+     "id": "h1",
+     "type": "structure_state",
+     "enabled": true,
+     "timeframe": "H1",
+     "state": "with"
+    },
+    {
+     "id": "bos",
+     "type": "structure_event",
+     "enabled": true,
+     "timeframe": "M15",
+     "event": "BOS",
+     "direction": "with",
+     "within_candles": 2
+    },
+    {
+     "id": "spread",
+     "type": "spread",
+     "enabled": true,
+     "max_spread": 0.5,
+     "max_spread_atr": null,
+     "if_unknown": "fail"
+    },
+    {
+     "id": "p6_volatility_regime",
+     "type": "volatility_regime",
+     "enabled": true,
+     "timeframe": "M15",
+     "allowed": [
+      "normal",
+      "expanding"
+     ]
+    }
+   ],
+   "entry": {
+    "trigger": "on_change",
+    "max_entry_delay_minutes": 10
+   },
+   "exit": {
+    "stop": {
+     "type": "structure",
+     "timeframe": "M15",
+     "buffer_atr": 0.1,
+     "atr_multiple": 1.5,
+     "distance": null
+    },
+    "target": {
+     "type": "r_multiple",
+     "r": 2.0,
+     "atr_multiple": null,
+     "distance": null,
+     "timeframe": "M15"
+    },
+    "max_holding_minutes": 240,
+    "exit_on_structure_flip": {
+     "enabled": false,
+     "timeframe": "M15"
+    }
+   },
+   "risk": {
+    "sizing": "fixed_lots",
+    "lots": "0.02",
+    "risk_percent": 0.5,
+    "max_open_positions": 1,
+    "max_exposure_lots": "1.00"
+   }
+  }
+ },
+ "control": {
+  "key": "VOL-C",
+  "config": {
+   "schema": "strategy@1",
+   "name": "Phase 6 VOL-C: trend continuation (baseline)",
+   "description": "H6.1 baseline. Research only.",
+   "direction": "both",
+   "evaluation": {
+    "step_timeframe": "M5",
+    "window": {
+     "mode": "all",
+     "days": 10,
+     "start": null,
+     "end": null
+    }
+   },
+   "conditions": [
+    {
+     "id": "h1",
+     "type": "structure_state",
+     "enabled": true,
+     "timeframe": "H1",
+     "state": "with"
+    },
+    {
+     "id": "bos",
+     "type": "structure_event",
+     "enabled": true,
+     "timeframe": "M15",
+     "event": "BOS",
+     "direction": "with",
+     "within_candles": 2
+    },
+    {
+     "id": "spread",
+     "type": "spread",
+     "enabled": true,
+     "max_spread": 0.5,
+     "max_spread_atr": null,
+     "if_unknown": "fail"
+    }
+   ],
+   "entry": {
+    "trigger": "on_change",
+    "max_entry_delay_minutes": 10
+   },
+   "exit": {
+    "stop": {
+     "type": "structure",
+     "timeframe": "M15",
+     "buffer_atr": 0.1,
+     "atr_multiple": 1.5,
+     "distance": null
+    },
+    "target": {
+     "type": "r_multiple",
+     "r": 2.0,
+     "atr_multiple": null,
+     "distance": null,
+     "timeframe": "M15"
+    },
+    "max_holding_minutes": 240,
+    "exit_on_structure_flip": {
+     "enabled": false,
+     "timeframe": "M15"
+    }
+   },
+   "risk": {
+    "sizing": "fixed_lots",
+    "lots": "0.02",
+    "risk_percent": 0.5,
+    "max_open_positions": 1,
+    "max_exposure_lots": "1.00"
+   }
+  },
+  "role": "comparison baseline only: reported side by side, never selected instead of the candidate"
+ },
+ "prediction": {
+  "text": "On the sealed data: (1) the candidate's pooled M5 expectancy after costs is above zero; (2) the control's trades taken in contracting M15 volatility have a lower expectancy than its trades taken outside contracting volatility.",
+  "candidate_positive": true,
+  "control_contracting_worse": true
+ },
+ "data": {
+  "development": "January-13 November 2026 (the Phase 6 development windows). One development run of candidate and control is made for debugging; its result is disclosed and does NOT decide whether the sealed test runs.",
+  "sealed_series": [
+   "research",
+   "csv:vantage-mt5-xauusd-sealed-2023-2025"
+  ],
+  "sealed_scored": "November 2023 to October 2025: 24 calendar months, each a separate hypothetical $1,000 account; earlier candles (from mid-October 2023) are indicator warm-up only",
+  "timeframes": [
+   "M5",
+   "M15"
+  ]
+ },
+ "coverage_rule": {
+  "threshold": 0.95,
+  "warmup_days": 5,
+  "rule": "A month is sufficient when present bars / expected bars >= 0.95 and the five-day warm-up exists. Expected bars come from the trading schedule; a MISSING bar inside a listed market-holiday closure window is removed from the expected count (a present bar always counts). Full closure on date D: window [D-1 22:00, D+1 00:00) UTC. Early close on date D: window [D 17:00, D+1 00:00) UTC. The list is fixed here, before any sealed result, and applies to every sealed month alike.",
+  "resolution_december_2024": "December 2024 measured 94.4 % (M15) and 94.5 % (H1) against the plain schedule. Every missing bar falls in the Christmas Eve early close (from 18:45 UTC on 24 Dec), Christmas Day (through the 26 Dec reopen hour) and the New Year's Eve early close; there are no other gaps. The threshold is kept; the expected count follows the market calendar.",
+  "full_closures": [
+   "2023-12-25",
+   "2024-01-01",
+   "2024-03-29",
+   "2024-12-25",
+   "2025-01-01",
+   "2025-04-18"
+  ],
+  "early_closes": [
+   "2023-11-23",
+   "2023-11-24",
+   "2024-01-15",
+   "2024-02-19",
+   "2024-05-27",
+   "2024-06-19",
+   "2024-07-04",
+   "2024-09-02",
+   "2024-11-28",
+   "2024-11-29",
+   "2024-12-24",
+   "2024-12-31",
+   "2025-01-09",
+   "2025-01-20",
+   "2025-02-17",
+   "2025-05-26",
+   "2025-06-19",
+   "2025-07-03",
+   "2025-07-04",
+   "2025-09-01"
+  ]
+ },
+ "costs": "the frozen Phase 5 cost model: candle spread else $0.30, $3.50 per lot per side, $0.05 adverse slippage; 0.02 lots; next-open fills; stop-first",
+ "criteria": [
+  "data: at least 18 of the 24 months have sufficient data (95 % coverage and warm-up); other months are INCOMPLETE and excluded",
+  "expectancy: pooled expectancy after costs > 0 R per trade",
+  "trade_count: at least 100 pooled trades (a minimum screen, not proof)",
+  "profit_factor: pooled profit factor at least 1.1",
+  "consistency: positive in at least 60 % of valid months, positive in each 12-month half (Nov 2023-Oct 2024 and Nov 2024-Oct 2025), and positive without its best month",
+  "prediction: the hypothesis's own prediction (regime, context or session difference) also holds on the sealed data",
+  "execution: still positive with spread and slippage doubled (tripled is reported only)",
+  "timeframes: run on M5 and on M15 execution; M15 positive as well"
+ ],
+ "classes": "promising (every criterion passes), inconclusive (positive but at least one criterion fails), rejected (pooled expectancy <= 0). Classes describe historical research candidates, not trading readiness.",
+ "one_shot": "The sealed test runs once. A run that fails technically before producing any result may be restarted; every attempt is listed in the report. H6.4 is never retuned on its sealed result; a new idea needs a different hypothesis and unused data.",
+ "after": "promising: further research (read-only paper-monitor observation on forward data at most; Phase 4 unchanged). inconclusive: recorded. rejected: recorded."
+}

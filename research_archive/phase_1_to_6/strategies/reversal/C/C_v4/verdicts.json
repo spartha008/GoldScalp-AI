@@ -1,0 +1,154 @@
+{
+  "archival_classification": "rejected",
+  "evidence": "Phase 5.2 out of sample -0.005 R/trade over 249 trades.",
+  "recorded": [
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "original",
+      "class": "rejected",
+      "why": "OOS expectancy -0.005 R/trade after costs (249 trades)"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "app:strategy_versions",
+      "study": null,
+      "key": "3/4",
+      "label": "C v4"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "C|M1",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "C|M15",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "C|M5",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "C|M1",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "C|M15",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "C|M5",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_7553ae541419",
+      "key": "C|M1",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_7553ae541419",
+      "key": "C|M15",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_7553ae541419",
+      "key": "C|M5",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_86208dc6607e",
+      "key": "C|M1",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_86208dc6607e",
+      "key": "C|M15",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_86208dc6607e",
+      "key": "C|M5",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "C|M1",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "C|M15",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "C|M5",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_e62affa41605",
+      "key": "C|M1",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_e62affa41605",
+      "key": "C|M15",
+      "label": "C"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_e62affa41605",
+      "key": "C|M5",
+      "label": "C"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "C|original",
+      "label": "C|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_825da1543f0f",
+      "key": "C|original",
+      "label": "C|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_a732696e0c83",
+      "key": "C|original",
+      "label": "C|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_da267aa33110",
+      "key": "C|original",
+      "label": "C|original"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+/* GoldScalp AI design tokens - black & gold research terminal.
+   Layers: primitives -> semantic tokens. Components use semantic tokens only. */
+:root {
+  color-scheme: dark;
+
+  /* primitives */
+  --black: #000000;
+  --ink-0: #07070a;
+  --ink-1: #0e0e11;
+  --ink-2: #141418;
+  --ink-3: #1a1a1f;
+  --ink-4: #24242a;
+  --ink-5: #32323a;
+  --ink-6: #44444d;
+  --gold-300: #e6c868;
+  --gold-500: #d4af37;
+  --gold-700: #9c7c1c;
+  --sand-1: #f1eee6;
+  --sand-2: #bdb8aa;
+  --sand-3: #8f8a7c;
+  --teal: #2bb594;
+  --red: #e5484d;
+  --amber: #e0a43a;
+  --slate: #8ea3b8;
+  --violet: #a78bfa;
+  --blue: #60a5fa;
+
+  /* semantic */
+  --bg: var(--ink-0);
+  --surface: var(--ink-1);
+  --surface-raised: var(--ink-2);
+  --surface-input: var(--ink-3);
+  --surface-hover: rgba(255, 255, 255, 0.035);
+  --line: var(--ink-4);
+  --line-strong: var(--ink-5);
+  --line-hover: var(--ink-6);
+  --text: var(--sand-1);
+  --text-2: var(--sand-2);
+  --text-3: var(--sand-3);
+  --accent: var(--gold-500);
+  --accent-hover: var(--gold-300);
+  --accent-muted: var(--gold-700);
+  --accent-soft: rgba(212, 175, 55, 0.1);
+  --on-accent: #120e00;
+  --up: var(--teal);
+  --down: var(--red);
+  --warn: var(--amber);
+  --info: var(--slate);
+  --focus: var(--gold-300);
+
+  /* tinted backgrounds and borders for notices, chips and states */
+  --up-soft: rgba(43, 181, 148, 0.1);
+  --up-line: rgba(43, 181, 148, 0.4);
+  --down-soft: rgba(229, 72, 77, 0.1);
+  --down-line: rgba(229, 72, 77, 0.42);
+  --warn-soft: rgba(224, 164, 58, 0.09);
+  --warn-line: rgba(224, 164, 58, 0.38);
+  --info-soft: rgba(142, 163, 184, 0.1);
+  --info-line: rgba(142, 163, 184, 0.38);
+  --sim-soft: rgba(167, 139, 250, 0.08);
+  --sim-line: rgba(167, 139, 250, 0.38);
+
+  /* data-kind and market-state colours */
+  --kind-current: var(--gold-500);
+  --kind-historical: var(--slate);
+  --kind-simulated: var(--violet);
+  --state-live: var(--teal);
+  --state-delayed: var(--amber);
+  --state-historical: var(--slate);
+  --state-disconnected: var(--red);
+
+  /* data-viz categorical series (fixed order; validated for the dark surface: adjacent CVD dE >= 8.4, contrast >= 3:1) */
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #0ca30c;
+  --series-7: #9085e9;
+  --series-8: #e66767;
+
+  /* type */
+  --font-ui: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-num: "Cascadia Mono", "Consolas", "SFMono-Regular", ui-monospace, monospace;
+  --text-xs: 11.5px;
+  --text-sm: 13px;
+  --text-md: 14px;
+  --text-lg: 18px;
+  --text-xl: 28px;
+
+  /* shape and space */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --control-h: 34px;
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.025) inset, 0 6px 20px rgba(0, 0, 0, 0.35);
+  --motion: 140ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion: 0ms; }
+}

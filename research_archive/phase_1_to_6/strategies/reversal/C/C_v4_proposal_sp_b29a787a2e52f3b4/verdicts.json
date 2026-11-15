@@ -1,0 +1,20 @@
+{
+  "archival_classification": "inconclusive: insufficient sample (proposal not adopted)",
+  "evidence": "Phase 4 improvement proposal; verdict insufficient_sample, status inconclusive.",
+  "recorded": [
+    {
+      "source": "app:strategy_proposals:sp_b29a787a2e52f3b4",
+      "phase": "4",
+      "verdict": "insufficient_sample",
+      "status": "inconclusive"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "app:strategy_proposals",
+      "study": null,
+      "key": "sp_b29a787a2e52f3b4",
+      "label": "C v4 proposal sp_b29a787a2e52f3b4"
+    }
+  ]
+}

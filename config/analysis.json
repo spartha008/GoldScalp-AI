@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "structure": {
+    "swing_strength": {"M1": 3, "M5": 3, "M15": 3, "H1": 3},
+    "break_buffer_atr": 0.05,
+    "dedupe_atr": 0.25,
+    "dedupe_bars": 10,
+    "ranging_after_bars": 60,
+    "max_events_returned": 40
+  },
+  "liquidity": {
+    "equal_tolerance_atr": 0.10,
+    "equal_tolerance_min": 0.10,
+    "min_separation_bars": 5,
+    "sweep_return_bars": 3,
+    "max_levels_returned": 30
+  },
+  "fvg": {
+    "min_size_atr": 0.15,
+    "min_size_abs": 0.10,
+    "overlap_dedupe": 0.5,
+    "max_returned": 30
+  },
+  "order_blocks": {
+    "displacement_atr": 1.0,
+    "zone": "range",
+    "search_bars": 20,
+    "max_returned": 20
+  },
+  "sessions": {
+    "definitions": [
+      {"key": "asia", "name": "Asian", "timezone": "Asia/Tokyo", "start": "09:00", "end": "18:00"},
+      {"key": "london", "name": "London", "timezone": "Europe/London", "start": "08:00", "end": "17:00"},
+      {"key": "new_york", "name": "New York", "timezone": "America/New_York", "start": "08:00", "end": "17:00"}
+    ],
+    "compare_days": 10
+  },
+  "volatility": {
+    "atr_period": 14,
+    "adr_days": 20,
+    "rolling_window": 20,
+    "fast_atr": 5,
+    "slow_atr": 50,
+    "expansion_ratio": 1.3,
+    "contraction_ratio": 0.75,
+    "range_lookback": 100
+  },
+  "signals": {
+    "max_spread": 0.60,
+    "max_spread_atr_m5": 0.5,
+    "min_bars": {"M1": 60, "M5": 60, "M15": 60, "H1": 60},
+    "m1_event_lookback": 15,
+    "sweep_lookback_m5": 12,
+    "classify_threshold": 4,
+    "weights": {"H1": 2, "M15": 2, "M5": 1, "M1": 1, "sweep": 1, "zone": 1},
+    "evaluation_horizons_m5": [3, 12]
+  },
+  "performance": {
+    "horizon_m5": 12,
+    "flat_band_atr": 0.25,
+    "stop_atr_fallback": 1.5,
+    "target_r": 2.0,
+    "lots": 0.10,
+    "starting_balance": 10000,
+    "min_trades_for_ratios": 20,
+    "min_signals_warning": 30,
+    "max_steps": 6000
+  }
+}

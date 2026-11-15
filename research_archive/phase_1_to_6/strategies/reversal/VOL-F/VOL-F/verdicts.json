@@ -1,0 +1,21 @@
+{
+  "archival_classification": "development-only observation: not supported",
+  "evidence": "Development -0.012 (129); H6.1 not supported.",
+  "recorded": [
+    {
+      "source": "store:discovery_trials:dt_82de40984a99",
+      "phase": "6",
+      "hypothesis": "H6.1",
+      "prediction_holds": false,
+      "gate": "prediction does not hold on development data: refinements may still be tried within the limits; if it never holds, record the hypothesis as not supported and keep the sealed data unspent"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:discovery_trials",
+      "study": "dt_82de40984a99",
+      "key": "VOL-F",
+      "label": "VOL-F"
+    }
+  ]
+}

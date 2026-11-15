@@ -1,0 +1,48 @@
+{
+  "archival_classification": "rejected",
+  "evidence": "5.2 +0.400 over 21 trades (inconclusive); 5.3 -0.107 (37, rejected).",
+  "recorded": [
+    {
+      "source": "store:research_versions:rb_7ca33b7b5a81_R7",
+      "phase": "5.2",
+      "definition": "verdicts@1",
+      "verdict": "insufficient sample"
+    },
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "redesign",
+      "class": "inconclusive",
+      "why": "positive out of sample, but fails: trade_count"
+    },
+    {
+      "source": "var/monthly/reports/vl_747cce289048-validation.json",
+      "phase": "5.3",
+      "definition": "validation@1",
+      "role": "candidate",
+      "class": "rejected",
+      "why": "pooled expectancy -0.107 R/trade after costs (37 trades)"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:research_versions",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R7|v-c-Xe-tr",
+      "label": "R7 v2"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R7|v-c-Xe-tr",
+      "label": "R7|v-c-Xe-tr"
+    },
+    {
+      "source": "store:validation_studies",
+      "study": "vl_747cce289048",
+      "key": "R7|v-c-Xe-tr",
+      "label": "R7|v-c-Xe-tr"
+    }
+  ]
+}

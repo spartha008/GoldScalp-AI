@@ -1,0 +1,34 @@
+{
+  "archival_classification": "rejected",
+  "evidence": "5.2 -0.212 (51).",
+  "recorded": [
+    {
+      "source": "store:research_versions:rb_7ca33b7b5a81_R9",
+      "phase": "5.2",
+      "definition": "verdicts@1",
+      "verdict": "fails"
+    },
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "redesign",
+      "class": "rejected",
+      "why": "OOS expectancy -0.212 R/trade after costs (51 trades)"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:research_versions",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R9|v-a-Xe-tr",
+      "label": "R9 v2"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R9|v-a-Xe-tr",
+      "label": "R9|v-a-Xe-tr"
+    }
+  ]
+}

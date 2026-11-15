@@ -1,0 +1,21 @@
+{
+  "archival_classification": "rejected (development)",
+  "evidence": "Development +0.062 (111), worse than its control; H6.2 rejected.",
+  "recorded": [
+    {
+      "source": "store:discovery_trials:dt_be1617009277",
+      "phase": "6",
+      "hypothesis": "H6.2",
+      "prediction_holds": false,
+      "gate": "prediction does not hold on development data: refinements may still be tried within the limits; if it never holds, record the hypothesis as not supported and keep the sealed data unspent"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:discovery_trials",
+      "study": "dt_be1617009277",
+      "key": "STR-X",
+      "label": "STR-X"
+    }
+  ]
+}

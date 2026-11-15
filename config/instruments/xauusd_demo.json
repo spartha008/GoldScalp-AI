@@ -1,0 +1,24 @@
+{
+  "name": "XAUUSD - hypothetical demonstration specification",
+  "symbol": "XAUUSD",
+  "spec_origin": "Hypothetical values chosen for education. This is NOT any broker's contract specification. Contract size, lot limits and trading hours differ between brokers; copy your broker's published specification into a new file to model it.",
+  "is_hypothetical": true,
+  "quote_currency": "USD",
+  "unit": "troy_oz",
+  "contract_size": "100",
+  "price_decimals": 2,
+  "tick_size": "0.01",
+  "min_lot": "0.01",
+  "lot_step": "0.01",
+  "max_lot": "50",
+  "lot_presets": {
+    "standard": "1.00",
+    "mini": "0.10",
+    "micro": "0.01"
+  },
+  "schedule": {
+    "timezone": "America/New_York",
+    "daily_close": "17:00",
+    "daily_reopen": "18:00"
+  }
+}

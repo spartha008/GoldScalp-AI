@@ -1,0 +1,1467 @@
+[
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M1",
+    "window": "W1",
+    "period": "2026-06",
+    "status": "INCOMPLETE",
+    "reason": "M1 coverage 0.0% (need 95%); M1 history before the window starts nowhere",
+    "metrics": null,
+    "dataset": null,
+    "result_hash": null
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M1",
+    "window": "W2",
+    "period": "2026-07",
+    "status": "INCOMPLETE",
+    "reason": "M1 coverage 0.0% (need 95%); M1 history before the window starts nowhere",
+    "metrics": null,
+    "dataset": null,
+    "result_hash": null
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M1",
+    "window": "W3",
+    "period": "2026-08",
+    "status": "INCOMPLETE",
+    "reason": "M1 coverage 0.0% (need 95%); M1 history before the window starts nowhere",
+    "metrics": null,
+    "dataset": null,
+    "result_hash": null
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M1",
+    "window": "W4",
+    "period": "2026-09",
+    "status": "INCOMPLETE",
+    "reason": "M1 coverage 13.9% (need 95%); M1 history before the window starts nowhere",
+    "metrics": null,
+    "dataset": null,
+    "result_hash": null
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M1",
+    "window": "W5",
+    "period": "2026-10",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 7,
+      "wins": 1,
+      "losses": 6,
+      "win_rate": 0.1429,
+      "net_usd": -103.54,
+      "sum_r": -5.205,
+      "expectancy_r": -0.7436,
+      "profit_factor": 0.143,
+      "max_dd_r": 5.205,
+      "max_dd_usd": 103.54,
+      "avg_hold_minutes": 35.9,
+      "exits": {
+        "stop": 6,
+        "time": 1
+      },
+      "costs_usd": 5.32,
+      "cost_r": 0.0382
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M1",
+      "analysis_base": "M1",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-09-27T22:00:00Z",
+      "analysis_last": "2026-10-30T20:56:00Z",
+      "analysis_candles": 34403,
+      "history_before_base": {
+        "M5": 1000,
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 30190,
+      "execution_origin": "native",
+      "execution_first": "2026-10-01T00:00:00Z",
+      "execution_last": "2026-10-30T20:56:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 30190,
+      "dataset_hash": "dbeb4361ae9bf83b3b27d6cd71c111e763de2eb0f1f14a941b01567aebc6880b",
+      "execution_hash": "7f7e3285dfa9b0ffb0c1b100381aed3b16d27eb9632bdec72cded7dbec4b91c2",
+      "range": {
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-11-01T00:00:00Z"
+      }
+    },
+    "result_hash": "ddb5f3b5baeba354f78dd59d5aca2ca7f15202030036502b32c73094fd7998ef"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M1",
+    "window": "W6",
+    "period": "2026-11",
+    "status": "INCOMPLETE",
+    "reason": "M1 coverage 0.0% (need 95%)",
+    "metrics": null,
+    "dataset": null,
+    "result_hash": null
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "W1",
+    "period": "2026-06",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 4,
+      "wins": 2,
+      "losses": 2,
+      "win_rate": 0.5,
+      "net_usd": -50.63,
+      "sum_r": -1.678,
+      "expectancy_r": -0.4195,
+      "profit_factor": 0.133,
+      "max_dd_r": 1.678,
+      "max_dd_usd": 50.63,
+      "avg_hold_minutes": 45.0,
+      "exits": {
+        "stop": 2,
+        "time": 2
+      },
+      "costs_usd": 3.2,
+      "cost_r": 0.0315
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-06-17T00:00:00Z",
+      "analysis_last": "2026-06-30T23:55:00Z",
+      "analysis_candles": 2712,
+      "history_before_base": {
+        "M15": 114,
+        "H1": 400
+      },
+      "execution_candles": 644,
+      "execution_origin": "native",
+      "execution_first": "2026-06-22T00:00:00Z",
+      "execution_last": "2026-06-30T23:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 644,
+      "dataset_hash": "ee43e7cf5aa0448e12e24e4c6ab8342d5da6932ba3a4940d1673dbf3454625b0",
+      "execution_hash": "3c489d83ca08311cc01ae5ee0b9494d822bf7a45906ebdc341927dd0f07d8e17",
+      "range": {
+        "start": "2026-06-22T00:00:00Z",
+        "end": "2026-07-01T00:00:00Z"
+      }
+    },
+    "result_hash": "71988437d0f409055dadadfb831aa5fb71eecd61997cddd37fb26bb20938ea45"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "W2",
+    "period": "2026-07",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 10,
+      "wins": 3,
+      "losses": 7,
+      "win_rate": 0.3,
+      "net_usd": -8.49,
+      "sum_r": -2.255,
+      "expectancy_r": -0.2255,
+      "profit_factor": 0.901,
+      "max_dd_r": 3.325,
+      "max_dd_usd": 68.91,
+      "avg_hold_minutes": 52.5,
+      "exits": {
+        "trailing_stop": 1,
+        "time": 6,
+        "stop": 3
+      },
+      "costs_usd": 8.0,
+      "cost_r": 0.0289
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-06-26T00:00:00Z",
+      "analysis_last": "2026-07-31T20:55:00Z",
+      "analysis_candles": 7104,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 2092,
+      "execution_origin": "native",
+      "execution_first": "2026-07-01T00:00:00Z",
+      "execution_last": "2026-07-31T20:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 2092,
+      "dataset_hash": "ecd9557b3c288e0009b368970bca35b32adda31d118326e74c285fb87777cc35",
+      "execution_hash": "0b5090798768a36de303b963a4d4b8cf519505e8b2386512f83c06e8c0273122",
+      "range": {
+        "start": "2026-07-01T00:00:00Z",
+        "end": "2026-08-01T00:00:00Z"
+      }
+    },
+    "result_hash": "2f82eefb2cabb043943fc5b273f010aeb89368cf1414a1682f3bd7012cefa5d2"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "W3",
+    "period": "2026-08",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 11,
+      "wins": 9,
+      "losses": 2,
+      "win_rate": 0.8182,
+      "net_usd": 64.11,
+      "sum_r": 3.395,
+      "expectancy_r": 0.3086,
+      "profit_factor": 2.093,
+      "max_dd_r": 1.013,
+      "max_dd_usd": 39.7,
+      "avg_hold_minutes": 54.5,
+      "exits": {
+        "stop": 2,
+        "time": 6,
+        "trailing_stop": 3
+      },
+      "costs_usd": 8.46,
+      "cost_r": 0.0284
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-07-27T00:00:00Z",
+      "analysis_last": "2026-08-31T23:55:00Z",
+      "analysis_candles": 7176,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 1940,
+      "execution_origin": "native",
+      "execution_first": "2026-08-02T22:00:00Z",
+      "execution_last": "2026-08-31T23:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 1940,
+      "dataset_hash": "46bf04f8dcc57e5d8c14e69b2cd4fc4ad35f66fb9e7a5fafed845ae2b4e64b24",
+      "execution_hash": "078f05f69cee158817b09b2dd1946d5d262112fe3f803de898b9cc1666b26303",
+      "range": {
+        "start": "2026-08-01T00:00:00Z",
+        "end": "2026-09-01T00:00:00Z"
+      }
+    },
+    "result_hash": "8dc537aaa0ac1ae337ab666f97bb4761d515c97ee3a80d63f00ac3dd3a02c679"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "W4",
+    "period": "2026-09",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 7,
+      "wins": 2,
+      "losses": 5,
+      "win_rate": 0.2857,
+      "net_usd": 19.97,
+      "sum_r": 1.727,
+      "expectancy_r": 0.2467,
+      "profit_factor": 1.314,
+      "max_dd_r": 2.216,
+      "max_dd_usd": 61.91,
+      "avg_hold_minutes": 40.7,
+      "exits": {
+        "target": 2,
+        "trailing_stop": 1,
+        "stop": 2,
+        "time": 2
+      },
+      "costs_usd": 5.32,
+      "cost_r": 0.0266
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-08-27T00:00:00Z",
+      "analysis_last": "2026-09-30T23:55:00Z",
+      "analysis_candles": 6865,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 2014,
+      "execution_origin": "native",
+      "execution_first": "2026-09-01T00:00:00Z",
+      "execution_last": "2026-09-30T23:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 2014,
+      "dataset_hash": "099fef2d6d661216f5ad6be9fabc9a5e1f5d3995c62d2f69b5235684595339c2",
+      "execution_hash": "05e14e18414b351d98e9cd62a5c567f179709fa59cb867d910759944eabf0db4",
+      "range": {
+        "start": "2026-09-01T00:00:00Z",
+        "end": "2026-10-01T00:00:00Z"
+      }
+    },
+    "result_hash": "1e60a5af593fe2ac0ccf38eab72b792b4efafa774151265c618ad369ba0626fd"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "W5",
+    "period": "2026-10",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 7,
+      "wins": 1,
+      "losses": 6,
+      "win_rate": 0.1429,
+      "net_usd": -105.31,
+      "sum_r": -5.204,
+      "expectancy_r": -0.7434,
+      "profit_factor": 0.141,
+      "max_dd_r": 5.204,
+      "max_dd_usd": 105.31,
+      "avg_hold_minutes": 36.4,
+      "exits": {
+        "stop": 6,
+        "time": 1
+      },
+      "costs_usd": 5.32,
+      "cost_r": 0.0378
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-09-27T22:00:00Z",
+      "analysis_last": "2026-10-30T20:55:00Z",
+      "analysis_candles": 6895,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 2016,
+      "execution_origin": "native",
+      "execution_first": "2026-10-01T00:00:00Z",
+      "execution_last": "2026-10-30T20:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 2016,
+      "dataset_hash": "cc37ccc541beaae458df377019538adc2eb2f4322142491540926905f5b0f911",
+      "execution_hash": "ed2a3aba15ccbfd0349eb1263acf60caea20c33544fcc2771aeac29eea15cc3d",
+      "range": {
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-11-01T00:00:00Z"
+      }
+    },
+    "result_hash": "c9f2c49b684249d24c12f3fe055a7374ccafaf091fd512c95e5479cad3e6dae5"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "W6",
+    "period": "2026-11",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 3,
+      "wins": 2,
+      "losses": 1,
+      "win_rate": 0.6667,
+      "net_usd": 73.7,
+      "sum_r": 2.794,
+      "expectancy_r": 0.9313,
+      "profit_factor": 32.229,
+      "max_dd_r": 0.101,
+      "max_dd_usd": 2.36,
+      "avg_hold_minutes": 60.0,
+      "exits": {
+        "time": 3
+      },
+      "costs_usd": 2.28,
+      "cost_r": 0.0308
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-10-27T00:00:00Z",
+      "analysis_last": "2026-11-13T21:55:00Z",
+      "analysis_candles": 3840,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 920,
+      "execution_origin": "native",
+      "execution_first": "2026-11-01T23:00:00Z",
+      "execution_last": "2026-11-13T21:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 920,
+      "dataset_hash": "73e70bac0bfd3b43f246a6d61538175f41a559fb6aefa864d116df810bb77e91",
+      "execution_hash": "462afe2ce8b3bb23b145e6d51a1ea3d68475e45635853020bad87f31532bbd9a",
+      "range": {
+        "start": "2026-11-01T00:00:00Z",
+        "end": "2026-11-14T00:00:00Z"
+      }
+    },
+    "result_hash": "e968daf25e5eb3f02bb8841ab2d26fe231d1d19057f23d2b661b854f878934c9"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "W1",
+    "period": "2026-06",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 4,
+      "wins": 2,
+      "losses": 2,
+      "win_rate": 0.5,
+      "net_usd": -7.07,
+      "sum_r": 0.207,
+      "expectancy_r": 0.0518,
+      "profit_factor": 0.84,
+      "max_dd_r": 1.467,
+      "max_dd_usd": 44.25,
+      "avg_hold_minutes": 48.8,
+      "exits": {
+        "time": 3,
+        "stop": 1
+      },
+      "costs_usd": 3.2,
+      "cost_r": 0.0322
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M15",
+        "M5"
+      ],
+      "analysis_first": "2026-06-17T00:00:00Z",
+      "analysis_last": "2026-06-30T23:55:00Z",
+      "analysis_candles": 2712,
+      "history_before_base": {
+        "M15": 114,
+        "H1": 400
+      },
+      "execution_candles": 1932,
+      "execution_origin": "native",
+      "execution_first": "2026-06-22T00:00:00Z",
+      "execution_last": "2026-06-30T23:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 1932,
+      "dataset_hash": "ee43e7cf5aa0448e12e24e4c6ab8342d5da6932ba3a4940d1673dbf3454625b0",
+      "execution_hash": "0eb3a1738d4b61908232ccde95ddc671425e102177934daf3f5c1aad437df0a1",
+      "range": {
+        "start": "2026-06-22T00:00:00Z",
+        "end": "2026-07-01T00:00:00Z"
+      }
+    },
+    "result_hash": "967d40f5ae54f71d215bc17db95ea49948ec1abe2b2f3f5fc27abf213b5854bd"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "W2",
+    "period": "2026-07",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 10,
+      "wins": 5,
+      "losses": 5,
+      "win_rate": 0.5,
+      "net_usd": 44.18,
+      "sum_r": 0.221,
+      "expectancy_r": 0.0221,
+      "profit_factor": 1.668,
+      "max_dd_r": 2.03,
+      "max_dd_usd": 44.25,
+      "avg_hold_minutes": 47.0,
+      "exits": {
+        "trailing_stop": 3,
+        "time": 4,
+        "stop": 3
+      },
+      "costs_usd": 8.0,
+      "cost_r": 0.0294
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M15",
+        "M5"
+      ],
+      "analysis_first": "2026-06-26T00:00:00Z",
+      "analysis_last": "2026-07-31T20:55:00Z",
+      "analysis_candles": 7104,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 6276,
+      "execution_origin": "native",
+      "execution_first": "2026-07-01T00:00:00Z",
+      "execution_last": "2026-07-31T20:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 6276,
+      "dataset_hash": "ecd9557b3c288e0009b368970bca35b32adda31d118326e74c285fb87777cc35",
+      "execution_hash": "40f429ad4490d3f516e8cc4b976a746429edac04e7df0ba470e3236239eec187",
+      "range": {
+        "start": "2026-07-01T00:00:00Z",
+        "end": "2026-08-01T00:00:00Z"
+      }
+    },
+    "result_hash": "1a937864b8aa73a07d2d6b69738b0dd41e028af7157f497ebaa28c9b30cc2d22"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "W3",
+    "period": "2026-08",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 11,
+      "wins": 8,
+      "losses": 3,
+      "win_rate": 0.7273,
+      "net_usd": 75.24,
+      "sum_r": 3.31,
+      "expectancy_r": 0.3009,
+      "profit_factor": 1.941,
+      "max_dd_r": 2.016,
+      "max_dd_usd": 61.19,
+      "avg_hold_minutes": 46.8,
+      "exits": {
+        "stop": 3,
+        "time": 5,
+        "trailing_stop": 2,
+        "target": 1
+      },
+      "costs_usd": 8.5,
+      "cost_r": 0.0291
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M15",
+        "M5"
+      ],
+      "analysis_first": "2026-07-27T00:00:00Z",
+      "analysis_last": "2026-08-31T23:55:00Z",
+      "analysis_candles": 7176,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 5820,
+      "execution_origin": "native",
+      "execution_first": "2026-08-02T22:00:00Z",
+      "execution_last": "2026-08-31T23:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 5820,
+      "dataset_hash": "46bf04f8dcc57e5d8c14e69b2cd4fc4ad35f66fb9e7a5fafed845ae2b4e64b24",
+      "execution_hash": "f9be32459a8f1377ab0e25b91022d82506fe37b37fcf61a8f862bd3a16ee0f7a",
+      "range": {
+        "start": "2026-08-01T00:00:00Z",
+        "end": "2026-09-01T00:00:00Z"
+      }
+    },
+    "result_hash": "ebd5332b75e1ae6baf3db539a1148cc83702de83e182640b9042bf3a6b23e975"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "W4",
+    "period": "2026-09",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 7,
+      "wins": 3,
+      "losses": 4,
+      "win_rate": 0.4286,
+      "net_usd": 42.57,
+      "sum_r": 2.356,
+      "expectancy_r": 0.3366,
+      "profit_factor": 1.767,
+      "max_dd_r": 1.923,
+      "max_dd_usd": 55.52,
+      "avg_hold_minutes": 38.6,
+      "exits": {
+        "target": 2,
+        "trailing_stop": 1,
+        "time": 3,
+        "stop": 1
+      },
+      "costs_usd": 5.32,
+      "cost_r": 0.0272
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M15",
+        "M5"
+      ],
+      "analysis_first": "2026-08-27T00:00:00Z",
+      "analysis_last": "2026-09-30T23:55:00Z",
+      "analysis_candles": 6865,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 6037,
+      "execution_origin": "native",
+      "execution_first": "2026-09-01T00:00:00Z",
+      "execution_last": "2026-09-30T23:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 6037,
+      "dataset_hash": "099fef2d6d661216f5ad6be9fabc9a5e1f5d3995c62d2f69b5235684595339c2",
+      "execution_hash": "b3e1d446a5fb5c0521fda01274080601f0c3c5212315672bfc4bc6690e200262",
+      "range": {
+        "start": "2026-09-01T00:00:00Z",
+        "end": "2026-10-01T00:00:00Z"
+      }
+    },
+    "result_hash": "80e3628331437ebed3562bd25278a9633b7456f00c676b47c6350ef60681a298"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "W5",
+    "period": "2026-10",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 7,
+      "wins": 1,
+      "losses": 6,
+      "win_rate": 0.1429,
+      "net_usd": -103.54,
+      "sum_r": -5.205,
+      "expectancy_r": -0.7436,
+      "profit_factor": 0.143,
+      "max_dd_r": 5.205,
+      "max_dd_usd": 103.54,
+      "avg_hold_minutes": 37.1,
+      "exits": {
+        "stop": 6,
+        "time": 1
+      },
+      "costs_usd": 5.32,
+      "cost_r": 0.0382
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M15",
+        "M5"
+      ],
+      "analysis_first": "2026-09-27T22:00:00Z",
+      "analysis_last": "2026-10-30T20:55:00Z",
+      "analysis_candles": 6895,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 6048,
+      "execution_origin": "native",
+      "execution_first": "2026-10-01T00:00:00Z",
+      "execution_last": "2026-10-30T20:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 6048,
+      "dataset_hash": "cc37ccc541beaae458df377019538adc2eb2f4322142491540926905f5b0f911",
+      "execution_hash": "6f16c1280fb349000b2677aa7635460a9a15a3e566859289bda3f5e8213fa671",
+      "range": {
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-11-01T00:00:00Z"
+      }
+    },
+    "result_hash": "72e8560d2b22e5232bfffd2444f4ade82c7b29f79b8571e6fb821d28e2c7d9a4"
+  },
+  {
+    "phase": "5.2",
+    "study": "rb_7ca33b7b5a81",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "W6",
+    "period": "2026-11",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 3,
+      "wins": 3,
+      "losses": 0,
+      "win_rate": 1.0,
+      "net_usd": 70.36,
+      "sum_r": 2.725,
+      "expectancy_r": 0.9083,
+      "profit_factor": 99.0,
+      "max_dd_r": 0.0,
+      "max_dd_usd": 0.0,
+      "avg_hold_minutes": 60.0,
+      "exits": {
+        "time": 3
+      },
+      "costs_usd": 2.28,
+      "cost_r": 0.0307
+    },
+    "dataset": {
+      "store": "app",
+      "series": "live:mt5:XAUUSD",
+      "source_id": "mt5",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M15",
+        "M5"
+      ],
+      "analysis_first": "2026-10-27T00:00:00Z",
+      "analysis_last": "2026-11-13T21:55:00Z",
+      "analysis_candles": 3840,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 2760,
+      "execution_origin": "native",
+      "execution_first": "2026-11-01T23:00:00Z",
+      "execution_last": "2026-11-13T21:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 2760,
+      "dataset_hash": "73e70bac0bfd3b43f246a6d61538175f41a559fb6aefa864d116df810bb77e91",
+      "execution_hash": "dc116cdad52af8444fa46cf444cf10a178e4585eafbbbd5e71c5633c084d2162",
+      "range": {
+        "start": "2026-11-01T00:00:00Z",
+        "end": "2026-11-14T00:00:00Z"
+      }
+    },
+    "result_hash": "88b2c3621830976393a192d733343d71b5fed45f0b17d1cbab73ff8bbaa0d2c3"
+  },
+  {
+    "phase": "5.3",
+    "study": "vl_747cce289048",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "V1",
+    "period": "2026-01",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 10,
+      "wins": 5,
+      "losses": 5,
+      "win_rate": 0.5,
+      "net_usd": -94.48,
+      "sum_r": 0.353,
+      "expectancy_r": 0.0353,
+      "profit_factor": 0.711,
+      "max_dd_r": 2.354,
+      "max_dd_usd": 233.71,
+      "avg_hold_minutes": 46.5,
+      "exits": {
+        "stop": 4,
+        "time": 3,
+        "trailing_stop": 2,
+        "target": 1
+      },
+      "costs_usd": 7.34,
+      "cost_r": 0.0127
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2025-12-28T23:00:00Z",
+      "analysis_last": "2026-01-30T21:55:00Z",
+      "analysis_candles": 6594,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 1922,
+      "execution_origin": "native",
+      "execution_first": "2026-01-01T23:00:00Z",
+      "execution_last": "2026-01-30T21:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 1922,
+      "dataset_hash": "ebf9ddc201cae4d9f60f13f4eb2ffe08c13bc0a3c72c735a25a18c2ad9f901b7",
+      "execution_hash": "d81d9979a931ccbbe2793efe0530f6f366a4184e5c8e2c8f100c8b117f789633",
+      "range": {
+        "start": "2026-01-01T00:00:00Z",
+        "end": "2026-02-01T00:00:00Z"
+      }
+    },
+    "result_hash": "66e8736b1cc7f66774517a7626b73e7cb7d4dfe700a1f8753cf65068b594d220"
+  },
+  {
+    "phase": "5.3",
+    "study": "vl_747cce289048",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "V2",
+    "period": "2026-02",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 9,
+      "wins": 5,
+      "losses": 4,
+      "win_rate": 0.5556,
+      "net_usd": -97.64,
+      "sum_r": -1.199,
+      "expectancy_r": -0.1332,
+      "profit_factor": 0.449,
+      "max_dd_r": 3.394,
+      "max_dd_usd": 164.08,
+      "avg_hold_minutes": 45.0,
+      "exits": {
+        "time": 5,
+        "stop": 4
+      },
+      "costs_usd": 6.66,
+      "cost_r": 0.0215
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-01-27T00:00:00Z",
+      "analysis_last": "2026-02-27T21:55:00Z",
+      "analysis_candles": 6582,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 1830,
+      "execution_origin": "native",
+      "execution_first": "2026-02-01T23:00:00Z",
+      "execution_last": "2026-02-27T21:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 1830,
+      "dataset_hash": "bf2514ba138409e769875adf31b4aec90e272538fa8fd8fed1236edabe287bc0",
+      "execution_hash": "1136dfec5096026e271c79ea5983e39502946c1504c1c80b10c7fb8648a574e2",
+      "range": {
+        "start": "2026-02-01T00:00:00Z",
+        "end": "2026-03-01T00:00:00Z"
+      }
+    },
+    "result_hash": "95dc70ca25afbb784aad822fd91d56b9f044cc36db533059c332c15b6e94aff6"
+  },
+  {
+    "phase": "5.3",
+    "study": "vl_747cce289048",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "V3",
+    "period": "2026-03",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 7,
+      "wins": 3,
+      "losses": 4,
+      "win_rate": 0.4286,
+      "net_usd": -33.32,
+      "sum_r": -0.931,
+      "expectancy_r": -0.133,
+      "profit_factor": 0.603,
+      "max_dd_r": 2.201,
+      "max_dd_usd": 84.02,
+      "avg_hold_minutes": 60.0,
+      "exits": {
+        "stop": 1,
+        "time": 6
+      },
+      "costs_usd": 5.56,
+      "cost_r": 0.017
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-02-24T00:00:00Z",
+      "analysis_last": "2026-03-31T23:55:00Z",
+      "analysis_candles": 7185,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 2032,
+      "execution_origin": "native",
+      "execution_first": "2026-03-01T23:00:00Z",
+      "execution_last": "2026-03-31T23:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 2032,
+      "dataset_hash": "f5fb09762b1e2e04a80e6c03dfa524754070685bba6ebad96e6eb481bb817346",
+      "execution_hash": "9482a082df8160c39946dbb0cbfd95aa6b8d4c39b06680b5c7e626af5d90c955",
+      "range": {
+        "start": "2026-03-01T00:00:00Z",
+        "end": "2026-04-01T00:00:00Z"
+      }
+    },
+    "result_hash": "2afc45a4e9705603f8a0819e660513b0947ad9285bc93cf6ad9143560a1dac3b"
+  },
+  {
+    "phase": "5.3",
+    "study": "vl_747cce289048",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "V4",
+    "period": "2026-04",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 4,
+      "wins": 1,
+      "losses": 3,
+      "win_rate": 0.25,
+      "net_usd": -71.48,
+      "sum_r": -2.512,
+      "expectancy_r": -0.628,
+      "profit_factor": 0.176,
+      "max_dd_r": 3.027,
+      "max_dd_usd": 86.74,
+      "avg_hold_minutes": 41.2,
+      "exits": {
+        "stop": 3,
+        "time": 1
+      },
+      "costs_usd": 3.22,
+      "cost_r": 0.0278
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-03-27T00:00:00Z",
+      "analysis_last": "2026-04-30T23:55:00Z",
+      "analysis_candles": 6624,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 1932,
+      "execution_origin": "native",
+      "execution_first": "2026-04-01T00:00:00Z",
+      "execution_last": "2026-04-30T23:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 1932,
+      "dataset_hash": "82a7bb132e5abf9bbe058d81a26c889c7c7742ce2677f73f0a8f20a20019b3ff",
+      "execution_hash": "7139d78727253f863d1eaa914d05c9c9a861f38a3ea2074c872f05e43e8e793d",
+      "range": {
+        "start": "2026-04-01T00:00:00Z",
+        "end": "2026-05-01T00:00:00Z"
+      }
+    },
+    "result_hash": "0e7cfc0bc1fa348185ba42ae58685af3f0f3347d7c891602d54a507599786f45"
+  },
+  {
+    "phase": "5.3",
+    "study": "vl_747cce289048",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M15",
+    "window": "V5",
+    "period": "2026-05",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 4,
+      "wins": 3,
+      "losses": 1,
+      "win_rate": 0.75,
+      "net_usd": 14.7,
+      "sum_r": 0.88,
+      "expectancy_r": 0.22,
+      "profit_factor": 1.483,
+      "max_dd_r": 1.008,
+      "max_dd_usd": 30.42,
+      "avg_hold_minutes": 60.0,
+      "exits": {
+        "time": 3,
+        "stop": 1
+      },
+      "costs_usd": 3.2,
+      "cost_r": 0.0337
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M15",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-04-26T22:00:00Z",
+      "analysis_last": "2026-05-29T20:55:00Z",
+      "analysis_candles": 6870,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 1914,
+      "execution_origin": "native",
+      "execution_first": "2026-05-01T00:00:00Z",
+      "execution_last": "2026-05-29T20:45:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 1914,
+      "dataset_hash": "a9d532b2f9287d94946ea924cd487aed27b27f29597eaa4b1b85770388bc0a04",
+      "execution_hash": "4e580c4a304677b7b5acb4fbe8511cc4c400a69ea2a20e903de22b9293933887",
+      "range": {
+        "start": "2026-05-01T00:00:00Z",
+        "end": "2026-06-01T00:00:00Z"
+      }
+    },
+    "result_hash": "3718726de47c752f09fafad3b93b8cdc3409ee3dfed506b673b9866fae35125b"
+  },
+  {
+    "phase": "5.3",
+    "study": "vl_747cce289048",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "V1",
+    "period": "2026-01",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 10,
+      "wins": 6,
+      "losses": 4,
+      "win_rate": 0.6,
+      "net_usd": -92.96,
+      "sum_r": 0.638,
+      "expectancy_r": 0.0638,
+      "profit_factor": 0.711,
+      "max_dd_r": 2.84,
+      "max_dd_usd": 233.71,
+      "avg_hold_minutes": 44.5,
+      "exits": {
+        "stop": 4,
+        "time": 3,
+        "trailing_stop": 2,
+        "target": 1
+      },
+      "costs_usd": 7.34,
+      "cost_r": 0.0128
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2025-12-28T23:00:00Z",
+      "analysis_last": "2026-01-30T21:55:00Z",
+      "analysis_candles": 6594,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 5766,
+      "execution_origin": "native",
+      "execution_first": "2026-01-01T23:00:00Z",
+      "execution_last": "2026-01-30T21:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 5766,
+      "dataset_hash": "ebf9ddc201cae4d9f60f13f4eb2ffe08c13bc0a3c72c735a25a18c2ad9f901b7",
+      "execution_hash": "36d7aed03a7217e95826fd522f44e3acea4bb92cf0432e6586dfb038088cb4e0",
+      "range": {
+        "start": "2026-01-01T00:00:00Z",
+        "end": "2026-02-01T00:00:00Z"
+      }
+    },
+    "result_hash": "fb1c55620e75fbd38bf3dc998b2720f23d602a21a722e3941357dc8916f848a7"
+  },
+  {
+    "phase": "5.3",
+    "study": "vl_747cce289048",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "V2",
+    "period": "2026-02",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 10,
+      "wins": 4,
+      "losses": 6,
+      "win_rate": 0.4,
+      "net_usd": -164.39,
+      "sum_r": -2.74,
+      "expectancy_r": -0.274,
+      "profit_factor": 0.34,
+      "max_dd_r": 4.265,
+      "max_dd_usd": 188.85,
+      "avg_hold_minutes": 40.0,
+      "exits": {
+        "time": 5,
+        "stop": 5
+      },
+      "costs_usd": 7.4,
+      "cost_r": 0.0197
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-01-27T00:00:00Z",
+      "analysis_last": "2026-02-27T21:55:00Z",
+      "analysis_candles": 6582,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 5490,
+      "execution_origin": "native",
+      "execution_first": "2026-02-01T23:00:00Z",
+      "execution_last": "2026-02-27T21:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 5490,
+      "dataset_hash": "bf2514ba138409e769875adf31b4aec90e272538fa8fd8fed1236edabe287bc0",
+      "execution_hash": "81b6a5ad3b84d8b47a9463547f96116045ff765c44d30e73bb2b5efff7644a6e",
+      "range": {
+        "start": "2026-02-01T00:00:00Z",
+        "end": "2026-03-01T00:00:00Z"
+      }
+    },
+    "result_hash": "f1009ec975f2b240adbbe361eef276682fb3f71790185d8d0fb1e77b0938b44e"
+  },
+  {
+    "phase": "5.3",
+    "study": "vl_747cce289048",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "V3",
+    "period": "2026-03",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 8,
+      "wins": 4,
+      "losses": 4,
+      "win_rate": 0.5,
+      "net_usd": -30.34,
+      "sum_r": -1.166,
+      "expectancy_r": -0.1457,
+      "profit_factor": 0.763,
+      "max_dd_r": 3.359,
+      "max_dd_usd": 126.88,
+      "avg_hold_minutes": 50.0,
+      "exits": {
+        "stop": 2,
+        "time": 5,
+        "trailing_stop": 1
+      },
+      "costs_usd": 6.36,
+      "cost_r": 0.0178
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-02-24T00:00:00Z",
+      "analysis_last": "2026-03-31T23:55:00Z",
+      "analysis_candles": 7185,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 6093,
+      "execution_origin": "native",
+      "execution_first": "2026-03-01T23:00:00Z",
+      "execution_last": "2026-03-31T23:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 6093,
+      "dataset_hash": "f5fb09762b1e2e04a80e6c03dfa524754070685bba6ebad96e6eb481bb817346",
+      "execution_hash": "0753c16fce499b7916865c8e0f95403fead4af2fcd65102901e1ea34e437aff2",
+      "range": {
+        "start": "2026-03-01T00:00:00Z",
+        "end": "2026-04-01T00:00:00Z"
+      }
+    },
+    "result_hash": "5c50400acf21bd2c9fae1334f265cc404d7de33c92dcb7ddc589bf48708eb628"
+  },
+  {
+    "phase": "5.3",
+    "study": "vl_747cce289048",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "V4",
+    "period": "2026-04",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 4,
+      "wins": 2,
+      "losses": 2,
+      "win_rate": 0.5,
+      "net_usd": 13.4,
+      "sum_r": 0.092,
+      "expectancy_r": 0.023,
+      "profit_factor": 1.277,
+      "max_dd_r": 1.011,
+      "max_dd_usd": 26.12,
+      "avg_hold_minutes": 41.2,
+      "exits": {
+        "stop": 2,
+        "target": 1,
+        "time": 1
+      },
+      "costs_usd": 3.22,
+      "cost_r": 0.0298
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-03-27T00:00:00Z",
+      "analysis_last": "2026-04-30T23:55:00Z",
+      "analysis_candles": 6624,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 5796,
+      "execution_origin": "native",
+      "execution_first": "2026-04-01T00:00:00Z",
+      "execution_last": "2026-04-30T23:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 5796,
+      "dataset_hash": "82a7bb132e5abf9bbe058d81a26c889c7c7742ce2677f73f0a8f20a20019b3ff",
+      "execution_hash": "370073659c24ddf30e62f2c628fa6606a3f29d850de49dfe9469dae177535742",
+      "range": {
+        "start": "2026-04-01T00:00:00Z",
+        "end": "2026-05-01T00:00:00Z"
+      }
+    },
+    "result_hash": "b8c18f028bafa39dc5e230dff5dcbabc8f7cee40f57512bb0de97299e01ef506"
+  },
+  {
+    "phase": "5.3",
+    "study": "vl_747cce289048",
+    "config_key": "R7|v-c-Xe-tr",
+    "timeframe": "M5",
+    "window": "V5",
+    "period": "2026-05",
+    "status": "COMPLETED",
+    "reason": null,
+    "metrics": {
+      "trades": 5,
+      "wins": 3,
+      "losses": 2,
+      "win_rate": 0.6,
+      "net_usd": -36.46,
+      "sum_r": -0.794,
+      "expectancy_r": -0.1588,
+      "profit_factor": 0.437,
+      "max_dd_r": 2.015,
+      "max_dd_usd": 64.74,
+      "avg_hold_minutes": 54.0,
+      "exits": {
+        "time": 3,
+        "stop": 2
+      },
+      "costs_usd": 4.0,
+      "cost_r": 0.0311
+    },
+    "dataset": {
+      "store": "research",
+      "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+      "source_id": "csv:mt5_export",
+      "run_timeframe": "M5",
+      "analysis_base": "M5",
+      "lookback_days": 5,
+      "detail": [
+        "M5"
+      ],
+      "analysis_first": "2026-04-26T22:00:00Z",
+      "analysis_last": "2026-05-29T20:55:00Z",
+      "analysis_candles": 6870,
+      "history_before_base": {
+        "M15": 600,
+        "H1": 400
+      },
+      "execution_candles": 5742,
+      "execution_origin": "native",
+      "execution_first": "2026-05-01T00:00:00Z",
+      "execution_last": "2026-05-29T20:55:00Z",
+      "spread_known_share": 1.0,
+      "decision_cutoffs": 5742,
+      "dataset_hash": "a9d532b2f9287d94946ea924cd487aed27b27f29597eaa4b1b85770388bc0a04",
+      "execution_hash": "ed7071bb6717e7286d64517aae7658b878d1d81043c98186c730ea3e034a2afc",
+      "range": {
+        "start": "2026-05-01T00:00:00Z",
+        "end": "2026-06-01T00:00:00Z"
+      }
+    },
+    "result_hash": "fa7fd21ccbb3df2daf6b685099961263e7a882aafd03c8aa28816d7cd0ac43d7"
+  }
+]

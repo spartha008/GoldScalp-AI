@@ -1,0 +1,102 @@
+{
+  "archival_classification": "rejected",
+  "evidence": "5.2 +0.689 over only 9 trades (inconclusive); 5.3 -0.353 (16, rejected).",
+  "recorded": [
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "original",
+      "class": "inconclusive",
+      "why": "positive out of sample, but fails: trade_count"
+    },
+    {
+      "source": "var/monthly/reports/vl_747cce289048-validation.json",
+      "phase": "5.3",
+      "definition": "validation@1",
+      "role": "original",
+      "class": "rejected",
+      "why": "pooled expectancy -0.353 R/trade after costs (16 trades)"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:candidates",
+      "study": "me_23932a71a56a",
+      "key": "R7",
+      "label": "R7 original"
+    },
+    {
+      "source": "store:candidates",
+      "study": "me_697122f9e14b",
+      "key": "R7",
+      "label": "R7 original"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R7|M1",
+      "label": "R7"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R7|M15",
+      "label": "R7"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R7|M5",
+      "label": "R7"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R7|M1",
+      "label": "R7"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R7|M15",
+      "label": "R7"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R7|M5",
+      "label": "R7"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R7|original",
+      "label": "R7|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_825da1543f0f",
+      "key": "R7|original",
+      "label": "R7|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_a732696e0c83",
+      "key": "R7|original",
+      "label": "R7|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_da267aa33110",
+      "key": "R7|original",
+      "label": "R7|original"
+    },
+    {
+      "source": "store:validation_studies",
+      "study": "vl_747cce289048",
+      "key": "R7|original",
+      "label": "R7|original"
+    }
+  ]
+}

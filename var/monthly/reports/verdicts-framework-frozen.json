@@ -1,0 +1,23 @@
+{
+ "frozen_at": "2026-11-14T17:38:42.087318+00:00",
+ "note": "Frozen before any October/November (W5/W6) result of study rb_7ca33b7b5a81 existed (0 hold-out rows in the research store at freeze time). Criteria, classes and thresholds must not change after the results are seen; failures are recorded, not re-defined.",
+ "files": {
+  "goldscalp/monthly/verdicts.py": "00fbb48798e941d1e9508d23a079f98552261bab114a1728defa1b0af683071e",
+  "goldscalp/monthly/robustness.py": "8e6fdc9420df9872291ad5a6e5b9be066c39be9f758f9aa6a702908c8025f267",
+  "goldscalp/monthly/verdicts_report.py": "912933cb7044e92afcbe4ac9f298623e2d72f314783f5d46a03dee3b429090e4"
+ },
+ "thresholds": {
+  "min_trades": 30,
+  "overfit_development_r": 0.05,
+  "profit_factor_pooled": 1.1,
+  "profit_factor_months": "> 1 in at least 75 % of OOS months",
+  "recovery_factor": 1.0,
+  "consistency": "at least 75 % of OOS months positive and positive without the best month",
+  "timeframes": "OOS > 0 on M15 as well as M5",
+  "execution": "OOS > 0 with spread + slippage x2",
+  "selection_min_development_trades": 30,
+  "walk_forward_min_trades_per_window": 7.5,
+  "selection_timeframe": "M5"
+ },
+ "criteria": "Phase 5.2 final classification (definition verdicts@1). Pre-declared on 14 Nov 2026 BEFORE any October / November\nresult of the full study existed. Pure, read-only functions over a study's stored results; nothing is re-run and no\nstrategy, configuration or stored analysis is changed.\n\nOut-of-sample (OOS) months for a redesigned strategy: every walk-forward test month, each chosen on DEVELOPMENT months\nonly (strict: a hold-out month never influences any choice). The originals are measured on the same months.\n\nCriteria (all in R after costs per trade; sizing-independent):\n  expectancy      pooled OOS expectancy > 0 AND hold-out expectancy (development choice) > 0\n  trade_count     at least 30 OOS trades - a minimum SCREEN, not proof of statistical reliability\n  profit_factor   pooled OOS PF >= 1.1 AND PF > 1 in at least 3 of 4 OOS months\n  drawdown        OOS recovery factor (sum R / max drawdown in R) >= 1\n  consistency     at least 3 of 4 OOS months positive AND the OOS sum stays positive without the best month\n  timeframes      OOS expectancy > 0 on M15 as well as M5 (M1 - October only - is reported; a divergence is flagged)\n  execution       OOS expectancy still > 0 with spread + slippage doubled (tripled is reported)\nClasses:\n  overfit       development >= +0.05 R/trade on >= 30 trades but OOS <= 0\n  rejected      OOS <= 0, or fewer than 30 OOS trades and not positive\n  promising     every criterion passes\n  inconclusive  positive, but at least one criterion fails (including too few trades)"
+}

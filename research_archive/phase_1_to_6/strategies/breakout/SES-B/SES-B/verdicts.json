@@ -1,0 +1,21 @@
+{
+  "archival_classification": "inconclusive: insufficient evidence (development)",
+  "evidence": "Development +0.110 (127); 22 London-open trades.",
+  "recorded": [
+    {
+      "source": "store:discovery_trials:dt_fc4b881df136",
+      "phase": "6",
+      "hypothesis": "H6.3",
+      "prediction_holds": false,
+      "gate": "prediction does not hold on development data: refinements may still be tried within the limits; if it never holds, record the hypothesis as not supported and keep the sealed data unspent"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:discovery_trials",
+      "study": "dt_fc4b881df136",
+      "key": "SES-B",
+      "label": "SES-B"
+    }
+  ]
+}

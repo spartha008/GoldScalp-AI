@@ -1,0 +1,166 @@
+{
+ "version": 1,
+ "closed_at": "2026-11-15T07:48:38.543935+00:00",
+ "note": "Phase 5 strategy search closed at the user's decision after Phase 5.3 (vl_747cce289048). Phase 5.3 is frozen: report, protocol, manifests, fingerprints, results and classifications are recorded by hash and not revised. Retired from promotion: R2 v2, R5 v2, R7 v2 (rejected) and R1 v2 (inconclusive, not promising); none proceeds to paper-monitor observation. Phase 4 is preserved independently; no research version is activated. Next research question: why performance changes across market regimes; any new hypothesis is tested on fresh data outside the spent range.",
+ "phase53": {
+  "study": {
+   "status": "COMPLETED",
+   "params_sha256": "9e9b28a1131a4a0744129c5063d6f251f948a22226f715a2d5d5d143ac78e2eb",
+   "configs_sha256": "4eca773eb8192cd02999d41c49e6bfc723996eed050b451bdee2e1c40ea50fa2",
+   "analysis_sha256": "8413ad488df8c6a41cd892e0c4807945fd6ec493e81224e8cfdd4948142a951a"
+  },
+  "definition": "validation@1",
+  "files": {
+   "PHASE_5_3_VALIDATION_REPORT.md": "50ea89bc651ea0a36c48b5f87b58ac58b97c61df5f51583f87b460c63ad05ba9",
+   "var/monthly/reports/vl_747cce289048-validation.md": "e93d0b4291258762b21c59a160c820a00e32a9ae6d58a2c599c421828fa80644",
+   "var/monthly/reports/vl_747cce289048-validation.json": "393000da7db7bf97a7d55f355d8b57abfccdecb6a3b8978efc9ab36ddbac7eca",
+   "var/monthly/reports/vl_747cce289048-validation.csv": "a2d3ced78ed01054c38a6416c653a8bd7f88471c1797ee7c583cd9681ab9307c",
+   "var/monthly/reports/validation-protocol-frozen.json": "30d71ed7ac45fc86eb0fa04e304c2edae385907dd8358c818e881682d276f371",
+   "goldscalp/monthly/validation.py": "b5fd3c45a3ce8f8a6b930e332018965b70bdab54041fc4ec39fa06d7a1bce9ee",
+   "goldscalp/monthly/validation_report.py": "86929b4fc7022e1eb377e14eb7e5f69afaa87ee05b56100a0a6a12818bc41d98",
+   "goldscalp/monthly/migrations/0004_validation.sql": "953895067a1ba932a650316b93a821f9011c13ddb8d10245284f2be778e924c5"
+  },
+  "results": {
+   "rows": 80,
+   "sha256": "cf3b8c32d869bf60c3d9473bae906b0131f201977f022cd27fc2ef9c98b97c51"
+  },
+  "classes": {
+   "R2": {
+    "candidate": "rejected",
+    "original": "rejected"
+   },
+   "R1": {
+    "candidate": "inconclusive",
+    "original": "inconclusive"
+   },
+   "R5": {
+    "candidate": "rejected",
+    "original": "rejected"
+   },
+   "R7": {
+    "candidate": "rejected",
+    "original": "rejected"
+   }
+  },
+  "protocol_check": {
+   "frozen": true,
+   "unchanged": true,
+   "changed_files": [],
+   "manifest": "validation-protocol-frozen.json",
+   "frozen_at": "2026-11-15T07:06:49.254328+00:00",
+   "candles_at_freeze": 0,
+   "code_version_at_freeze": "goldscalp 0.1.0 / code f745e9f1ca74bbab",
+   "note": "validation@1 frozen at the user's request BEFORE any January-May 2026 candle was imported (0 candles in the validation series). Locked shortlist from rb_7ca33b7b5a81: R2|v-d-Xb, R1|v-b-Xd, R5|v-d-Xd-tr, R7|v-c-Xe-tr plus their unchanged originals; no selection; Phase 5.2 thresholds with explicit five-month rules (ceil(0.75 x valid months) = 4 of 5; at least 4 months with sufficient data; a month with no trade is not positive). Results are reported separately and never change a Phase 5.2 classification.",
+   "phase52_at_freeze": {
+    "files": {
+     "var/monthly/reports/verdicts-framework-frozen.json": "a31fb0d0d5b2becf7459765c58f35069e532bf7b7dcb3af222dc4c0a3ce8bfbe",
+     "var/monthly/reports/verdicts-framework-frozen-v2.json": "1ccb8c6649afa941e8bca3096204add8eda772f2685a0e5180e521659993a6f8",
+     "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.md": "8dad7a7f19e400f8e89791d292a591f1a8df192e6f576db85240c2611fd82294",
+     "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json": "2876fde0bed9a42580d155bc6da6ffe4e111a5ced7fca110bae989b1549a2cc3",
+     "var/monthly/reports/rb_7ca33b7b5a81-variants.csv": "8d9e7d88a82a23250e27393d16406179547ced05fcd4b7130faa3199c3386069",
+     "var/monthly/reports/rb_7ca33b7b5a81-configurations.csv": "140e2e70f2d731aa8959c04774425d1309cdf7531c3b642e3788a554714be9ee",
+     "PHASE_5_2_RESEARCH_REPORT.md": "f038436620e2e73f24ac26c664890a76d6c9caef6097eaa9807733483a14e90c",
+     "goldscalp/monthly/verdicts.py": "815701b71b77a50c1a0dd6dea13270e7a11756a11819b542010577c4a39f5331",
+     "goldscalp/monthly/robustness.py": "8e6fdc9420df9872291ad5a6e5b9be066c39be9f758f9aa6a702908c8025f267",
+     "goldscalp/monthly/verdicts_report.py": "69032138a0f8f0007f1b5962e9c09187f65d934ca1ee5c528e01d1c379d7ec77"
+    },
+    "results": {
+     "rows": 3894,
+     "sha256": "d34180e99a9dea043fb551b7a91c1069cf483c82ff61ef9f457819ebfc9baa29"
+    },
+    "configs_sha256": "8ea58a2c6844c57f7b220a9543fa7364c14037f0e110ff5a824b6e46cd069860",
+    "study": {
+     "status": "COMPLETED",
+     "analysis_sha256": "1658be2db57ce6528952ddad5012ac5697f032a60f910ff09c318ca853ce0746"
+    }
+   }
+  }
+ },
+ "phase52": {
+  "study": {
+   "status": "COMPLETED",
+   "analysis_sha256": "1658be2db57ce6528952ddad5012ac5697f032a60f910ff09c318ca853ce0746"
+  },
+  "files": {
+   "var/monthly/reports/verdicts-framework-frozen.json": "a31fb0d0d5b2becf7459765c58f35069e532bf7b7dcb3af222dc4c0a3ce8bfbe",
+   "var/monthly/reports/verdicts-framework-frozen-v2.json": "1ccb8c6649afa941e8bca3096204add8eda772f2685a0e5180e521659993a6f8",
+   "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.md": "8dad7a7f19e400f8e89791d292a591f1a8df192e6f576db85240c2611fd82294",
+   "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json": "2876fde0bed9a42580d155bc6da6ffe4e111a5ced7fca110bae989b1549a2cc3",
+   "var/monthly/reports/rb_7ca33b7b5a81-variants.csv": "8d9e7d88a82a23250e27393d16406179547ced05fcd4b7130faa3199c3386069",
+   "var/monthly/reports/rb_7ca33b7b5a81-configurations.csv": "140e2e70f2d731aa8959c04774425d1309cdf7531c3b642e3788a554714be9ee",
+   "PHASE_5_2_RESEARCH_REPORT.md": "f038436620e2e73f24ac26c664890a76d6c9caef6097eaa9807733483a14e90c",
+   "goldscalp/monthly/verdicts.py": "815701b71b77a50c1a0dd6dea13270e7a11756a11819b542010577c4a39f5331",
+   "goldscalp/monthly/robustness.py": "8e6fdc9420df9872291ad5a6e5b9be066c39be9f758f9aa6a702908c8025f267",
+   "goldscalp/monthly/verdicts_report.py": "69032138a0f8f0007f1b5962e9c09187f65d934ca1ee5c528e01d1c379d7ec77"
+  },
+  "results": {
+   "rows": 3894,
+   "sha256": "d34180e99a9dea043fb551b7a91c1069cf483c82ff61ef9f457819ebfc9baa29"
+  },
+  "configs_sha256": "8ea58a2c6844c57f7b220a9543fa7364c14037f0e110ff5a824b6e46cd069860"
+ },
+ "retired_from_promotion": {
+  "R2|v-d-Xb": {
+   "class": "rejected",
+   "fingerprint": "655888c68fa6b289",
+   "paper_monitor_observation": false
+  },
+  "R5|v-d-Xd-tr": {
+   "class": "rejected",
+   "fingerprint": "a071703036513072",
+   "paper_monitor_observation": false
+  },
+  "R7|v-c-Xe-tr": {
+   "class": "rejected",
+   "fingerprint": "566c147b5370418e",
+   "paper_monitor_observation": false
+  },
+  "R1|v-b-Xd": {
+   "class": "inconclusive (not promising)",
+   "fingerprint": "4a48dc6838b22687",
+   "paper_monitor_observation": false
+  }
+ },
+ "phase4_at_closure": [
+  {
+   "monitor": 1,
+   "strategy_id": 1,
+   "version": 2,
+   "fingerprint": "c7bc3da5f4228b37b0b630fde52797e6ca8a5dd5ac4dc63218b4717eb8926d03",
+   "mode": "paper",
+   "status": "active"
+  },
+  {
+   "monitor": 2,
+   "strategy_id": 2,
+   "version": 2,
+   "fingerprint": "5d8d81c6979495100a09039d6b323dde17c4b20d05c9eebd5b3781286a88c2c0",
+   "mode": "paper",
+   "status": "active"
+  },
+  {
+   "monitor": 3,
+   "strategy_id": 3,
+   "version": 4,
+   "fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+   "mode": "paper",
+   "status": "active"
+  }
+ ],
+ "spent_data": {
+  "by_database": {
+   "research_store": {
+    "first": "2025-11-02T23:00:00+00:00",
+    "last": "2026-10-30T20:56:00+00:00"
+   },
+   "app_db": {
+    "first": "2026-05-14T23:00:00+00:00",
+    "last": "2026-11-13T21:56:00+00:00"
+   }
+  },
+  "spent_from": "2025-11-02T23:00:00+00:00",
+  "spent_until": "2026-11-13T21:56:00+00:00"
+ },
+ "next_research_question": "Why does the performance of these strategies change across market regimes (volatility, trend, session, range expansion), and how can the research methodology detect regime dependence before a candidate is promoted? Not: how to make these four strategies profitable.",
+ "fresh_data_rule": "A new hypothesis must be designed without, and eventually tested on, data outside the spent range (forward data recorded after it, or history before it that was never imported or inspected)."
+}

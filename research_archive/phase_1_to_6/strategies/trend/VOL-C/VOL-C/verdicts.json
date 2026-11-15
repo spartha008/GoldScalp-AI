@@ -1,0 +1,58 @@
+{
+  "archival_classification": "development-only observation; negative as the sealed control",
+  "evidence": "Development +0.102 (294); sealed 2023-2025 -0.029 (762) as the H6.4 control (comparison only).",
+  "recorded": [
+    {
+      "source": "store:discovery_trials:dt_82de40984a99",
+      "phase": "6",
+      "hypothesis": "H6.1",
+      "prediction_holds": false,
+      "gate": "prediction does not hold on development data: refinements may still be tried within the limits; if it never holds, record the hypothesis as not supported and keep the sealed data unspent"
+    },
+    {
+      "source": "store:sealed_runs:sr_7c063d1e50d8",
+      "phase": "6",
+      "purpose": "development",
+      "config": "VOL-C",
+      "role": "control (comparison only)",
+      "class": null,
+      "failed": null
+    },
+    {
+      "source": "store:sealed_runs:sr_ed2c472a7559",
+      "phase": "6",
+      "purpose": "sealed",
+      "config": "VOL-C",
+      "role": "control (comparison only)",
+      "class": "rejected",
+      "failed": [
+        "expectancy",
+        "profit_factor",
+        "consistency",
+        "prediction",
+        "execution",
+        "timeframes"
+      ]
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:discovery_trials",
+      "study": "dt_82de40984a99",
+      "key": "VOL-C",
+      "label": "VOL-C"
+    },
+    {
+      "source": "store:sealed_runs",
+      "study": "sr_7c063d1e50d8",
+      "key": "VOL-C",
+      "label": "VOL-C"
+    },
+    {
+      "source": "store:sealed_runs",
+      "study": "sr_ed2c472a7559",
+      "key": "VOL-C",
+      "label": "VOL-C"
+    }
+  ]
+}

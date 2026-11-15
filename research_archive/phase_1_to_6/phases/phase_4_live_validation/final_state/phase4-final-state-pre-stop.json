@@ -1,0 +1,947 @@
+{
+  "generation": "generation-1",
+  "recorded_at": "2026-11-15T18:20:37.530097Z",
+  "conclusion": "Phase 4 did not establish a reliable edge. A and C were rejected; B was inconclusive because of its small sample. This is not a claim that every strategy was proven ineffective.",
+  "loop": {
+    "definition": "live@1",
+    "running": true,
+    "last_cycle": "2026-11-15T18:20:37.237965Z",
+    "cycles": 888,
+    "last_error": null
+  },
+  "monitors": [
+    {
+      "id": 1,
+      "strategy_id": 1,
+      "version": 2,
+      "fingerprint": "c7bc3da5f4228b37b0b630fde52797e6ca8a5dd5ac4dc63218b4717eb8926d03",
+      "mode": "paper",
+      "status": "active",
+      "account_id": 2,
+      "eligibility": {
+        "eligible": true,
+        "note": null,
+        "reason": null,
+        "runs": [
+          {
+            "created_at": "2026-11-14T06:13:18.684763Z",
+            "expectancy_r": null,
+            "id": "rr_71be2d728dc39a41",
+            "kind": "walk_forward",
+            "max_drawdown": null,
+            "name": "Examples A/B/C walk-forward (select)",
+            "net": -100.53,
+            "profit_factor": null,
+            "range": {
+              "end": "2026-11-13T19:31:00Z",
+              "start": "2026-10-29T20:40:00Z"
+            },
+            "scope": "out-of-sample folds where this version was selected (2 of 5)",
+            "series": "live:mt5:XAUUSD",
+            "sufficient": false,
+            "trades": 10,
+            "win_rate": null
+          },
+          {
+            "created_at": "2026-11-14T06:07:16.992942Z",
+            "expectancy_r": -0.0294,
+            "id": "rr_d3467b876a180c12",
+            "kind": "comparison",
+            "max_drawdown": 164.67,
+            "name": "Examples A/B/C, full M5 history",
+            "net": 49.63,
+            "profit_factor": 1.13,
+            "range": {
+              "end": "2026-11-13T19:31:00Z",
+              "start": "2026-10-29T20:40:00Z"
+            },
+            "scope": "full range",
+            "series": "live:mt5:XAUUSD",
+            "sufficient": true,
+            "trades": 37,
+            "win_rate": 0.4595
+          }
+        ],
+        "sufficient_sample": true
+      },
+      "state": {},
+      "started_at": "2026-11-14T11:57:52.728593Z",
+      "updated_at": "2026-11-14T11:57:52.728593Z",
+      "stopped_at": null,
+      "note": "Phase 4 live validation of the Phase 3 examples",
+      "strategy": {
+        "name": "Example A: aligned structure + M5 BOS",
+        "config": {
+          "conditions": [
+            {
+              "enabled": true,
+              "id": "h1",
+              "state": "with",
+              "timeframe": "H1",
+              "type": "structure_state"
+            },
+            {
+              "enabled": true,
+              "id": "m15",
+              "state": "with",
+              "timeframe": "M15",
+              "type": "structure_state"
+            },
+            {
+              "direction": "with",
+              "enabled": true,
+              "event": "BOS",
+              "id": "bos",
+              "timeframe": "M5",
+              "type": "structure_event",
+              "within_candles": 3
+            },
+            {
+              "enabled": true,
+              "id": "spread",
+              "if_unknown": "fail",
+              "max_spread": 0.5,
+              "max_spread_atr": null,
+              "type": "spread"
+            }
+          ],
+          "description": "H1 and M15 structure in the trade direction, a fresh M5 BOS in the same direction, and an acceptable spread. An example, not a claim of profitability.",
+          "direction": "both",
+          "entry": {
+            "max_entry_delay_minutes": 10,
+            "trigger": "on_change"
+          },
+          "evaluation": {
+            "step_timeframe": "M5",
+            "window": {
+              "days": 10,
+              "end": null,
+              "mode": "all",
+              "start": null
+            }
+          },
+          "exit": {
+            "exit_on_structure_flip": {
+              "enabled": false,
+              "timeframe": "M5"
+            },
+            "max_holding_minutes": 60,
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "name": "Example A: aligned structure + M5 BOS",
+          "risk": {
+            "lots": "0.02",
+            "max_exposure_lots": "1.00",
+            "max_open_positions": 1,
+            "risk_percent": 0.5,
+            "sizing": "fixed_lots"
+          },
+          "schema": "strategy@1"
+        },
+        "fingerprint": "c7bc3da5f4228b37b0b630fde52797e6ca8a5dd5ac4dc63218b4717eb8926d03",
+        "created_at": "2026-11-14T05:58:48.415932Z",
+        "note": "lots 0.02: fits the default 10,000 USD, 1:1 paper account margin"
+      }
+    },
+    {
+      "id": 2,
+      "strategy_id": 2,
+      "version": 2,
+      "fingerprint": "5d8d81c6979495100a09039d6b323dde17c4b20d05c9eebd5b3781286a88c2c0",
+      "mode": "paper",
+      "status": "active",
+      "account_id": 3,
+      "eligibility": {
+        "eligible": true,
+        "note": "validated runs exist, but none has the minimum sample for ratio metrics: treat results as preliminary",
+        "reason": null,
+        "runs": [
+          {
+            "created_at": "2026-11-14T06:13:18.684763Z",
+            "expectancy_r": null,
+            "id": "rr_71be2d728dc39a41",
+            "kind": "walk_forward",
+            "max_drawdown": null,
+            "name": "Examples A/B/C walk-forward (select)",
+            "net": 0,
+            "profit_factor": null,
+            "range": {
+              "end": "2026-11-13T19:31:00Z",
+              "start": "2026-10-29T20:40:00Z"
+            },
+            "scope": "out-of-sample folds where this version was selected (0 of 5)",
+            "series": "live:mt5:XAUUSD",
+            "sufficient": false,
+            "trades": 0,
+            "win_rate": null
+          },
+          {
+            "created_at": "2026-11-14T06:07:16.992942Z",
+            "expectancy_r": null,
+            "id": "rr_d3467b876a180c12",
+            "kind": "comparison",
+            "max_drawdown": 27.24,
+            "name": "Examples A/B/C, full M5 history",
+            "net": -22.72,
+            "profit_factor": null,
+            "range": {
+              "end": "2026-11-13T19:31:00Z",
+              "start": "2026-10-29T20:40:00Z"
+            },
+            "scope": "full range",
+            "series": "live:mt5:XAUUSD",
+            "sufficient": false,
+            "trades": 2,
+            "win_rate": null
+          }
+        ],
+        "sufficient_sample": false
+      },
+      "state": {},
+      "started_at": "2026-11-14T11:57:52.751064Z",
+      "updated_at": "2026-11-14T11:57:52.751064Z",
+      "stopped_at": null,
+      "note": "Phase 4 live validation of the Phase 3 examples",
+      "strategy": {
+        "name": "Example B: sweep + CHoCH + FVG in session",
+        "config": {
+          "conditions": [
+            {
+              "enabled": true,
+              "id": "sweep",
+              "level_types": [
+                "EQ",
+                "PD",
+                "PW",
+                "session"
+              ],
+              "timeframe": "M5",
+              "type": "liquidity_sweep",
+              "within_candles": 12
+            },
+            {
+              "direction": "with",
+              "enabled": true,
+              "event": "CHoCH",
+              "id": "choch",
+              "timeframe": "M5",
+              "type": "structure_event",
+              "within_candles": 6
+            },
+            {
+              "allow_partial": true,
+              "enabled": true,
+              "id": "fvg",
+              "relation": "recent",
+              "timeframe": "M5",
+              "type": "fvg",
+              "within_candles": 6
+            },
+            {
+              "enabled": true,
+              "id": "sess",
+              "overlap": "any",
+              "sessions": [
+                "London",
+                "New York"
+              ],
+              "type": "session"
+            }
+          ],
+          "description": "A recent liquidity sweep, an M5 CHoCH and a same-direction FVG, during London or New York. An example, not a claim of profitability.",
+          "direction": "both",
+          "entry": {
+            "max_entry_delay_minutes": 10,
+            "trigger": "on_change"
+          },
+          "evaluation": {
+            "step_timeframe": "M5",
+            "window": {
+              "days": 10,
+              "end": null,
+              "mode": "all",
+              "start": null
+            }
+          },
+          "exit": {
+            "exit_on_structure_flip": {
+              "enabled": false,
+              "timeframe": "M5"
+            },
+            "max_holding_minutes": 60,
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "name": "Example B: sweep + CHoCH + FVG in session",
+          "risk": {
+            "lots": "0.02",
+            "max_exposure_lots": "1.00",
+            "max_open_positions": 1,
+            "risk_percent": 0.5,
+            "sizing": "fixed_lots"
+          },
+          "schema": "strategy@1"
+        },
+        "fingerprint": "5d8d81c6979495100a09039d6b323dde17c4b20d05c9eebd5b3781286a88c2c0",
+        "created_at": "2026-11-14T05:58:48.380591Z",
+        "note": "lots 0.02: fits the default 10,000 USD, 1:1 paper account margin"
+      }
+    },
+    {
+      "id": 3,
+      "strategy_id": 3,
+      "version": 4,
+      "fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+      "mode": "paper",
+      "status": "active",
+      "account_id": 4,
+      "eligibility": {
+        "eligible": true,
+        "note": null,
+        "reason": null,
+        "runs": [
+          {
+            "created_at": "2026-11-14T06:13:18.684763Z",
+            "expectancy_r": null,
+            "id": "rr_71be2d728dc39a41",
+            "kind": "walk_forward",
+            "max_drawdown": null,
+            "name": "Examples A/B/C walk-forward (select)",
+            "net": 44.24,
+            "profit_factor": null,
+            "range": {
+              "end": "2026-11-13T19:31:00Z",
+              "start": "2026-10-29T20:40:00Z"
+            },
+            "scope": "out-of-sample folds where this version was selected (3 of 5)",
+            "series": "live:mt5:XAUUSD",
+            "sufficient": false,
+            "trades": 29,
+            "win_rate": null
+          },
+          {
+            "created_at": "2026-11-14T06:07:16.992942Z",
+            "expectancy_r": 0.014,
+            "id": "rr_d3467b876a180c12",
+            "kind": "comparison",
+            "max_drawdown": 107.78,
+            "name": "Examples A/B/C, full M5 history",
+            "net": 80.68,
+            "profit_factor": 1.225,
+            "range": {
+              "end": "2026-11-13T19:31:00Z",
+              "start": "2026-10-29T20:40:00Z"
+            },
+            "scope": "full range",
+            "series": "live:mt5:XAUUSD",
+            "sufficient": true,
+            "trades": 53,
+            "win_rate": 0.434
+          }
+        ],
+        "sufficient_sample": true
+      },
+      "state": {},
+      "started_at": "2026-11-14T11:57:52.768948Z",
+      "updated_at": "2026-11-14T11:57:52.768948Z",
+      "stopped_at": null,
+      "note": "Phase 4 live validation of the Phase 3 examples",
+      "strategy": {
+        "name": "Example C: alignment + confirmation + volatility",
+        "config": {
+          "conditions": [
+            {
+              "enabled": true,
+              "id": "align",
+              "min_agree": 2,
+              "none_against": true,
+              "timeframes": [
+                "M15",
+                "H1"
+              ],
+              "type": "htf_alignment"
+            },
+            {
+              "enabled": true,
+              "id": "swing",
+              "pattern": "pullback",
+              "timeframe": "M5",
+              "type": "swing_sequence"
+            },
+            {
+              "allowed": [
+                "normal",
+                "expanding"
+              ],
+              "enabled": true,
+              "id": "vol",
+              "timeframe": "M5",
+              "type": "volatility_regime"
+            }
+          ],
+          "description": "H1/M15 alignment, M5 swing confirmation and a non-contracting M5 volatility regime. An example, not a claim of profitability.",
+          "direction": "both",
+          "entry": {
+            "max_entry_delay_minutes": 10,
+            "trigger": "on_change"
+          },
+          "evaluation": {
+            "step_timeframe": "M5",
+            "window": {
+              "days": 10,
+              "end": null,
+              "mode": "all",
+              "start": null
+            }
+          },
+          "exit": {
+            "exit_on_structure_flip": {
+              "enabled": false,
+              "timeframe": "M5"
+            },
+            "max_holding_minutes": 60,
+            "stop": {
+              "atr_multiple": 1.5,
+              "buffer_atr": 0.1,
+              "distance": null,
+              "timeframe": "M5",
+              "type": "structure"
+            },
+            "target": {
+              "atr_multiple": null,
+              "distance": null,
+              "r": 2.0,
+              "timeframe": "M5",
+              "type": "r_multiple"
+            }
+          },
+          "name": "Example C: alignment + confirmation + volatility",
+          "risk": {
+            "lots": "0.02",
+            "max_exposure_lots": "1.00",
+            "max_open_positions": 1,
+            "risk_percent": 0.5,
+            "sizing": "fixed_lots"
+          },
+          "schema": "strategy@1"
+        },
+        "fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+        "created_at": "2026-11-14T05:58:48.350349Z",
+        "note": "lots 0.02: fits the default 10,000 USD, 1:1 paper account margin"
+      }
+    }
+  ],
+  "research_verdicts": [
+    {
+      "monitor": 1,
+      "strategy": "A",
+      "version": 2,
+      "class": "rejected",
+      "evidence": "Phase 5.2 out of sample -0.005 R/trade over 157 trades",
+      "same_rules_as_phase5_original": true
+    },
+    {
+      "monitor": 2,
+      "strategy": "B",
+      "version": 2,
+      "class": "inconclusive",
+      "evidence": "Phase 5.2 out of sample +0.029 R/trade over only 24 trades: too small a sample",
+      "same_rules_as_phase5_original": true
+    },
+    {
+      "monitor": 3,
+      "strategy": "C",
+      "version": 4,
+      "class": "rejected",
+      "evidence": "Phase 5.2 out of sample -0.005 R/trade over 249 trades",
+      "same_rules_as_phase5_original": true
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "name": "Demo paper account",
+      "currency": "USD",
+      "starting_balance": "10000",
+      "leverage": 1,
+      "instrument_spec_id": 1,
+      "cost_model_json": "{\"commission_per_lot_per_side\": \"3.50\", \"configured_spread\": \"0.30\", \"slippage\": \"0.05\", \"spread_mode\": \"market_else_configured\"}",
+      "max_quote_age_seconds": 90,
+      "allow_delayed_fills": 1,
+      "active": 1,
+      "created_at": "2026-11-13T18:04:07.921072Z",
+      "purpose": "manual",
+      "phase4": false,
+      "ledger": [
+        {
+          "ts": "2026-11-13T18:04:07.921072Z",
+          "kind": "deposit",
+          "amount": "10000",
+          "balance_after": "10000",
+          "position_id": null,
+          "note": "virtual starting balance (simulated)"
+        },
+        {
+          "ts": "2026-11-13T18:07:32.164117Z",
+          "kind": "commission",
+          "amount": "-0.0350",
+          "balance_after": "9999.9650",
+          "position_id": 1,
+          "note": "open commission, buy 0.01 lots (simulated)"
+        }
+      ],
+      "balance": "9999.9650",
+      "latest_snapshot": {
+        "ts": "2026-11-14T12:11:59.225203Z",
+        "balance": "9999.9650",
+        "equity": "9994.9950",
+        "open_positions": 1
+      },
+      "open_positions": [
+        {
+          "id": 1,
+          "account_id": 1,
+          "side": "buy",
+          "lots": "0.01",
+          "ounces": "1.00",
+          "open_price": "3886.70",
+          "open_time": "2026-11-13T18:07:32.164117Z",
+          "open_quote_time": "2026-11-13T18:06:55Z",
+          "open_price_state": "DELAYED",
+          "open_spread": "0.30",
+          "open_spread_source": "configured",
+          "open_slippage": "0.05",
+          "open_commission": "0.0350",
+          "margin": "3886.7000",
+          "stop_loss": null,
+          "take_profit": null,
+          "status": "open",
+          "close_price": null,
+          "close_time": null,
+          "close_quote_time": null,
+          "close_price_state": null,
+          "close_commission": null,
+          "close_reason": null,
+          "realized_gross": null,
+          "realized_net": null,
+          "open_source": null,
+          "close_source": null,
+          "signal_id": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Validation: Example A: aligned structure + M5 BOS v2 (SIMULATED)",
+      "currency": "USD",
+      "starting_balance": "10000",
+      "leverage": 1,
+      "instrument_spec_id": 1,
+      "cost_model_json": "{\"commission_per_lot_per_side\": \"3.50\", \"configured_spread\": \"0.30\", \"slippage\": \"0.05\", \"spread_mode\": \"market_else_configured\"}",
+      "max_quote_age_seconds": 15,
+      "allow_delayed_fills": 0,
+      "active": 0,
+      "created_at": "2026-11-14T11:57:52.728593Z",
+      "purpose": "validation",
+      "phase4": true,
+      "ledger": [
+        {
+          "ts": "2026-11-14T11:57:52.728593Z",
+          "kind": "deposit",
+          "amount": "10000",
+          "balance_after": "10000",
+          "position_id": null,
+          "note": "virtual starting balance (simulated)"
+        }
+      ],
+      "balance": "10000",
+      "latest_snapshot": {
+        "ts": "2026-11-14T11:57:52.728593Z",
+        "balance": "10000",
+        "equity": "10000",
+        "open_positions": 0
+      },
+      "open_positions": []
+    },
+    {
+      "id": 3,
+      "name": "Validation: Example B: sweep + CHoCH + FVG in session v2 (SIMULATED)",
+      "currency": "USD",
+      "starting_balance": "10000",
+      "leverage": 1,
+      "instrument_spec_id": 1,
+      "cost_model_json": "{\"commission_per_lot_per_side\": \"3.50\", \"configured_spread\": \"0.30\", \"slippage\": \"0.05\", \"spread_mode\": \"market_else_configured\"}",
+      "max_quote_age_seconds": 15,
+      "allow_delayed_fills": 0,
+      "active": 0,
+      "created_at": "2026-11-14T11:57:52.749059Z",
+      "purpose": "validation",
+      "phase4": true,
+      "ledger": [
+        {
+          "ts": "2026-11-14T11:57:52.749059Z",
+          "kind": "deposit",
+          "amount": "10000",
+          "balance_after": "10000",
+          "position_id": null,
+          "note": "virtual starting balance (simulated)"
+        }
+      ],
+      "balance": "10000",
+      "latest_snapshot": {
+        "ts": "2026-11-14T11:57:52.749059Z",
+        "balance": "10000",
+        "equity": "10000",
+        "open_positions": 0
+      },
+      "open_positions": []
+    },
+    {
+      "id": 4,
+      "name": "Validation: Example C: alignment + confirmation + volatility v4 (SIMULATED)",
+      "currency": "USD",
+      "starting_balance": "10000",
+      "leverage": 1,
+      "instrument_spec_id": 1,
+      "cost_model_json": "{\"commission_per_lot_per_side\": \"3.50\", \"configured_spread\": \"0.30\", \"slippage\": \"0.05\", \"spread_mode\": \"market_else_configured\"}",
+      "max_quote_age_seconds": 15,
+      "allow_delayed_fills": 0,
+      "active": 0,
+      "created_at": "2026-11-14T11:57:52.759931Z",
+      "purpose": "validation",
+      "phase4": true,
+      "ledger": [
+        {
+          "ts": "2026-11-14T11:57:52.759931Z",
+          "kind": "deposit",
+          "amount": "10000",
+          "balance_after": "10000",
+          "position_id": null,
+          "note": "virtual starting balance (simulated)"
+        }
+      ],
+      "balance": "10000",
+      "latest_snapshot": {
+        "ts": "2026-11-14T11:57:52.759931Z",
+        "balance": "10000",
+        "equity": "10000",
+        "open_positions": 0
+      },
+      "open_positions": []
+    }
+  ],
+  "positions": [
+    {
+      "id": 1,
+      "account_id": 1,
+      "side": "buy",
+      "lots": "0.01",
+      "ounces": "1.00",
+      "open_price": "3886.70",
+      "open_time": "2026-11-13T18:07:32.164117Z",
+      "open_quote_time": "2026-11-13T18:06:55Z",
+      "open_price_state": "DELAYED",
+      "open_spread": "0.30",
+      "open_spread_source": "configured",
+      "open_slippage": "0.05",
+      "open_commission": "0.0350",
+      "margin": "3886.7000",
+      "stop_loss": null,
+      "take_profit": null,
+      "status": "open",
+      "close_price": null,
+      "close_time": null,
+      "close_quote_time": null,
+      "close_price_state": null,
+      "close_commission": null,
+      "close_reason": null,
+      "realized_gross": null,
+      "realized_net": null,
+      "open_source": null,
+      "close_source": null,
+      "signal_id": null
+    }
+  ],
+  "phase4_counts": {
+    "monitored_strategies": 3,
+    "monitor_evaluations": 0,
+    "strategy_signals": 0,
+    "live_trades": 0,
+    "trade_evaluations": 0,
+    "strategy_journal": 0,
+    "demo_links": 0,
+    "demo_trades": 0
+  },
+  "phase4_records": {
+    "monitored_strategies": [
+      {
+        "id": 1,
+        "strategy_id": 1,
+        "version": 2,
+        "fingerprint": "c7bc3da5f4228b37b0b630fde52797e6ca8a5dd5ac4dc63218b4717eb8926d03",
+        "mode": "paper",
+        "status": "active",
+        "account_id": 2,
+        "eligibility": "{\"eligible\": true, \"note\": null, \"reason\": null, \"runs\": [{\"created_at\": \"2026-11-14T06:13:18.684763Z\", \"expectancy_r\": null, \"id\": \"rr_71be2d728dc39a41\", \"kind\": \"walk_forward\", \"max_drawdown\": null, \"name\": \"Examples A/B/C walk-forward (select)\", \"net\": -100.53, \"profit_factor\": null, \"range\": {\"end\": \"2026-11-13T19:31:00Z\", \"start\": \"2026-10-29T20:40:00Z\"}, \"scope\": \"out-of-sample folds where this version was selected (2 of 5)\", \"series\": \"live:mt5:XAUUSD\", \"sufficient\": false, \"trades\": 10, \"win_rate\": null}, {\"created_at\": \"2026-11-14T06:07:16.992942Z\", \"expectancy_r\": -0.0294, \"id\": \"rr_d3467b876a180c12\", \"kind\": \"comparison\", \"max_drawdown\": 164.67, \"name\": \"Examples A/B/C, full M5 history\", \"net\": 49.63, \"profit_factor\": 1.13, \"range\": {\"end\": \"2026-11-13T19:31:00Z\", \"start\": \"2026-10-29T20:40:00Z\"}, \"scope\": \"full range\", \"series\": \"live:mt5:XAUUSD\", \"sufficient\": true, \"trades\": 37, \"win_rate\": 0.4595}], \"sufficient_sample\": true}",
+        "state": "{}",
+        "started_at": "2026-11-14T11:57:52.728593Z",
+        "updated_at": "2026-11-14T11:57:52.728593Z",
+        "stopped_at": null,
+        "note": "Phase 4 live validation of the Phase 3 examples"
+      },
+      {
+        "id": 2,
+        "strategy_id": 2,
+        "version": 2,
+        "fingerprint": "5d8d81c6979495100a09039d6b323dde17c4b20d05c9eebd5b3781286a88c2c0",
+        "mode": "paper",
+        "status": "active",
+        "account_id": 3,
+        "eligibility": "{\"eligible\": true, \"note\": \"validated runs exist, but none has the minimum sample for ratio metrics: treat results as preliminary\", \"reason\": null, \"runs\": [{\"created_at\": \"2026-11-14T06:13:18.684763Z\", \"expectancy_r\": null, \"id\": \"rr_71be2d728dc39a41\", \"kind\": \"walk_forward\", \"max_drawdown\": null, \"name\": \"Examples A/B/C walk-forward (select)\", \"net\": 0, \"profit_factor\": null, \"range\": {\"end\": \"2026-11-13T19:31:00Z\", \"start\": \"2026-10-29T20:40:00Z\"}, \"scope\": \"out-of-sample folds where this version was selected (0 of 5)\", \"series\": \"live:mt5:XAUUSD\", \"sufficient\": false, \"trades\": 0, \"win_rate\": null}, {\"created_at\": \"2026-11-14T06:07:16.992942Z\", \"expectancy_r\": null, \"id\": \"rr_d3467b876a180c12\", \"kind\": \"comparison\", \"max_drawdown\": 27.24, \"name\": \"Examples A/B/C, full M5 history\", \"net\": -22.72, \"profit_factor\": null, \"range\": {\"end\": \"2026-11-13T19:31:00Z\", \"start\": \"2026-10-29T20:40:00Z\"}, \"scope\": \"full range\", \"series\": \"live:mt5:XAUUSD\", \"sufficient\": false, \"trades\": 2, \"win_rate\": null}], \"sufficient_sample\": false}",
+        "state": "{}",
+        "started_at": "2026-11-14T11:57:52.751064Z",
+        "updated_at": "2026-11-14T11:57:52.751064Z",
+        "stopped_at": null,
+        "note": "Phase 4 live validation of the Phase 3 examples"
+      },
+      {
+        "id": 3,
+        "strategy_id": 3,
+        "version": 4,
+        "fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+        "mode": "paper",
+        "status": "active",
+        "account_id": 4,
+        "eligibility": "{\"eligible\": true, \"note\": null, \"reason\": null, \"runs\": [{\"created_at\": \"2026-11-14T06:13:18.684763Z\", \"expectancy_r\": null, \"id\": \"rr_71be2d728dc39a41\", \"kind\": \"walk_forward\", \"max_drawdown\": null, \"name\": \"Examples A/B/C walk-forward (select)\", \"net\": 44.24, \"profit_factor\": null, \"range\": {\"end\": \"2026-11-13T19:31:00Z\", \"start\": \"2026-10-29T20:40:00Z\"}, \"scope\": \"out-of-sample folds where this version was selected (3 of 5)\", \"series\": \"live:mt5:XAUUSD\", \"sufficient\": false, \"trades\": 29, \"win_rate\": null}, {\"created_at\": \"2026-11-14T06:07:16.992942Z\", \"expectancy_r\": 0.014, \"id\": \"rr_d3467b876a180c12\", \"kind\": \"comparison\", \"max_drawdown\": 107.78, \"name\": \"Examples A/B/C, full M5 history\", \"net\": 80.68, \"profit_factor\": 1.225, \"range\": {\"end\": \"2026-11-13T19:31:00Z\", \"start\": \"2026-10-29T20:40:00Z\"}, \"scope\": \"full range\", \"series\": \"live:mt5:XAUUSD\", \"sufficient\": true, \"trades\": 53, \"win_rate\": 0.434}], \"sufficient_sample\": true}",
+        "state": "{}",
+        "started_at": "2026-11-14T11:57:52.768948Z",
+        "updated_at": "2026-11-14T11:57:52.768948Z",
+        "stopped_at": null,
+        "note": "Phase 4 live validation of the Phase 3 examples"
+      }
+    ]
+  },
+  "strategies": [
+    {
+      "id": 1,
+      "name": "Example A: aligned structure + M5 BOS",
+      "created_at": "2026-11-14T05:43:24.490343Z",
+      "updated_at": "2026-11-14T05:58:48.415932Z",
+      "current_version": 2,
+      "archived": 0
+    },
+    {
+      "id": 2,
+      "name": "Example B: sweep + CHoCH + FVG in session",
+      "created_at": "2026-11-14T05:43:26.213556Z",
+      "updated_at": "2026-11-14T05:58:48.380591Z",
+      "current_version": 2,
+      "archived": 0
+    },
+    {
+      "id": 3,
+      "name": "Example C: alignment + confirmation + volatility",
+      "created_at": "2026-11-14T05:43:27.935251Z",
+      "updated_at": "2026-11-14T05:58:48.350349Z",
+      "current_version": 4,
+      "archived": 0
+    }
+  ],
+  "strategy_versions": [
+    {
+      "strategy_id": 1,
+      "version": 1,
+      "fingerprint": "931f63653a7974f9cdd527e8197925acb1ce19fefb70eb5713e19db6f00b079c",
+      "created_at": "2026-11-14T05:43:24.490343Z",
+      "note": "example template"
+    },
+    {
+      "strategy_id": 1,
+      "version": 2,
+      "fingerprint": "c7bc3da5f4228b37b0b630fde52797e6ca8a5dd5ac4dc63218b4717eb8926d03",
+      "created_at": "2026-11-14T05:58:48.415932Z",
+      "note": "lots 0.02: fits the default 10,000 USD, 1:1 paper account margin"
+    },
+    {
+      "strategy_id": 2,
+      "version": 1,
+      "fingerprint": "1868cade122eea0fd007ef15a9cc550a4b9cf8dc4a91b108070ca3b58991eba8",
+      "created_at": "2026-11-14T05:43:26.213556Z",
+      "note": "example template"
+    },
+    {
+      "strategy_id": 2,
+      "version": 2,
+      "fingerprint": "5d8d81c6979495100a09039d6b323dde17c4b20d05c9eebd5b3781286a88c2c0",
+      "created_at": "2026-11-14T05:58:48.380591Z",
+      "note": "lots 0.02: fits the default 10,000 USD, 1:1 paper account margin"
+    },
+    {
+      "strategy_id": 3,
+      "version": 1,
+      "fingerprint": "2d578c1230ecedf445b8db9b17de89bf807231310c2877ecd76cca4e52d3e063",
+      "created_at": "2026-11-14T05:43:27.935251Z",
+      "note": "example template"
+    },
+    {
+      "strategy_id": 3,
+      "version": 2,
+      "fingerprint": "6c2073a85d743be82e9968705b47ab4efccadf0f9a64f0d103fa838f27c94b6c",
+      "created_at": "2026-11-14T05:43:29.467706Z",
+      "note": null
+    },
+    {
+      "strategy_id": 3,
+      "version": 3,
+      "fingerprint": "2d578c1230ecedf445b8db9b17de89bf807231310c2877ecd76cca4e52d3e063",
+      "created_at": "2026-11-14T05:43:43.243261Z",
+      "note": "back to the template holding time"
+    },
+    {
+      "strategy_id": 3,
+      "version": 4,
+      "fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+      "created_at": "2026-11-14T05:58:48.350349Z",
+      "note": "lots 0.02: fits the default 10,000 USD, 1:1 paper account margin"
+    }
+  ],
+  "mt5_verifications": [
+    {
+      "id": "mv_8ab8d3c470f5930a",
+      "started_at": "2026-11-14T11:48:53.203529Z",
+      "finished_at": "2026-11-14T11:48:54.142655Z",
+      "overall": "FAILED",
+      "environment": "DEMO",
+      "symbol": "XAUUSD",
+      "summary": {
+        "counts": {
+          "FAIL": 1,
+          "PASS": 10,
+          "SKIPPED": 0,
+          "WARN": 3
+        },
+        "definition": "mt5v@1",
+        "server": "VantageMarkets-Demo"
+      }
+    },
+    {
+      "id": "mv_214ba65715fb0f86",
+      "started_at": "2026-11-14T11:52:37.706999Z",
+      "finished_at": "2026-11-14T11:52:38.744380Z",
+      "overall": "PARTIAL",
+      "environment": "DEMO",
+      "symbol": "XAUUSD",
+      "summary": {
+        "counts": {
+          "FAIL": 0,
+          "PASS": 11,
+          "SKIPPED": 0,
+          "WARN": 3
+        },
+        "definition": "mt5v@1",
+        "server": "VantageMarkets-Demo"
+      }
+    }
+  ],
+  "recent_feed_events": [
+    {
+      "ts": "2026-11-15T17:50:39.506504Z",
+      "provider": "mt5",
+      "from_state": null,
+      "to_state": "HISTORICAL",
+      "reason": "market closed and no price received yet"
+    },
+    {
+      "ts": "2026-11-15T17:49:29.293260Z",
+      "provider": "mt5",
+      "from_state": null,
+      "to_state": "HISTORICAL",
+      "reason": "market closed and no price received yet"
+    },
+    {
+      "ts": "2026-11-15T17:49:27.861429Z",
+      "provider": "mt5",
+      "from_state": null,
+      "to_state": "HISTORICAL",
+      "reason": "market closed and no price received yet"
+    },
+    {
+      "ts": "2026-11-15T17:49:26.275683Z",
+      "provider": "mt5",
+      "from_state": null,
+      "to_state": "HISTORICAL",
+      "reason": "market closed and no price received yet"
+    },
+    {
+      "ts": "2026-11-15T14:39:07.371159Z",
+      "provider": "mt5",
+      "from_state": "DISCONNECTED",
+      "to_state": "HISTORICAL",
+      "reason": "market closed (weekly close); showing the last price from 2026-11-13T21:56:59.906000Z"
+    },
+    {
+      "ts": "2026-11-15T14:34:05.145710Z",
+      "provider": "mt5",
+      "from_state": "HISTORICAL",
+      "to_state": "DISCONNECTED",
+      "reason": "MetaTrader 5: the MT5 terminal is running but NOT connected to its broker's server (check the terminal's login and internet connection); last known price from 2026-11-13T21:56:59.906000Z is STALE"
+    },
+    {
+      "ts": "2026-11-15T14:08:15.095003Z",
+      "provider": "mt5",
+      "from_state": "DISCONNECTED",
+      "to_state": "HISTORICAL",
+      "reason": "market closed (weekly close); showing the last price from 2026-11-13T21:56:59.906000Z"
+    },
+    {
+      "ts": "2026-11-15T14:07:59.031366Z",
+      "provider": "mt5",
+      "from_state": "HISTORICAL",
+      "to_state": "DISCONNECTED",
+      "reason": "MetaTrader 5: the MT5 terminal is running but NOT connected to its broker's server (check the terminal's login and internet connection); last known price from 2026-11-13T21:56:59.906000Z is STALE"
+    },
+    {
+      "ts": "2026-11-15T13:13:45.805721Z",
+      "provider": "mt5",
+      "from_state": "DISCONNECTED",
+      "to_state": "HISTORICAL",
+      "reason": "market closed (weekly close); showing the last price from 2026-11-13T21:56:59.906000Z"
+    },
+    {
+      "ts": "2026-11-15T13:07:15.587656Z",
+      "provider": "mt5",
+      "from_state": "HISTORICAL",
+      "to_state": "DISCONNECTED",
+      "reason": "MetaTrader 5: the MT5 terminal is running but NOT connected to its broker's server (check the terminal's login and internet connection); last known price from 2026-11-13T21:56:59.906000Z is STALE"
+    }
+  ],
+  "notes": [
+    "The monitors were started on Saturday 14 November 2026 at 11:57 UTC, after the weekly close, so no step candle closed in trading hours while they were active: they recorded no evaluation, signal or trade. The research verdicts come from the Phase 5.2 backtests of the same rules.",
+    "Account 1 (manual Phase 1 paper trading) is outside Phase 4; it is recorded and left unchanged."
+  ]
+}

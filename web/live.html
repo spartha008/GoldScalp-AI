@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live Validation · GoldScalp AI</title>
+<meta name="description" content="Vantage MT5 connection, live strategy signals, SIMULATED paper validation, journal, improvement proposals and the research assistant.">
+<link rel="stylesheet" href="/static/css/tokens.css">
+<link rel="stylesheet" href="/static/css/app.css">
+<script src="/static/vendor/lightweight-charts.standalone.production.js"></script>
+<script type="module" src="/static/js/live.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><span class="mark" aria-hidden="true">&#9670;</span><span>GoldScalp AI</span><span class="sub">XAUUSD &middot; educational</span></div>
+  <nav class="nav" aria-label="Main">
+    <a href="/">Dashboard</a>
+    <a href="/paper">Paper Trading</a>
+    <a href="/replay">Replay</a>
+    <a href="/performance">Performance</a>
+    <a href="/lab">Strategy Lab</a>
+    <a href="/live" aria-current="page">Live Validation</a>
+    <a href="http://127.0.0.1:8001/monthly-backtest" title="Monthly backtests run in the separate research service (python -m goldscalp.monthly)">Monthly Backtest</a>
+    <a href="/static/project.html">Project</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="badge kind-simulated">SIMULATED validation</span>
+</header>
+
+<main id="main" class="page lab live">
+  <p class="notice warn">Market data is read-only. Strategy trades on this page are SIMULATED in GoldScalp's paper simulator. No real-money order is ever placed; only versions you link on the Demo Execution tab also send orders, and only to an MT5 DEMO account. Strategies change only when you approve a validated proposal.</p>
+  <div class="seg lab-tabs" role="tablist" aria-label="Live validation sections">
+    <button type="button" role="tab" id="tab-overview" aria-controls="panel-overview" data-tab="overview">Overview</button>
+    <button type="button" role="tab" id="tab-monitor" aria-controls="panel-monitor" data-tab="monitor">Strategy Monitor</button>
+    <button type="button" role="tab" id="tab-positions" aria-controls="panel-positions" data-tab="positions">Simulated Positions</button>
+    <button type="button" role="tab" id="tab-demo" aria-controls="panel-demo" data-tab="demo">Demo Execution</button>
+    <button type="button" role="tab" id="tab-performance" aria-controls="panel-performance" data-tab="performance">Performance</button>
+    <button type="button" role="tab" id="tab-journal" aria-controls="panel-journal" data-tab="journal">Journal</button>
+    <button type="button" role="tab" id="tab-improve" aria-controls="panel-improve" data-tab="improve">Improvement</button>
+    <button type="button" role="tab" id="tab-assistant" aria-controls="panel-assistant" data-tab="assistant">Research Assistant</button>
+  </div>
+  <p class="notice" id="live-status" role="status" hidden></p>
+
+  <!-- OVERVIEW -->
+  <section id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" class="lab-panel">
+    <div class="grid2">
+      <section class="panel current" aria-labelledby="conn-title">
+        <header><h2 id="conn-title">Vantage MT5 connection</h2><span class="spacer"></span><span id="conn-state"></span></header>
+        <div class="body">
+          <div class="metric-grid" id="conn-grid"></div>
+          <p class="small" id="verify-summary"></p>
+          <div class="toolbar"><button type="button" class="btn" id="run-verify">Run terminal verification</button>
+            <span class="muted small">Read-only checks against the running terminal: broker, demo server, symbol, ticks, M1-H1 candles, reconnect.</span></div>
+          <div id="verify-checks"></div>
+        </div>
+      </section>
+      <section class="panel current" aria-labelledby="px-title">
+        <header><h2 id="px-title">XAUUSD now</h2></header>
+        <div class="body"><div class="metric-grid" id="price-grid"></div><p class="muted small" id="feed-note"></p></div>
+      </section>
+    </div>
+    <section class="panel simulated" aria-labelledby="sig-title">
+      <header><h2 id="sig-title">Latest strategy signals</h2></header>
+      <div class="body" id="latest-signals"><p class="muted small">&mdash;</p></div>
+    </section>
+  </section>
+
+  <!-- MONITOR -->
+  <section id="panel-monitor" role="tabpanel" aria-labelledby="tab-monitor" class="lab-panel" hidden>
+    <section class="panel" aria-labelledby="add-title">
+      <header><h2 id="add-title">Monitor a strategy version</h2></header>
+      <div class="body">
+        <div class="form-grid">
+          <label>Strategy<select id="mon-strategy"></select></label>
+          <label>Mode<select id="mon-mode"><option value="paper">paper: simulate every signal</option><option value="observe">observe: signals only</option></select></label>
+        </div>
+        <div class="toolbar"><button type="button" class="btn" id="mon-check">Check Phase 3 validation</button><button type="button" class="btn" id="mon-add">Start monitoring</button></div>
+        <div id="mon-eligibility"></div>
+        <p class="muted small">Only versions with a completed Strategy Lab run can be monitored. Paper mode opens one SIMULATED position per qualifying signal in that version's own validation paper account.</p>
+      </div>
+    </section>
+    <section class="panel" aria-labelledby="mons-title">
+      <header><h2 id="mons-title">Monitored versions</h2></header>
+      <div class="body" id="monitored"><p class="muted small">&mdash;</p></div>
+    </section>
+  </section>
+
+  <!-- POSITIONS -->
+  <section id="panel-positions" role="tabpanel" aria-labelledby="tab-positions" class="lab-panel" hidden>
+    <section class="panel simulated" aria-labelledby="open-title"><header><h2 id="open-title">Active simulated positions</h2></header><div class="body" id="open-trades"></div></section>
+    <section class="panel simulated" aria-labelledby="closed-title"><header><h2 id="closed-title">Closed simulated positions</h2></header><div class="body" id="closed-trades"></div></section>
+  </section>
+
+  <!-- PERFORMANCE -->
+  <section id="panel-performance" role="tabpanel" aria-labelledby="tab-performance" class="lab-panel" hidden>
+    <section class="panel simulated" aria-labelledby="eq-title"><header><h2 id="eq-title">Live-paper equity (validation accounts)</h2></header>
+      <div class="body"><div class="equity-box" id="equity-chart"></div><p class="muted small" id="equity-note"></p></div></section>
+    <section class="panel" aria-labelledby="cmp-title"><header><h2 id="cmp-title">Strategy comparison: historical vs live-paper</h2></header>
+      <div class="body" id="comparison"></div></section>
+  </section>
+
+  <!-- JOURNAL -->
+  <section id="panel-journal" role="tabpanel" aria-labelledby="tab-journal" class="lab-panel" hidden>
+    <section class="panel simulated" aria-labelledby="jr-title">
+      <header><h2 id="jr-title">Strategy signal and trade journal</h2><span class="spacer"></span><a class="btn" id="journal-csv" href="/api/live/journal/export.csv">Export CSV</a></header>
+      <div class="body">
+        <form id="journal-filters" class="form-grid">
+          <label>From (UTC)<input type="date" id="jf-start"></label>
+          <label>To (UTC)<input type="date" id="jf-end"></label>
+          <label>Strategy<select id="jf-strategy"><option value="">all</option></select></label>
+          <label>Session<select id="jf-session"><option value="">all</option><option>Asian</option><option>London</option><option>New York</option><option value="none">none</option></select></label>
+          <label>Timeframe<select id="jf-tf"><option value="">all</option><option>M1</option><option>M5</option><option>M15</option><option>H1</option></select></label>
+          <label>Outcome<select id="jf-outcome"><option value="">all</option><option>win</option><option>loss</option><option>breakeven</option><option>open</option><option value="not_traded">not traded</option><option>invalidated</option></select></label>
+        </form>
+        <div id="journal"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- DEMO EXECUTION (optional, MT5 demo account only) -->
+  <section id="panel-demo" role="tabpanel" aria-labelledby="tab-demo" class="lab-panel" hidden>
+    <section class="panel" aria-labelledby="demo-title">
+      <header><h2 id="demo-title">MT5 demo-account execution</h2><span class="spacer"></span><span id="demo-state"></span></header>
+      <div class="body">
+        <p class="small">When a monitored version is linked here, each of its SIMULATED validation trades is also sent as a
+          real order, with the same side, volume, stop-loss and take-profit, to the MT5 account your terminal is logged in to.
+          <strong>Only an account that reports itself as a DEMO account is accepted, checked before every order.</strong>
+          The order is closed when the simulated trade closes. It is never sent more than the configured delay after the
+          simulated entry, and never resent.</p>
+        <div class="metric-grid" id="demo-grid"></div>
+        <ul class="small" id="demo-problems"></ul>
+        <div class="toolbar">
+          <button type="button" class="btn" id="demo-stop">Stop all demo execution</button>
+          <label class="small"><input type="checkbox" id="demo-stop-close"> also close open demo positions now</label>
+        </div>
+      </div>
+    </section>
+    <section class="panel" aria-labelledby="demo-links-title">
+      <header><h2 id="demo-links-title">Linked strategy versions</h2></header>
+      <div class="body" id="demo-links"></div>
+    </section>
+    <section class="panel" aria-labelledby="demo-trades-title">
+      <header><h2 id="demo-trades-title">Demo-account orders</h2><span class="spacer"></span><span class="muted small" id="demo-summary"></span></header>
+      <div class="body" id="demo-trades"></div>
+    </section>
+  </section>
+
+  <!-- IMPROVEMENT -->
+  <section id="panel-improve" role="tabpanel" aria-labelledby="tab-improve" class="lab-panel" hidden>
+    <section class="panel" aria-labelledby="st-title">
+      <header><h2 id="st-title">Research study</h2></header>
+      <div class="body">
+        <div class="form-grid">
+          <label>Strategy version<select id="st-strategy"></select></label>
+          <label>Discovery share of history<input type="number" id="st-discovery" value="0.6" min="0.3" max="0.8" step="0.05"></label>
+          <label>Minimum holdout trades for a verdict<input type="number" id="st-min" value="30" min="1" max="10000"></label>
+          <label><span>Use live-paper evidence</span><input type="checkbox" id="st-live" checked></label>
+        </div>
+        <div class="toolbar"><button type="button" class="btn" id="st-run">Run study</button><span class="muted small" id="st-progress"></span></div>
+        <p class="muted small">History is split into discovery | embargo | unseen holdout. Findings come from discovery (and live-paper data after the holdout); every proposal is then tested on the holdout against the current version. Nothing is adopted without your approval.</p>
+        <div id="study"></div>
+      </div>
+    </section>
+    <section class="panel" aria-labelledby="pr-title"><header><h2 id="pr-title">Proposals</h2></header><div class="body" id="proposals"></div></section>
+  </section>
+
+  <!-- ASSISTANT -->
+  <section id="panel-assistant" role="tabpanel" aria-labelledby="tab-assistant" class="lab-panel" hidden>
+    <section class="panel" aria-labelledby="as-title">
+      <header><h2 id="as-title">Research assistant</h2><span class="spacer"></span><span class="muted small" id="as-mode"></span></header>
+      <div class="body">
+        <div class="toolbar" id="as-questions"></div>
+        <form id="as-form" class="toolbar"><input type="text" id="as-input" maxlength="1000" placeholder="Ask about stored signals, simulated trades, proposals..." aria-label="Question" class="grow"><button type="submit" class="btn">Ask</button></form>
+        <div id="as-answers" aria-live="polite"></div>
+      </div>
+    </section>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,1135 @@
+{
+ "version": 1,
+ "definition": "sealed@1",
+ "frozen_at": "2026-11-15T10:52:18.332396+00:00",
+ "note": "H6.4 frozen at the user's request BEFORE any sealed-data result existed (0 sealed results). Candidate H6.4 = frozen Phase 6 VOL-C plus exactly one condition (M15 volatility normal or expanding); control = unfiltered VOL-C (comparison only, never selected). Development-derived origin disclosed. Sealed data verified from timestamps and cross-checks only: M5, M15 and H1 sufficient in 24 of 24 months under the pre-registered market-calendar rule (threshold 95 % unchanged; December 2024 missing bars all inside the Christmas/New Year closures); 0 duplicate or misaligned bars; M5->M15 and M15->H1 aggregation identical; sealed H1 identical to the application's MT5 H1. Frozen Phase 6 criteria and costs; one run; no retuning on the sealed result.",
+ "files": {
+  "config/discovery/phase6-h64.json": "41a8f9c8315323a1987bd922c2eedfb727431a1437069425ea4953270380f768",
+  "PHASE_6_H64_REGISTRATION.md": "babe6aebdd48f8ab0c620961b3aeebc6d91ba834c99288a37c7748395c87f9ba",
+  "goldscalp/monthly/sealed.py": "58d2b4838a7e82bf8acf41d8c3b112e179a9e50f789b372e02fe64ec0b909033",
+  "goldscalp/monthly/sealed_report.py": "f1f9a1f574d088d61224cfca8a89cf098def448a27562ca9d62fa464c6302d71",
+  "goldscalp/monthly/discovery.py": "6555edaa6c6af80bfc0f5ca31ba55ab6d17eb0e3876a7307af7f29f4009599ff",
+  "config/discovery/phase6.json": "75b5a82ed6ba10cd2962fac9929bda1629eb1d8fcb49031fb81c02ddb4b6e6c5"
+ },
+ "sealed_results_at_freeze": 0,
+ "code_version": "goldscalp 0.1.0 / code f745e9f1ca74bbab",
+ "candidate": {
+  "key": "H6.4",
+  "fingerprint": "0019c2a629e8a3e204f9be150ae440027db0c4f6621438b90955d4446688ecec"
+ },
+ "control": {
+  "key": "VOL-C",
+  "fingerprint": "64d2a3b37538efbd0b19f9336c8d4e18f1bbce11330f48b645b769ca79429db9"
+ },
+ "windows": [
+  {
+   "key": "S1",
+   "start": "2023-11-01T00:00:00Z",
+   "end": "2023-12-01T00:00:00Z",
+   "month": "2023-11",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S2",
+   "start": "2023-12-01T00:00:00Z",
+   "end": "2024-01-01T00:00:00Z",
+   "month": "2023-12",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S3",
+   "start": "2024-01-01T00:00:00Z",
+   "end": "2024-02-01T00:00:00Z",
+   "month": "2024-01",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S4",
+   "start": "2024-02-01T00:00:00Z",
+   "end": "2024-03-01T00:00:00Z",
+   "month": "2024-02",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S5",
+   "start": "2024-03-01T00:00:00Z",
+   "end": "2024-04-01T00:00:00Z",
+   "month": "2024-03",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S6",
+   "start": "2024-04-01T00:00:00Z",
+   "end": "2024-05-01T00:00:00Z",
+   "month": "2024-04",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S7",
+   "start": "2024-05-01T00:00:00Z",
+   "end": "2024-06-01T00:00:00Z",
+   "month": "2024-05",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S8",
+   "start": "2024-06-01T00:00:00Z",
+   "end": "2024-07-01T00:00:00Z",
+   "month": "2024-06",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S9",
+   "start": "2024-07-01T00:00:00Z",
+   "end": "2024-08-01T00:00:00Z",
+   "month": "2024-07",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S10",
+   "start": "2024-08-01T00:00:00Z",
+   "end": "2024-09-01T00:00:00Z",
+   "month": "2024-08",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S11",
+   "start": "2024-09-01T00:00:00Z",
+   "end": "2024-10-01T00:00:00Z",
+   "month": "2024-09",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S12",
+   "start": "2024-10-01T00:00:00Z",
+   "end": "2024-11-01T00:00:00Z",
+   "month": "2024-10",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 1,
+   "partial": false
+  },
+  {
+   "key": "S13",
+   "start": "2024-11-01T00:00:00Z",
+   "end": "2024-12-01T00:00:00Z",
+   "month": "2024-11",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S14",
+   "start": "2024-12-01T00:00:00Z",
+   "end": "2025-01-01T00:00:00Z",
+   "month": "2024-12",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S15",
+   "start": "2025-01-01T00:00:00Z",
+   "end": "2025-02-01T00:00:00Z",
+   "month": "2025-01",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S16",
+   "start": "2025-02-01T00:00:00Z",
+   "end": "2025-03-01T00:00:00Z",
+   "month": "2025-02",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S17",
+   "start": "2025-03-01T00:00:00Z",
+   "end": "2025-04-01T00:00:00Z",
+   "month": "2025-03",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S18",
+   "start": "2025-04-01T00:00:00Z",
+   "end": "2025-05-01T00:00:00Z",
+   "month": "2025-04",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S19",
+   "start": "2025-05-01T00:00:00Z",
+   "end": "2025-06-01T00:00:00Z",
+   "month": "2025-05",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S20",
+   "start": "2025-06-01T00:00:00Z",
+   "end": "2025-07-01T00:00:00Z",
+   "month": "2025-06",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S21",
+   "start": "2025-07-01T00:00:00Z",
+   "end": "2025-08-01T00:00:00Z",
+   "month": "2025-07",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S22",
+   "start": "2025-08-01T00:00:00Z",
+   "end": "2025-09-01T00:00:00Z",
+   "month": "2025-08",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S23",
+   "start": "2025-09-01T00:00:00Z",
+   "end": "2025-10-01T00:00:00Z",
+   "month": "2025-09",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  },
+  {
+   "key": "S24",
+   "start": "2025-10-01T00:00:00Z",
+   "end": "2025-11-01T00:00:00Z",
+   "month": "2025-10",
+   "store": "research",
+   "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+   "half": 2,
+   "partial": false
+  }
+ ],
+ "criteria": [
+  "data: at least 18 of the 24 months have sufficient data (95 % coverage and warm-up); other months are INCOMPLETE and excluded",
+  "expectancy: pooled expectancy after costs > 0 R per trade",
+  "trade_count: at least 100 pooled trades (a minimum screen, not proof)",
+  "profit_factor: pooled profit factor at least 1.1",
+  "consistency: positive in at least 60 % of valid months, positive in each 12-month half (Nov 2023-Oct 2024 and Nov 2024-Oct 2025), and positive without its best month",
+  "prediction: the hypothesis's own prediction (regime, context or session difference) also holds on the sealed data",
+  "execution: still positive with spread and slippage doubled (tripled is reported only)",
+  "timeframes: run on M5 and on M15 execution; M15 positive as well"
+ ],
+ "data_verification": {
+  "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+  "months": {
+   "2023-11": {
+    "M5": {
+     "expected": 6060,
+     "present": 5983,
+     "missing": 77,
+     "holiday_missing": 69,
+     "plain_share": 0.9873,
+     "share": 0.9987,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2020,
+     "present": 1996,
+     "missing": 24,
+     "holiday_missing": 23,
+     "plain_share": 0.9881,
+     "share": 0.9995,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 505,
+     "present": 500,
+     "missing": 5,
+     "holiday_missing": 5,
+     "plain_share": 0.9901,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2023-12": {
+    "M5": {
+     "expected": 5796,
+     "present": 5507,
+     "missing": 289,
+     "holiday_missing": 288,
+     "plain_share": 0.9501,
+     "share": 0.9998,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 1932,
+     "present": 1836,
+     "missing": 96,
+     "holiday_missing": 96,
+     "plain_share": 0.9503,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 483,
+     "present": 459,
+     "missing": 24,
+     "holiday_missing": 24,
+     "plain_share": 0.9503,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-01": {
+    "M5": {
+     "expected": 6348,
+     "present": 6054,
+     "missing": 294,
+     "holiday_missing": 294,
+     "plain_share": 0.9537,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2116,
+     "present": 2018,
+     "missing": 98,
+     "holiday_missing": 98,
+     "plain_share": 0.9537,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 529,
+     "present": 505,
+     "missing": 24,
+     "holiday_missing": 24,
+     "plain_share": 0.9546,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-02": {
+    "M5": {
+     "expected": 5796,
+     "present": 5763,
+     "missing": 33,
+     "holiday_missing": 33,
+     "plain_share": 0.9943,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 1932,
+     "present": 1921,
+     "missing": 11,
+     "holiday_missing": 11,
+     "plain_share": 0.9943,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 483,
+     "present": 481,
+     "missing": 2,
+     "holiday_missing": 2,
+     "plain_share": 0.9959,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-03": {
+    "M5": {
+     "expected": 5808,
+     "present": 5530,
+     "missing": 278,
+     "holiday_missing": 276,
+     "plain_share": 0.9521,
+     "share": 0.9996,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 1936,
+     "present": 1844,
+     "missing": 92,
+     "holiday_missing": 92,
+     "plain_share": 0.9525,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 484,
+     "present": 461,
+     "missing": 23,
+     "holiday_missing": 23,
+     "plain_share": 0.9525,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-04": {
+    "M5": {
+     "expected": 6072,
+     "present": 6072,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2024,
+     "present": 2024,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 506,
+     "present": 506,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-05": {
+    "M5": {
+     "expected": 6324,
+     "present": 6279,
+     "missing": 45,
+     "holiday_missing": 45,
+     "plain_share": 0.9929,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2108,
+     "present": 2093,
+     "missing": 15,
+     "holiday_missing": 15,
+     "plain_share": 0.9929,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 527,
+     "present": 524,
+     "missing": 3,
+     "holiday_missing": 3,
+     "plain_share": 0.9943,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-06": {
+    "M5": {
+     "expected": 5544,
+     "present": 5499,
+     "missing": 45,
+     "holiday_missing": 45,
+     "plain_share": 0.9919,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 1848,
+     "present": 1833,
+     "missing": 15,
+     "holiday_missing": 15,
+     "plain_share": 0.9919,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 462,
+     "present": 459,
+     "missing": 3,
+     "holiday_missing": 3,
+     "plain_share": 0.9935,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-07": {
+    "M5": {
+     "expected": 6348,
+     "present": 6303,
+     "missing": 45,
+     "holiday_missing": 45,
+     "plain_share": 0.9929,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2116,
+     "present": 2101,
+     "missing": 15,
+     "holiday_missing": 15,
+     "plain_share": 0.9929,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 529,
+     "present": 526,
+     "missing": 3,
+     "holiday_missing": 3,
+     "plain_share": 0.9943,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-08": {
+    "M5": {
+     "expected": 6048,
+     "present": 6048,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2016,
+     "present": 2016,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 504,
+     "present": 504,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-09": {
+    "M5": {
+     "expected": 5820,
+     "present": 5777,
+     "missing": 43,
+     "holiday_missing": 42,
+     "plain_share": 0.9926,
+     "share": 0.9998,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 1940,
+     "present": 1926,
+     "missing": 14,
+     "holiday_missing": 14,
+     "plain_share": 0.9928,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 485,
+     "present": 482,
+     "missing": 3,
+     "holiday_missing": 3,
+     "plain_share": 0.9938,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-10": {
+    "M5": {
+     "expected": 6348,
+     "present": 6348,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2116,
+     "present": 2116,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 529,
+     "present": 529,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-11": {
+    "M5": {
+     "expected": 5772,
+     "present": 5715,
+     "missing": 57,
+     "holiday_missing": 57,
+     "plain_share": 0.9901,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 1924,
+     "present": 1905,
+     "missing": 19,
+     "holiday_missing": 19,
+     "plain_share": 0.9901,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 481,
+     "present": 477,
+     "missing": 4,
+     "holiday_missing": 4,
+     "plain_share": 0.9917,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2024-12": {
+    "M5": {
+     "expected": 6084,
+     "present": 5743,
+     "missing": 341,
+     "holiday_missing": 339,
+     "plain_share": 0.944,
+     "share": 0.9997,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2028,
+     "present": 1915,
+     "missing": 113,
+     "holiday_missing": 113,
+     "plain_share": 0.9443,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 507,
+     "present": 479,
+     "missing": 28,
+     "holiday_missing": 28,
+     "plain_share": 0.9448,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2025-01": {
+    "M5": {
+     "expected": 6336,
+     "present": 6042,
+     "missing": 294,
+     "holiday_missing": 294,
+     "plain_share": 0.9536,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2112,
+     "present": 2014,
+     "missing": 98,
+     "holiday_missing": 98,
+     "plain_share": 0.9536,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 528,
+     "present": 504,
+     "missing": 24,
+     "holiday_missing": 24,
+     "plain_share": 0.9545,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2025-02": {
+    "M5": {
+     "expected": 5520,
+     "present": 5487,
+     "missing": 33,
+     "holiday_missing": 33,
+     "plain_share": 0.994,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 1840,
+     "present": 1829,
+     "missing": 11,
+     "holiday_missing": 11,
+     "plain_share": 0.994,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 460,
+     "present": 458,
+     "missing": 2,
+     "holiday_missing": 2,
+     "plain_share": 0.9957,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2025-03": {
+    "M5": {
+     "expected": 5820,
+     "present": 5820,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 1940,
+     "present": 1940,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 485,
+     "present": 485,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2025-04": {
+    "M5": {
+     "expected": 6072,
+     "present": 5796,
+     "missing": 276,
+     "holiday_missing": 276,
+     "plain_share": 0.9545,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2024,
+     "present": 1932,
+     "missing": 92,
+     "holiday_missing": 92,
+     "plain_share": 0.9545,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 506,
+     "present": 483,
+     "missing": 23,
+     "holiday_missing": 23,
+     "plain_share": 0.9545,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2025-05": {
+    "M5": {
+     "expected": 6048,
+     "present": 6015,
+     "missing": 33,
+     "holiday_missing": 33,
+     "plain_share": 0.9945,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2016,
+     "present": 2005,
+     "missing": 11,
+     "holiday_missing": 11,
+     "plain_share": 0.9945,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 504,
+     "present": 502,
+     "missing": 2,
+     "holiday_missing": 2,
+     "plain_share": 0.996,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2025-06": {
+    "M5": {
+     "expected": 5820,
+     "present": 5775,
+     "missing": 45,
+     "holiday_missing": 45,
+     "plain_share": 0.9923,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 1940,
+     "present": 1925,
+     "missing": 15,
+     "holiday_missing": 15,
+     "plain_share": 0.9923,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 485,
+     "present": 482,
+     "missing": 3,
+     "holiday_missing": 3,
+     "plain_share": 0.9938,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2025-07": {
+    "M5": {
+     "expected": 6348,
+     "present": 6298,
+     "missing": 50,
+     "holiday_missing": 48,
+     "plain_share": 0.9921,
+     "share": 0.9997,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2116,
+     "present": 2100,
+     "missing": 16,
+     "holiday_missing": 16,
+     "plain_share": 0.9924,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 529,
+     "present": 525,
+     "missing": 4,
+     "holiday_missing": 4,
+     "plain_share": 0.9924,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2025-08": {
+    "M5": {
+     "expected": 5796,
+     "present": 5796,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 1932,
+     "present": 1932,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 483,
+     "present": 483,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2025-09": {
+    "M5": {
+     "expected": 6072,
+     "present": 6039,
+     "missing": 33,
+     "holiday_missing": 33,
+     "plain_share": 0.9946,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2024,
+     "present": 2013,
+     "missing": 11,
+     "holiday_missing": 11,
+     "plain_share": 0.9946,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 506,
+     "present": 504,
+     "missing": 2,
+     "holiday_missing": 2,
+     "plain_share": 0.996,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   },
+   "2025-10": {
+    "M5": {
+     "expected": 6324,
+     "present": 6324,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "M15": {
+     "expected": 2108,
+     "present": 2108,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    },
+    "H1": {
+     "expected": 527,
+     "present": 527,
+     "missing": 0,
+     "holiday_missing": 0,
+     "plain_share": 1.0,
+     "share": 1.0,
+     "warmup": true,
+     "sufficient": true
+    }
+   }
+  },
+  "sufficient_months": {
+   "M5": 24,
+   "M15": 24,
+   "H1": 24
+  },
+  "duplicate_timestamps": {
+   "M5": 0,
+   "M15": 0,
+   "H1": 0
+  },
+  "misaligned_bars": {
+   "M5": 0,
+   "M15": 0,
+   "H1": 0
+  },
+  "cross_timeframe": {
+   "M5_vs_M15": {
+    "compared": 48445,
+    "mismatched": 0
+   },
+   "M15_vs_H1": {
+    "compared": 12106,
+    "mismatched": 0
+   }
+  },
+  "timezone_check_vs_app_mt5_h1": {
+   "compared": 12606,
+   "mismatched": 0
+  },
+  "imports": [
+   {
+    "tf": "H1",
+    "file_name": "XAUUSD_H1_202309150100_202510312300.csv",
+    "rows_stored": 12606,
+    "rows_rejected": 0,
+    "duplicates_dropped": 0,
+    "first_ts": 1694728800,
+    "last_ts": 1761940800
+   },
+   {
+    "tf": "M15",
+    "file_name": "XAUUSD_M15_202310160100_202510312345.csv",
+    "rows_stored": 48454,
+    "rows_rejected": 0,
+    "duplicates_dropped": 0,
+    "first_ts": 1697407200,
+    "last_ts": 1761943500
+   },
+   {
+    "tf": "M5",
+    "file_name": "XAUUSD_M5_202310160100_202405312355.csv",
+    "rows_stored": 44524,
+    "rows_rejected": 0,
+    "duplicates_dropped": 0,
+    "first_ts": 1697407200,
+    "last_ts": 1717188900
+   },
+   {
+    "tf": "M5",
+    "file_name": "XAUUSD_M5_202406030100_202412312355.csv",
+    "rows_stored": 41433,
+    "rows_rejected": 0,
+    "duplicates_dropped": 0,
+    "first_ts": 1717365600,
+    "last_ts": 1735682100
+   },
+   {
+    "tf": "M5",
+    "file_name": "XAUUSD_M5_202501020100_202506192010.csv",
+    "rows_stored": 32979,
+    "rows_rejected": 0,
+    "duplicates_dropped": 0,
+    "first_ts": 1735772400,
+    "last_ts": 1750353000
+   },
+   {
+    "tf": "M5",
+    "file_name": "XAUUSD_M5_202506182250_202510312355.csv",
+    "rows_stored": 26658,
+    "rows_rejected": 0,
+    "duplicates_dropped": 0,
+    "first_ts": 1750276200,
+    "last_ts": 1761944100
+   }
+  ],
+  "verified_at": "2026-11-15T10:52:18.329581+00:00"
+ }
+}

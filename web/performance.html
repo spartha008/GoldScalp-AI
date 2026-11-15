@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Performance analytics · GoldScalp AI</title>
+<meta name="description" content="Historical evaluation of GoldScalp's rule-based signals with hypothetical outcomes. Not trading results.">
+<link rel="stylesheet" href="/static/css/tokens.css">
+<link rel="stylesheet" href="/static/css/app.css">
+<script src="/static/vendor/lightweight-charts.standalone.production.js"></script>
+<script type="module" src="/static/js/performance.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><span class="mark" aria-hidden="true">&#9670;</span><span>GoldScalp AI</span><span class="sub">XAUUSD &middot; educational</span></div>
+  <nav class="nav" aria-label="Main">
+    <a href="/">Dashboard</a>
+    <a href="/paper">Paper Trading</a>
+    <a href="/replay">Replay</a>
+    <a href="/performance" aria-current="page">Performance</a>
+    <a href="/lab">Strategy Lab</a>
+    <a href="/live">Live Validation</a>
+    <a href="http://127.0.0.1:8001/monthly-backtest" title="Monthly backtests run in the separate research service (python -m goldscalp.monthly)">Monthly Backtest</a>
+    <a href="/static/project.html">Project</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="badge kind-historical">Hypothetical evaluation</span>
+</header>
+
+<main id="main" class="page perf">
+  <p class="notice warn compact" id="perf-disclaimer">Hypothetical results computed on past data with the stated assumptions. They are not trading results and do not predict future performance.</p>
+
+  <div class="grid2">
+    <section class="panel" aria-labelledby="run-title">
+      <header><h2 id="run-title">New evaluation</h2><span class="spacer"></span><span class="muted small" id="run-busy"></span></header>
+      <div class="body">
+        <form id="run-form" class="form-grid">
+          <label>Dataset<select name="series" id="pf-series" required></select></label>
+          <fieldset><legend>Step timeframes (one stream each)</legend>
+            <label class="check"><input type="checkbox" name="tf" value="M1"> M1</label>
+            <label class="check"><input type="checkbox" name="tf" value="M5" checked> M5</label>
+            <label class="check"><input type="checkbox" name="tf" value="M15" checked> M15</label>
+          </fieldset>
+          <label>Start (UTC)<input type="datetime-local" name="start" id="pf-start" required step="60"></label>
+          <label>End (UTC)<input type="datetime-local" name="end" id="pf-end" required step="60"></label>
+          <label>History before start (days)<input type="number" name="lookback_days" value="5" min="1" max="20" required></label>
+          <label>Outcome horizon (M5 candles)<input type="number" name="horizon_m5" id="pf-horizon" min="1" max="288" required></label>
+          <label>Target (× initial risk, 0 = none)<input type="number" name="target_r" id="pf-target" min="0" max="10" step="0.1" required></label>
+          <label>Fallback stop (× ATR M5)<input type="number" name="stop_atr_fallback" id="pf-stop" min="0" max="10" step="0.1" required></label>
+          <label>Flat band (× ATR M5)<input type="number" name="flat_band_atr" id="pf-flat" min="0" max="5" step="0.05" required></label>
+          <label>Lots<input type="text" name="lots" id="pf-lots" required inputmode="decimal"></label>
+          <label>Spread when the data has none (USD/oz)<input type="text" name="spread" id="pf-spread" required inputmode="decimal"></label>
+          <label>Commission per lot per side (USD)<input type="text" name="commission_per_lot_per_side" id="pf-comm" required inputmode="decimal"></label>
+          <label>Adverse slippage per fill (USD/oz)<input type="text" name="slippage" id="pf-slip" required inputmode="decimal"></label>
+          <div class="form-actions"><button class="btn primary" type="submit" id="pf-run">Run evaluation</button> <button class="btn" type="button" id="pf-full">Use full stored range</button></div>
+        </form>
+        <p class="muted small" id="pf-coverage"></p>
+        <div class="progress" aria-hidden="true"><span id="pf-progress"></span></div>
+        <p class="small" id="pf-status" role="status"></p>
+        <p class="muted small">Every step candle in the range is evaluated; nothing is sampled or skipped. The range defaults to everything stored, so no period is hand-picked. Defaults come from <code>config/analysis.json</code> (performance) and the paper simulator's cost settings.</p>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="runs-title">
+      <header><h2 id="runs-title">Evaluation runs</h2></header>
+      <div class="body" id="runs-body"><p class="muted small">&mdash;</p></div>
+    </section>
+  </div>
+
+  <section class="panel" aria-labelledby="res-title">
+    <header><h2 id="res-title">Results</h2><span class="spacer"></span><span class="muted small" id="res-run"></span></header>
+    <div class="body" id="res-head"><p class="muted small">Choose a completed run.</p></div>
+  </section>
+
+  <div class="grid2" id="res-streams"></div>
+
+  <section class="panel simulated" aria-labelledby="eq-title">
+    <header><h2 id="eq-title">Equity curves of the hypothetical strategy</h2><span class="spacer"></span><span class="badge kind-simulated">Simulated</span></header>
+    <div class="equity-box" id="equity" role="img" aria-label="Hypothetical closed-trade equity per timeframe stream"></div>
+    <div class="body"><p class="muted small" id="eq-note">Closed-trade equity: it changes when each hypothetical position closes.</p></div>
+  </section>
+
+  <div class="grid2">
+    <section class="panel" aria-labelledby="bt-title">
+      <header><h2 id="bt-title">By timeframe</h2></header>
+      <div class="body" id="by-timeframe"></div>
+    </section>
+    <section class="panel" aria-labelledby="bs-title">
+      <header><h2 id="bs-title">By session</h2></header>
+      <div class="body" id="by-session"></div>
+    </section>
+    <section class="panel" aria-labelledby="bv-title">
+      <header><h2 id="bv-title">By volatility condition</h2></header>
+      <div class="body" id="by-volatility"></div>
+    </section>
+    <section class="panel" aria-labelledby="as-title">
+      <header><h2 id="as-title">Assumptions</h2></header>
+      <div class="body" id="assumptions"></div>
+    </section>
+  </div>
+
+  <section class="panel" aria-labelledby="sl-title">
+    <header><h2 id="sl-title">Every evaluated signal</h2></header>
+    <div class="body" id="signal-list"></div>
+  </section>
+</main>
+
+<footer class="site">
+  <span>Performance analytics evaluate GoldScalp's own rule-based signals on stored history. The analytical evaluation has no costs; the hypothetical strategy uses the paper simulator's spread, commission and slippage formulas. No orders are placed and nothing here is financial advice.</span>
+</footer>
+</body>
+</html>

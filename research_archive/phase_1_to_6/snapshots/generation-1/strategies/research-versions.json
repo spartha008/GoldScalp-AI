@@ -1,0 +1,1303 @@
+[
+  {
+    "id": "rb_7ca33b7b5a81_A",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "A",
+    "name": "Example A v3 \u2014 trend continuation",
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "htf",
+          "min_agree": 2,
+          "none_against": true,
+          "timeframes": [
+            "H1",
+            "M15"
+          ],
+          "type": "htf_alignment"
+        },
+        {
+          "enabled": true,
+          "fast": "20",
+          "id": "ema15",
+          "mode": "both",
+          "slow": "50",
+          "timeframe": "M15",
+          "type": "ema_trend"
+        },
+        {
+          "enabled": true,
+          "id": "pull",
+          "pattern": "pullback",
+          "timeframe": "M5",
+          "type": "swing_sequence"
+        },
+        {
+          "enabled": true,
+          "id": "mom",
+          "level": 55,
+          "mode": "confirm",
+          "timeframe": "M5",
+          "type": "momentum"
+        },
+        {
+          "enabled": true,
+          "id": "spread",
+          "if_unknown": "fail",
+          "max_spread": 0.5,
+          "max_spread_atr": null,
+          "type": "spread"
+        },
+        {
+          "allowed": [
+            "normal"
+          ],
+          "enabled": true,
+          "id": "voln",
+          "timeframe": "M15",
+          "type": "volatility_regime"
+        },
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "London",
+            "New York"
+          ],
+          "type": "session"
+        }
+      ],
+      "description": "Entry: a + M15 volatility normal + London / New York (your session hypothesis). Exit: M5 structure stop, 2R, 60-minute limit.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "Example A v3 \u2014 trend continuation",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "947c7238ecce545ac56a7e0a57280110b7978eba9268ab4270ea457a45921f0f",
+    "chosen_variant": "A|v-d-Xc",
+    "verdict": "fails",
+    "evidence": "{\"verdict\": {\"verdict\": \"fails\", \"why\": \"out-of-sample expectancy -0.058 R per trade after costs\"}, \"development\": {\"trades\": 199, \"wins\": 90, \"losses\": 109, \"win_rate\": 0.4523, \"net_usd\": 118.71, \"sum_r\": 9.585, \"expectancy_r\": 0.0482, \"profit_factor\": 1.074, \"max_dd_r\": 10.402, \"max_dd_usd\": 222.24, \"avg_hold_minutes\": 49.7, \"exits\": {\"time\": 114, \"stop\": 63, \"target\": 22}, \"costs_usd\": 155.08, \"cost_r\": 0.0298, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 4}, \"walk_forward_oos\": {\"trades\": 197, \"wins\": 85, \"losses\": 112, \"win_rate\": 0.4315, \"net_usd\": -177.51, \"sum_r\": -11.369, \"expectancy_r\": -0.0577, \"profit_factor\": 0.909, \"max_dd_r\": 16.488, \"max_dd_usd\": 526.36, \"avg_hold_minutes\": 88.9, \"exits\": {\"time\": 127, \"trailing_stop\": 5, \"stop\": 52, \"target\": 12, \"window_end\": 1}, \"costs_usd\": 150.36, \"cost_r\": 0.0179, \"positive_windows\": 2}, \"hold_out\": {\"trades\": 73, \"wins\": 26, \"losses\": 47, \"win_rate\": 0.3562, \"net_usd\": -91.02, \"sum_r\": -8.692, \"expectancy_r\": -0.1191, \"profit_factor\": 0.84, \"max_dd_r\": 13.799, \"max_dd_usd\": 247.3, \"avg_hold_minutes\": 46.8, \"exits\": {\"time\": 40, \"stop\": 26, \"target\": 6, \"window_end\": 1}, \"costs_usd\": 55.88, \"cost_r\": 0.0366, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 1}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_B",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "B",
+    "name": "Example B v3 \u2014 breakout acceptance",
+    "config": {
+      "conditions": [
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "BOS",
+          "id": "bos",
+          "timeframe": "M15",
+          "type": "structure_event",
+          "within_candles": 8
+        },
+        {
+          "enabled": true,
+          "id": "acc",
+          "state": "with",
+          "timeframe": "M15",
+          "type": "structure_state"
+        },
+        {
+          "enabled": true,
+          "id": "h1w",
+          "state": "with",
+          "timeframe": "H1",
+          "type": "structure_state"
+        },
+        {
+          "allow_partial": true,
+          "enabled": true,
+          "id": "fvg",
+          "relation": "price_inside",
+          "timeframe": "M5",
+          "type": "fvg",
+          "within_candles": 12
+        },
+        {
+          "enabled": true,
+          "id": "mom",
+          "level": 55,
+          "mode": "confirm",
+          "timeframe": "M15",
+          "type": "momentum"
+        },
+        {
+          "allowed": [
+            "normal",
+            "expanding"
+          ],
+          "enabled": true,
+          "id": "vol",
+          "timeframe": "M5",
+          "type": "volatility_regime"
+        },
+        {
+          "enabled": true,
+          "id": "spread",
+          "if_unknown": "fail",
+          "max_spread": 0.5,
+          "max_spread_atr": null,
+          "type": "spread"
+        },
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "New York"
+          ],
+          "type": "session"
+        }
+      ],
+      "description": "Entry: retest: accepted M15 BOS, price back in the M5 breakout FVG, M15 momentum, New York. Exit: 2.0 x ATR(M5) stop, 2R, 60-minute limit + break-even stop at +1R.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "breakeven": {
+          "enabled": true,
+          "lock_r": 0.0,
+          "trigger_r": 1.0
+        },
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 2.0,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "atr"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "Example B v3 \u2014 breakout acceptance",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "b626b5e20a42fc8bed0eaaa99b2be310bc1a040804a47452f02559c7ab25f6c6",
+    "chosen_variant": "B|v-d-Xe-be",
+    "verdict": "positive but inconsistent",
+    "evidence": "{\"verdict\": {\"verdict\": \"positive but inconsistent\", \"why\": \"OOS +0.092 R/trade, PF 1.24, 2 of 4 months positive, hold-out positive\"}, \"development\": {\"trades\": 49, \"wins\": 25, \"losses\": 24, \"win_rate\": 0.5102, \"net_usd\": 137.3, \"sum_r\": 4.445, \"expectancy_r\": 0.0907, \"profit_factor\": 1.416, \"max_dd_r\": 3.9, \"max_dd_usd\": 85.7, \"avg_hold_minutes\": 56.2, \"exits\": {\"time\": 36, \"breakeven\": 3, \"stop\": 9, \"target\": 1}, \"costs_usd\": 38.36, \"cost_r\": 0.0285, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 3}, \"walk_forward_oos\": {\"trades\": 45, \"wins\": 22, \"losses\": 23, \"win_rate\": 0.4889, \"net_usd\": 97.32, \"sum_r\": 4.152, \"expectancy_r\": 0.0923, \"profit_factor\": 1.242, \"max_dd_r\": 3.043, \"max_dd_usd\": 76.51, \"avg_hold_minutes\": 54.4, \"exits\": {\"stop\": 11, \"trailing_stop\": 3, \"time\": 29, \"target\": 2}, \"costs_usd\": 34.54, \"cost_r\": 0.0289, \"positive_windows\": 2}, \"hold_out\": {\"trades\": 13, \"wins\": 5, \"losses\": 8, \"win_rate\": 0.3846, \"net_usd\": 41.59, \"sum_r\": 3.009, \"expectancy_r\": 0.2315, \"profit_factor\": 1.361, \"max_dd_r\": 1.802, \"max_dd_usd\": 46.31, \"avg_hold_minutes\": 53.1, \"exits\": {\"stop\": 3, \"time\": 8, \"target\": 2}, \"costs_usd\": 9.98, \"cost_r\": 0.0299, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 1}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_C",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "C",
+    "name": "Example C v5 \u2014 liquidity sweep reversal",
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "h1w",
+          "state": "with",
+          "timeframe": "H1",
+          "type": "structure_state"
+        },
+        {
+          "enabled": true,
+          "id": "sweep",
+          "level_types": [
+            "EQ",
+            "PD",
+            "PW",
+            "session"
+          ],
+          "timeframe": "M5",
+          "type": "liquidity_sweep",
+          "within_candles": 12
+        },
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "CHoCH",
+          "id": "choch",
+          "timeframe": "M5",
+          "type": "structure_event",
+          "within_candles": 6
+        },
+        {
+          "allowed": [
+            "contracting",
+            "normal"
+          ],
+          "enabled": true,
+          "id": "volq",
+          "timeframe": "M15",
+          "type": "volatility_regime"
+        },
+        {
+          "enabled": true,
+          "id": "spread",
+          "if_unknown": "fail",
+          "max_spread": 0.5,
+          "max_spread_atr": null,
+          "type": "spread"
+        }
+      ],
+      "description": "Entry: trend-aligned instead of range: H1 structure WITH the trade (sweep = pullback liquidity grab). Exit: M15 structure stop, 2R, 60-minute limit + trailing stop 1R behind the best price after +1R (target kept).",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M15",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        },
+        "trail": {
+          "activate_r": 1.0,
+          "distance": 1.0,
+          "enabled": true,
+          "mode": "r"
+        }
+      },
+      "name": "Example C v5 \u2014 liquidity sweep reversal",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "eecc13b60703f7c946c5adf87e82da89518e3d1423d658e7db0bcc666af2c972",
+    "chosen_variant": "C|v-c-Xc-tr",
+    "verdict": "insufficient sample",
+    "evidence": "{\"verdict\": {\"verdict\": \"insufficient sample\", \"why\": \"25 out-of-sample trades (30 needed)\"}, \"development\": {\"trades\": 21, \"wins\": 10, \"losses\": 11, \"win_rate\": 0.4762, \"net_usd\": -37.91, \"sum_r\": 0.443, \"expectancy_r\": 0.0211, \"profit_factor\": 0.838, \"max_dd_r\": 6.591, \"max_dd_usd\": 137.63, \"avg_hold_minutes\": 45.7, \"exits\": {\"stop\": 6, \"target\": 2, \"time\": 12, \"trailing_stop\": 1}, \"costs_usd\": 16.24, \"cost_r\": 0.019, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 1}, \"walk_forward_oos\": {\"trades\": 25, \"wins\": 9, \"losses\": 16, \"win_rate\": 0.36, \"net_usd\": -98.22, \"sum_r\": -3.067, \"expectancy_r\": -0.1227, \"profit_factor\": 0.636, \"max_dd_r\": 5.096, \"max_dd_usd\": 110.73, \"avg_hold_minutes\": 50.6, \"exits\": {\"stop\": 9, \"time\": 13, \"target\": 3}, \"costs_usd\": 19.0, \"cost_r\": 0.0293, \"positive_windows\": 0}, \"hold_out\": {\"trades\": 17, \"wins\": 6, \"losses\": 11, \"win_rate\": 0.3529, \"net_usd\": -34.51, \"sum_r\": -1.123, \"expectancy_r\": -0.0661, \"profit_factor\": 0.781, \"max_dd_r\": 5.096, \"max_dd_usd\": 94.1, \"avg_hold_minutes\": 50.0, \"exits\": {\"target\": 3, \"stop\": 6, \"time\": 8}, \"costs_usd\": 12.92, \"cost_r\": 0.035, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 0}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_R1",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "R1",
+    "name": "R1 v2",
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "fast": "20",
+          "id": "ema15",
+          "mode": "both",
+          "slow": "50",
+          "timeframe": "M15",
+          "type": "ema_trend"
+        },
+        {
+          "enabled": true,
+          "fast": "20",
+          "id": "emah1",
+          "mode": "price_vs_slow",
+          "slow": "50",
+          "timeframe": "H1",
+          "type": "ema_trend"
+        },
+        {
+          "enabled": true,
+          "id": "pull",
+          "pattern": "pullback",
+          "timeframe": "M5",
+          "type": "swing_sequence"
+        },
+        {
+          "enabled": true,
+          "id": "mom",
+          "level": 50,
+          "mode": "confirm",
+          "timeframe": "M5",
+          "type": "momentum"
+        },
+        {
+          "enabled": true,
+          "id": "htf",
+          "min_agree": 2,
+          "none_against": true,
+          "timeframes": [
+            "H1",
+            "M15"
+          ],
+          "type": "htf_alignment"
+        }
+      ],
+      "description": "Entry: original + clear H1 trend (H1 ranging was negative for R1, R6). Exit: M15 structure stop, 2R, 120-minute limit.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 120,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M15",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "R1 v2",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "4a48dc6838b226879394fb5833691d542865b8663407c2620b9276e264dabcc0",
+    "chosen_variant": "R1|v-b-Xd",
+    "verdict": "positive but inconsistent",
+    "evidence": "{\"verdict\": {\"verdict\": \"positive but inconsistent\", \"why\": \"OOS +0.012 R/trade, PF 1.09, 2 of 4 months positive, hold-out not positive\"}, \"development\": {\"trades\": 265, \"wins\": 126, \"losses\": 139, \"win_rate\": 0.4755, \"net_usd\": 193.25, \"sum_r\": 15.144, \"expectancy_r\": 0.0571, \"profit_factor\": 1.062, \"max_dd_r\": 6.616, \"max_dd_usd\": 303.94, \"avg_hold_minutes\": 119.2, \"exits\": {\"time\": 208, \"stop\": 42, \"target\": 15}, \"costs_usd\": 207.16, \"cost_r\": 0.0129, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 3}, \"walk_forward_oos\": {\"trades\": 332, \"wins\": 141, \"losses\": 191, \"win_rate\": 0.4247, \"net_usd\": 343.9, \"sum_r\": 4.071, \"expectancy_r\": 0.0123, \"profit_factor\": 1.086, \"max_dd_r\": 17.501, \"max_dd_usd\": 590.8, \"avg_hold_minutes\": 120.9, \"exits\": {\"stop\": 65, \"time\": 241, \"target\": 19, \"breakeven\": 6, \"window_end\": 1}, \"costs_usd\": 253.22, \"cost_r\": 0.0149, \"positive_windows\": 2}, \"hold_out\": {\"trades\": 103, \"wins\": 43, \"losses\": 60, \"win_rate\": 0.4175, \"net_usd\": 46.44, \"sum_r\": -2.212, \"expectancy_r\": -0.0215, \"profit_factor\": 1.046, \"max_dd_r\": 7.549, \"max_dd_usd\": 291.89, \"avg_hold_minutes\": 103.4, \"exits\": {\"stop\": 20, \"time\": 76, \"target\": 6, \"window_end\": 1}, \"costs_usd\": 78.38, \"cost_r\": 0.0154, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 1}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_R2",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "R2",
+    "name": "R2 v2",
+    "config": {
+      "conditions": [
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "BOS",
+          "id": "bos",
+          "timeframe": "M5",
+          "type": "structure_event",
+          "within_candles": 2
+        },
+        {
+          "enabled": true,
+          "id": "mom",
+          "level": 60,
+          "mode": "confirm",
+          "timeframe": "M5",
+          "type": "momentum"
+        },
+        {
+          "allowed": [
+            "normal",
+            "expanding"
+          ],
+          "enabled": true,
+          "id": "vol",
+          "timeframe": "M5",
+          "type": "volatility_regime"
+        },
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "London",
+            "New York"
+          ],
+          "type": "session"
+        },
+        {
+          "allowed": [
+            "normal"
+          ],
+          "enabled": true,
+          "id": "voln",
+          "timeframe": "M15",
+          "type": "volatility_regime"
+        }
+      ],
+      "description": "Entry: original + M15 volatility normal (expanding and contracting were negative for several strategies). Exit: M15 structure stop, 1.5R, 60-minute limit.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M15",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 1.5,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "R2 v2",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "655888c68fa6b289b7db13cf0882ebdaedeafd50dbc33dfb71a1c3933bed7fc2",
+    "chosen_variant": "R2|v-d-Xb",
+    "verdict": "positive but inconsistent",
+    "evidence": "{\"verdict\": {\"verdict\": \"positive but inconsistent\", \"why\": \"OOS +0.008 R/trade, PF 1.12, 2 of 4 months positive, hold-out not positive\"}, \"development\": {\"trades\": 210, \"wins\": 99, \"losses\": 111, \"win_rate\": 0.4714, \"net_usd\": 159.3, \"sum_r\": 1.624, \"expectancy_r\": 0.0077, \"profit_factor\": 1.095, \"max_dd_r\": 6.374, \"max_dd_usd\": 256.48, \"avg_hold_minutes\": 73.0, \"exits\": {\"time\": 197, \"stop\": 8, \"target\": 5}, \"costs_usd\": 163.64, \"cost_r\": 0.0127, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 1}, \"walk_forward_oos\": {\"trades\": 210, \"wins\": 99, \"losses\": 111, \"win_rate\": 0.4714, \"net_usd\": 202.15, \"sum_r\": 1.746, \"expectancy_r\": 0.0083, \"profit_factor\": 1.124, \"max_dd_r\": 9.891, \"max_dd_usd\": 347.89, \"avg_hold_minutes\": 72.6, \"exits\": {\"time\": 195, \"target\": 5, \"stop\": 10}, \"costs_usd\": 160.14, \"cost_r\": 0.0127, \"positive_windows\": 2}, \"hold_out\": {\"trades\": 85, \"wins\": 36, \"losses\": 49, \"win_rate\": 0.4235, \"net_usd\": -13.75, \"sum_r\": -3.684, \"expectancy_r\": -0.0433, \"profit_factor\": 0.981, \"max_dd_r\": 9.891, \"max_dd_usd\": 347.89, \"avg_hold_minutes\": 57.3, \"exits\": {\"time\": 74, \"stop\": 8, \"target\": 3}, \"costs_usd\": 64.7, \"cost_r\": 0.0138, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 1}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_R3",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "R3",
+    "name": "R3 v2",
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "range",
+          "state": "ranging",
+          "timeframe": "H1",
+          "type": "structure_state"
+        },
+        {
+          "enabled": true,
+          "id": "sweep",
+          "level_types": [
+            "EQ",
+            "PD",
+            "session"
+          ],
+          "timeframe": "M5",
+          "type": "liquidity_sweep",
+          "within_candles": 6
+        },
+        {
+          "enabled": true,
+          "id": "mom",
+          "level": 65,
+          "mode": "not_extreme",
+          "timeframe": "M5",
+          "type": "momentum"
+        },
+        {
+          "allowed": [
+            "contracting",
+            "normal"
+          ],
+          "enabled": true,
+          "id": "volq",
+          "timeframe": "M15",
+          "type": "volatility_regime"
+        }
+      ],
+      "description": "Entry: original + M15 volatility not expanding. Exit: M5 structure stop, 1.5R, 60-minute limit + break-even stop at +1R.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "breakeven": {
+          "enabled": true,
+          "lock_r": 0.0,
+          "trigger_r": 1.0
+        },
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 1.5,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "R3 v2",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "f8b183f60789e19c2a9e67751f9675ee8758d425cdf0acbf449a3bbfb43fefa8",
+    "chosen_variant": "R3|v-b-Xg-be",
+    "verdict": "fails",
+    "evidence": "{\"verdict\": {\"verdict\": \"fails\", \"why\": \"out-of-sample expectancy -0.245 R per trade after costs\"}, \"development\": {\"trades\": 49, \"wins\": 16, \"losses\": 33, \"win_rate\": 0.3265, \"net_usd\": 39.25, \"sum_r\": -2.904, \"expectancy_r\": -0.0593, \"profit_factor\": 1.165, \"max_dd_r\": 8.868, \"max_dd_usd\": 78.6, \"avg_hold_minutes\": 22.2, \"exits\": {\"stop\": 21, \"target\": 13, \"breakeven\": 11, \"time\": 4}, \"costs_usd\": 38.04, \"cost_r\": 0.0625, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 1}, \"walk_forward_oos\": {\"trades\": 51, \"wins\": 14, \"losses\": 37, \"win_rate\": 0.2745, \"net_usd\": -95.08, \"sum_r\": -12.494, \"expectancy_r\": -0.245, \"profit_factor\": 0.709, \"max_dd_r\": 16.205, \"max_dd_usd\": 168.84, \"avg_hold_minutes\": 27.5, \"exits\": {\"target\": 9, \"stop\": 25, \"breakeven\": 8, \"time\": 9}, \"costs_usd\": 38.76, \"cost_r\": 0.0363, \"positive_windows\": 0}, \"hold_out\": {\"trades\": 12, \"wins\": 3, \"losses\": 9, \"win_rate\": 0.25, \"net_usd\": -35.77, \"sum_r\": -5.246, \"expectancy_r\": -0.4372, \"profit_factor\": 0.569, \"max_dd_r\": 7.061, \"max_dd_usd\": 65.98, \"avg_hold_minutes\": 28.3, \"exits\": {\"target\": 2, \"time\": 1, \"stop\": 8, \"breakeven\": 1}, \"costs_usd\": 9.12, \"cost_r\": 0.0621, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 0}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_R4",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "R4",
+    "name": "R4 v2",
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "London",
+            "New York"
+          ],
+          "type": "session"
+        },
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "BOS",
+          "id": "bos",
+          "timeframe": "M15",
+          "type": "structure_event",
+          "within_candles": 4
+        },
+        {
+          "allow_partial": true,
+          "enabled": true,
+          "id": "fvg",
+          "relation": "price_inside",
+          "timeframe": "M5",
+          "type": "fvg",
+          "within_candles": 12
+        },
+        {
+          "enabled": true,
+          "id": "htf",
+          "min_agree": 1,
+          "none_against": true,
+          "timeframes": [
+            "H1",
+            "M15"
+          ],
+          "type": "htf_alignment"
+        },
+        {
+          "allowed": [
+            "normal"
+          ],
+          "enabled": true,
+          "id": "voln",
+          "timeframe": "M15",
+          "type": "volatility_regime"
+        }
+      ],
+      "description": "Entry: original + M15 volatility normal (expanding and contracting were negative for several strategies). Exit: 2.0 x ATR(M5) stop, 2R, 60-minute limit + break-even stop at +1R.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "breakeven": {
+          "enabled": true,
+          "lock_r": 0.0,
+          "trigger_r": 1.0
+        },
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 2.0,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "atr"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "R4 v2",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "68310a999b95a32689a1a6acddc3a76d8e98f6f7aede3ec901462628715bc9ef",
+    "chosen_variant": "R4|v-d-Xe-be",
+    "verdict": "positive but inconsistent",
+    "evidence": "{\"verdict\": {\"verdict\": \"positive but inconsistent\", \"why\": \"OOS +0.112 R/trade, PF 1.34, 2 of 4 months positive, hold-out positive\"}, \"development\": {\"trades\": 36, \"wins\": 18, \"losses\": 18, \"win_rate\": 0.5, \"net_usd\": 131.11, \"sum_r\": 6.757, \"expectancy_r\": 0.1877, \"profit_factor\": 1.671, \"max_dd_r\": 2.809, \"max_dd_usd\": 56.06, \"avg_hold_minutes\": 56.0, \"exits\": {\"time\": 21, \"breakeven\": 4, \"stop\": 8, \"target\": 3}, \"costs_usd\": 28.3, \"cost_r\": 0.0392, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 3}, \"walk_forward_oos\": {\"trades\": 52, \"wins\": 21, \"losses\": 31, \"win_rate\": 0.4038, \"net_usd\": 133.95, \"sum_r\": 5.823, \"expectancy_r\": 0.112, \"profit_factor\": 1.343, \"max_dd_r\": 4.301, \"max_dd_usd\": 70.57, \"avg_hold_minutes\": 53.0, \"exits\": {\"time\": 32, \"stop\": 13, \"target\": 5, \"breakeven\": 2}, \"costs_usd\": 40.06, \"cost_r\": 0.0339, \"positive_windows\": 2}, \"hold_out\": {\"trades\": 14, \"wins\": 5, \"losses\": 9, \"win_rate\": 0.3571, \"net_usd\": 15.71, \"sum_r\": 0.799, \"expectancy_r\": 0.0571, \"profit_factor\": 1.176, \"max_dd_r\": 4.301, \"max_dd_usd\": 70.57, \"avg_hold_minutes\": 43.9, \"exits\": {\"breakeven\": 1, \"target\": 2, \"time\": 6, \"stop\": 5}, \"costs_usd\": 10.74, \"cost_r\": 0.0434, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 1}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_R5",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "R5",
+    "name": "R5 v2",
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "htf",
+          "min_agree": 2,
+          "none_against": true,
+          "timeframes": [
+            "H1",
+            "M15"
+          ],
+          "type": "htf_alignment"
+        },
+        {
+          "enabled": true,
+          "fast": "20",
+          "id": "ema",
+          "mode": "price_vs_slow",
+          "slow": "50",
+          "timeframe": "M15",
+          "type": "ema_trend"
+        },
+        {
+          "enabled": true,
+          "id": "atr",
+          "max": 0.2,
+          "min": 0.03,
+          "timeframe": "M5",
+          "type": "atr_range",
+          "unit": "percent"
+        },
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "Asian",
+            "London"
+          ],
+          "type": "session"
+        }
+      ],
+      "description": "Entry: original + Asian / London sessions (New York was negative for A, R1, R5). Exit: M15 structure stop, 2R, 120-minute limit + trailing stop 1R behind the best price after +1R (target kept).",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 120,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M15",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        },
+        "trail": {
+          "activate_r": 1.0,
+          "distance": 1.0,
+          "enabled": true,
+          "mode": "r"
+        }
+      },
+      "name": "R5 v2",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "a071703036513072167f358fe82cd09f38c3ea55a3b565920126c65933654a38",
+    "chosen_variant": "R5|v-d-Xd-tr",
+    "verdict": "positive but inconsistent",
+    "evidence": "{\"verdict\": {\"verdict\": \"positive but inconsistent\", \"why\": \"OOS +0.010 R/trade, PF 0.97, 3 of 4 months positive, hold-out not positive\"}, \"development\": {\"trades\": 162, \"wins\": 84, \"losses\": 78, \"win_rate\": 0.5185, \"net_usd\": 84.49, \"sum_r\": 16.139, \"expectancy_r\": 0.0996, \"profit_factor\": 1.039, \"max_dd_r\": 5.667, \"max_dd_usd\": 383.63, \"avg_hold_minutes\": 99.7, \"exits\": {\"time\": 108, \"trailing_stop\": 13, \"stop\": 27, \"target\": 14}, \"costs_usd\": 125.68, \"cost_r\": 0.0132, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 4}, \"walk_forward_oos\": {\"trades\": 176, \"wins\": 93, \"losses\": 83, \"win_rate\": 0.5284, \"net_usd\": -59.42, \"sum_r\": 1.72, \"expectancy_r\": 0.0098, \"profit_factor\": 0.973, \"max_dd_r\": 8.904, \"max_dd_usd\": 611.87, \"avg_hold_minutes\": 99.5, \"exits\": {\"time\": 120, \"target\": 10, \"stop\": 33, \"trailing_stop\": 13}, \"costs_usd\": 133.76, \"cost_r\": 0.0136, \"positive_windows\": 3}, \"hold_out\": {\"trades\": 78, \"wins\": 45, \"losses\": 33, \"win_rate\": 0.5769, \"net_usd\": 22.96, \"sum_r\": -1.383, \"expectancy_r\": -0.0177, \"profit_factor\": 1.032, \"max_dd_r\": 6.547, \"max_dd_usd\": 266.75, \"avg_hold_minutes\": 96.2, \"exits\": {\"trailing_stop\": 8, \"time\": 54, \"target\": 3, \"stop\": 13}, \"costs_usd\": 59.28, \"cost_r\": 0.0146, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 1}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_R6",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "R6",
+    "name": "R6 v2",
+    "config": {
+      "conditions": [
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "CHoCH",
+          "id": "choch",
+          "timeframe": "M15",
+          "type": "structure_event",
+          "within_candles": 8
+        },
+        {
+          "allow_touched": true,
+          "enabled": true,
+          "id": "ob",
+          "relation": "price_inside",
+          "timeframe": "M5",
+          "type": "order_block",
+          "within_candles": 12
+        },
+        {
+          "enabled": true,
+          "id": "spread",
+          "if_unknown": "fail",
+          "max_spread": 0.6,
+          "max_spread_atr": null,
+          "type": "spread"
+        },
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "Asian",
+            "London"
+          ],
+          "type": "session"
+        }
+      ],
+      "description": "Entry: original + Asian / London sessions (New York was negative for A, R1, R5). Exit: M15 structure stop, 2R, 120-minute limit + break-even stop at +1R.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "breakeven": {
+          "enabled": true,
+          "lock_r": 0.0,
+          "trigger_r": 1.0
+        },
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 120,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M15",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "R6 v2",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "a647d10b764d931357b8accec16d3c2a1d22ff6be048e9892c82916fe68f2708",
+    "chosen_variant": "R6|v-d-Xd-be",
+    "verdict": "fails",
+    "evidence": "{\"verdict\": {\"verdict\": \"fails\", \"why\": \"out-of-sample expectancy -0.190 R per trade after costs\"}, \"development\": {\"trades\": 61, \"wins\": 22, \"losses\": 39, \"win_rate\": 0.3607, \"net_usd\": -158.99, \"sum_r\": -4.304, \"expectancy_r\": -0.0706, \"profit_factor\": 0.778, \"max_dd_r\": 7.963, \"max_dd_usd\": 215.3, \"avg_hold_minutes\": 112.5, \"exits\": {\"stop\": 30, \"time\": 18, \"breakeven\": 3, \"target\": 10}, \"costs_usd\": 47.38, \"cost_r\": 0.0333, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 1}, \"walk_forward_oos\": {\"trades\": 76, \"wins\": 27, \"losses\": 49, \"win_rate\": 0.3553, \"net_usd\": -127.19, \"sum_r\": -14.438, \"expectancy_r\": -0.19, \"profit_factor\": 0.745, \"max_dd_r\": 17.441, \"max_dd_usd\": 145.57, \"avg_hold_minutes\": 43.6, \"exits\": {\"time\": 22, \"trailing_stop\": 7, \"stop\": 35, \"target\": 8, \"breakeven\": 4}, \"costs_usd\": 57.96, \"cost_r\": 0.0445, \"positive_windows\": 1}, \"hold_out\": {\"trades\": 38, \"wins\": 9, \"losses\": 29, \"win_rate\": 0.2368, \"net_usd\": -88.29, \"sum_r\": -9.654, \"expectancy_r\": -0.2541, \"profit_factor\": 0.715, \"max_dd_r\": 13.204, \"max_dd_usd\": 121.94, \"avg_hold_minutes\": 60.7, \"exits\": {\"time\": 9, \"stop\": 18, \"target\": 5, \"breakeven\": 6}, \"costs_usd\": 28.88, \"cost_r\": 0.037, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 0}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_R7",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "R7",
+    "name": "R7 v2",
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "London",
+            "New York"
+          ],
+          "type": "session"
+        },
+        {
+          "enabled": true,
+          "id": "brk",
+          "level_types": [
+            "PD",
+            "session"
+          ],
+          "timeframe": "M5",
+          "type": "level_break",
+          "within_candles": 6
+        },
+        {
+          "enabled": true,
+          "id": "mom",
+          "level": 52,
+          "mode": "confirm",
+          "timeframe": "M5",
+          "type": "momentum"
+        },
+        {
+          "enabled": true,
+          "id": "h1",
+          "state": "not_against",
+          "timeframe": "H1",
+          "type": "structure_state"
+        }
+      ],
+      "description": "Entry: loosened, London and New York (overlap not required). Exit: 2.0 x ATR(M5) stop, 2R, 60-minute limit + trailing stop 1R behind the best price after +1R (target kept).",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 2.0,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "atr"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        },
+        "trail": {
+          "activate_r": 1.0,
+          "distance": 1.0,
+          "enabled": true,
+          "mode": "r"
+        }
+      },
+      "name": "R7 v2",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "566c147b5370418e7c62a52f959a16002cb0cbc03d1fe4f89a347c1a4c3e1006",
+    "chosen_variant": "R7|v-c-Xe-tr",
+    "verdict": "insufficient sample",
+    "evidence": "{\"verdict\": {\"verdict\": \"insufficient sample\", \"why\": \"28 out-of-sample trades (30 needed)\"}, \"development\": {\"trades\": 32, \"wins\": 18, \"losses\": 14, \"win_rate\": 0.5625, \"net_usd\": 154.92, \"sum_r\": 6.094, \"expectancy_r\": 0.1904, \"profit_factor\": 1.63, \"max_dd_r\": 2.323, \"max_dd_usd\": 61.19, \"avg_hold_minutes\": 45.3, \"exits\": {\"time\": 15, \"stop\": 8, \"trailing_stop\": 6, \"target\": 3}, \"costs_usd\": 25.02, \"cost_r\": 0.0291, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 4}, \"walk_forward_oos\": {\"trades\": 28, \"wins\": 15, \"losses\": 13, \"win_rate\": 0.5357, \"net_usd\": 84.63, \"sum_r\": 3.186, \"expectancy_r\": 0.1138, \"profit_factor\": 1.33, \"max_dd_r\": 7.128, \"max_dd_usd\": 159.06, \"avg_hold_minutes\": 43.8, \"exits\": {\"stop\": 10, \"time\": 12, \"trailing_stop\": 3, \"target\": 3}, \"costs_usd\": 21.42, \"cost_r\": 0.0305, \"positive_windows\": 3}, \"hold_out\": {\"trades\": 10, \"wins\": 4, \"losses\": 6, \"win_rate\": 0.4, \"net_usd\": -33.18, \"sum_r\": -2.48, \"expectancy_r\": -0.248, \"profit_factor\": 0.726, \"max_dd_r\": 5.205, \"max_dd_usd\": 103.54, \"avg_hold_minutes\": 44.0, \"exits\": {\"stop\": 6, \"time\": 4}, \"costs_usd\": 7.6, \"cost_r\": 0.0356, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 1}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_R8",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "R8",
+    "name": "R8 v2",
+    "config": {
+      "conditions": [
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "London",
+            "New York"
+          ],
+          "type": "session"
+        },
+        {
+          "enabled": true,
+          "id": "sweep",
+          "level_types": [
+            "PD",
+            "session",
+            "EQ"
+          ],
+          "timeframe": "M5",
+          "type": "liquidity_sweep",
+          "within_candles": 8
+        },
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "CHoCH",
+          "id": "choch",
+          "timeframe": "M5",
+          "type": "structure_event",
+          "within_candles": 8
+        },
+        {
+          "enabled": true,
+          "id": "mom",
+          "level": 65,
+          "mode": "not_extreme",
+          "timeframe": "M5",
+          "type": "momentum"
+        }
+      ],
+      "description": "Entry: loosened, London and New York. Exit: M15 structure stop, 1.5R, 60-minute limit.",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 1.5,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M15",
+          "type": "structure"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 1.5,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        }
+      },
+      "name": "R8 v2",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "a723c401d093036ee38f5b2652f6baf0d9e3038a207881447a30e27053164cb6",
+    "chosen_variant": "R8|v-c-Xb",
+    "verdict": "fails",
+    "evidence": "{\"verdict\": {\"verdict\": \"fails\", \"why\": \"out-of-sample expectancy -0.120 R per trade after costs\"}, \"development\": {\"trades\": 39, \"wins\": 20, \"losses\": 19, \"win_rate\": 0.5128, \"net_usd\": -11.39, \"sum_r\": -0.307, \"expectancy_r\": -0.0079, \"profit_factor\": 0.97, \"max_dd_r\": 5.563, \"max_dd_usd\": 158.96, \"avg_hold_minutes\": 44.1, \"exits\": {\"stop\": 11, \"time\": 21, \"target\": 7}, \"costs_usd\": 30.28, \"cost_r\": 0.0211, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 1}, \"walk_forward_oos\": {\"trades\": 37, \"wins\": 14, \"losses\": 23, \"win_rate\": 0.3784, \"net_usd\": -40.08, \"sum_r\": -4.439, \"expectancy_r\": -0.12, \"profit_factor\": 0.895, \"max_dd_r\": 6.467, \"max_dd_usd\": 120.33, \"avg_hold_minutes\": 40.0, \"exits\": {\"time\": 15, \"breakeven\": 2, \"stop\": 15, \"target\": 5}, \"costs_usd\": 28.12, \"cost_r\": 0.0218, \"positive_windows\": 1}, \"hold_out\": {\"trades\": 14, \"wins\": 4, \"losses\": 10, \"win_rate\": 0.2857, \"net_usd\": -40.09, \"sum_r\": -3.179, \"expectancy_r\": -0.2271, \"profit_factor\": 0.708, \"max_dd_r\": 4.848, \"max_dd_usd\": 57.39, \"avg_hold_minutes\": 34.6, \"exits\": {\"stop\": 8, \"target\": 3, \"time\": 3}, \"costs_usd\": 10.64, \"cost_r\": 0.0431, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 0}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  },
+  {
+    "id": "rb_7ca33b7b5a81_R9",
+    "study_id": "rb_7ca33b7b5a81",
+    "strategy": "R9",
+    "name": "R9 v2",
+    "config": {
+      "conditions": [
+        {
+          "allowed": [
+            "contracting"
+          ],
+          "enabled": true,
+          "id": "sq",
+          "timeframe": "M15",
+          "type": "volatility_regime"
+        },
+        {
+          "direction": "with",
+          "enabled": true,
+          "event": "BOS",
+          "id": "bos",
+          "timeframe": "M5",
+          "type": "structure_event",
+          "within_candles": 2
+        },
+        {
+          "enabled": true,
+          "id": "mom",
+          "level": 58,
+          "mode": "confirm",
+          "timeframe": "M5",
+          "type": "momentum"
+        },
+        {
+          "enabled": true,
+          "id": "sess",
+          "overlap": "any",
+          "sessions": [
+            "London",
+            "New York"
+          ],
+          "type": "session"
+        }
+      ],
+      "description": "Entry: original entry. Exit: 2.0 x ATR(M5) stop, 2R, 60-minute limit + trailing stop 1R behind the best price after +1R (target kept).",
+      "direction": "both",
+      "entry": {
+        "max_entry_delay_minutes": 10,
+        "trigger": "on_change"
+      },
+      "evaluation": {
+        "step_timeframe": "M5",
+        "window": {
+          "days": 10,
+          "end": null,
+          "mode": "all",
+          "start": null
+        }
+      },
+      "exit": {
+        "exit_on_structure_flip": {
+          "enabled": false,
+          "timeframe": "M5"
+        },
+        "max_holding_minutes": 60,
+        "stop": {
+          "atr_multiple": 2.0,
+          "buffer_atr": 0.1,
+          "distance": null,
+          "timeframe": "M5",
+          "type": "atr"
+        },
+        "target": {
+          "atr_multiple": null,
+          "distance": null,
+          "r": 2.0,
+          "timeframe": "M5",
+          "type": "r_multiple"
+        },
+        "trail": {
+          "activate_r": 1.0,
+          "distance": 1.0,
+          "enabled": true,
+          "mode": "r"
+        }
+      },
+      "name": "R9 v2",
+      "risk": {
+        "lots": "0.02",
+        "max_exposure_lots": "1.00",
+        "max_open_positions": 1,
+        "risk_percent": 0.5,
+        "sizing": "fixed_lots"
+      },
+      "schema": "strategy@1"
+    },
+    "fingerprint": "fb5ff4c121529061d43f08a35ef0c78ef1b661ad8ce6f9903d6484839eccb722",
+    "chosen_variant": "R9|v-a-Xe-tr",
+    "verdict": "fails",
+    "evidence": "{\"verdict\": {\"verdict\": \"fails\", \"why\": \"out-of-sample expectancy -0.099 R per trade after costs\"}, \"development\": {\"trades\": 59, \"wins\": 27, \"losses\": 32, \"win_rate\": 0.4576, \"net_usd\": 44.49, \"sum_r\": 1.726, \"expectancy_r\": 0.0293, \"profit_factor\": 1.126, \"max_dd_r\": 10.962, \"max_dd_usd\": 144.17, \"avg_hold_minutes\": 146.2, \"exits\": {\"time\": 28, \"trailing_stop\": 8, \"stop\": 14, \"target\": 9}, \"costs_usd\": 46.98, \"cost_r\": 0.0566, \"windows\": [\"W1\", \"W2\", \"W3\", \"W4\"], \"missing_windows\": [], \"positive_windows\": 2}, \"walk_forward_oos\": {\"trades\": 67, \"wins\": 27, \"losses\": 40, \"win_rate\": 0.403, \"net_usd\": -118.09, \"sum_r\": -6.612, \"expectancy_r\": -0.0987, \"profit_factor\": 0.759, \"max_dd_r\": 8.007, \"max_dd_usd\": 169.91, \"avg_hold_minutes\": 142.5, \"exits\": {\"stop\": 11, \"time\": 50, \"trailing_stop\": 4, \"target\": 2}, \"costs_usd\": 52.02, \"cost_r\": 0.0224, \"positive_windows\": 0}, \"hold_out\": {\"trades\": 34, \"wins\": 11, \"losses\": 23, \"win_rate\": 0.3235, \"net_usd\": -162.56, \"sum_r\": -11.192, \"expectancy_r\": -0.3292, \"profit_factor\": 0.369, \"max_dd_r\": 13.927, \"max_dd_usd\": 192.02, \"avg_hold_minutes\": 123.2, \"exits\": {\"stop\": 17, \"time\": 10, \"trailing_stop\": 6, \"target\": 1}, \"costs_usd\": 26.04, \"cost_r\": 0.0604, \"windows\": [\"W5\", \"W6\"], \"missing_windows\": [], \"positive_windows\": 0}}",
+    "created_at": "2026-11-14T18:54:12.804792Z"
+  }
+]

@@ -1,0 +1,376 @@
+{
+  "research_studies": [
+    {
+      "id": "st_fbfd96f516100827",
+      "strategy_id": 3,
+      "version": 4,
+      "created_at": "2026-11-14T11:27:35.686173Z",
+      "status": "complete",
+      "params": {
+        "assumptions": {
+          "commission_per_lot_per_side": "3.50",
+          "configured_spread": "0.30",
+          "intrabar": "stop_first",
+          "leverage": 1,
+          "min_trades_for_ratios": 30,
+          "sizing_override": null,
+          "slippage": "0.05",
+          "starting_balance": "10000"
+        },
+        "coverage": {
+          "end": "2026-11-13T19:35:00Z",
+          "start": "2026-10-29T20:40:00Z"
+        },
+        "lookback_days": 5,
+        "series": "live:mt5:XAUUSD",
+        "steps": 3011,
+        "strategy": {
+          "fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+          "id": 3,
+          "name": "Example C: alignment + confirmation + volatility",
+          "version": 4
+        },
+        "use_live_evidence": true,
+        "windows": {
+          "discovery": {
+            "end": "2026-11-07T20:01:00Z",
+            "start": "2026-10-29T20:40:00Z"
+          },
+          "embargo": {
+            "end": "2026-11-08T13:57:45Z",
+            "start": "2026-11-07T20:01:00Z"
+          },
+          "holdout": {
+            "end": "2026-11-13T19:35:00Z",
+            "start": "2026-11-08T13:57:45Z"
+          },
+          "live_after": null,
+          "live_evidence_used": false,
+          "live_note": "no live-paper evidence is stored for this version"
+        }
+      },
+      "progress": 3016,
+      "total": 3016,
+      "started_at": "2026-11-14T11:27:35.699159Z",
+      "finished_at": "2026-11-14T11:31:09.219816Z",
+      "result": {
+        "assumptions": {
+          "commission_per_lot_per_side": "3.50",
+          "configured_spread": "0.30",
+          "intrabar": "stop_first",
+          "leverage": 1,
+          "min_trades_for_ratios": 30,
+          "sizing_override": null,
+          "slippage": "0.05",
+          "starting_balance": "10000"
+        },
+        "base_tf": "M5",
+        "dataset_hash": "f864b5a7c7e6c0b92912c42eb000c0d0c0cb1ddc082840014fc8b9263fb12839",
+        "definition": "improve@1",
+        "disclaimer": "Hypothetical research on stored history and SIMULATED live-paper records. A proposal is a hypothesis tested once on unseen data; it is never adopted without your approval, and past behaviour does not predict future performance.",
+        "discovery": {
+          "expectancy_r": 0.0478,
+          "losses": 18,
+          "max_drawdown": 107.78,
+          "net": 51.96,
+          "profit_factor": 1.205,
+          "reason": null,
+          "sufficient": true,
+          "trades": 33,
+          "win_rate": 0.4545,
+          "wins": 15
+        },
+        "findings": [
+          {
+            "actionable": false,
+            "by_session": {
+              "Asian": 5,
+              "London": 1,
+              "London / New York": 2,
+              "New York": 1
+            },
+            "count": 9,
+            "detail": "9 of 33 discovery trades were stopped out before reaching +0.5 R",
+            "evidence": [
+              "discovery trade #1 (2026-10-30T03:25:00Z)",
+              "discovery trade #10 (2026-11-03T01:00:00Z)",
+              "discovery trade #11 (2026-11-03T01:55:00Z)",
+              "discovery trade #23 (2026-11-05T05:30:00Z)",
+              "discovery trade #24 (2026-11-05T12:25:00Z)",
+              "discovery trade #25 (2026-11-05T16:00:00Z)",
+              "discovery trade #26 (2026-11-05T18:50:00Z)",
+              "discovery trade #30 (2026-11-06T06:20:00Z)",
+              "discovery trade #33 (2026-11-06T15:35:00Z)"
+            ],
+            "kind": "false_signals",
+            "n": 33,
+            "rate": 0.273,
+            "title": "Repeated false signals"
+          },
+          {
+            "actionable": false,
+            "detail": "discovery net +51.96 USD at the recorded spreads, +48.18 at x1.5, +44.40 at x2",
+            "evidence": [
+              "discovery backtest repeated with spread_multiplier 1.5 and 2"
+            ],
+            "flagged": false,
+            "kind": "spread_sensitivity",
+            "median_entry_spread": 0.21,
+            "n": 33,
+            "net_x1": 51.96,
+            "net_x1_5": 48.18,
+            "net_x2": 44.4,
+            "title": "Spread sensitivity"
+          },
+          {
+            "detail": "13 stop-outs: 8 within the first quarter of the holding time, 4 with the stop closer than 1 ATR",
+            "evidence": [
+              "discovery trade #1 stop 4000.064 (5.0 min)",
+              "discovery trade #10 stop 3947.608 (15.0 min)",
+              "discovery trade #11 stop 3946.041 (10.0 min)",
+              "discovery trade #15 stop 3907.621 (15.0 min)",
+              "discovery trade #23 stop 4115.565 (5.0 min)",
+              "discovery trade #24 stop 4124.741 (5.0 min)",
+              "discovery trade #26 stop 4107.032 (10.0 min)",
+              "discovery trade #30 stop 4050.227 (5.0 min)"
+            ],
+            "exit_reasons": {
+              "stop": 13,
+              "target": 5,
+              "time": 15
+            },
+            "flagged": true,
+            "kind": "invalidation",
+            "n": 33,
+            "quick_stops": 8,
+            "stops": 13,
+            "tight_stops": 4,
+            "title": "Recurring invalidation pattern"
+          }
+        ],
+        "holdout_reuse": 0,
+        "proposals": [
+          {
+            "id": "sp_b29a787a2e52f3b4",
+            "kind": "invalidation",
+            "title": "Recurring invalidation pattern",
+            "verdict": "insufficient_sample"
+          }
+        ],
+        "series": "live:mt5:XAUUSD",
+        "spread_stress": {
+          "1": 51.96,
+          "1.5": 48.18,
+          "2": 44.4
+        },
+        "steps": 3011,
+        "windows": {
+          "discovery": {
+            "end": "2026-11-07T20:01:00Z",
+            "start": "2026-10-29T20:40:00Z"
+          },
+          "embargo": {
+            "end": "2026-11-08T13:57:45Z",
+            "start": "2026-11-07T20:01:00Z"
+          },
+          "holdout": {
+            "end": "2026-11-13T19:35:00Z",
+            "start": "2026-11-08T13:57:45Z"
+          },
+          "live_after": null,
+          "live_evidence_used": false,
+          "live_note": "no live-paper evidence is stored for this version"
+        }
+      },
+      "error": null
+    }
+  ],
+  "strategy_proposals": [
+    {
+      "id": "sp_b29a787a2e52f3b4",
+      "study_id": "st_fbfd96f516100827",
+      "strategy_id": 3,
+      "base_version": 4,
+      "base_fingerprint": "14ceea2a1c9e8997463747971c17afb2b058f0b4b2a471ab8b998526524efabb",
+      "kind": "invalidation",
+      "title": "Recurring invalidation pattern",
+      "candidate": {
+        "conditions": [
+          {
+            "enabled": true,
+            "id": "align",
+            "min_agree": 2,
+            "none_against": true,
+            "timeframes": [
+              "M15",
+              "H1"
+            ],
+            "type": "htf_alignment"
+          },
+          {
+            "enabled": true,
+            "id": "swing",
+            "pattern": "pullback",
+            "timeframe": "M5",
+            "type": "swing_sequence"
+          },
+          {
+            "allowed": [
+              "normal",
+              "expanding"
+            ],
+            "enabled": true,
+            "id": "vol",
+            "timeframe": "M5",
+            "type": "volatility_regime"
+          }
+        ],
+        "description": "H1/M15 alignment, M5 swing confirmation and a non-contracting M5 volatility regime. An example, not a claim of profitability.",
+        "direction": "both",
+        "entry": {
+          "max_entry_delay_minutes": 10,
+          "trigger": "on_change"
+        },
+        "evaluation": {
+          "step_timeframe": "M5",
+          "window": {
+            "days": 10,
+            "end": null,
+            "mode": "all",
+            "start": null
+          }
+        },
+        "exit": {
+          "exit_on_structure_flip": {
+            "enabled": false,
+            "timeframe": "M5"
+          },
+          "max_holding_minutes": 60,
+          "stop": {
+            "atr_multiple": 1.5,
+            "buffer_atr": 0.2,
+            "distance": null,
+            "timeframe": "M5",
+            "type": "structure"
+          },
+          "target": {
+            "atr_multiple": null,
+            "distance": null,
+            "r": 2.0,
+            "timeframe": "M5",
+            "type": "r_multiple"
+          }
+        },
+        "name": "Example C: alignment + confirmation + volatility",
+        "risk": {
+          "lots": "0.02",
+          "max_exposure_lots": "1.00",
+          "max_open_positions": 1,
+          "risk_percent": 0.5,
+          "sizing": "fixed_lots"
+        },
+        "schema": "strategy@1"
+      },
+      "candidate_fingerprint": "4ed891a5379816d1563a794ef00864a11297a495fd4b409c2011a1ce017be9a6",
+      "diff": "exit.stop: {'atr_multiple': 1.5, 'buffer_atr': 0.1, 'distance': None, 'timeframe': 'M5', 'type': 'structure'} -> {'atr_multiple': 1.5, 'buffer_atr': 0.2, 'distance': None, 'timeframe': 'M5', 'type': 'structure'}",
+      "explanation": "8 quick and 4 tight stop-outs among 13. Give the stop more room.",
+      "evidence": {
+        "detail": "13 stop-outs: 8 within the first quarter of the holding time, 4 with the stop closer than 1 ATR",
+        "evidence": [
+          "discovery trade #1 stop 4000.064 (5.0 min)",
+          "discovery trade #10 stop 3947.608 (15.0 min)",
+          "discovery trade #11 stop 3946.041 (10.0 min)",
+          "discovery trade #15 stop 3907.621 (15.0 min)",
+          "discovery trade #23 stop 4115.565 (5.0 min)",
+          "discovery trade #24 stop 4124.741 (5.0 min)",
+          "discovery trade #26 stop 4107.032 (10.0 min)",
+          "discovery trade #30 stop 4050.227 (5.0 min)"
+        ],
+        "n": 33
+      },
+      "limitations": [
+        "Holdout sample: base 20 trades, candidate 19 trades (2026-11-08T13:57:45Z to 2026-11-13T19:35:00Z).",
+        "Discovery evidence: 33 trades in one window of one series (live:mt5:XAUUSD); a different market regime can reverse the pattern.",
+        "The change was chosen from discovery evidence and tested once on the holdout. Studying the same strategy again on the same history erodes the holdout's independence.",
+        "Fills, costs and intrabar ordering follow the Phase 3 bt@1 assumptions; live fills differ (see the backtest-vs-live finding).",
+        "Too few holdout trades: the comparison cannot support adoption; approving it requires an explicit acknowledgement."
+      ],
+      "validation": {
+        "base": {
+          "expectancy_r": null,
+          "losses": 12,
+          "max_drawdown": 49.12,
+          "max_drawdown_pct": 0.49,
+          "net": 28.72,
+          "profit_factor": null,
+          "reason": "insufficient sample: 20 trade(s), at least 30 required before ratios and averages are shown",
+          "sufficient": false,
+          "trades": 20,
+          "win_rate": null,
+          "win_rate_ci95": null,
+          "wins": 8
+        },
+        "base_result_hash": "c28a41dc23423ea335f62c37a1026d6704d1614e579a0ca3b8404d434a058de0",
+        "better_sub_windows": 2,
+        "candidate": {
+          "expectancy_r": null,
+          "losses": 10,
+          "max_drawdown": 33.24,
+          "max_drawdown_pct": 0.33,
+          "net": 54.09,
+          "profit_factor": null,
+          "reason": "insufficient sample: 19 trade(s), at least 30 required before ratios and averages are shown",
+          "sufficient": false,
+          "trades": 19,
+          "win_rate": null,
+          "win_rate_ci95": null,
+          "wins": 9
+        },
+        "candidate_result_hash": "fcb32b2202ac71734373db534061c7ee4719315af98fa9cdc52bc8603ed56341",
+        "definition": "validate@1",
+        "holdout": {
+          "end": "2026-11-13T19:35:00Z",
+          "start": "2026-11-08T13:57:45Z"
+        },
+        "rule": "improved = enough trades (>= 30 each) AND higher net AND higher expectancy R AND better in >= 2 of 3 holdout sub-windows AND max drawdown at most 1.25x the base",
+        "sub_windows": [
+          {
+            "base_net": -0.22,
+            "base_trades": 6,
+            "candidate_better": true,
+            "candidate_net": 19.63,
+            "candidate_trades": 5,
+            "end": "2026-11-10T07:50:10Z",
+            "start": "2026-11-08T13:57:45Z"
+          },
+          {
+            "base_net": 15.45,
+            "base_trades": 8,
+            "candidate_better": true,
+            "candidate_net": 22.95,
+            "candidate_trades": 8,
+            "end": "2026-11-12T01:42:35Z",
+            "start": "2026-11-10T07:50:10Z"
+          },
+          {
+            "base_net": 14.99,
+            "base_trades": 7,
+            "candidate_better": false,
+            "candidate_net": 13.01,
+            "candidate_trades": 7,
+            "end": "2026-11-13T19:35:00Z",
+            "start": "2026-11-12T01:42:35Z"
+          }
+        ],
+        "verdict": "insufficient_sample",
+        "why": "holdout trades: base 20, candidate 19; at least 30 each are needed before ratios can support a decision"
+      },
+      "verdict": "insufficient_sample",
+      "status": "inconclusive",
+      "created_at": "2026-11-14T11:31:09.219816Z",
+      "decided_at": null,
+      "decision_note": null,
+      "resulting_version": null
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper Trading - GoldScalp AI</title>
+<meta name="description" content="Lot-based XAUUSD paper trading. Simulated only.">
+<link rel="stylesheet" href="/static/css/tokens.css">
+<link rel="stylesheet" href="/static/css/app.css">
+<script src="/static/vendor/lightweight-charts.standalone.production.js"></script>
+<script type="module" src="/static/js/paper.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><span class="mark" aria-hidden="true">&#9670;</span><span>GoldScalp AI</span><span class="sub">Paper trading</span></div>
+  <nav class="nav" aria-label="Main">
+    <a href="/">Dashboard</a>
+    <a href="/paper" aria-current="page">Paper Trading</a>
+    <a href="/replay">Replay</a>
+    <a href="/performance">Performance</a>
+    <a href="/lab">Strategy Lab</a>
+    <a href="/live">Live Validation</a>
+    <a href="http://127.0.0.1:8001/monthly-backtest" title="Monthly backtests run in the separate research service (python -m goldscalp.monthly)">Monthly Backtest</a>
+    <a href="/static/project.html">Project</a>
+  </nav>
+  <div class="spacer"></div>
+  <div class="top-quote" aria-live="polite"><span id="top-state"></span><span class="px num" id="top-price">&mdash;</span></div>
+</header>
+
+<main id="main" class="page">
+  <div class="sim-strip" role="note">SIMULATED &mdash; paper trading only. No real money, no broker, no real orders. Every position and figure on this page is hypothetical.</div>
+
+  <section class="panel simulated" aria-labelledby="sum-title">
+    <header><h2 id="sum-title">Virtual account</h2><span id="sum-kind"></span><span class="muted small" id="sum-name"></span><span class="spacer"></span><span class="muted small" id="sum-mark"></span></header>
+    <div class="body">
+      <div class="summary-grid">
+        <div class="stat"><div class="label">Balance</div><div class="value num" id="s-balance">&mdash;</div></div>
+        <div class="stat"><div class="label">Equity</div><div class="value num" id="s-equity">&mdash;</div></div>
+        <div class="stat"><div class="label">Used margin</div><div class="value num" id="s-used">&mdash;</div></div>
+        <div class="stat"><div class="label">Free (available) margin</div><div class="value num" id="s-free">&mdash;</div></div>
+        <div class="stat"><div class="label">Margin level</div><div class="value num" id="s-level">&mdash;</div></div>
+        <div class="stat"><div class="label">Unrealized P/L</div><div class="value num" id="s-upl">&mdash;</div></div>
+        <div class="stat"><div class="label">Realized P/L (net)</div><div class="value num" id="s-rpl">&mdash;</div></div>
+        <div class="stat"><div class="label">Net change since start</div><div class="value num" id="s-net">&mdash;</div></div>
+      </div>
+      <p class="muted small" id="s-note"></p>
+    </div>
+  </section>
+
+  <div class="paper page flush">
+    <div class="col">
+      <section class="panel simulated" aria-labelledby="t-title">
+        <header><h2 id="t-title">Order ticket</h2><span class="spacer"></span><span id="t-state"></span></header>
+        <div class="body ticket">
+          <div class="notice warn" id="sig-prefill" hidden></div>
+          <div class="row">
+            <button type="button" class="btn buy" id="side-buy" aria-pressed="true">Buy (at ask)</button>
+            <button type="button" class="btn sell" id="side-sell" aria-pressed="false">Sell (at bid)</button>
+          </div>
+          <div class="field">Lot size
+            <div class="preset-row" id="presets"></div>
+          </div>
+          <div class="row">
+            <label class="field">Lots<input type="text" id="lots" inputmode="decimal" value="0.01" aria-describedby="oz-note"></label>
+            <div class="field">Quantity<div class="num" id="oz">&mdash;</div></div>
+          </div>
+          <p class="muted small" id="oz-note"></p>
+          <div class="row">
+            <label class="field">Stop loss (optional)<input type="text" id="sl" inputmode="decimal" placeholder="price"></label>
+            <label class="field">Take profit (optional)<input type="text" id="tp" inputmode="decimal" placeholder="price"></label>
+          </div>
+          <div class="estimate" aria-live="polite">
+            <dl class="kv" id="est"></dl>
+          </div>
+          <p class="notice" id="t-msg" hidden></p>
+          <button type="button" class="btn primary" id="submit">Place simulated order</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="spec-title">
+        <header><h2 id="spec-title">Instrument &amp; costs</h2></header>
+        <div class="body">
+          <p class="notice warn" id="spec-origin"></p>
+          <dl class="kv" id="spec"></dl>
+        </div>
+      </section>
+
+      <section class="panel simulated" aria-labelledby="new-title">
+        <header><h2 id="new-title">New virtual account</h2></header>
+        <div class="body">
+          <details>
+            <summary class="muted small">Start a new paper account (the current one is kept, inactive, with its history)</summary>
+            <form id="new-form" class="form-grid">
+              <label>Name<input type="text" name="name" value="Demo paper account" required maxlength="80"></label>
+              <label>Starting balance (USD)<input type="text" name="starting_balance" value="10000" required></label>
+              <label>Leverage (1 = 1:1)<input type="number" name="leverage" value="1" min="1" max="1000" required></label>
+              <label>Spread source<select name="spread_mode"><option value="market_else_configured">Provider bid/ask, else configured</option><option value="configured">Always configured</option><option value="market">Provider bid/ask only</option></select></label>
+              <label>Configured spread (USD/oz)<input type="text" name="configured_spread" value="0.30"></label>
+              <label>Commission per lot per side (USD)<input type="text" name="commission_per_lot_per_side" value="3.50"></label>
+              <label>Slippage per fill (USD/oz)<input type="text" name="slippage" value="0.05"></label>
+              <label>Max price age for fills (s)<input type="number" name="max_quote_age_seconds" value="90" min="1" max="3600"></label>
+              <label class="check"><input type="checkbox" name="allow_delayed_fills" checked> Allow fills on DELAYED prices</label>
+              <div><button class="btn" type="submit">Create new account</button></div>
+            </form>
+            <p class="notice" id="new-msg" hidden></p>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="panel simulated" aria-labelledby="open-title">
+        <header><h2 id="open-title">Open simulated positions</h2><span class="spacer"></span><span class="muted small" id="open-count"></span></header>
+        <div class="table-wrap"><table>
+          <thead><tr><th>#</th><th>Side</th><th>Lots</th><th>Oz</th><th>Open price</th><th>Mark</th><th>Unrealized</th><th>Margin</th><th>SL / TP</th><th>Opened</th><th></th></tr></thead>
+          <tbody id="open-body"></tbody>
+        </table></div>
+      </section>
+
+      <section class="panel simulated" aria-labelledby="eq-title">
+        <header><h2 id="eq-title">Account performance (equity)</h2><span class="spacer"></span><span class="muted small" id="eq-note"></span></header>
+        <div class="equity-box" id="equity-chart"></div>
+      </section>
+
+      <section class="panel simulated" aria-labelledby="closed-title">
+        <header><h2 id="closed-title">Closed simulated positions</h2><span class="spacer"></span><span class="muted small" id="closed-stats"></span></header>
+        <div class="table-wrap"><table>
+          <thead><tr><th>#</th><th>Side</th><th>Lots</th><th>Open</th><th>Close</th><th>Reason</th><th>Gross</th><th>Commission</th><th>Net</th><th>Closed</th></tr></thead>
+          <tbody id="closed-body"></tbody>
+        </table></div>
+      </section>
+
+      <section class="panel simulated" aria-labelledby="ledger-title">
+        <header><h2 id="ledger-title">Balance ledger</h2></header>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Time</th><th>Type</th><th>Amount</th><th>Balance after</th><th>Note</th></tr></thead>
+          <tbody id="ledger-body"></tbody>
+        </table></div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <span>Formulas: ounces = lots &times; contract size &middot; margin = ounces &times; price &divide; leverage &middot; buy fills at ask + slippage, sell at bid &minus; slippage &middot; commission per lot per side at open and close.</span>
+  <span>Educational simulation only. No broker connection, no order execution, no financial advice.</span>
+</footer>
+</body>
+</html>

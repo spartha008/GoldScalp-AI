@@ -1,0 +1,126 @@
+{
+  "archival_classification": "rejected",
+  "evidence": "5.2 -0.017 (167); 5.3 -0.098 (311).",
+  "recorded": [
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "original",
+      "class": "rejected",
+      "why": "OOS expectancy -0.017 R/trade after costs (167 trades)"
+    },
+    {
+      "source": "var/monthly/reports/vl_747cce289048-validation.json",
+      "phase": "5.3",
+      "definition": "validation@1",
+      "role": "original",
+      "class": "rejected",
+      "why": "pooled expectancy -0.098 R/trade after costs (311 trades)"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:candidates",
+      "study": "me_23932a71a56a",
+      "key": "R5",
+      "label": "R5 original"
+    },
+    {
+      "source": "store:candidates",
+      "study": "me_697122f9e14b",
+      "key": "R5",
+      "label": "R5 original"
+    },
+    {
+      "source": "store:candidates",
+      "study": "me_cb6b197c4c6b",
+      "key": "R5",
+      "label": "R5 original"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R5|M1",
+      "label": "R5"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R5|M15",
+      "label": "R5"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R5|M5",
+      "label": "R5"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R5|M1",
+      "label": "R5"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R5|M15",
+      "label": "R5"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R5|M5",
+      "label": "R5"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R5|M1",
+      "label": "R5"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R5|M15",
+      "label": "R5"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R5|M5",
+      "label": "R5"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R5|original",
+      "label": "R5|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_825da1543f0f",
+      "key": "R5|original",
+      "label": "R5|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_a732696e0c83",
+      "key": "R5|original",
+      "label": "R5|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_da267aa33110",
+      "key": "R5|original",
+      "label": "R5|original"
+    },
+    {
+      "source": "store:validation_studies",
+      "study": "vl_747cce289048",
+      "key": "R5|original",
+      "label": "R5|original"
+    }
+  ]
+}

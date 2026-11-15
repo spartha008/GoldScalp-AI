@@ -1,0 +1,12 @@
+# Runtime requirements. Each is bounded below its next major version; constraints.txt pins the
+# exact resolution that was tested (install with: -r requirements.txt -c constraints.txt).
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+pydantic>=2.7,<3
+pydantic-settings>=2.3,<3
+pandas>=2.2,<4
+numpy>=1.26,<3
+httpx>=0.27,<1
+websockets>=12,<17
+python-multipart>=0.0.9,<1
+# MetaTrader5 is deliberately NOT a requirement (see PROPOSED_ARCHITECTURE.md section 14).

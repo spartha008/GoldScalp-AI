@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TradingView chart - display only</title>
+<link rel="stylesheet" href="/static/css/tv-widget.css">
+</head>
+<body>
+<!--
+  Optional, DISPLAY-ONLY TradingView Advanced Chart (official Web Component).
+  This document is framed by the GoldScalp dashboard inside a sandbox without
+  allow-same-origin: TradingView code runs in an opaque origin and cannot read
+  the dashboard, its storage or the GoldScalp API, and GoldScalp never reads the
+  widget's data. TradingView attribution and branding are left untouched.
+-->
+<main id="tv-host" class="tv-host">
+  <tv-advanced-chart id="tv-chart">
+    <p class="tv-placeholder">Loading the TradingView chart...</p>
+  </tv-advanced-chart>
+</main>
+<p id="tv-fail" class="tv-fail" hidden>The TradingView chart could not be loaded. GoldScalp's own chart and data are unaffected.</p>
+<script src="/static/js/tv-widget-page.js"></script>
+</body>
+</html>

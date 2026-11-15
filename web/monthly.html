@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monthly Backtest · GoldScalp AI</title>
+<meta name="description" content="Monthly multi-timeframe strategy research and backtesting on historical XAUUSD candles. Simulation only.">
+<link rel="stylesheet" href="/static/css/tokens.css">
+<link rel="stylesheet" href="/static/css/app.css">
+<script src="/static/vendor/lightweight-charts.standalone.production.js"></script>
+<script type="module" src="/static/js/monthly.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><span class="mark" aria-hidden="true">&#9670;</span><span>GoldScalp AI</span><span class="sub">XAUUSD &middot; educational</span></div>
+  <nav class="nav" aria-label="Main" id="main-nav">
+    <a href="/" data-main="/">Dashboard</a>
+    <a href="/paper" data-main="/paper">Paper Trading</a>
+    <a href="/replay" data-main="/replay">Replay</a>
+    <a href="/performance" data-main="/performance">Performance</a>
+    <a href="/lab" data-main="/lab">Strategy Lab</a>
+    <a href="/live" data-main="/live">Live Validation</a>
+    <a href="/monthly-backtest" aria-current="page">Monthly Backtest</a>
+    <a href="/static/project.html" data-main="/static/project.html">Project</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="badge kind-historical">Historical simulation</span>
+</header>
+
+<main id="main" class="workspace monthly">
+  <aside class="side-nav" aria-label="Monthly research steps">
+    <div class="side-title">Monthly research</div>
+    <a href="#data" data-view="data"><span class="step">1</span><span class="t">Historical data</span><span class="d">Import and coverage</span></a>
+    <a href="#evaluate" data-view="evaluate"><span class="step">2</span><span class="t">Fixed-lot evaluation</span><span class="d">One month, exact versions</span></a>
+    <a href="#risk" data-view="risk"><span class="step">3</span><span class="t">Risk scenarios</span><span class="d">5 / 7.5 / 10 % stress tests</span></a>
+    <a href="#research" data-view="research"><span class="step">4</span><span class="t">Robustness research</span><span class="d">Multi-month studies</span></a>
+    <a href="#library" data-view="library"><span class="step">5</span><span class="t">Research library</span><span class="d">Compare every study</span></a>
+    <div class="side-foot"><span>Separate research service (port 8001)</span><span>Store: <code>var/monthly/monthly.sqlite3</code></span><span>No orders &middot; MT5 never contacted</span></div>
+  </aside>
+
+  <div class="content">
+    <p class="notice warn compact">Historical, simulation-only research: hypothetical $1,000 accounts with 1:500 leverage used for margin calculations only. No orders are placed, nothing reaches MT5, and no strategy is changed. This page runs in the separate research service; the application database is read-only here.</p>
+    <p class="notice" id="m-status" role="status" hidden></p>
+
+    <!-- STEP 1: DATA -->
+    <section class="view" id="view-data" aria-labelledby="v-data-title">
+      <div class="view-head"><span class="eyebrow">Step 1</span><h1 id="v-data-title">Historical data</h1>
+        <p>Import MetaTrader 5 bar exports into the isolated research store, then check that each month has enough candles before evaluating it.</p></div>
+
+      <section class="panel" aria-labelledby="imp-title">
+        <header><h2 id="imp-title">Import a CSV export</h2><span class="spacer"></span><span class="badge" id="i-state">NOT STARTED</span></header>
+        <div class="body">
+          <div class="form-grid">
+            <label>CSV file<input type="file" id="i-file" accept=".csv,.txt,text/csv"></label>
+            <label>Instrument<select id="i-instrument"><option value="XAUUSD">XAUUSD</option></select></label>
+            <label>Timeframe<select id="i-tf"><option>M1</option><option>M5</option><option>M15</option><option>H1</option></select></label>
+            <label>Format<select id="i-dialect"><option value="mt5_export">MT5 bar export (tab-separated)</option><option value="generic_utc">Generic CSV with UTC offsets</option><option value="histdata_m1">HistData M1 (fixed UTC-5)</option></select></label>
+            <label>Time basis<input type="text" id="i-basis" value="rule:ny_close"></label>
+            <label>Point size (spread points &rarr; USD)<input type="text" id="i-point" value="0.01" inputmode="decimal"></label>
+            <label>Series in the research store<input type="text" id="i-series" value="vantage-mt5-xauusd"></label>
+            <label>Dataset label<input type="text" id="i-label" value="Vantage XAUUSD M1 October 2026"></label>
+            <label>Month to check<input type="month" id="i-month" value="2026-10"></label>
+          </div>
+          <p class="small muted" id="i-hint">For October M1, export at least 26 September &ndash; 1 November 2026 (the five-day warm-up starts on the weekend, so history from the Sunday-evening reopen is enough). Use the same series for M1, M5, M15 and H1 files: an evaluation reads every timeframe from one series.</p>
+          <div class="form-actions"><button type="button" class="btn primary" id="i-preview">Preview and validate</button>
+            <button type="button" class="btn" id="i-import" disabled>Import into the research store</button></div>
+          <progress id="i-progress" max="100" value="0" hidden></progress>
+          <div id="i-result"></div>
+          <details class="explain"><summary>How importing works</summary>
+            <p>Export candles from MetaTrader 5 (<em>View &rarr; Symbols &rarr; Bars &rarr; Export Bars</em>). They are stored in the isolated research store <code>var/monthly/monthly.sqlite3</code>; the application database is never written.</p>
+            <p>Preview validates the file without storing anything. Importing the same file twice never duplicates candles, and missing bars are reported, never filled.</p>
+          </details>
+          <details class="more"><summary>Import history</summary><div id="i-history"></div></details>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="cov-title">
+        <header><h2 id="cov-title">Check coverage</h2><span class="spacer"></span><span class="badge" id="c-state">&mdash;</span></header>
+        <div class="body">
+          <div class="form-grid">
+            <label>Series<select id="c-series"></select></label>
+            <label>Timeframe<select id="c-tf"><option>M1</option><option>M5</option><option>M15</option></select></label>
+            <label>Month<input type="month" id="c-month" value="2026-10"></label>
+            <div class="form-actions"><button type="button" class="btn" id="c-check">Check coverage</button></div>
+          </div>
+          <div id="c-result"></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- STEP 2: FIXED-LOT EVALUATION -->
+    <section class="view" id="view-evaluate" aria-labelledby="v-eval-title" hidden>
+      <div class="view-head"><span class="eyebrow">Step 2</span><h1 id="v-eval-title">Fixed-lot evaluation</h1>
+        <p>Freeze the exact strategy versions and run each one on a single month (A / B / C on M15, M5 and M1). Every run is a separate hypothetical $1,000 account.</p></div>
+
+      <section class="panel" aria-labelledby="setup-title">
+        <header><h2 id="setup-title">New evaluation</h2></header>
+        <div class="body">
+          <div class="form-grid">
+            <label>Evaluation month<input type="month" id="m-month"></label>
+            <label>Data<select id="m-series"></select></label>
+            <label>Research days before the month<input type="number" id="m-rdays" value="60" min="20" max="180"></label>
+            <label>Spread when a candle has none (USD)<input type="text" id="m-spread" inputmode="decimal"></label>
+            <label>Commission per lot per side (USD)<input type="text" id="m-comm" inputmode="decimal"></label>
+            <label>Adverse slippage per fill (USD/oz)<input type="text" id="m-slip" inputmode="decimal"></label>
+            <label>Risk % override (empty = configured sizing)<input type="text" id="m-riskpct" inputmode="decimal" placeholder="none"></label>
+          </div>
+          <div class="form-actions"><button type="button" class="btn" id="m-check">Check data availability</button>
+            <button type="button" class="btn primary" id="m-create">Create evaluation</button></div>
+          <div id="m-availability"></div>
+          <details class="more"><summary>Defaults, contract and strategy settings</summary><div id="m-defaults"></div></details>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="ev-title">
+        <header><h2 id="ev-title">Evaluations</h2><span class="spacer"></span><span class="muted small">Fixed-lot baselines and risk-scenario evaluations</span></header>
+        <div class="body" id="m-evaluations"><p class="muted small">&mdash;</p></div>
+      </section>
+
+      <section class="panel" aria-labelledby="cur-title" id="m-current-panel" hidden>
+        <header><h2 id="cur-title">Evaluation</h2><span class="spacer"></span><span id="m-badge"></span></header>
+        <div class="body">
+          <p class="summary-line" id="m-summary"></p>
+          <div class="toolbar" id="m-actions"></div>
+          <p class="small muted" id="m-progress"></p>
+          <h3>Research candidates (developed on data before the month)</h3>
+          <div id="m-research"></div>
+          <h3>Frozen strategy versions, risk and take-profit</h3>
+          <div id="m-frozen"></div>
+          <h3>Runs (each one its own hypothetical $1,000 account)</h3>
+          <div id="m-runs"></div>
+          <h3>Reports and exports</h3>
+          <div id="m-exports"></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- STEP 3: RISK SCENARIOS -->
+    <section class="view" id="view-risk" aria-labelledby="v-risk-title" hidden>
+      <div class="view-head"><span class="eyebrow">Step 3</span><h1 id="v-risk-title">Risk scenarios</h1>
+        <p>Re-run a finished fixed-lot baseline with percentage-of-equity sizing at 5 %, 7.5 % and 10 %: hypothetical stress tests in separate accounts.</p></div>
+      <p class="notice error" id="r-banner">High-risk hypothetical simulation scenarios — not real-account settings or trading recommendations.</p>
+
+      <section class="panel" aria-labelledby="risk-title">
+        <header><h2 id="risk-title">New risk study</h2><span class="spacer"></span><span class="badge kind-historical">Hypothetical stress test</span></header>
+        <div class="body">
+          <div class="form-grid">
+            <label>Fixed-lot baseline evaluation<select id="r-baseline"></select></label>
+            <fieldset class="small"><legend>Scenarios (independent $1,000 accounts)</legend><span id="r-scenarios">5 % &middot; 7.5 % &middot; 10 %</span></fieldset>
+            <fieldset class="small"><legend>Research candidates to include (optional)</legend><div id="r-candidates" class="muted">choose a baseline</div></fieldset>
+          </div>
+          <div class="form-actions"><button type="button" class="btn primary" id="r-create">Create and run the scenario evaluations</button></div>
+          <details class="explain"><summary>How percentage sizing works</summary>
+            <p>Each scenario sizes every entry from the simulated account's <strong>current equity</strong>: risk budget = equity &times; risk %; planned loss per lot = (|entry &minus; stop| + slippage) &times; 100 oz + round-trip commission; volume rounded <strong>down</strong> to the 0.01 step.</p>
+            <p>A losing streak shrinks the budget, and a run of losses at 10 % can cut simulated equity substantially. Leverage 1:500 is used only for the margin check. These settings are never applied to MT5, Vantage, the live paper monitor or any account.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="rs-list-title">
+        <header><h2 id="rs-list-title">Risk studies</h2></header>
+        <div class="body" id="r-studies"><p class="muted small">&mdash;</p></div>
+      </section>
+
+      <section class="panel" aria-labelledby="study-title" id="r-study-panel" hidden>
+        <header><h2 id="study-title">Risk study</h2><span class="spacer"></span><span id="r-badge"></span></header>
+        <div class="body">
+          <p class="notice error compact">High-risk hypothetical simulation scenarios — not real-account settings or trading recommendations.</p>
+          <p class="summary-line" id="r-summary"></p>
+          <p class="small muted" id="r-progress"></p>
+          <div class="toolbar" id="r-actions"></div>
+          <h3>Evaluation grid: A/B/C &times; M15/M5/M1 &times; 5 / 7.5 / 10 %, plus the fixed-lot baseline</h3>
+          <p class="small muted">Every cell is a separate hypothetical $1,000 account. Balances are never added together.</p>
+          <div id="r-grid"></div>
+          <h3>Timeframe comparisons (M15 vs M5 vs M1 in each scenario)</h3>
+          <div class="toolbar" id="r-tf-links"></div>
+          <h3>Scenario comparisons (5 % vs 7.5 % vs 10 % for each strategy)</h3>
+          <div class="toolbar" id="r-sc-links"></div>
+          <h3>Combined report</h3>
+          <div class="toolbar" id="r-master-links"></div>
+          <div id="r-findings"></div>
+          <h3>Research candidates (separate from A/B/C)</h3>
+          <div id="r-cand-grid"></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- STEP 4: ROBUSTNESS RESEARCH -->
+    <section class="view" id="view-research" aria-labelledby="v-rb-title" hidden>
+      <div class="view-head"><span class="eyebrow">Step 4</span><h1 id="v-rb-title">Robustness research</h1>
+        <p>Strategy redesign and multi-month robustness (Phase 5.2): originals, exit experiments and redesigned research versions over every stored month.</p></div>
+      <p class="notice compact">The Phase 5 strategy search is closed: Phase 5.3 validated the shortlist on January&ndash;May 2026 and none held up, so no candidate is promoted. See the <a href="/static/project.html" data-main="/static/project.html">project overview</a>.</p>
+
+      <section class="panel" aria-labelledby="rb-title">
+        <header><h2 id="rb-title">Research studies</h2><span class="spacer"></span><span class="badge kind-historical">Research only</span></header>
+        <div class="body">
+          <details class="explain"><summary>How a research study works</summary>
+            <p>Every strategy (A, B, C and R1&ndash;R9) is studied over every stored month. The originals are kept unchanged as benchmarks. Each original gets <strong>exit experiments</strong> (its entry unchanged, one exit dimension changed) and a <strong>redesigned research version</strong> chosen from a small pre-declared set of variants (Example A v3, B v3, C v5, R1&ndash;R9 v2).</p>
+            <p>Variants are chosen on the <strong>development</strong> months only; <strong>walk-forward</strong> folds choose on earlier months and test on the next; the <strong>hold-out</strong> months are evaluated once. Expectancy is in R after costs per trade; every month is a separate $1,000 account. Research versions never change a saved strategy, a monitor or an account.</p>
+          </details>
+          <div class="toolbar"><button type="button" class="btn" id="rb-create">Run a new research study</button></div>
+          <div id="rb-list"><p class="muted small">&mdash;</p></div>
+          <p class="small muted" id="rb-progress"></p>
+          <div id="rb-view"></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- STEP 5: RESEARCH LIBRARY -->
+    <section class="view" id="view-library" aria-labelledby="v-lib-title" hidden>
+      <div class="view-head"><span class="eyebrow">Library</span><h1 id="v-lib-title">Research library</h1>
+        <p>Every Phase 5 and Phase 6 study in one place, read straight from the research store and the frozen report files. Pick results from any study to compare their numbers, monthly curves, cost stress and regime breakdowns side by side, and read each written report here.</p></div>
+      <p class="notice compact">Read-only: the library never runs, changes or re-scores a study. Classes are shown exactly as each study recorded them, incomplete and failed studies stay listed, and a sealed test appears only after it has finished.</p>
+      <div id="lib-root"><p class="muted small">&mdash;</p></div>
+    </section>
+
+    <section class="panel" aria-labelledby="rep-title" id="m-report-panel" hidden>
+      <header><h2 id="rep-title">Report</h2><span class="spacer"></span><span class="toolbar" id="m-report-links"></span>
+        <button type="button" class="btn ghost sm" id="m-report-close" aria-label="Close report">Close</button></header>
+      <div class="body" id="m-report"></div>
+    </section>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,3092 @@
+[
+  {
+    "id": "sr_7c063d1e50d8",
+    "hypothesis": "H6.4",
+    "purpose": "development",
+    "status": "COMPLETED",
+    "params": {
+      "definition": "sealed@1",
+      "hypothesis": "H6.4",
+      "purpose": "development",
+      "attempt": 1,
+      "windows": [
+        {
+          "key": "D1",
+          "start": "2026-01-01T00:00:00Z",
+          "end": "2026-02-01T00:00:00Z",
+          "month": "2026-01",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+          "partial": false
+        },
+        {
+          "key": "D2",
+          "start": "2026-02-01T00:00:00Z",
+          "end": "2026-03-01T00:00:00Z",
+          "month": "2026-02",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+          "partial": false
+        },
+        {
+          "key": "D3",
+          "start": "2026-03-01T00:00:00Z",
+          "end": "2026-04-01T00:00:00Z",
+          "month": "2026-03",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+          "partial": false
+        },
+        {
+          "key": "D4",
+          "start": "2026-04-01T00:00:00Z",
+          "end": "2026-05-01T00:00:00Z",
+          "month": "2026-04",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+          "partial": false
+        },
+        {
+          "key": "D5",
+          "start": "2026-05-01T00:00:00Z",
+          "end": "2026-06-01T00:00:00Z",
+          "month": "2026-05",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+          "partial": false
+        },
+        {
+          "key": "D6",
+          "start": "2026-06-22T00:00:00Z",
+          "end": "2026-07-01T00:00:00Z",
+          "month": "2026-06",
+          "store": "app",
+          "series": "live:mt5:XAUUSD",
+          "partial": true
+        },
+        {
+          "key": "D7",
+          "start": "2026-07-01T00:00:00Z",
+          "end": "2026-08-01T00:00:00Z",
+          "month": "2026-07",
+          "store": "app",
+          "series": "live:mt5:XAUUSD",
+          "partial": false
+        },
+        {
+          "key": "D8",
+          "start": "2026-08-01T00:00:00Z",
+          "end": "2026-09-01T00:00:00Z",
+          "month": "2026-08",
+          "store": "app",
+          "series": "live:mt5:XAUUSD",
+          "partial": false
+        },
+        {
+          "key": "D9",
+          "start": "2026-09-01T00:00:00Z",
+          "end": "2026-10-01T00:00:00Z",
+          "month": "2026-09",
+          "store": "app",
+          "series": "live:mt5:XAUUSD",
+          "partial": false
+        },
+        {
+          "key": "D10",
+          "start": "2026-10-01T00:00:00Z",
+          "end": "2026-11-01T00:00:00Z",
+          "month": "2026-10",
+          "store": "app",
+          "series": "live:mt5:XAUUSD",
+          "partial": false
+        },
+        {
+          "key": "D11",
+          "start": "2026-11-01T00:00:00Z",
+          "end": "2026-11-14T00:00:00Z",
+          "month": "2026-11",
+          "store": "app",
+          "series": "live:mt5:XAUUSD",
+          "partial": true
+        }
+      ],
+      "timeframes": [
+        "M5"
+      ],
+      "costs": {
+        "configured_spread": "0.30",
+        "commission": "3.50",
+        "slippage": "0.05"
+      },
+      "protocol": null,
+      "fingerprints": {
+        "H6.4": "0019c2a629e8a3e204f9be150ae440027db0c4f6621438b90955d4446688ecec",
+        "VOL-C": "64d2a3b37538efbd0b19f9336c8d4e18f1bbce11330f48b645b769ca79429db9"
+      },
+      "roles": {
+        "H6.4": "candidate",
+        "VOL-C": "control (comparison only)"
+      }
+    },
+    "configs": {
+      "H6.4": {
+        "conditions": [
+          {
+            "enabled": true,
+            "id": "h1",
+            "state": "with",
+            "timeframe": "H1",
+            "type": "structure_state"
+          },
+          {
+            "direction": "with",
+            "enabled": true,
+            "event": "BOS",
+            "id": "bos",
+            "timeframe": "M15",
+            "type": "structure_event",
+            "within_candles": 2
+          },
+          {
+            "enabled": true,
+            "id": "spread",
+            "if_unknown": "fail",
+            "max_spread": 0.5,
+            "max_spread_atr": null,
+            "type": "spread"
+          },
+          {
+            "allowed": [
+              "normal",
+              "expanding"
+            ],
+            "enabled": true,
+            "id": "p6_volatility_regime",
+            "timeframe": "M15",
+            "type": "volatility_regime"
+          }
+        ],
+        "description": "H6.4 candidate: the VOL-C baseline with exactly one change (no entries while M15 volatility is contracting). Research only.",
+        "direction": "both",
+        "entry": {
+          "max_entry_delay_minutes": 10,
+          "trigger": "on_change"
+        },
+        "evaluation": {
+          "step_timeframe": "M5",
+          "window": {
+            "days": 10,
+            "end": null,
+            "mode": "all",
+            "start": null
+          }
+        },
+        "exit": {
+          "exit_on_structure_flip": {
+            "enabled": false,
+            "timeframe": "M15"
+          },
+          "max_holding_minutes": 240,
+          "stop": {
+            "atr_multiple": 1.5,
+            "buffer_atr": 0.1,
+            "distance": null,
+            "timeframe": "M15",
+            "type": "structure"
+          },
+          "target": {
+            "atr_multiple": null,
+            "distance": null,
+            "r": 2.0,
+            "timeframe": "M15",
+            "type": "r_multiple"
+          }
+        },
+        "name": "Phase 6 H6.4: trend continuation outside contracting M15 volatility",
+        "risk": {
+          "lots": "0.02",
+          "max_exposure_lots": "1.00",
+          "max_open_positions": 1,
+          "risk_percent": 0.5,
+          "sizing": "fixed_lots"
+        },
+        "schema": "strategy@1"
+      },
+      "VOL-C": {
+        "conditions": [
+          {
+            "enabled": true,
+            "id": "h1",
+            "state": "with",
+            "timeframe": "H1",
+            "type": "structure_state"
+          },
+          {
+            "direction": "with",
+            "enabled": true,
+            "event": "BOS",
+            "id": "bos",
+            "timeframe": "M15",
+            "type": "structure_event",
+            "within_candles": 2
+          },
+          {
+            "enabled": true,
+            "id": "spread",
+            "if_unknown": "fail",
+            "max_spread": 0.5,
+            "max_spread_atr": null,
+            "type": "spread"
+          }
+        ],
+        "description": "H6.1 baseline. Research only.",
+        "direction": "both",
+        "entry": {
+          "max_entry_delay_minutes": 10,
+          "trigger": "on_change"
+        },
+        "evaluation": {
+          "step_timeframe": "M5",
+          "window": {
+            "days": 10,
+            "end": null,
+            "mode": "all",
+            "start": null
+          }
+        },
+        "exit": {
+          "exit_on_structure_flip": {
+            "enabled": false,
+            "timeframe": "M15"
+          },
+          "max_holding_minutes": 240,
+          "stop": {
+            "atr_multiple": 1.5,
+            "buffer_atr": 0.1,
+            "distance": null,
+            "timeframe": "M15",
+            "type": "structure"
+          },
+          "target": {
+            "atr_multiple": null,
+            "distance": null,
+            "r": 2.0,
+            "timeframe": "M15",
+            "type": "r_multiple"
+          }
+        },
+        "name": "Phase 6 VOL-C: trend continuation (baseline)",
+        "risk": {
+          "lots": "0.02",
+          "max_exposure_lots": "1.00",
+          "max_open_positions": 1,
+          "risk_percent": 0.5,
+          "sizing": "fixed_lots"
+        },
+        "schema": "strategy@1"
+      }
+    },
+    "analysis": {
+      "definition": "sealed@1",
+      "purpose": "development",
+      "configs": {
+        "H6.4": {
+          "M5": {
+            "valid": [
+              "2026-01",
+              "2026-02",
+              "2026-03",
+              "2026-04",
+              "2026-05",
+              "2026-06",
+              "2026-07",
+              "2026-08",
+              "2026-09",
+              "2026-10",
+              "2026-11"
+            ],
+            "pooled": {
+              "trades": 269,
+              "win_rate": 0.5167,
+              "sum_r": 30.459,
+              "expectancy_r": 0.1132,
+              "profit_factor": 1.548,
+              "max_dd_r": 8.27,
+              "net_usd": 2837.38,
+              "expectancy_r_costs_x2": 0.1015,
+              "expectancy_r_costs_x3": 0.0897
+            },
+            "months": {
+              "2026-01": {
+                "status": "COMPLETED",
+                "trades": 25,
+                "win_rate": 0.44,
+                "sum_r": 1.855,
+                "expectancy_r": 0.0742,
+                "profit_factor": 2.702,
+                "max_dd_r": 5.589,
+                "net_usd": 819.63,
+                "expectancy_r_costs_x2": 0.0607,
+                "expectancy_r_costs_x3": 0.0473
+              },
+              "2026-02": {
+                "status": "COMPLETED",
+                "trades": 23,
+                "win_rate": 0.5652,
+                "sum_r": 0.228,
+                "expectancy_r": 0.0099,
+                "profit_factor": 0.782,
+                "max_dd_r": 2.127,
+                "net_usd": -158.17,
+                "expectancy_r_costs_x2": 0.0039,
+                "expectancy_r_costs_x3": -0.0022
+              },
+              "2026-03": {
+                "status": "COMPLETED",
+                "trades": 31,
+                "win_rate": 0.6774,
+                "sum_r": 11.582,
+                "expectancy_r": 0.3736,
+                "profit_factor": 3.838,
+                "max_dd_r": 2.426,
+                "net_usd": 1460.0,
+                "expectancy_r_costs_x2": 0.366,
+                "expectancy_r_costs_x3": 0.3585
+              },
+              "2026-04": {
+                "status": "COMPLETED",
+                "trades": 23,
+                "win_rate": 0.5652,
+                "sum_r": 5.057,
+                "expectancy_r": 0.2199,
+                "profit_factor": 1.126,
+                "max_dd_r": 2.699,
+                "net_usd": 84.68,
+                "expectancy_r_costs_x2": 0.2107,
+                "expectancy_r_costs_x3": 0.2016
+              },
+              "2026-05": {
+                "status": "COMPLETED",
+                "trades": 24,
+                "win_rate": 0.4167,
+                "sum_r": -4.632,
+                "expectancy_r": -0.193,
+                "profit_factor": 0.655,
+                "max_dd_r": 7.315,
+                "net_usd": -190.37,
+                "expectancy_r_costs_x2": -0.2094,
+                "expectancy_r_costs_x3": -0.2258
+              },
+              "2026-06": {
+                "status": "COMPLETED",
+                "trades": 12,
+                "win_rate": 0.3333,
+                "sum_r": 1.61,
+                "expectancy_r": 0.1342,
+                "profit_factor": 0.79,
+                "max_dd_r": 2.025,
+                "net_usd": -59.06,
+                "expectancy_r_costs_x2": 0.1226,
+                "expectancy_r_costs_x3": 0.111
+              },
+              "2026-07": {
+                "status": "COMPLETED",
+                "trades": 29,
+                "win_rate": 0.3793,
+                "sum_r": -3.067,
+                "expectancy_r": -0.1058,
+                "profit_factor": 0.61,
+                "max_dd_r": 4.761,
+                "net_usd": -194.79,
+                "expectancy_r_costs_x2": -0.1207,
+                "expectancy_r_costs_x3": -0.1356
+              },
+              "2026-08": {
+                "status": "COMPLETED",
+                "trades": 35,
+                "win_rate": 0.6286,
+                "sum_r": 5.654,
+                "expectancy_r": 0.1615,
+                "profit_factor": 2.436,
+                "max_dd_r": 2.621,
+                "net_usd": 567.49,
+                "expectancy_r_costs_x2": 0.1509,
+                "expectancy_r_costs_x3": 0.1402
+              },
+              "2026-09": {
+                "status": "COMPLETED",
+                "trades": 29,
+                "win_rate": 0.5517,
+                "sum_r": 6.586,
+                "expectancy_r": 0.2271,
+                "profit_factor": 1.331,
+                "max_dd_r": 2.185,
+                "net_usd": 141.32,
+                "expectancy_r_costs_x2": 0.2148,
+                "expectancy_r_costs_x3": 0.2026
+              },
+              "2026-10": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.4286,
+                "sum_r": 0.623,
+                "expectancy_r": 0.0223,
+                "profit_factor": 0.992,
+                "max_dd_r": 3.718,
+                "net_usd": -3.87,
+                "expectancy_r_costs_x2": 0.0065,
+                "expectancy_r_costs_x3": -0.0092
+              },
+              "2026-11": {
+                "status": "COMPLETED",
+                "trades": 10,
+                "win_rate": 0.6,
+                "sum_r": 4.963,
+                "expectancy_r": 0.4963,
+                "profit_factor": 3.683,
+                "max_dd_r": 1.008,
+                "net_usd": 370.52,
+                "expectancy_r_costs_x2": 0.4854,
+                "expectancy_r_costs_x3": 0.4745
+              }
+            },
+            "halves": {
+              "1": {
+                "trades": 0,
+                "win_rate": null,
+                "sum_r": 0,
+                "expectancy_r": null,
+                "profit_factor": null,
+                "max_dd_r": 0.0,
+                "net_usd": 0,
+                "expectancy_r_costs_x2": null,
+                "expectancy_r_costs_x3": null
+              },
+              "2": {
+                "trades": 0,
+                "win_rate": null,
+                "sum_r": 0,
+                "expectancy_r": null,
+                "profit_factor": null,
+                "max_dd_r": 0.0,
+                "net_usd": 0,
+                "expectancy_r_costs_x2": null,
+                "expectancy_r_costs_x3": null
+              }
+            },
+            "by_vol_m15": {
+              "expanding": {
+                "trades": 64,
+                "win_rate": 0.5,
+                "sum_r": 4.133,
+                "expectancy_r": 0.0646,
+                "profit_factor": 1.544,
+                "max_dd_r": 6.936,
+                "net_usd": 875.1,
+                "expectancy_r_costs_x2": 0.0575,
+                "expectancy_r_costs_x3": 0.0505
+              },
+              "normal": {
+                "trades": 205,
+                "win_rate": 0.522,
+                "sum_r": 26.326,
+                "expectancy_r": 0.1284,
+                "profit_factor": 1.549,
+                "max_dd_r": 7.188,
+                "net_usd": 1962.28,
+                "expectancy_r_costs_x2": 0.1152,
+                "expectancy_r_costs_x3": 0.1019
+              }
+            },
+            "by_session": {
+              "Asian": {
+                "trades": 94,
+                "win_rate": 0.4681,
+                "sum_r": 8.972,
+                "expectancy_r": 0.0954,
+                "profit_factor": 1.308,
+                "max_dd_r": 4.942,
+                "net_usd": 599.79,
+                "expectancy_r_costs_x2": 0.0825,
+                "expectancy_r_costs_x3": 0.0696
+              },
+              "London open": {
+                "trades": 55,
+                "win_rate": 0.6182,
+                "sum_r": 19.469,
+                "expectancy_r": 0.354,
+                "profit_factor": 2.938,
+                "max_dd_r": 1.673,
+                "net_usd": 1223.96,
+                "expectancy_r_costs_x2": 0.3413,
+                "expectancy_r_costs_x3": 0.3286
+              },
+              "New York": {
+                "trades": 115,
+                "win_rate": 0.5043,
+                "sum_r": 1.667,
+                "expectancy_r": 0.0145,
+                "profit_factor": 1.388,
+                "max_dd_r": 11.007,
+                "net_usd": 962.57,
+                "expectancy_r_costs_x2": 0.004,
+                "expectancy_r_costs_x3": -0.0066
+              },
+              "none": {
+                "trades": 5,
+                "win_rate": 0.6,
+                "sum_r": 0.351,
+                "expectancy_r": 0.0702,
+                "profit_factor": 1.408,
+                "max_dd_r": 1.003,
+                "net_usd": 51.06,
+                "expectancy_r_costs_x2": 0.0616,
+                "expectancy_r_costs_x3": 0.0531
+              }
+            }
+          }
+        },
+        "VOL-C": {
+          "M5": {
+            "valid": [
+              "2026-01",
+              "2026-02",
+              "2026-03",
+              "2026-04",
+              "2026-05",
+              "2026-06",
+              "2026-07",
+              "2026-08",
+              "2026-09",
+              "2026-10",
+              "2026-11"
+            ],
+            "pooled": {
+              "trades": 294,
+              "win_rate": 0.5,
+              "sum_r": 30.025,
+              "expectancy_r": 0.1021,
+              "profit_factor": 1.529,
+              "max_dd_r": 6.981,
+              "net_usd": 2909.27,
+              "expectancy_r_costs_x2": 0.0902,
+              "expectancy_r_costs_x3": 0.0783
+            },
+            "months": {
+              "2026-01": {
+                "status": "COMPLETED",
+                "trades": 26,
+                "win_rate": 0.4231,
+                "sum_r": 1.788,
+                "expectancy_r": 0.0688,
+                "profit_factor": 2.619,
+                "max_dd_r": 5.656,
+                "net_usd": 804.23,
+                "expectancy_r_costs_x2": 0.0584,
+                "expectancy_r_costs_x3": 0.048
+              },
+              "2026-02": {
+                "status": "COMPLETED",
+                "trades": 25,
+                "win_rate": 0.56,
+                "sum_r": 0.22,
+                "expectancy_r": 0.0088,
+                "profit_factor": 0.903,
+                "max_dd_r": 2.127,
+                "net_usd": -63.72,
+                "expectancy_r_costs_x2": 0.0024,
+                "expectancy_r_costs_x3": -0.004
+              },
+              "2026-03": {
+                "status": "COMPLETED",
+                "trades": 34,
+                "win_rate": 0.6471,
+                "sum_r": 10.381,
+                "expectancy_r": 0.3053,
+                "profit_factor": 3.215,
+                "max_dd_r": 3.43,
+                "net_usd": 1400.33,
+                "expectancy_r_costs_x2": 0.2974,
+                "expectancy_r_costs_x3": 0.2895
+              },
+              "2026-04": {
+                "status": "COMPLETED",
+                "trades": 25,
+                "win_rate": 0.52,
+                "sum_r": 3.855,
+                "expectancy_r": 0.1542,
+                "profit_factor": 1.072,
+                "max_dd_r": 2.699,
+                "net_usd": 51.15,
+                "expectancy_r_costs_x2": 0.1441,
+                "expectancy_r_costs_x3": 0.1341
+              },
+              "2026-05": {
+                "status": "COMPLETED",
+                "trades": 26,
+                "win_rate": 0.3846,
+                "sum_r": -4.298,
+                "expectancy_r": -0.1653,
+                "profit_factor": 0.599,
+                "max_dd_r": 6.981,
+                "net_usd": -242.32,
+                "expectancy_r_costs_x2": -0.1772,
+                "expectancy_r_costs_x3": -0.1892
+              },
+              "2026-06": {
+                "status": "COMPLETED",
+                "trades": 13,
+                "win_rate": 0.3077,
+                "sum_r": 1.549,
+                "expectancy_r": 0.1192,
+                "profit_factor": 0.784,
+                "max_dd_r": 2.086,
+                "net_usd": -61.44,
+                "expectancy_r_costs_x2": 0.1072,
+                "expectancy_r_costs_x3": 0.0951
+              },
+              "2026-07": {
+                "status": "COMPLETED",
+                "trades": 33,
+                "win_rate": 0.3939,
+                "sum_r": -0.679,
+                "expectancy_r": -0.0206,
+                "profit_factor": 0.848,
+                "max_dd_r": 3.489,
+                "net_usd": -79.77,
+                "expectancy_r_costs_x2": -0.0384,
+                "expectancy_r_costs_x3": -0.0563
+              },
+              "2026-08": {
+                "status": "COMPLETED",
+                "trades": 38,
+                "win_rate": 0.6316,
+                "sum_r": 7.045,
+                "expectancy_r": 0.1854,
+                "profit_factor": 2.468,
+                "max_dd_r": 3.628,
+                "net_usd": 631.6,
+                "expectancy_r_costs_x2": 0.1744,
+                "expectancy_r_costs_x3": 0.1634
+              },
+              "2026-09": {
+                "status": "COMPLETED",
+                "trades": 31,
+                "win_rate": 0.5161,
+                "sum_r": 5.327,
+                "expectancy_r": 0.1718,
+                "profit_factor": 1.223,
+                "max_dd_r": 3.195,
+                "net_usd": 103.54,
+                "expectancy_r_costs_x2": 0.1591,
+                "expectancy_r_costs_x3": 0.1465
+              },
+              "2026-10": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.4375,
+                "sum_r": 0.883,
+                "expectancy_r": 0.0276,
+                "profit_factor": 1.043,
+                "max_dd_r": 2.958,
+                "net_usd": 22.73,
+                "expectancy_r_costs_x2": 0.0103,
+                "expectancy_r_costs_x3": -0.007
+              },
+              "2026-11": {
+                "status": "COMPLETED",
+                "trades": 11,
+                "win_rate": 0.5455,
+                "sum_r": 3.954,
+                "expectancy_r": 0.3595,
+                "profit_factor": 3.07,
+                "max_dd_r": 2.017,
+                "net_usd": 342.94,
+                "expectancy_r_costs_x2": 0.3475,
+                "expectancy_r_costs_x3": 0.3355
+              }
+            },
+            "halves": {
+              "1": {
+                "trades": 0,
+                "win_rate": null,
+                "sum_r": 0,
+                "expectancy_r": null,
+                "profit_factor": null,
+                "max_dd_r": 0.0,
+                "net_usd": 0,
+                "expectancy_r_costs_x2": null,
+                "expectancy_r_costs_x3": null
+              },
+              "2": {
+                "trades": 0,
+                "win_rate": null,
+                "sum_r": 0,
+                "expectancy_r": null,
+                "profit_factor": null,
+                "max_dd_r": 0.0,
+                "net_usd": 0,
+                "expectancy_r_costs_x2": null,
+                "expectancy_r_costs_x3": null
+              }
+            },
+            "by_vol_m15": {
+              "contracting": {
+                "trades": 31,
+                "win_rate": 0.2903,
+                "sum_r": -5.3,
+                "expectancy_r": -0.171,
+                "profit_factor": 0.649,
+                "max_dd_r": 7.31,
+                "net_usd": -226.67,
+                "expectancy_r_costs_x2": -0.1906,
+                "expectancy_r_costs_x3": -0.2103
+              },
+              "expanding": {
+                "trades": 64,
+                "win_rate": 0.5,
+                "sum_r": 4.133,
+                "expectancy_r": 0.0646,
+                "profit_factor": 1.544,
+                "max_dd_r": 6.936,
+                "net_usd": 875.1,
+                "expectancy_r_costs_x2": 0.0575,
+                "expectancy_r_costs_x3": 0.0505
+              },
+              "normal": {
+                "trades": 199,
+                "win_rate": 0.5327,
+                "sum_r": 31.192,
+                "expectancy_r": 0.1567,
+                "profit_factor": 1.697,
+                "max_dd_r": 6.142,
+                "net_usd": 2260.84,
+                "expectancy_r_costs_x2": 0.1445,
+                "expectancy_r_costs_x3": 0.1322
+              }
+            },
+            "by_session": {
+              "Asian": {
+                "trades": 101,
+                "win_rate": 0.4653,
+                "sum_r": 8.454,
+                "expectancy_r": 0.0837,
+                "profit_factor": 1.264,
+                "max_dd_r": 5.085,
+                "net_usd": 554.44,
+                "expectancy_r_costs_x2": 0.071,
+                "expectancy_r_costs_x3": 0.0583
+              },
+              "London open": {
+                "trades": 57,
+                "win_rate": 0.5965,
+                "sum_r": 18.195,
+                "expectancy_r": 0.3192,
+                "profit_factor": 2.663,
+                "max_dd_r": 2.384,
+                "net_usd": 1158.81,
+                "expectancy_r_costs_x2": 0.3064,
+                "expectancy_r_costs_x3": 0.2937
+              },
+              "New York": {
+                "trades": 122,
+                "win_rate": 0.4836,
+                "sum_r": 1.21,
+                "expectancy_r": 0.0099,
+                "profit_factor": 1.442,
+                "max_dd_r": 10.511,
+                "net_usd": 1079.57,
+                "expectancy_r_costs_x2": -0.0003,
+                "expectancy_r_costs_x3": -0.0106
+              },
+              "none": {
+                "trades": 14,
+                "win_rate": 0.5,
+                "sum_r": 2.166,
+                "expectancy_r": 0.1547,
+                "profit_factor": 1.447,
+                "max_dd_r": 3.033,
+                "net_usd": 116.45,
+                "expectancy_r_costs_x2": 0.1375,
+                "expectancy_r_costs_x3": 0.1203
+              }
+            }
+          }
+        }
+      }
+    },
+    "phase": null,
+    "progress": 22,
+    "total": 22,
+    "app_version": "goldscalp 0.1.0 / code f745e9f1ca74bbab",
+    "error": null,
+    "created_at": "2026-11-15T10:36:29.606498Z",
+    "updated_at": "2026-11-15T11:18:46.751160Z",
+    "finished_at": "2026-11-15T11:18:46.751160Z"
+  },
+  {
+    "id": "sr_ed2c472a7559",
+    "hypothesis": "H6.4",
+    "purpose": "sealed",
+    "status": "COMPLETED",
+    "params": {
+      "definition": "sealed@1",
+      "hypothesis": "H6.4",
+      "purpose": "sealed",
+      "attempt": 1,
+      "windows": [
+        {
+          "key": "S1",
+          "start": "2023-11-01T00:00:00Z",
+          "end": "2023-12-01T00:00:00Z",
+          "month": "2023-11",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S2",
+          "start": "2023-12-01T00:00:00Z",
+          "end": "2024-01-01T00:00:00Z",
+          "month": "2023-12",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S3",
+          "start": "2024-01-01T00:00:00Z",
+          "end": "2024-02-01T00:00:00Z",
+          "month": "2024-01",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S4",
+          "start": "2024-02-01T00:00:00Z",
+          "end": "2024-03-01T00:00:00Z",
+          "month": "2024-02",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S5",
+          "start": "2024-03-01T00:00:00Z",
+          "end": "2024-04-01T00:00:00Z",
+          "month": "2024-03",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S6",
+          "start": "2024-04-01T00:00:00Z",
+          "end": "2024-05-01T00:00:00Z",
+          "month": "2024-04",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S7",
+          "start": "2024-05-01T00:00:00Z",
+          "end": "2024-06-01T00:00:00Z",
+          "month": "2024-05",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S8",
+          "start": "2024-06-01T00:00:00Z",
+          "end": "2024-07-01T00:00:00Z",
+          "month": "2024-06",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S9",
+          "start": "2024-07-01T00:00:00Z",
+          "end": "2024-08-01T00:00:00Z",
+          "month": "2024-07",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S10",
+          "start": "2024-08-01T00:00:00Z",
+          "end": "2024-09-01T00:00:00Z",
+          "month": "2024-08",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S11",
+          "start": "2024-09-01T00:00:00Z",
+          "end": "2024-10-01T00:00:00Z",
+          "month": "2024-09",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S12",
+          "start": "2024-10-01T00:00:00Z",
+          "end": "2024-11-01T00:00:00Z",
+          "month": "2024-10",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 1,
+          "partial": false
+        },
+        {
+          "key": "S13",
+          "start": "2024-11-01T00:00:00Z",
+          "end": "2024-12-01T00:00:00Z",
+          "month": "2024-11",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S14",
+          "start": "2024-12-01T00:00:00Z",
+          "end": "2025-01-01T00:00:00Z",
+          "month": "2024-12",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S15",
+          "start": "2025-01-01T00:00:00Z",
+          "end": "2025-02-01T00:00:00Z",
+          "month": "2025-01",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S16",
+          "start": "2025-02-01T00:00:00Z",
+          "end": "2025-03-01T00:00:00Z",
+          "month": "2025-02",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S17",
+          "start": "2025-03-01T00:00:00Z",
+          "end": "2025-04-01T00:00:00Z",
+          "month": "2025-03",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S18",
+          "start": "2025-04-01T00:00:00Z",
+          "end": "2025-05-01T00:00:00Z",
+          "month": "2025-04",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S19",
+          "start": "2025-05-01T00:00:00Z",
+          "end": "2025-06-01T00:00:00Z",
+          "month": "2025-05",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S20",
+          "start": "2025-06-01T00:00:00Z",
+          "end": "2025-07-01T00:00:00Z",
+          "month": "2025-06",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S21",
+          "start": "2025-07-01T00:00:00Z",
+          "end": "2025-08-01T00:00:00Z",
+          "month": "2025-07",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S22",
+          "start": "2025-08-01T00:00:00Z",
+          "end": "2025-09-01T00:00:00Z",
+          "month": "2025-08",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S23",
+          "start": "2025-09-01T00:00:00Z",
+          "end": "2025-10-01T00:00:00Z",
+          "month": "2025-09",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        },
+        {
+          "key": "S24",
+          "start": "2025-10-01T00:00:00Z",
+          "end": "2025-11-01T00:00:00Z",
+          "month": "2025-10",
+          "store": "research",
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "half": 2,
+          "partial": false
+        }
+      ],
+      "timeframes": [
+        "M5",
+        "M15"
+      ],
+      "costs": {
+        "configured_spread": "0.30",
+        "commission": "3.50",
+        "slippage": "0.05"
+      },
+      "protocol": {
+        "frozen": true,
+        "unchanged": true,
+        "changed_files": [],
+        "manifest": "h64-protocol-frozen.json",
+        "frozen_at": "2026-11-15T10:52:18.332396+00:00",
+        "version": 1,
+        "sufficient_months": {
+          "M5": 24,
+          "M15": 24,
+          "H1": 24
+        }
+      },
+      "fingerprints": {
+        "H6.4": "0019c2a629e8a3e204f9be150ae440027db0c4f6621438b90955d4446688ecec",
+        "VOL-C": "64d2a3b37538efbd0b19f9336c8d4e18f1bbce11330f48b645b769ca79429db9"
+      },
+      "roles": {
+        "H6.4": "candidate",
+        "VOL-C": "control (comparison only)"
+      }
+    },
+    "configs": {
+      "H6.4": {
+        "conditions": [
+          {
+            "enabled": true,
+            "id": "h1",
+            "state": "with",
+            "timeframe": "H1",
+            "type": "structure_state"
+          },
+          {
+            "direction": "with",
+            "enabled": true,
+            "event": "BOS",
+            "id": "bos",
+            "timeframe": "M15",
+            "type": "structure_event",
+            "within_candles": 2
+          },
+          {
+            "enabled": true,
+            "id": "spread",
+            "if_unknown": "fail",
+            "max_spread": 0.5,
+            "max_spread_atr": null,
+            "type": "spread"
+          },
+          {
+            "allowed": [
+              "normal",
+              "expanding"
+            ],
+            "enabled": true,
+            "id": "p6_volatility_regime",
+            "timeframe": "M15",
+            "type": "volatility_regime"
+          }
+        ],
+        "description": "H6.4 candidate: the VOL-C baseline with exactly one change (no entries while M15 volatility is contracting). Research only.",
+        "direction": "both",
+        "entry": {
+          "max_entry_delay_minutes": 10,
+          "trigger": "on_change"
+        },
+        "evaluation": {
+          "step_timeframe": "M5",
+          "window": {
+            "days": 10,
+            "end": null,
+            "mode": "all",
+            "start": null
+          }
+        },
+        "exit": {
+          "exit_on_structure_flip": {
+            "enabled": false,
+            "timeframe": "M15"
+          },
+          "max_holding_minutes": 240,
+          "stop": {
+            "atr_multiple": 1.5,
+            "buffer_atr": 0.1,
+            "distance": null,
+            "timeframe": "M15",
+            "type": "structure"
+          },
+          "target": {
+            "atr_multiple": null,
+            "distance": null,
+            "r": 2.0,
+            "timeframe": "M15",
+            "type": "r_multiple"
+          }
+        },
+        "name": "Phase 6 H6.4: trend continuation outside contracting M15 volatility",
+        "risk": {
+          "lots": "0.02",
+          "max_exposure_lots": "1.00",
+          "max_open_positions": 1,
+          "risk_percent": 0.5,
+          "sizing": "fixed_lots"
+        },
+        "schema": "strategy@1"
+      },
+      "VOL-C": {
+        "conditions": [
+          {
+            "enabled": true,
+            "id": "h1",
+            "state": "with",
+            "timeframe": "H1",
+            "type": "structure_state"
+          },
+          {
+            "direction": "with",
+            "enabled": true,
+            "event": "BOS",
+            "id": "bos",
+            "timeframe": "M15",
+            "type": "structure_event",
+            "within_candles": 2
+          },
+          {
+            "enabled": true,
+            "id": "spread",
+            "if_unknown": "fail",
+            "max_spread": 0.5,
+            "max_spread_atr": null,
+            "type": "spread"
+          }
+        ],
+        "description": "H6.1 baseline. Research only.",
+        "direction": "both",
+        "entry": {
+          "max_entry_delay_minutes": 10,
+          "trigger": "on_change"
+        },
+        "evaluation": {
+          "step_timeframe": "M5",
+          "window": {
+            "days": 10,
+            "end": null,
+            "mode": "all",
+            "start": null
+          }
+        },
+        "exit": {
+          "exit_on_structure_flip": {
+            "enabled": false,
+            "timeframe": "M15"
+          },
+          "max_holding_minutes": 240,
+          "stop": {
+            "atr_multiple": 1.5,
+            "buffer_atr": 0.1,
+            "distance": null,
+            "timeframe": "M15",
+            "type": "structure"
+          },
+          "target": {
+            "atr_multiple": null,
+            "distance": null,
+            "r": 2.0,
+            "timeframe": "M15",
+            "type": "r_multiple"
+          }
+        },
+        "name": "Phase 6 VOL-C: trend continuation (baseline)",
+        "risk": {
+          "lots": "0.02",
+          "max_exposure_lots": "1.00",
+          "max_open_positions": 1,
+          "risk_percent": 0.5,
+          "sizing": "fixed_lots"
+        },
+        "schema": "strategy@1"
+      }
+    },
+    "analysis": {
+      "definition": "sealed@1",
+      "purpose": "sealed",
+      "configs": {
+        "H6.4": {
+          "M5": {
+            "valid": [
+              "2023-11",
+              "2023-12",
+              "2024-01",
+              "2024-02",
+              "2024-03",
+              "2024-04",
+              "2024-05",
+              "2024-06",
+              "2024-07",
+              "2024-08",
+              "2024-09",
+              "2024-10",
+              "2024-11",
+              "2024-12",
+              "2025-01",
+              "2025-02",
+              "2025-03",
+              "2025-04",
+              "2025-05",
+              "2025-06",
+              "2025-07",
+              "2025-08",
+              "2025-09",
+              "2025-10"
+            ],
+            "pooled": {
+              "trades": 663,
+              "win_rate": 0.4676,
+              "sum_r": -4.24,
+              "expectancy_r": -0.0064,
+              "profit_factor": 1.043,
+              "max_dd_r": 29.45,
+              "net_usd": 239.2,
+              "expectancy_r_costs_x2": -0.0361,
+              "expectancy_r_costs_x3": -0.0658
+            },
+            "months": {
+              "2023-11": {
+                "status": "COMPLETED",
+                "trades": 27,
+                "win_rate": 0.4815,
+                "sum_r": 4.653,
+                "expectancy_r": 0.1723,
+                "profit_factor": 1.092,
+                "max_dd_r": 1.624,
+                "net_usd": 10.71,
+                "expectancy_r_costs_x2": 0.1215,
+                "expectancy_r_costs_x3": 0.0706
+              },
+              "2023-12": {
+                "status": "COMPLETED",
+                "trades": 19,
+                "win_rate": 0.3158,
+                "sum_r": -6.243,
+                "expectancy_r": -0.3286,
+                "profit_factor": 0.512,
+                "max_dd_r": 6.968,
+                "net_usd": -71.81,
+                "expectancy_r_costs_x2": -0.3622,
+                "expectancy_r_costs_x3": -0.3957
+              },
+              "2024-01": {
+                "status": "COMPLETED",
+                "trades": 26,
+                "win_rate": 0.3462,
+                "sum_r": -3.464,
+                "expectancy_r": -0.1332,
+                "profit_factor": 0.642,
+                "max_dd_r": 7.019,
+                "net_usd": -56.28,
+                "expectancy_r_costs_x2": -0.1824,
+                "expectancy_r_costs_x3": -0.2316
+              },
+              "2024-02": {
+                "status": "COMPLETED",
+                "trades": 18,
+                "win_rate": 0.2778,
+                "sum_r": -5.223,
+                "expectancy_r": -0.2902,
+                "profit_factor": 0.426,
+                "max_dd_r": 5.871,
+                "net_usd": -54.72,
+                "expectancy_r_costs_x2": -0.3512,
+                "expectancy_r_costs_x3": -0.4122
+              },
+              "2024-03": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.5357,
+                "sum_r": 6.086,
+                "expectancy_r": 0.2174,
+                "profit_factor": 0.815,
+                "max_dd_r": 3.304,
+                "net_usd": -37.36,
+                "expectancy_r_costs_x2": 0.1776,
+                "expectancy_r_costs_x3": 0.1378
+              },
+              "2024-04": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.5312,
+                "sum_r": 4.528,
+                "expectancy_r": 0.1415,
+                "profit_factor": 0.982,
+                "max_dd_r": 4.573,
+                "net_usd": -5.46,
+                "expectancy_r_costs_x2": 0.1208,
+                "expectancy_r_costs_x3": 0.1
+              },
+              "2024-05": {
+                "status": "COMPLETED",
+                "trades": 38,
+                "win_rate": 0.5789,
+                "sum_r": 0.272,
+                "expectancy_r": 0.0072,
+                "profit_factor": 0.894,
+                "max_dd_r": 2.741,
+                "net_usd": -30.13,
+                "expectancy_r_costs_x2": -0.0242,
+                "expectancy_r_costs_x3": -0.0555
+              },
+              "2024-06": {
+                "status": "COMPLETED",
+                "trades": 24,
+                "win_rate": 0.5833,
+                "sum_r": 3.474,
+                "expectancy_r": 0.1448,
+                "profit_factor": 1.722,
+                "max_dd_r": 2.741,
+                "net_usd": 83.92,
+                "expectancy_r_costs_x2": 0.1077,
+                "expectancy_r_costs_x3": 0.0707
+              },
+              "2024-07": {
+                "status": "COMPLETED",
+                "trades": 35,
+                "win_rate": 0.5714,
+                "sum_r": -0.534,
+                "expectancy_r": -0.0153,
+                "profit_factor": 1.395,
+                "max_dd_r": 4.148,
+                "net_usd": 67.35,
+                "expectancy_r_costs_x2": -0.0482,
+                "expectancy_r_costs_x3": -0.0811
+              },
+              "2024-08": {
+                "status": "COMPLETED",
+                "trades": 22,
+                "win_rate": 0.4545,
+                "sum_r": 0.382,
+                "expectancy_r": 0.0174,
+                "profit_factor": 1.096,
+                "max_dd_r": 2.715,
+                "net_usd": 14.71,
+                "expectancy_r_costs_x2": -0.007,
+                "expectancy_r_costs_x3": -0.0313
+              },
+              "2024-09": {
+                "status": "COMPLETED",
+                "trades": 19,
+                "win_rate": 0.2632,
+                "sum_r": -7.781,
+                "expectancy_r": -0.4095,
+                "profit_factor": 0.209,
+                "max_dd_r": 7.781,
+                "net_usd": -129.77,
+                "expectancy_r_costs_x2": -0.4368,
+                "expectancy_r_costs_x3": -0.4641
+              },
+              "2024-10": {
+                "status": "COMPLETED",
+                "trades": 26,
+                "win_rate": 0.4231,
+                "sum_r": -4.219,
+                "expectancy_r": -0.1623,
+                "profit_factor": 0.69,
+                "max_dd_r": 7.064,
+                "net_usd": -54.64,
+                "expectancy_r_costs_x2": -0.1997,
+                "expectancy_r_costs_x3": -0.2372
+              },
+              "2024-11": {
+                "status": "COMPLETED",
+                "trades": 38,
+                "win_rate": 0.3947,
+                "sum_r": -1.936,
+                "expectancy_r": -0.0509,
+                "profit_factor": 0.971,
+                "max_dd_r": 7.095,
+                "net_usd": -10.3,
+                "expectancy_r_costs_x2": -0.0827,
+                "expectancy_r_costs_x3": -0.1144
+              },
+              "2024-12": {
+                "status": "COMPLETED",
+                "trades": 23,
+                "win_rate": 0.4348,
+                "sum_r": -2.529,
+                "expectancy_r": -0.11,
+                "profit_factor": 0.718,
+                "max_dd_r": 3.624,
+                "net_usd": -41.94,
+                "expectancy_r_costs_x2": -0.1391,
+                "expectancy_r_costs_x3": -0.1682
+              },
+              "2025-01": {
+                "status": "COMPLETED",
+                "trades": 35,
+                "win_rate": 0.6,
+                "sum_r": 4.71,
+                "expectancy_r": 0.1346,
+                "profit_factor": 1.304,
+                "max_dd_r": 2.421,
+                "net_usd": 66.54,
+                "expectancy_r_costs_x2": 0.1029,
+                "expectancy_r_costs_x3": 0.0712
+              },
+              "2025-02": {
+                "status": "COMPLETED",
+                "trades": 21,
+                "win_rate": 0.4286,
+                "sum_r": -2.158,
+                "expectancy_r": -0.1028,
+                "profit_factor": 1.025,
+                "max_dd_r": 5.731,
+                "net_usd": 3.8,
+                "expectancy_r_costs_x2": -0.1263,
+                "expectancy_r_costs_x3": -0.1499
+              },
+              "2025-03": {
+                "status": "COMPLETED",
+                "trades": 27,
+                "win_rate": 0.4074,
+                "sum_r": -3.318,
+                "expectancy_r": -0.1229,
+                "profit_factor": 0.837,
+                "max_dd_r": 6.737,
+                "net_usd": -40.97,
+                "expectancy_r_costs_x2": -0.1517,
+                "expectancy_r_costs_x3": -0.1806
+              },
+              "2025-04": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.5,
+                "sum_r": -2.18,
+                "expectancy_r": -0.0779,
+                "profit_factor": 0.836,
+                "max_dd_r": 4.344,
+                "net_usd": -96.78,
+                "expectancy_r_costs_x2": -0.0905,
+                "expectancy_r_costs_x3": -0.1032
+              },
+              "2025-05": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.3571,
+                "sum_r": -1.666,
+                "expectancy_r": -0.0595,
+                "profit_factor": 0.735,
+                "max_dd_r": 7.348,
+                "net_usd": -104.93,
+                "expectancy_r_costs_x2": -0.0758,
+                "expectancy_r_costs_x3": -0.0921
+              },
+              "2025-06": {
+                "status": "COMPLETED",
+                "trades": 25,
+                "win_rate": 0.48,
+                "sum_r": 2.708,
+                "expectancy_r": 0.1083,
+                "profit_factor": 1.255,
+                "max_dd_r": 2.59,
+                "net_usd": 52.55,
+                "expectancy_r_costs_x2": 0.088,
+                "expectancy_r_costs_x3": 0.0677
+              },
+              "2025-07": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.5312,
+                "sum_r": 5.37,
+                "expectancy_r": 0.1678,
+                "profit_factor": 1.471,
+                "max_dd_r": 2.844,
+                "net_usd": 92.42,
+                "expectancy_r_costs_x2": 0.1396,
+                "expectancy_r_costs_x3": 0.1113
+              },
+              "2025-08": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.4286,
+                "sum_r": -4.561,
+                "expectancy_r": -0.1629,
+                "profit_factor": 0.673,
+                "max_dd_r": 5.133,
+                "net_usd": -80.78,
+                "expectancy_r_costs_x2": -0.1916,
+                "expectancy_r_costs_x3": -0.2203
+              },
+              "2025-09": {
+                "status": "COMPLETED",
+                "trades": 29,
+                "win_rate": 0.4483,
+                "sum_r": 0.295,
+                "expectancy_r": 0.0102,
+                "profit_factor": 1.133,
+                "max_dd_r": 3.929,
+                "net_usd": 32.62,
+                "expectancy_r_costs_x2": -0.011,
+                "expectancy_r_costs_x3": -0.0322
+              },
+              "2025-10": {
+                "status": "COMPLETED",
+                "trades": 35,
+                "win_rate": 0.5429,
+                "sum_r": 9.094,
+                "expectancy_r": 0.2598,
+                "profit_factor": 2.408,
+                "max_dd_r": 2.114,
+                "net_usd": 630.45,
+                "expectancy_r_costs_x2": 0.2497,
+                "expectancy_r_costs_x3": 0.2396
+              }
+            },
+            "halves": {
+              "1": {
+                "trades": 314,
+                "win_rate": 0.4682,
+                "sum_r": -8.069,
+                "expectancy_r": -0.0257,
+                "profit_factor": 0.873,
+                "max_dd_r": 18.045,
+                "net_usd": -263.48,
+                "expectancy_r_costs_x2": -0.0621,
+                "expectancy_r_costs_x3": -0.0985
+              },
+              "2": {
+                "trades": 349,
+                "win_rate": 0.467,
+                "sum_r": 3.829,
+                "expectancy_r": 0.011,
+                "profit_factor": 1.146,
+                "max_dd_r": 16.385,
+                "net_usd": 502.68,
+                "expectancy_r_costs_x2": -0.0127,
+                "expectancy_r_costs_x3": -0.0363
+              }
+            },
+            "by_vol_m15": {
+              "expanding": {
+                "trades": 154,
+                "win_rate": 0.5065,
+                "sum_r": 7.372,
+                "expectancy_r": 0.0479,
+                "profit_factor": 1.302,
+                "max_dd_r": 7.265,
+                "net_usd": 414.54,
+                "expectancy_r_costs_x2": 0.0273,
+                "expectancy_r_costs_x3": 0.0068
+              },
+              "normal": {
+                "trades": 509,
+                "win_rate": 0.4558,
+                "sum_r": -11.612,
+                "expectancy_r": -0.0228,
+                "profit_factor": 0.958,
+                "max_dd_r": 28.903,
+                "net_usd": -175.34,
+                "expectancy_r_costs_x2": -0.0553,
+                "expectancy_r_costs_x3": -0.0877
+              }
+            },
+            "by_session": {
+              "Asian": {
+                "trades": 207,
+                "win_rate": 0.4879,
+                "sum_r": 5.904,
+                "expectancy_r": 0.0285,
+                "profit_factor": 1.296,
+                "max_dd_r": 18.344,
+                "net_usd": 432.19,
+                "expectancy_r_costs_x2": -0.0071,
+                "expectancy_r_costs_x3": -0.0427
+              },
+              "London open": {
+                "trades": 172,
+                "win_rate": 0.4593,
+                "sum_r": -1.994,
+                "expectancy_r": -0.0116,
+                "profit_factor": 0.962,
+                "max_dd_r": 17.51,
+                "net_usd": -58.48,
+                "expectancy_r_costs_x2": -0.0438,
+                "expectancy_r_costs_x3": -0.076
+              },
+              "New York": {
+                "trades": 276,
+                "win_rate": 0.4638,
+                "sum_r": -3.946,
+                "expectancy_r": -0.0143,
+                "profit_factor": 1.04,
+                "max_dd_r": 16.447,
+                "net_usd": 93.0,
+                "expectancy_r_costs_x2": -0.0383,
+                "expectancy_r_costs_x3": -0.0624
+              },
+              "none": {
+                "trades": 8,
+                "win_rate": 0.25,
+                "sum_r": -4.204,
+                "expectancy_r": -0.5255,
+                "profit_factor": 0.012,
+                "max_dd_r": 4.229,
+                "net_usd": -227.51,
+                "expectancy_r_costs_x2": -0.5412,
+                "expectancy_r_costs_x3": -0.557
+              }
+            }
+          },
+          "M15": {
+            "valid": [
+              "2023-11",
+              "2023-12",
+              "2024-01",
+              "2024-02",
+              "2024-03",
+              "2024-04",
+              "2024-05",
+              "2024-06",
+              "2024-07",
+              "2024-08",
+              "2024-09",
+              "2024-10",
+              "2024-11",
+              "2024-12",
+              "2025-01",
+              "2025-02",
+              "2025-03",
+              "2025-04",
+              "2025-05",
+              "2025-06",
+              "2025-07",
+              "2025-08",
+              "2025-09",
+              "2025-10"
+            ],
+            "pooled": {
+              "trades": 659,
+              "win_rate": 0.4643,
+              "sum_r": -9.418,
+              "expectancy_r": -0.0143,
+              "profit_factor": 1.031,
+              "max_dd_r": 33.534,
+              "net_usd": 168.25,
+              "expectancy_r_costs_x2": -0.0434,
+              "expectancy_r_costs_x3": -0.0726
+            },
+            "months": {
+              "2023-11": {
+                "status": "COMPLETED",
+                "trades": 27,
+                "win_rate": 0.4815,
+                "sum_r": 4.653,
+                "expectancy_r": 0.1723,
+                "profit_factor": 1.092,
+                "max_dd_r": 1.624,
+                "net_usd": 10.71,
+                "expectancy_r_costs_x2": 0.1215,
+                "expectancy_r_costs_x3": 0.0706
+              },
+              "2023-12": {
+                "status": "COMPLETED",
+                "trades": 19,
+                "win_rate": 0.3158,
+                "sum_r": -6.364,
+                "expectancy_r": -0.3349,
+                "profit_factor": 0.505,
+                "max_dd_r": 7.089,
+                "net_usd": -73.51,
+                "expectancy_r_costs_x2": -0.3702,
+                "expectancy_r_costs_x3": -0.4055
+              },
+              "2024-01": {
+                "status": "COMPLETED",
+                "trades": 26,
+                "win_rate": 0.3462,
+                "sum_r": -3.128,
+                "expectancy_r": -0.1203,
+                "profit_factor": 0.658,
+                "max_dd_r": 6.687,
+                "net_usd": -52.36,
+                "expectancy_r_costs_x2": -0.1675,
+                "expectancy_r_costs_x3": -0.2148
+              },
+              "2024-02": {
+                "status": "COMPLETED",
+                "trades": 17,
+                "win_rate": 0.2941,
+                "sum_r": -4.509,
+                "expectancy_r": -0.2652,
+                "profit_factor": 0.408,
+                "max_dd_r": 4.814,
+                "net_usd": -52.72,
+                "expectancy_r_costs_x2": -0.3205,
+                "expectancy_r_costs_x3": -0.3758
+              },
+              "2024-03": {
+                "status": "COMPLETED",
+                "trades": 27,
+                "win_rate": 0.4815,
+                "sum_r": 3.475,
+                "expectancy_r": 0.1287,
+                "profit_factor": 0.684,
+                "max_dd_r": 3.304,
+                "net_usd": -66.22,
+                "expectancy_r_costs_x2": 0.0876,
+                "expectancy_r_costs_x3": 0.0464
+              },
+              "2024-04": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.5,
+                "sum_r": 2.417,
+                "expectancy_r": 0.0755,
+                "profit_factor": 0.827,
+                "max_dd_r": 4.573,
+                "net_usd": -52.6,
+                "expectancy_r_costs_x2": 0.0554,
+                "expectancy_r_costs_x3": 0.0353
+              },
+              "2024-05": {
+                "status": "COMPLETED",
+                "trades": 37,
+                "win_rate": 0.5676,
+                "sum_r": -1.699,
+                "expectancy_r": -0.0459,
+                "profit_factor": 0.836,
+                "max_dd_r": 4.204,
+                "net_usd": -46.34,
+                "expectancy_r_costs_x2": -0.0762,
+                "expectancy_r_costs_x3": -0.1066
+              },
+              "2024-06": {
+                "status": "COMPLETED",
+                "trades": 24,
+                "win_rate": 0.5833,
+                "sum_r": 3.474,
+                "expectancy_r": 0.1448,
+                "profit_factor": 1.722,
+                "max_dd_r": 2.741,
+                "net_usd": 83.92,
+                "expectancy_r_costs_x2": 0.1077,
+                "expectancy_r_costs_x3": 0.0707
+              },
+              "2024-07": {
+                "status": "COMPLETED",
+                "trades": 35,
+                "win_rate": 0.5714,
+                "sum_r": -0.534,
+                "expectancy_r": -0.0153,
+                "profit_factor": 1.395,
+                "max_dd_r": 4.148,
+                "net_usd": 67.37,
+                "expectancy_r_costs_x2": -0.0482,
+                "expectancy_r_costs_x3": -0.0811
+              },
+              "2024-08": {
+                "status": "COMPLETED",
+                "trades": 21,
+                "win_rate": 0.4762,
+                "sum_r": 0.882,
+                "expectancy_r": 0.042,
+                "profit_factor": 1.209,
+                "max_dd_r": 2.544,
+                "net_usd": 28.74,
+                "expectancy_r_costs_x2": 0.0191,
+                "expectancy_r_costs_x3": -0.0038
+              },
+              "2024-09": {
+                "status": "COMPLETED",
+                "trades": 19,
+                "win_rate": 0.2632,
+                "sum_r": -7.767,
+                "expectancy_r": -0.4088,
+                "profit_factor": 0.212,
+                "max_dd_r": 7.767,
+                "net_usd": -128.85,
+                "expectancy_r_costs_x2": -0.4337,
+                "expectancy_r_costs_x3": -0.4587
+              },
+              "2024-10": {
+                "status": "COMPLETED",
+                "trades": 26,
+                "win_rate": 0.4231,
+                "sum_r": -4.168,
+                "expectancy_r": -0.1603,
+                "profit_factor": 0.69,
+                "max_dd_r": 7.045,
+                "net_usd": -54.4,
+                "expectancy_r_costs_x2": -0.1951,
+                "expectancy_r_costs_x3": -0.2298
+              },
+              "2024-11": {
+                "status": "COMPLETED",
+                "trades": 38,
+                "win_rate": 0.3947,
+                "sum_r": -1.929,
+                "expectancy_r": -0.0508,
+                "profit_factor": 0.971,
+                "max_dd_r": 7.097,
+                "net_usd": -10.02,
+                "expectancy_r_costs_x2": -0.0817,
+                "expectancy_r_costs_x3": -0.1127
+              },
+              "2024-12": {
+                "status": "COMPLETED",
+                "trades": 23,
+                "win_rate": 0.4348,
+                "sum_r": -2.514,
+                "expectancy_r": -0.1093,
+                "profit_factor": 0.718,
+                "max_dd_r": 3.615,
+                "net_usd": -41.8,
+                "expectancy_r_costs_x2": -0.1379,
+                "expectancy_r_costs_x3": -0.1664
+              },
+              "2025-01": {
+                "status": "COMPLETED",
+                "trades": 35,
+                "win_rate": 0.6,
+                "sum_r": 4.71,
+                "expectancy_r": 0.1346,
+                "profit_factor": 1.304,
+                "max_dd_r": 2.421,
+                "net_usd": 66.54,
+                "expectancy_r_costs_x2": 0.1029,
+                "expectancy_r_costs_x3": 0.0712
+              },
+              "2025-02": {
+                "status": "COMPLETED",
+                "trades": 21,
+                "win_rate": 0.4286,
+                "sum_r": -2.158,
+                "expectancy_r": -0.1028,
+                "profit_factor": 1.025,
+                "max_dd_r": 5.731,
+                "net_usd": 3.8,
+                "expectancy_r_costs_x2": -0.1263,
+                "expectancy_r_costs_x3": -0.1499
+              },
+              "2025-03": {
+                "status": "COMPLETED",
+                "trades": 27,
+                "win_rate": 0.4074,
+                "sum_r": -3.318,
+                "expectancy_r": -0.1229,
+                "profit_factor": 0.837,
+                "max_dd_r": 6.737,
+                "net_usd": -40.97,
+                "expectancy_r_costs_x2": -0.1517,
+                "expectancy_r_costs_x3": -0.1806
+              },
+              "2025-04": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.5,
+                "sum_r": -2.179,
+                "expectancy_r": -0.0778,
+                "profit_factor": 0.836,
+                "max_dd_r": 4.344,
+                "net_usd": -96.74,
+                "expectancy_r_costs_x2": -0.0905,
+                "expectancy_r_costs_x3": -0.1031
+              },
+              "2025-05": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.3571,
+                "sum_r": -1.666,
+                "expectancy_r": -0.0595,
+                "profit_factor": 0.735,
+                "max_dd_r": 7.348,
+                "net_usd": -104.93,
+                "expectancy_r_costs_x2": -0.0758,
+                "expectancy_r_costs_x3": -0.0921
+              },
+              "2025-06": {
+                "status": "COMPLETED",
+                "trades": 25,
+                "win_rate": 0.48,
+                "sum_r": 2.708,
+                "expectancy_r": 0.1083,
+                "profit_factor": 1.255,
+                "max_dd_r": 2.59,
+                "net_usd": 52.55,
+                "expectancy_r_costs_x2": 0.088,
+                "expectancy_r_costs_x3": 0.0677
+              },
+              "2025-07": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.5312,
+                "sum_r": 5.37,
+                "expectancy_r": 0.1678,
+                "profit_factor": 1.471,
+                "max_dd_r": 2.844,
+                "net_usd": 92.42,
+                "expectancy_r_costs_x2": 0.1396,
+                "expectancy_r_costs_x3": 0.1113
+              },
+              "2025-08": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.4286,
+                "sum_r": -4.563,
+                "expectancy_r": -0.163,
+                "profit_factor": 0.677,
+                "max_dd_r": 5.135,
+                "net_usd": -79.41,
+                "expectancy_r_costs_x2": -0.1918,
+                "expectancy_r_costs_x3": -0.2206
+              },
+              "2025-09": {
+                "status": "COMPLETED",
+                "trades": 29,
+                "win_rate": 0.4483,
+                "sum_r": 0.295,
+                "expectancy_r": 0.0102,
+                "profit_factor": 1.133,
+                "max_dd_r": 3.929,
+                "net_usd": 32.62,
+                "expectancy_r_costs_x2": -0.011,
+                "expectancy_r_costs_x3": -0.0322
+              },
+              "2025-10": {
+                "status": "COMPLETED",
+                "trades": 35,
+                "win_rate": 0.5429,
+                "sum_r": 9.094,
+                "expectancy_r": 0.2598,
+                "profit_factor": 2.408,
+                "max_dd_r": 2.114,
+                "net_usd": 630.45,
+                "expectancy_r_costs_x2": 0.2497,
+                "expectancy_r_costs_x3": 0.2396
+              }
+            },
+            "halves": {
+              "1": {
+                "trades": 310,
+                "win_rate": 0.4613,
+                "sum_r": -13.268,
+                "expectancy_r": -0.0428,
+                "profit_factor": 0.837,
+                "max_dd_r": 18.822,
+                "net_usd": -336.26,
+                "expectancy_r_costs_x2": -0.0782,
+                "expectancy_r_costs_x3": -0.1137
+              },
+              "2": {
+                "trades": 349,
+                "win_rate": 0.467,
+                "sum_r": 3.85,
+                "expectancy_r": 0.011,
+                "profit_factor": 1.146,
+                "max_dd_r": 16.384,
+                "net_usd": 504.51,
+                "expectancy_r_costs_x2": -0.0125,
+                "expectancy_r_costs_x3": -0.036
+              }
+            },
+            "by_vol_m15": {
+              "expanding": {
+                "trades": 152,
+                "win_rate": 0.5,
+                "sum_r": 5.203,
+                "expectancy_r": 0.0342,
+                "profit_factor": 1.292,
+                "max_dd_r": 7.765,
+                "net_usd": 398.02,
+                "expectancy_r_costs_x2": 0.0144,
+                "expectancy_r_costs_x3": -0.0055
+              },
+              "normal": {
+                "trades": 507,
+                "win_rate": 0.4536,
+                "sum_r": -14.621,
+                "expectancy_r": -0.0288,
+                "profit_factor": 0.945,
+                "max_dd_r": 31.91,
+                "net_usd": -229.77,
+                "expectancy_r_costs_x2": -0.0608,
+                "expectancy_r_costs_x3": -0.0927
+              }
+            },
+            "by_session": {
+              "Asian": {
+                "trades": 207,
+                "win_rate": 0.4831,
+                "sum_r": 3.867,
+                "expectancy_r": 0.0187,
+                "profit_factor": 1.264,
+                "max_dd_r": 18.273,
+                "net_usd": 387.44,
+                "expectancy_r_costs_x2": -0.0164,
+                "expectancy_r_costs_x3": -0.0515
+              },
+              "London open": {
+                "trades": 172,
+                "win_rate": 0.4593,
+                "sum_r": -2.017,
+                "expectancy_r": -0.0117,
+                "profit_factor": 0.962,
+                "max_dd_r": 17.533,
+                "net_usd": -58.49,
+                "expectancy_r_costs_x2": -0.0439,
+                "expectancy_r_costs_x3": -0.0761
+              },
+              "New York": {
+                "trades": 272,
+                "win_rate": 0.4596,
+                "sum_r": -7.064,
+                "expectancy_r": -0.026,
+                "profit_factor": 1.029,
+                "max_dd_r": 15.979,
+                "net_usd": 66.79,
+                "expectancy_r_costs_x2": -0.0491,
+                "expectancy_r_costs_x3": -0.0722
+              },
+              "none": {
+                "trades": 8,
+                "win_rate": 0.25,
+                "sum_r": -4.204,
+                "expectancy_r": -0.5255,
+                "profit_factor": 0.012,
+                "max_dd_r": 4.229,
+                "net_usd": -227.49,
+                "expectancy_r_costs_x2": -0.5412,
+                "expectancy_r_costs_x3": -0.5569
+              }
+            }
+          }
+        },
+        "VOL-C": {
+          "M5": {
+            "valid": [
+              "2023-11",
+              "2023-12",
+              "2024-01",
+              "2024-02",
+              "2024-03",
+              "2024-04",
+              "2024-05",
+              "2024-06",
+              "2024-07",
+              "2024-08",
+              "2024-09",
+              "2024-10",
+              "2024-11",
+              "2024-12",
+              "2025-01",
+              "2025-02",
+              "2025-03",
+              "2025-04",
+              "2025-05",
+              "2025-06",
+              "2025-07",
+              "2025-08",
+              "2025-09",
+              "2025-10"
+            ],
+            "pooled": {
+              "trades": 762,
+              "win_rate": 0.4606,
+              "sum_r": -21.817,
+              "expectancy_r": -0.0286,
+              "profit_factor": 1.03,
+              "max_dd_r": 43.823,
+              "net_usd": 181.99,
+              "expectancy_r_costs_x2": -0.0608,
+              "expectancy_r_costs_x3": -0.093
+            },
+            "months": {
+              "2023-11": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.4688,
+                "sum_r": 4.0,
+                "expectancy_r": 0.125,
+                "profit_factor": 1.116,
+                "max_dd_r": 2.683,
+                "net_usd": 14.7,
+                "expectancy_r_costs_x2": 0.0693,
+                "expectancy_r_costs_x3": 0.0137
+              },
+              "2023-12": {
+                "status": "COMPLETED",
+                "trades": 23,
+                "win_rate": 0.3478,
+                "sum_r": -7.995,
+                "expectancy_r": -0.3476,
+                "profit_factor": 0.525,
+                "max_dd_r": 8.267,
+                "net_usd": -78.23,
+                "expectancy_r_costs_x2": -0.3932,
+                "expectancy_r_costs_x3": -0.4388
+              },
+              "2024-01": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.3929,
+                "sum_r": -1.887,
+                "expectancy_r": -0.0674,
+                "profit_factor": 0.721,
+                "max_dd_r": 6.307,
+                "net_usd": -43.84,
+                "expectancy_r_costs_x2": -0.1188,
+                "expectancy_r_costs_x3": -0.1702
+              },
+              "2024-02": {
+                "status": "COMPLETED",
+                "trades": 21,
+                "win_rate": 0.3333,
+                "sum_r": -5.444,
+                "expectancy_r": -0.2592,
+                "profit_factor": 0.475,
+                "max_dd_r": 6.214,
+                "net_usd": -51.67,
+                "expectancy_r_costs_x2": -0.3194,
+                "expectancy_r_costs_x3": -0.3797
+              },
+              "2024-03": {
+                "status": "COMPLETED",
+                "trades": 33,
+                "win_rate": 0.4545,
+                "sum_r": 1.603,
+                "expectancy_r": 0.0486,
+                "profit_factor": 0.697,
+                "max_dd_r": 4.186,
+                "net_usd": -71.4,
+                "expectancy_r_costs_x2": 0.0035,
+                "expectancy_r_costs_x3": -0.0416
+              },
+              "2024-04": {
+                "status": "COMPLETED",
+                "trades": 37,
+                "win_rate": 0.5405,
+                "sum_r": 3.886,
+                "expectancy_r": 0.105,
+                "profit_factor": 0.901,
+                "max_dd_r": 4.226,
+                "net_usd": -34.4,
+                "expectancy_r_costs_x2": 0.0812,
+                "expectancy_r_costs_x3": 0.0574
+              },
+              "2024-05": {
+                "status": "COMPLETED",
+                "trades": 46,
+                "win_rate": 0.5217,
+                "sum_r": -2.012,
+                "expectancy_r": -0.0437,
+                "profit_factor": 0.855,
+                "max_dd_r": 4.549,
+                "net_usd": -47.94,
+                "expectancy_r_costs_x2": -0.0778,
+                "expectancy_r_costs_x3": -0.1118
+              },
+              "2024-06": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.5,
+                "sum_r": -0.191,
+                "expectancy_r": -0.0068,
+                "profit_factor": 1.402,
+                "max_dd_r": 4.285,
+                "net_usd": 56.66,
+                "expectancy_r_costs_x2": -0.0485,
+                "expectancy_r_costs_x3": -0.0901
+              },
+              "2024-07": {
+                "status": "COMPLETED",
+                "trades": 39,
+                "win_rate": 0.5385,
+                "sum_r": -2.561,
+                "expectancy_r": -0.0657,
+                "profit_factor": 1.178,
+                "max_dd_r": 4.791,
+                "net_usd": 36.49,
+                "expectancy_r_costs_x2": -0.0998,
+                "expectancy_r_costs_x3": -0.1339
+              },
+              "2024-08": {
+                "status": "COMPLETED",
+                "trades": 24,
+                "win_rate": 0.4583,
+                "sum_r": -0.389,
+                "expectancy_r": -0.0162,
+                "profit_factor": 0.936,
+                "max_dd_r": 3.498,
+                "net_usd": -11.54,
+                "expectancy_r_costs_x2": -0.0411,
+                "expectancy_r_costs_x3": -0.0661
+              },
+              "2024-09": {
+                "status": "COMPLETED",
+                "trades": 23,
+                "win_rate": 0.3043,
+                "sum_r": -6.983,
+                "expectancy_r": -0.3036,
+                "profit_factor": 0.247,
+                "max_dd_r": 6.983,
+                "net_usd": -126.01,
+                "expectancy_r_costs_x2": -0.3369,
+                "expectancy_r_costs_x3": -0.3702
+              },
+              "2024-10": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.4643,
+                "sum_r": -0.529,
+                "expectancy_r": -0.0189,
+                "profit_factor": 0.798,
+                "max_dd_r": 4.644,
+                "net_usd": -36.49,
+                "expectancy_r_costs_x2": -0.0566,
+                "expectancy_r_costs_x3": -0.0944
+              },
+              "2024-11": {
+                "status": "COMPLETED",
+                "trades": 45,
+                "win_rate": 0.4444,
+                "sum_r": 2.569,
+                "expectancy_r": 0.0571,
+                "profit_factor": 1.178,
+                "max_dd_r": 5.953,
+                "net_usd": 61.3,
+                "expectancy_r_costs_x2": 0.0247,
+                "expectancy_r_costs_x3": -0.0078
+              },
+              "2024-12": {
+                "status": "COMPLETED",
+                "trades": 27,
+                "win_rate": 0.4444,
+                "sum_r": -3.699,
+                "expectancy_r": -0.137,
+                "profit_factor": 0.687,
+                "max_dd_r": 4.376,
+                "net_usd": -49.96,
+                "expectancy_r_costs_x2": -0.1708,
+                "expectancy_r_costs_x3": -0.2047
+              },
+              "2025-01": {
+                "status": "COMPLETED",
+                "trades": 42,
+                "win_rate": 0.5238,
+                "sum_r": -0.247,
+                "expectancy_r": -0.0059,
+                "profit_factor": 1.144,
+                "max_dd_r": 3.729,
+                "net_usd": 38.89,
+                "expectancy_r_costs_x2": -0.0432,
+                "expectancy_r_costs_x3": -0.0805
+              },
+              "2025-02": {
+                "status": "COMPLETED",
+                "trades": 25,
+                "win_rate": 0.44,
+                "sum_r": -1.464,
+                "expectancy_r": -0.0586,
+                "profit_factor": 1.064,
+                "max_dd_r": 5.232,
+                "net_usd": 11.35,
+                "expectancy_r_costs_x2": -0.0853,
+                "expectancy_r_costs_x3": -0.1121
+              },
+              "2025-03": {
+                "status": "COMPLETED",
+                "trades": 33,
+                "win_rate": 0.3333,
+                "sum_r": -7.231,
+                "expectancy_r": -0.2191,
+                "profit_factor": 0.683,
+                "max_dd_r": 10.65,
+                "net_usd": -97.84,
+                "expectancy_r_costs_x2": -0.2502,
+                "expectancy_r_costs_x3": -0.2812
+              },
+              "2025-04": {
+                "status": "COMPLETED",
+                "trades": 30,
+                "win_rate": 0.5,
+                "sum_r": -2.764,
+                "expectancy_r": -0.0921,
+                "profit_factor": 0.816,
+                "max_dd_r": 4.51,
+                "net_usd": -111.43,
+                "expectancy_r_costs_x2": -0.1043,
+                "expectancy_r_costs_x3": -0.1165
+              },
+              "2025-05": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.375,
+                "sum_r": -2.029,
+                "expectancy_r": -0.0634,
+                "profit_factor": 0.771,
+                "max_dd_r": 7.649,
+                "net_usd": -99.39,
+                "expectancy_r_costs_x2": -0.0809,
+                "expectancy_r_costs_x3": -0.0983
+              },
+              "2025-06": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.5357,
+                "sum_r": 5.99,
+                "expectancy_r": 0.2139,
+                "profit_factor": 1.627,
+                "max_dd_r": 2.59,
+                "net_usd": 129.41,
+                "expectancy_r_costs_x2": 0.1934,
+                "expectancy_r_costs_x3": 0.1728
+              },
+              "2025-07": {
+                "status": "COMPLETED",
+                "trades": 34,
+                "win_rate": 0.4706,
+                "sum_r": 0.464,
+                "expectancy_r": 0.0136,
+                "profit_factor": 1.121,
+                "max_dd_r": 6.395,
+                "net_usd": 29.82,
+                "expectancy_r_costs_x2": -0.0109,
+                "expectancy_r_costs_x3": -0.0355
+              },
+              "2025-08": {
+                "status": "COMPLETED",
+                "trades": 33,
+                "win_rate": 0.4242,
+                "sum_r": -3.757,
+                "expectancy_r": -0.1138,
+                "profit_factor": 0.761,
+                "max_dd_r": 6.428,
+                "net_usd": -61.93,
+                "expectancy_r_costs_x2": -0.1453,
+                "expectancy_r_costs_x3": -0.1767
+              },
+              "2025-09": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.4375,
+                "sum_r": -1.707,
+                "expectancy_r": -0.0533,
+                "profit_factor": 1.014,
+                "max_dd_r": 5.964,
+                "net_usd": 3.81,
+                "expectancy_r_costs_x2": -0.0755,
+                "expectancy_r_costs_x3": -0.0976
+              },
+              "2025-10": {
+                "status": "COMPLETED",
+                "trades": 39,
+                "win_rate": 0.5897,
+                "sum_r": 10.56,
+                "expectancy_r": 0.2708,
+                "profit_factor": 2.619,
+                "max_dd_r": 2.114,
+                "net_usd": 721.63,
+                "expectancy_r_costs_x2": 0.2596,
+                "expectancy_r_costs_x3": 0.2484
+              }
+            },
+            "halves": {
+              "1": {
+                "trades": 362,
+                "win_rate": 0.4586,
+                "sum_r": -18.502,
+                "expectancy_r": -0.0511,
+                "profit_factor": 0.831,
+                "max_dd_r": 24.632,
+                "net_usd": -393.67,
+                "expectancy_r_costs_x2": -0.0909,
+                "expectancy_r_costs_x3": -0.1306
+              },
+              "2": {
+                "trades": 400,
+                "win_rate": 0.4625,
+                "sum_r": -3.315,
+                "expectancy_r": -0.0083,
+                "profit_factor": 1.154,
+                "max_dd_r": 27.276,
+                "net_usd": 575.66,
+                "expectancy_r_costs_x2": -0.0337,
+                "expectancy_r_costs_x3": -0.059
+              }
+            },
+            "by_vol_m15": {
+              "contracting": {
+                "trades": 129,
+                "win_rate": 0.4109,
+                "sum_r": -19.757,
+                "expectancy_r": -0.1532,
+                "profit_factor": 0.915,
+                "max_dd_r": 24.682,
+                "net_usd": -62.44,
+                "expectancy_r_costs_x2": -0.204,
+                "expectancy_r_costs_x3": -0.2547
+              },
+              "expanding": {
+                "trades": 154,
+                "win_rate": 0.5065,
+                "sum_r": 7.372,
+                "expectancy_r": 0.0479,
+                "profit_factor": 1.302,
+                "max_dd_r": 7.265,
+                "net_usd": 414.54,
+                "expectancy_r_costs_x2": 0.0273,
+                "expectancy_r_costs_x3": 0.0068
+              },
+              "normal": {
+                "trades": 479,
+                "win_rate": 0.4593,
+                "sum_r": -9.432,
+                "expectancy_r": -0.0197,
+                "profit_factor": 0.957,
+                "max_dd_r": 25.089,
+                "net_usd": -170.11,
+                "expectancy_r_costs_x2": -0.0506,
+                "expectancy_r_costs_x3": -0.0816
+              }
+            },
+            "by_session": {
+              "Asian": {
+                "trades": 248,
+                "win_rate": 0.4597,
+                "sum_r": -7.723,
+                "expectancy_r": -0.0311,
+                "profit_factor": 1.232,
+                "max_dd_r": 24.559,
+                "net_usd": 396.95,
+                "expectancy_r_costs_x2": -0.0701,
+                "expectancy_r_costs_x3": -0.1092
+              },
+              "London open": {
+                "trades": 177,
+                "win_rate": 0.4689,
+                "sum_r": 1.517,
+                "expectancy_r": 0.0086,
+                "profit_factor": 0.996,
+                "max_dd_r": 16.195,
+                "net_usd": -6.96,
+                "expectancy_r_costs_x2": -0.0238,
+                "expectancy_r_costs_x3": -0.0562
+              },
+              "New York": {
+                "trades": 312,
+                "win_rate": 0.4712,
+                "sum_r": -3.358,
+                "expectancy_r": -0.0108,
+                "profit_factor": 1.045,
+                "max_dd_r": 15.738,
+                "net_usd": 108.85,
+                "expectancy_r_costs_x2": -0.0368,
+                "expectancy_r_costs_x3": -0.0628
+              },
+              "none": {
+                "trades": 25,
+                "win_rate": 0.28,
+                "sum_r": -12.253,
+                "expectancy_r": -0.4901,
+                "profit_factor": 0.154,
+                "max_dd_r": 12.993,
+                "net_usd": -316.85,
+                "expectancy_r_costs_x2": -0.5303,
+                "expectancy_r_costs_x3": -0.5704
+              }
+            }
+          },
+          "M15": {
+            "valid": [
+              "2023-11",
+              "2023-12",
+              "2024-01",
+              "2024-02",
+              "2024-03",
+              "2024-04",
+              "2024-05",
+              "2024-06",
+              "2024-07",
+              "2024-08",
+              "2024-09",
+              "2024-10",
+              "2024-11",
+              "2024-12",
+              "2025-01",
+              "2025-02",
+              "2025-03",
+              "2025-04",
+              "2025-05",
+              "2025-06",
+              "2025-07",
+              "2025-08",
+              "2025-09",
+              "2025-10"
+            ],
+            "pooled": {
+              "trades": 758,
+              "win_rate": 0.4578,
+              "sum_r": -26.957,
+              "expectancy_r": -0.0356,
+              "profit_factor": 1.018,
+              "max_dd_r": 48.961,
+              "net_usd": 111.28,
+              "expectancy_r_costs_x2": -0.0673,
+              "expectancy_r_costs_x3": -0.099
+            },
+            "months": {
+              "2023-11": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.4688,
+                "sum_r": 4.0,
+                "expectancy_r": 0.125,
+                "profit_factor": 1.116,
+                "max_dd_r": 2.683,
+                "net_usd": 14.7,
+                "expectancy_r_costs_x2": 0.0693,
+                "expectancy_r_costs_x3": 0.0137
+              },
+              "2023-12": {
+                "status": "COMPLETED",
+                "trades": 23,
+                "win_rate": 0.3478,
+                "sum_r": -8.104,
+                "expectancy_r": -0.3523,
+                "profit_factor": 0.519,
+                "max_dd_r": 8.376,
+                "net_usd": -79.87,
+                "expectancy_r_costs_x2": -0.3991,
+                "expectancy_r_costs_x3": -0.4458
+              },
+              "2024-01": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.3929,
+                "sum_r": -1.551,
+                "expectancy_r": -0.0554,
+                "profit_factor": 0.739,
+                "max_dd_r": 5.975,
+                "net_usd": -39.92,
+                "expectancy_r_costs_x2": -0.1049,
+                "expectancy_r_costs_x3": -0.1545
+              },
+              "2024-02": {
+                "status": "COMPLETED",
+                "trades": 20,
+                "win_rate": 0.35,
+                "sum_r": -4.73,
+                "expectancy_r": -0.2365,
+                "profit_factor": 0.461,
+                "max_dd_r": 5.157,
+                "net_usd": -49.67,
+                "expectancy_r_costs_x2": -0.2918,
+                "expectancy_r_costs_x3": -0.3472
+              },
+              "2024-03": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.4062,
+                "sum_r": -1.008,
+                "expectancy_r": -0.0315,
+                "profit_factor": 0.588,
+                "max_dd_r": 4.186,
+                "net_usd": -100.26,
+                "expectancy_r_costs_x2": -0.0779,
+                "expectancy_r_costs_x3": -0.1244
+              },
+              "2024-04": {
+                "status": "COMPLETED",
+                "trades": 37,
+                "win_rate": 0.5135,
+                "sum_r": 1.776,
+                "expectancy_r": 0.048,
+                "profit_factor": 0.769,
+                "max_dd_r": 4.226,
+                "net_usd": -81.52,
+                "expectancy_r_costs_x2": 0.0247,
+                "expectancy_r_costs_x3": 0.0015
+              },
+              "2024-05": {
+                "status": "COMPLETED",
+                "trades": 45,
+                "win_rate": 0.5111,
+                "sum_r": -3.983,
+                "expectancy_r": -0.0885,
+                "profit_factor": 0.806,
+                "max_dd_r": 6.52,
+                "net_usd": -64.15,
+                "expectancy_r_costs_x2": -0.1218,
+                "expectancy_r_costs_x3": -0.1551
+              },
+              "2024-06": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.5,
+                "sum_r": -0.191,
+                "expectancy_r": -0.0068,
+                "profit_factor": 1.402,
+                "max_dd_r": 4.285,
+                "net_usd": 56.66,
+                "expectancy_r_costs_x2": -0.0485,
+                "expectancy_r_costs_x3": -0.0901
+              },
+              "2024-07": {
+                "status": "COMPLETED",
+                "trades": 39,
+                "win_rate": 0.5385,
+                "sum_r": -2.559,
+                "expectancy_r": -0.0656,
+                "profit_factor": 1.179,
+                "max_dd_r": 4.789,
+                "net_usd": 36.55,
+                "expectancy_r_costs_x2": -0.0997,
+                "expectancy_r_costs_x3": -0.1337
+              },
+              "2024-08": {
+                "status": "COMPLETED",
+                "trades": 23,
+                "win_rate": 0.4783,
+                "sum_r": 0.111,
+                "expectancy_r": 0.0048,
+                "profit_factor": 1.015,
+                "max_dd_r": 3.327,
+                "net_usd": 2.49,
+                "expectancy_r_costs_x2": -0.0188,
+                "expectancy_r_costs_x3": -0.0425
+              },
+              "2024-09": {
+                "status": "COMPLETED",
+                "trades": 23,
+                "win_rate": 0.3043,
+                "sum_r": -6.963,
+                "expectancy_r": -0.3027,
+                "profit_factor": 0.25,
+                "max_dd_r": 6.963,
+                "net_usd": -125.17,
+                "expectancy_r_costs_x2": -0.3344,
+                "expectancy_r_costs_x3": -0.3661
+              },
+              "2024-10": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.4643,
+                "sum_r": -0.475,
+                "expectancy_r": -0.017,
+                "profit_factor": 0.799,
+                "max_dd_r": 4.638,
+                "net_usd": -36.21,
+                "expectancy_r_costs_x2": -0.0521,
+                "expectancy_r_costs_x3": -0.0872
+              },
+              "2024-11": {
+                "status": "COMPLETED",
+                "trades": 45,
+                "win_rate": 0.4444,
+                "sum_r": 2.578,
+                "expectancy_r": 0.0573,
+                "profit_factor": 1.18,
+                "max_dd_r": 5.953,
+                "net_usd": 61.62,
+                "expectancy_r_costs_x2": 0.0253,
+                "expectancy_r_costs_x3": -0.0067
+              },
+              "2024-12": {
+                "status": "COMPLETED",
+                "trades": 27,
+                "win_rate": 0.4444,
+                "sum_r": -3.672,
+                "expectancy_r": -0.136,
+                "profit_factor": 0.688,
+                "max_dd_r": 4.355,
+                "net_usd": -49.7,
+                "expectancy_r_costs_x2": -0.1689,
+                "expectancy_r_costs_x3": -0.2018
+              },
+              "2025-01": {
+                "status": "COMPLETED",
+                "trades": 42,
+                "win_rate": 0.5238,
+                "sum_r": -0.247,
+                "expectancy_r": -0.0059,
+                "profit_factor": 1.144,
+                "max_dd_r": 3.729,
+                "net_usd": 38.89,
+                "expectancy_r_costs_x2": -0.0432,
+                "expectancy_r_costs_x3": -0.0805
+              },
+              "2025-02": {
+                "status": "COMPLETED",
+                "trades": 25,
+                "win_rate": 0.44,
+                "sum_r": -1.464,
+                "expectancy_r": -0.0586,
+                "profit_factor": 1.064,
+                "max_dd_r": 5.232,
+                "net_usd": 11.35,
+                "expectancy_r_costs_x2": -0.0853,
+                "expectancy_r_costs_x3": -0.1121
+              },
+              "2025-03": {
+                "status": "COMPLETED",
+                "trades": 33,
+                "win_rate": 0.3333,
+                "sum_r": -7.231,
+                "expectancy_r": -0.2191,
+                "profit_factor": 0.683,
+                "max_dd_r": 10.65,
+                "net_usd": -97.84,
+                "expectancy_r_costs_x2": -0.2502,
+                "expectancy_r_costs_x3": -0.2812
+              },
+              "2025-04": {
+                "status": "COMPLETED",
+                "trades": 30,
+                "win_rate": 0.5,
+                "sum_r": -2.763,
+                "expectancy_r": -0.0921,
+                "profit_factor": 0.816,
+                "max_dd_r": 4.51,
+                "net_usd": -111.39,
+                "expectancy_r_costs_x2": -0.1043,
+                "expectancy_r_costs_x3": -0.1164
+              },
+              "2025-05": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.375,
+                "sum_r": -2.029,
+                "expectancy_r": -0.0634,
+                "profit_factor": 0.771,
+                "max_dd_r": 7.649,
+                "net_usd": -99.39,
+                "expectancy_r_costs_x2": -0.0809,
+                "expectancy_r_costs_x3": -0.0983
+              },
+              "2025-06": {
+                "status": "COMPLETED",
+                "trades": 28,
+                "win_rate": 0.5357,
+                "sum_r": 5.99,
+                "expectancy_r": 0.2139,
+                "profit_factor": 1.627,
+                "max_dd_r": 2.59,
+                "net_usd": 129.41,
+                "expectancy_r_costs_x2": 0.1934,
+                "expectancy_r_costs_x3": 0.1728
+              },
+              "2025-07": {
+                "status": "COMPLETED",
+                "trades": 34,
+                "win_rate": 0.4706,
+                "sum_r": 0.464,
+                "expectancy_r": 0.0136,
+                "profit_factor": 1.121,
+                "max_dd_r": 6.395,
+                "net_usd": 29.82,
+                "expectancy_r_costs_x2": -0.0109,
+                "expectancy_r_costs_x3": -0.0355
+              },
+              "2025-08": {
+                "status": "COMPLETED",
+                "trades": 33,
+                "win_rate": 0.4242,
+                "sum_r": -3.759,
+                "expectancy_r": -0.1139,
+                "profit_factor": 0.765,
+                "max_dd_r": 6.428,
+                "net_usd": -60.56,
+                "expectancy_r_costs_x2": -0.1454,
+                "expectancy_r_costs_x3": -0.1769
+              },
+              "2025-09": {
+                "status": "COMPLETED",
+                "trades": 32,
+                "win_rate": 0.4375,
+                "sum_r": -1.707,
+                "expectancy_r": -0.0533,
+                "profit_factor": 1.014,
+                "max_dd_r": 5.964,
+                "net_usd": 3.81,
+                "expectancy_r_costs_x2": -0.0755,
+                "expectancy_r_costs_x3": -0.0976
+              },
+              "2025-10": {
+                "status": "COMPLETED",
+                "trades": 39,
+                "win_rate": 0.5897,
+                "sum_r": 10.56,
+                "expectancy_r": 0.2708,
+                "profit_factor": 2.619,
+                "max_dd_r": 2.114,
+                "net_usd": 721.63,
+                "expectancy_r_costs_x2": 0.2596,
+                "expectancy_r_costs_x3": 0.2484
+              }
+            },
+            "halves": {
+              "1": {
+                "trades": 358,
+                "win_rate": 0.4525,
+                "sum_r": -23.677,
+                "expectancy_r": -0.0661,
+                "profit_factor": 0.799,
+                "max_dd_r": 29.823,
+                "net_usd": -466.37,
+                "expectancy_r_costs_x2": -0.1051,
+                "expectancy_r_costs_x3": -0.144
+              },
+              "2": {
+                "trades": 400,
+                "win_rate": 0.4625,
+                "sum_r": -3.28,
+                "expectancy_r": -0.0082,
+                "profit_factor": 1.155,
+                "max_dd_r": 27.241,
+                "net_usd": 577.65,
+                "expectancy_r_costs_x2": -0.0335,
+                "expectancy_r_costs_x3": -0.0587
+              }
+            },
+            "by_vol_m15": {
+              "contracting": {
+                "trades": 129,
+                "win_rate": 0.4109,
+                "sum_r": -19.72,
+                "expectancy_r": -0.1529,
+                "profit_factor": 0.916,
+                "max_dd_r": 24.645,
+                "net_usd": -61.94,
+                "expectancy_r_costs_x2": -0.2033,
+                "expectancy_r_costs_x3": -0.2538
+              },
+              "expanding": {
+                "trades": 152,
+                "win_rate": 0.5,
+                "sum_r": 5.203,
+                "expectancy_r": 0.0342,
+                "profit_factor": 1.292,
+                "max_dd_r": 7.765,
+                "net_usd": 398.02,
+                "expectancy_r_costs_x2": 0.0144,
+                "expectancy_r_costs_x3": -0.0055
+              },
+              "normal": {
+                "trades": 477,
+                "win_rate": 0.457,
+                "sum_r": -12.44,
+                "expectancy_r": -0.0261,
+                "profit_factor": 0.943,
+                "max_dd_r": 28.095,
+                "net_usd": -224.8,
+                "expectancy_r_costs_x2": -0.0565,
+                "expectancy_r_costs_x3": -0.087
+              }
+            },
+            "by_session": {
+              "Asian": {
+                "trades": 248,
+                "win_rate": 0.4556,
+                "sum_r": -9.744,
+                "expectancy_r": -0.0393,
+                "profit_factor": 1.205,
+                "max_dd_r": 26.579,
+                "net_usd": 352.18,
+                "expectancy_r_costs_x2": -0.0779,
+                "expectancy_r_costs_x3": -0.1165
+              },
+              "London open": {
+                "trades": 177,
+                "win_rate": 0.4689,
+                "sum_r": 1.494,
+                "expectancy_r": 0.0084,
+                "profit_factor": 0.996,
+                "max_dd_r": 16.218,
+                "net_usd": -6.97,
+                "expectancy_r_costs_x2": -0.0239,
+                "expectancy_r_costs_x3": -0.0563
+              },
+              "New York": {
+                "trades": 308,
+                "win_rate": 0.4675,
+                "sum_r": -6.454,
+                "expectancy_r": -0.021,
+                "profit_factor": 1.035,
+                "max_dd_r": 15.25,
+                "net_usd": 82.9,
+                "expectancy_r_costs_x2": -0.0461,
+                "expectancy_r_costs_x3": -0.0712
+              },
+              "none": {
+                "trades": 25,
+                "win_rate": 0.28,
+                "sum_r": -12.253,
+                "expectancy_r": -0.4901,
+                "profit_factor": 0.154,
+                "max_dd_r": 12.993,
+                "net_usd": -316.83,
+                "expectancy_r_costs_x2": -0.5303,
+                "expectancy_r_costs_x3": -0.5704
+              }
+            }
+          }
+        }
+      },
+      "assessment": {
+        "class": "rejected",
+        "criteria": {
+          "data": {
+            "pass": true,
+            "detail": "24 of 24 months with sufficient data (at least 18 needed)"
+          },
+          "expectancy": {
+            "pass": false,
+            "detail": "pooled -0.006 R/trade after costs"
+          },
+          "trade_count": {
+            "pass": true,
+            "detail": "663 trades (screen 100)"
+          },
+          "profit_factor": {
+            "pass": false,
+            "detail": "pooled PF +1.04"
+          },
+          "consistency": {
+            "pass": false,
+            "detail": "11 of 24 months positive (need 15); halves -8.07 / +3.83 R; without the best month (2025-10) -13.33 R"
+          },
+          "prediction": {
+            "pass": false,
+            "detail": "candidate -0.006 R/trade; control in contracting volatility -0.153 (129 trades) vs outside -0.003 (633 trades) R/trade"
+          },
+          "execution": {
+            "pass": false,
+            "detail": "x2 -0.036; x3 -0.066 R/trade"
+          },
+          "timeframes": {
+            "pass": false,
+            "detail": "M5 -0.006; M15 -0.014 R/trade (659 trades)"
+          }
+        },
+        "failed": [
+          "expectancy",
+          "profit_factor",
+          "consistency",
+          "prediction",
+          "execution",
+          "timeframes"
+        ]
+      },
+      "control_assessment": {
+        "class": "rejected",
+        "criteria": {
+          "data": {
+            "pass": true,
+            "detail": "24 of 24 months with sufficient data (at least 18 needed)"
+          },
+          "expectancy": {
+            "pass": false,
+            "detail": "pooled -0.029 R/trade after costs"
+          },
+          "trade_count": {
+            "pass": true,
+            "detail": "762 trades (screen 100)"
+          },
+          "profit_factor": {
+            "pass": false,
+            "detail": "pooled PF +1.03"
+          },
+          "consistency": {
+            "pass": false,
+            "detail": "7 of 24 months positive (need 15); halves -18.50 / -3.31 R; without the best month (2025-10) -32.38 R"
+          },
+          "prediction": {
+            "pass": false,
+            "detail": "candidate -0.029 R/trade; control in contracting volatility -0.153 (129 trades) vs outside -0.003 (633 trades) R/trade"
+          },
+          "execution": {
+            "pass": false,
+            "detail": "x2 -0.061; x3 -0.093 R/trade"
+          },
+          "timeframes": {
+            "pass": false,
+            "detail": "M5 -0.029; M15 -0.036 R/trade (758 trades)"
+          }
+        },
+        "failed": [
+          "expectancy",
+          "profit_factor",
+          "consistency",
+          "prediction",
+          "execution",
+          "timeframes"
+        ]
+      },
+      "control_note": "The control is reported for comparison only and is never selected instead of H6.4."
+    },
+    "phase": null,
+    "progress": 96,
+    "total": 96,
+    "app_version": "goldscalp 0.1.0 / code f745e9f1ca74bbab",
+    "error": null,
+    "created_at": "2026-11-15T11:19:02.529482Z",
+    "updated_at": "2026-11-15T17:08:48.865446Z",
+    "finished_at": "2026-11-15T17:08:48.865446Z"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "archival_classification": "development-only observation (control)",
+  "evidence": "Development +0.101 (241); the H6.2 control.",
+  "recorded": [
+    {
+      "source": "store:discovery_trials:dt_be1617009277",
+      "phase": "6",
+      "hypothesis": "H6.2",
+      "prediction_holds": false,
+      "gate": "prediction does not hold on development data: refinements may still be tried within the limits; if it never holds, record the hypothesis as not supported and keep the sealed data unspent"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:discovery_trials",
+      "study": "dt_be1617009277",
+      "key": "STR-0",
+      "label": "STR-0"
+    }
+  ]
+}

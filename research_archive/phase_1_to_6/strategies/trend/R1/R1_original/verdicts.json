@@ -1,0 +1,126 @@
+{
+  "archival_classification": "break-even / insufficient evidence",
+  "evidence": "5.2 +0.042 (358, inconclusive); 5.3 +0.003 (726, inconclusive).",
+  "recorded": [
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "original",
+      "class": "inconclusive",
+      "why": "positive out of sample, but fails: expectancy, drawdown, consistency, execution"
+    },
+    {
+      "source": "var/monthly/reports/vl_747cce289048-validation.json",
+      "phase": "5.3",
+      "definition": "validation@1",
+      "role": "original",
+      "class": "inconclusive",
+      "why": "positive, but fails: profit_factor, drawdown, consistency, timeframes, execution"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:candidates",
+      "study": "me_23932a71a56a",
+      "key": "R1",
+      "label": "R1 original"
+    },
+    {
+      "source": "store:candidates",
+      "study": "me_697122f9e14b",
+      "key": "R1",
+      "label": "R1 original"
+    },
+    {
+      "source": "store:candidates",
+      "study": "me_cb6b197c4c6b",
+      "key": "R1",
+      "label": "R1 original"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R1|M1",
+      "label": "R1"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R1|M15",
+      "label": "R1"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_23932a71a56a",
+      "key": "R1|M5",
+      "label": "R1"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R1|M1",
+      "label": "R1"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R1|M15",
+      "label": "R1"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_697122f9e14b",
+      "key": "R1|M5",
+      "label": "R1"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R1|M1",
+      "label": "R1"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R1|M15",
+      "label": "R1"
+    },
+    {
+      "source": "store:runs",
+      "study": "me_cb6b197c4c6b",
+      "key": "R1|M5",
+      "label": "R1"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R1|original",
+      "label": "R1|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_825da1543f0f",
+      "key": "R1|original",
+      "label": "R1|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_a732696e0c83",
+      "key": "R1|original",
+      "label": "R1|original"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_da267aa33110",
+      "key": "R1|original",
+      "label": "R1|original"
+    },
+    {
+      "source": "store:validation_studies",
+      "study": "vl_747cce289048",
+      "key": "R1|original",
+      "label": "R1|original"
+    }
+  ]
+}

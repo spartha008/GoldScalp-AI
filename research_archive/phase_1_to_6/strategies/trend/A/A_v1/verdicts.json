@@ -1,0 +1,13 @@
+{
+  "archival_classification": "superseded",
+  "evidence": "Phase 3 template version, replaced by A v2 before any formal verdict.",
+  "recorded": [],
+  "aliases": [
+    {
+      "source": "app:strategy_versions",
+      "study": null,
+      "key": "1/1",
+      "label": "A v1"
+    }
+  ]
+}

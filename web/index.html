@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GoldScalp AI</title>
+<meta name="description" content="Educational XAUUSD market analysis and paper trading. No real trading.">
+<link rel="stylesheet" href="/static/css/tokens.css">
+<link rel="stylesheet" href="/static/css/app.css">
+<script src="/static/vendor/lightweight-charts.standalone.production.js"></script>
+<script type="module" src="/static/js/dashboard.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="brand"><span class="mark" aria-hidden="true">&#9670;</span><span>GoldScalp AI</span><span class="sub">XAUUSD &middot; educational</span></div>
+  <nav class="nav" aria-label="Main">
+    <a href="/" aria-current="page">Dashboard</a>
+    <a href="/paper">Paper Trading</a>
+    <a href="/replay">Replay</a>
+    <a href="/performance">Performance</a>
+    <a href="/lab">Strategy Lab</a>
+    <a href="/live">Live Validation</a>
+    <a href="http://127.0.0.1:8001/monthly-backtest" title="Monthly backtests run in the separate research service (python -m goldscalp.monthly)">Monthly Backtest</a>
+    <a href="/static/project.html">Project</a>
+  </nav>
+  <div class="spacer"></div>
+  <div class="top-quote" aria-live="polite">
+    <span id="top-state"></span>
+    <span class="px num" id="top-price">&mdash;</span>
+  </div>
+</header>
+
+<main id="main" class="page dash">
+  <!-- LEFT: market overview (current market data) -->
+  <div class="col left">
+    <section class="panel current" aria-labelledby="mkt-title">
+      <header><h2 id="mkt-title">XAUUSD market</h2><span class="spacer"></span><span id="mkt-kind"></span></header>
+      <div class="body quote-main">
+        <p class="notice warn" id="src-change" role="status" hidden></p>
+        <div class="provider-row">
+          <label class="small muted" for="provider-select">Provider</label>
+          <select id="provider-select" aria-describedby="provider-note"></select>
+          <button type="button" class="btn" id="reconnect-btn">Reconnect</button>
+        </div>
+        <p class="muted small" id="provider-note"></p>
+        <div><span id="mkt-state"></span> <span class="muted small" id="mkt-symbol"></span></div>
+        <div class="quote-price num" id="mkt-price">&mdash;</div>
+        <div class="muted small" id="mkt-price-label">waiting for the first price</div>
+        <div class="freshness" aria-label="Data freshness">
+          <div class="freshness-bar" aria-hidden="true"><span id="fresh-bar"></span></div>
+          <div class="muted small" id="fresh-text"></div>
+        </div>
+        <div class="ba">
+          <div class="cell"><div class="label">Bid</div><div class="value num" id="mkt-bid">&mdash;</div></div>
+          <div class="cell"><div class="label">Ask</div><div class="value num" id="mkt-ask">&mdash;</div></div>
+        </div>
+        <div class="spread-viz">
+          <div class="kv"><span class="muted small">Spread</span><span class="num small right" id="mkt-spread">&mdash;</span></div>
+          <div class="spread-bar" aria-hidden="true"><span id="mkt-spread-bar"></span></div>
+          <div class="muted small" id="mkt-spread-note"></div>
+        </div>
+        <p class="reason" id="mkt-reason">Connecting&hellip;</p>
+        <details class="more"><summary>Connection details</summary>
+        <dl class="kv">
+          <dt>Provider</dt><dd id="mkt-source">&mdash;</dd>
+          <dt>Broker symbol</dt><dd id="mkt-brokersym">&mdash;</dd>
+          <dt>Price type</dt><dd id="mkt-pricekind">&mdash;</dd>
+          <dt>Latest tick</dt><dd class="num" id="mkt-time">&mdash;</dd>
+          <dt>Price age</dt><dd class="num" id="mkt-age">&mdash;</dd>
+          <dt>Last successful update</dt><dd class="num" id="mkt-lastok">&mdash;</dd>
+          <dt>Connection</dt><dd id="mkt-conn">&mdash;</dd>
+          <dt>Reconnection attempts</dt><dd class="num" id="mkt-reconnects">&mdash;</dd>
+          <dt>Chart timeframe</dt><dd class="num" id="mkt-tf">&mdash;</dd>
+          <dt>Market hours</dt><dd id="mkt-hours">&mdash;</dd>
+          <dt>Browser feed</dt><dd id="mkt-transport">&mdash;</dd>
+        </dl>
+        </details>
+        <p class="notice error" id="mkt-error" hidden></p>
+        <details class="mt5-box" id="mt5-box" hidden>
+          <summary>MetaTrader 5 details</summary>
+          <dl class="kv">
+            <dt>Terminal</dt><dd id="mt5-terminal">&mdash;</dd>
+            <dt>Broker</dt><dd id="mt5-broker">&mdash;</dd>
+            <dt>Symbol</dt><dd id="mt5-symbol">&mdash;</dd>
+            <dt>Contract</dt><dd id="mt5-contract">&mdash;</dd>
+            <dt>Server time</dt><dd id="mt5-basis">&mdash;</dd>
+          </dl>
+          <div class="provider-row">
+            <label class="small muted" for="mt5-symbol-select">Gold symbol</label>
+            <select id="mt5-symbol-select"></select>
+            <button type="button" class="btn" id="mt5-symbol-apply">Use symbol</button>
+          </div>
+          <p class="muted small">Read-only: GoldScalp only reads prices and candles from your logged-in terminal. It never sends orders and never asks for your MT5 password.</p>
+        </details>
+        <p class="muted small" id="mkt-attrib"></p>
+      </div>
+    </section>
+
+    <section class="panel simulated" aria-labelledby="acct-title">
+      <header><h2 id="acct-title">Paper account</h2><span class="spacer"></span><span id="acct-kind"></span></header>
+      <div class="body">
+        <div class="stat-grid">
+          <div class="stat"><div class="label">Balance</div><div class="value num" id="acct-balance">&mdash;</div></div>
+          <div class="stat"><div class="label">Equity</div><div class="value num" id="acct-equity">&mdash;</div></div>
+          <div class="stat"><div class="label">Used margin</div><div class="value num" id="acct-margin">&mdash;</div></div>
+          <div class="stat"><div class="label">Free margin</div><div class="value num" id="acct-free">&mdash;</div></div>
+          <div class="stat"><div class="label">Open P/L</div><div class="value num" id="acct-upl">&mdash;</div></div>
+          <div class="stat"><div class="label">Open positions</div><div class="value num" id="acct-open">&mdash;</div></div>
+        </div>
+        <p class="muted small" id="acct-note"></p>
+        <a class="btn primary" href="/paper">Open Paper Trading &rarr;</a>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="perf-title">
+      <header><h2 id="perf-title">Performance analytics</h2><span class="spacer"></span><span class="badge kind-historical">Hypothetical</span></header>
+      <div class="body" id="perf-body"><p class="muted small">Loading&hellip;</p></div>
+      <div class="body"><a class="btn" href="/performance">Open Performance analytics &rarr;</a></div>
+    </section>
+  </div>
+
+  <!-- CENTER: chart -->
+  <div class="col">
+    <section class="panel" aria-labelledby="chart-title">
+      <header>
+        <h2 id="chart-title">Candles</h2>
+        <span id="chart-kind"></span>
+        <span class="spacer"></span>
+        <div class="toolbar">
+          <div class="seg" role="group" aria-label="Timeframe" id="tf-group">
+            <button type="button" data-tf="M1">1m</button><button type="button" data-tf="M5">5m</button><button type="button" data-tf="M15">15m</button><button type="button" data-tf="H1">1h</button><button type="button" data-tf="MN1" title="1 month: calendar months in UTC, built from stored hourly candles">1M</button><button type="button" data-tf="Y1" title="1 year: calendar years in UTC, built from stored hourly candles">1Y</button>
+          </div>
+          <label class="sr-only" for="series-select">Data series</label>
+          <select id="series-select" title="Data series"></select>
+        </div>
+      </header>
+      <div class="chart-tools">
+          <fieldset class="overlay-toggles"><legend class="sr-only">Chart annotations (saved per timeframe)</legend>
+            <label class="check"><input type="checkbox" id="ov-structure"> BOS/CHoCH</label>
+            <label class="check"><input type="checkbox" id="ov-swings"> Swings</label>
+            <label class="check"><input type="checkbox" id="ov-liquidity"> Liquidity</label>
+            <label class="check"><input type="checkbox" id="ov-sweeps"> Sweeps</label>
+            <label class="check"><input type="checkbox" id="ov-fvg"> FVG</label>
+            <label class="check"><input type="checkbox" id="ov-ob"> Order blocks</label>
+            <label class="check"><input type="checkbox" id="ov-developing"> Developing</label>
+            <label class="check">Max labels <select id="ov-max"><option>4</option><option>6</option><option>10</option><option>12</option><option>16</option><option>24</option><option>40</option></select></label>
+            <label class="check" title="Display only: changes the chart annotations; the signal always uses config/analysis.json">Swing sensitivity <select id="ov-sens"><option value="">config</option><option value="2">2 (more swings)</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="8">8 (fewer swings)</option></select></label>
+          </fieldset>
+      </div>
+      <div class="chart-box" id="chart" role="img" aria-label="XAUUSD candlestick chart"><div class="empty" id="chart-empty">Loading candles&hellip;</div></div>
+      <div class="chart-foot">
+        <span id="chart-series">&mdash;</span>
+        <span id="chart-gaps"></span>
+        <span id="chart-history"></span>
+        <button type="button" class="btn sm" id="chart-older" hidden>Load older candles</button>
+        <span id="chart-zone">Times shown in UTC</span>
+        <span>Charting: TradingView Lightweight Charts&trade;</span>
+      </div>
+      <details class="explain chart-legend-box"><summary>Annotation legend</summary>
+      <p class="chart-legend muted small" id="chart-legend">Annotations are algorithmic observations from closed candles and are saved per timeframe. Solid = confirmed; dimmed gold with “?” = developing (not confirmed). FVG = fair value gap, OB = order-block candidate, EQH/EQL = equal highs/lows, PDH/PDL and PWH/PWL = previous day/week high/low, “sweep?” = potential liquidity sweep.</p>
+      </details>
+      <p class="chart-legend muted small" id="chart-density" aria-live="off"></p>
+      <div class="body">
+        <details class="twin"><summary>Show the last 10 candles as a table</summary>
+          <div class="table-wrap"><table><thead><tr><th>Open time</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Status</th></tr></thead><tbody id="twin-body"></tbody></table></div>
+        </details>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="mtf-title">
+      <header><h2 id="mtf-title">Multi-timeframe analysis</h2><span id="mtf-kind"></span><span class="spacer"></span><span class="muted small" id="mtf-asof"></span></header>
+      <div class="body" id="mtf-body"><p class="muted small">Loading&hellip;</p></div>
+    </section>
+
+    <section class="panel" aria-labelledby="ms-title">
+      <header><h2 id="ms-title">Market structure</h2><span class="spacer"></span><span class="muted small" id="ms-tf"></span></header>
+      <div class="body" id="ms-body"><p class="muted small">Loading&hellip;</p></div>
+    </section>
+
+    <section class="panel" aria-labelledby="pa-title">
+      <header><h2 id="pa-title">Price action: FVG and order blocks</h2><span class="spacer"></span><span class="muted small" id="pa-tf"></span></header>
+      <div class="body" id="pa-body"><p class="muted small">Loading&hellip;</p></div>
+    </section>
+
+    <section class="panel" aria-labelledby="tv-title" id="tv-panel" hidden>
+      <header>
+        <h2 id="tv-title">TradingView chart (optional)</h2>
+        <span id="tv-kind"></span>
+        <span class="spacer"></span>
+        <div class="seg" role="group" aria-label="TradingView interval" id="tv-tf-group">
+          <button type="button" data-tvi="1">1m</button><button type="button" data-tvi="5" aria-pressed="true">5m</button><button type="button" data-tvi="15">15m</button><button type="button" data-tvi="60">1h</button>
+        </div>
+      </header>
+      <div class="tv-gate" id="tv-gate">
+        <p><strong id="tv-symbol-label">OANDA:XAUUSD</strong> &middot; chart and data provided by TradingView. <strong>Display only:</strong> GoldScalp does not read this chart's data and never uses it for analysis, alerts or the simulator.</p>
+        <p class="muted">Loading it connects your browser directly to TradingView's servers.</p>
+        <div class="toolbar"><button type="button" class="btn primary" id="tv-load">Load TradingView chart</button><label class="check"><input type="checkbox" id="tv-auto"> Load automatically next time</label></div>
+      </div>
+      <div id="tv-holder"></div>
+      <p class="notice error" id="tv-error" hidden></p>
+    </section>
+
+    <section class="panel" aria-labelledby="import-title">
+      <header><h2 id="import-title">Import historical CSV</h2><span class="spacer"></span><span id="import-kind"></span></header>
+      <details class="body"><summary>Import a CSV file of historical candles</summary>
+        <form id="import-form" class="form-grid">
+          <label>File<input type="file" name="file" accept=".csv,.txt" required></label>
+          <label>Format<select name="dialect"><option value="generic_utc">Generic CSV (ISO time with offset)</option><option value="mt5_export">MetaTrader 5 bar export</option><option value="histdata_m1">HistData.com M1 (ASCII)</option></select></label>
+          <label>Timeframe<select name="timeframe"><option>M1</option><option>M5</option><option>M15</option><option>H1</option></select></label>
+          <label>Time basis<select name="time_basis"><option value="utc">UTC / own offsets</option><option value="rule:ny_close">MT5 server, New York close (UTC+2/+3)</option><option value="fixed:-05:00">Fixed UTC-5 (e.g. HistData)</option><option value="fixed:+02:00">Fixed UTC+2</option><option value="fixed:+03:00">Fixed UTC+3</option></select></label>
+          <label>Series name<input type="text" name="series_label" value="my-history" required maxlength="64" pattern="[A-Za-z0-9._\-]{1,64}" title="Letters, digits, dot, underscore or hyphen"></label>
+          <label>Source symbol<input type="text" name="source_symbol" value="XAUUSD"></label>
+          <label>Price side<select name="candle_side"><option value="bid">bid</option><option value="mid">mid</option><option value="ask">ask</option><option value="last">last</option><option value="unknown">unknown</option></select></label>
+          <label>Price decimals<input type="number" name="price_decimals" value="2" min="0" max="8" required></label>
+          <label>MT5 point size (for spreads)<input type="text" name="point" placeholder="e.g. 0.01"></label>
+          <div class="form-actions"><button class="btn primary" type="submit">Import</button></div>
+        </form>
+        <p class="notice" id="import-result" hidden></p>
+      </details>
+    </section>
+  </div>
+
+  <!-- RIGHT: signal centre and analysis (historical observations) -->
+  <div class="col">
+    <section class="panel signal-panel" aria-labelledby="sig-title">
+      <header><h2 id="sig-title">Signal centre</h2><span class="spacer"></span><span id="an-kind"></span></header>
+      <p class="sr-only" id="sig-live" aria-live="polite"></p>
+      <div class="body" id="sig-body"><p class="muted small">Loading&hellip;</p></div>
+      <details class="body sig-history"><summary class="small">Stored signal changes</summary><div id="sig-history"></div></details>
+    </section>
+    <section class="panel" aria-labelledby="liq-title">
+      <header><h2 id="liq-title">Liquidity map</h2><span class="spacer"></span><span class="muted small" id="liq-tf"></span></header>
+      <div class="body" id="liq-body"><p class="muted small">&mdash;</p></div>
+    </section>
+    <section class="panel" aria-labelledby="ss-title">
+      <header><h2 id="ss-title">Session intelligence</h2></header>
+      <div class="body" id="ss-body"><p class="muted small">&mdash;</p></div>
+    </section>
+    <section class="panel" aria-labelledby="vol-title">
+      <header><h2 id="vol-title">Volatility</h2></header>
+      <div class="body" id="vol-body"><p class="muted small">&mdash;</p></div>
+    </section>
+  </div>
+</main>
+
+<footer class="site">
+  <span>GoldScalp AI is an educational research and paper-trading tool. It places no real orders, connects to no broker and gives no financial advice.</span>
+  <span>Labels: <strong>Current</strong> = latest provider prices &middot; <strong>Historical</strong> = stored candles and statistics &middot; <strong>Simulated</strong> = paper-trading results.</span>
+  <span id="foot-attrib"></span>
+</footer>
+</body>
+</html>

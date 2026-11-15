@@ -1,0 +1,48 @@
+{
+  "archival_classification": "break-even / insufficient evidence",
+  "evidence": "5.2 +0.026 (258, inconclusive); 5.3 +0.006 (368, inconclusive); retired.",
+  "recorded": [
+    {
+      "source": "store:research_versions:rb_7ca33b7b5a81_R1",
+      "phase": "5.2",
+      "definition": "verdicts@1",
+      "verdict": "positive but inconsistent"
+    },
+    {
+      "source": "var/monthly/reports/rb_7ca33b7b5a81-final-verdicts.json",
+      "phase": "5.2",
+      "definition": "verdicts@2",
+      "role": "redesign",
+      "class": "inconclusive",
+      "why": "positive out of sample, but fails: drawdown, consistency, timeframes"
+    },
+    {
+      "source": "var/monthly/reports/vl_747cce289048-validation.json",
+      "phase": "5.3",
+      "definition": "validation@1",
+      "role": "candidate",
+      "class": "inconclusive",
+      "why": "positive, but fails: profit_factor, drawdown, consistency, execution"
+    }
+  ],
+  "aliases": [
+    {
+      "source": "store:research_versions",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R1|v-b-Xd",
+      "label": "R1 v2"
+    },
+    {
+      "source": "store:robustness_configs",
+      "study": "rb_7ca33b7b5a81",
+      "key": "R1|v-b-Xd",
+      "label": "R1|v-b-Xd"
+    },
+    {
+      "source": "store:validation_studies",
+      "study": "vl_747cce289048",
+      "key": "R1|v-b-Xd",
+      "label": "R1|v-b-Xd"
+    }
+  ]
+}

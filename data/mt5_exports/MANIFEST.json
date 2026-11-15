@@ -1,0 +1,331 @@
+{
+  "created_at": "2026-11-15T19:10:19.833993Z",
+  "note": "Verbatim copies of the manual MT5 bar exports (Vantage XAUUSD, MT5 server time, bid prices, tab-separated). The Desktop originals were left in place. 'imported_as' lists the research-store import whose recorded SHA-256 equals the file's, if any. Not pushed to the public repository (broker data; see README).",
+  "files": [
+    {
+      "file": "2026-05_to_2026-10_phase5/XAUUSD_H1_202605010100_202610302300.csv",
+      "dataset": "2026-05_to_2026-10_phase5",
+      "purpose": "Phase 5 / 5.1 / 5.2 research months (July-October 2026; H1 from May, M1 for late September-October)",
+      "timeframe": "H1",
+      "first_bar_server_time": "202605010100",
+      "last_bar_server_time": "202610302300",
+      "rows": 3001,
+      "bytes": 192043,
+      "sha256": "b6b82c455ecfd48223ea48b7f5e567a1ea8bdd42f0a239da12d722814bb0295c",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5\\XAUUSD_H1_202605010100_202610302300.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 2,
+          "series": "csv:vantage-mt5-xauusd",
+          "tf": "H1",
+          "rows_read": 3001,
+          "rows_stored": 3001,
+          "first_ts": 1777586400,
+          "last_ts": 1793390400,
+          "imported_at": "2026-11-14T14:04:57.707317Z"
+        }
+      ]
+    },
+    {
+      "file": "2026-05_to_2026-10_phase5/XAUUSD_M15_202607200100_202610302345.csv",
+      "dataset": "2026-05_to_2026-10_phase5",
+      "purpose": "Phase 5 / 5.1 / 5.2 research months (July-October 2026; H1 from May, M1 for late September-October)",
+      "timeframe": "M15",
+      "first_bar_server_time": "202607200100",
+      "last_bar_server_time": "202610302345",
+      "rows": 6890,
+      "bytes": 434288,
+      "sha256": "20846f823cc0913db55b449a53562c63a3809e8d083eb59377ab1aceb3dc8316",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5\\XAUUSD_M15_202607200100_202610302345.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 3,
+          "series": "csv:vantage-mt5-xauusd",
+          "tf": "M15",
+          "rows_read": 6890,
+          "rows_stored": 6890,
+          "first_ts": 1784498400,
+          "last_ts": 1793393100,
+          "imported_at": "2026-11-14T14:04:57.910743Z"
+        }
+      ]
+    },
+    {
+      "file": "2026-05_to_2026-10_phase5/XAUUSD_M1_202609280100_202610302356.csv",
+      "dataset": "2026-05_to_2026-10_phase5",
+      "purpose": "Phase 5 / 5.1 / 5.2 research months (July-October 2026; H1 from May, M1 for late September-October)",
+      "timeframe": "M1",
+      "first_bar_server_time": "202609280100",
+      "last_bar_server_time": "202610302356",
+      "rows": 34403,
+      "bytes": 2132546,
+      "sha256": "050a35036b383043783d6ad4329a98aa21e0440c495f8141fae85e6a84badc4d",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5\\XAUUSD_M1_202609280100_202610302356.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 1,
+          "series": "csv:vantage-mt5-xauusd",
+          "tf": "M1",
+          "rows_read": 34403,
+          "rows_stored": 34403,
+          "first_ts": 1790546400,
+          "last_ts": 1793393760,
+          "imported_at": "2026-11-14T13:55:36.225847Z"
+        }
+      ]
+    },
+    {
+      "file": "2026-05_to_2026-10_phase5/XAUUSD_M5_202607200100_202610302355.csv",
+      "dataset": "2026-05_to_2026-10_phase5",
+      "purpose": "Phase 5 / 5.1 / 5.2 research months (July-October 2026; H1 from May, M1 for late September-October)",
+      "timeframe": "M5",
+      "first_bar_server_time": "202607200100",
+      "last_bar_server_time": "202610302355",
+      "rows": 20665,
+      "bytes": 1300167,
+      "sha256": "669c6dd9313a39e110f4b32f7bc97474bfa07c8aaf6acf58433d2bb856ad0b5a",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5\\XAUUSD_M5_202607200100_202610302355.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 4,
+          "series": "csv:vantage-mt5-xauusd",
+          "tf": "M5",
+          "rows_read": 20665,
+          "rows_stored": 20665,
+          "first_ts": 1784498400,
+          "last_ts": 1793393700,
+          "imported_at": "2026-11-14T14:04:58.208866Z"
+        }
+      ]
+    },
+    {
+      "file": "2025-11_to_2026-05_phase5_3_validation/XAUUSD_H1_202511030100_202605292300.csv",
+      "dataset": "2025-11_to_2026-05_phase5_3_validation",
+      "purpose": "Phase 5.3 frozen pre-June validation (January-May 2026, with warm-up from December 2025; H1 from November 2025)",
+      "timeframe": "H1",
+      "first_bar_server_time": "202511030100",
+      "last_bar_server_time": "202605292300",
+      "rows": 3367,
+      "bytes": 215494,
+      "sha256": "3d5c55a56051d753037387288d85f88764261a02f4085269d175b74dc9f7eb3f",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5 Jan-May 2026\\XAUUSD_H1_202511030100_202605292300.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 5,
+          "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+          "tf": "H1",
+          "rows_read": 3367,
+          "rows_stored": 3367,
+          "first_ts": 1762124400,
+          "last_ts": 1780084800,
+          "imported_at": "2026-11-15T07:11:01.223814Z"
+        }
+      ]
+    },
+    {
+      "file": "2025-11_to_2026-05_phase5_3_validation/XAUUSD_M15_202512150100_202605292345.csv",
+      "dataset": "2025-11_to_2026-05_phase5_3_validation",
+      "purpose": "Phase 5.3 frozen pre-June validation (January-May 2026, with warm-up from December 2025; H1 from November 2025)",
+      "timeframe": "M15",
+      "first_bar_server_time": "202512150100",
+      "last_bar_server_time": "202605292345",
+      "rows": 10721,
+      "bytes": 676708,
+      "sha256": "2841d8fa4a46c05ac026bb4e5c00dee026f2fa8fe4e4d5c174b283b912ded745",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5 Jan-May 2026\\XAUUSD_M15_202512150100_202605292345.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 6,
+          "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+          "tf": "M15",
+          "rows_read": 10721,
+          "rows_stored": 10721,
+          "first_ts": 1765753200,
+          "last_ts": 1780087500,
+          "imported_at": "2026-11-15T07:11:01.406852Z"
+        }
+      ]
+    },
+    {
+      "file": "2025-11_to_2026-05_phase5_3_validation/XAUUSD_M5_202512150100_202605292355.csv",
+      "dataset": "2025-11_to_2026-05_phase5_3_validation",
+      "purpose": "Phase 5.3 frozen pre-June validation (January-May 2026, with warm-up from December 2025; H1 from November 2025)",
+      "timeframe": "M5",
+      "first_bar_server_time": "202512150100",
+      "last_bar_server_time": "202605292355",
+      "rows": 32160,
+      "bytes": 2024673,
+      "sha256": "984ae5e1b26d6846951160280587589b98fa0fcce74b51c5c2ae3f31e2ada675",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5 Jan-May 2026\\XAUUSD_M5_202512150100_202605292355.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 7,
+          "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+          "tf": "M5",
+          "rows_read": 32160,
+          "rows_stored": 32160,
+          "first_ts": 1765753200,
+          "last_ts": 1780088100,
+          "imported_at": "2026-11-15T07:11:01.784293Z"
+        }
+      ]
+    },
+    {
+      "file": "2023-09_to_2025-10_phase6_sealed/XAUUSD_H1_202309150100_202510312300.csv",
+      "dataset": "2023-09_to_2025-10_phase6_sealed",
+      "purpose": "Phase 6 H6.4 sealed validation block (November 2023 - October 2025, with warm-up from September/October 2023). Spent: used once by H6.4.",
+      "timeframe": "H1",
+      "first_bar_server_time": "202309150100",
+      "last_bar_server_time": "202510312300",
+      "rows": 12606,
+      "bytes": 796916,
+      "sha256": "ba96dbc01cc56d13d8d9cc3ea2827f36d6cc542821630d565732c5fcfa2c1732",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5 sealed 2023-2025\\XAUUSD_H1_202309150100_202510312300.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 8,
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "tf": "H1",
+          "rows_read": 12606,
+          "rows_stored": 12606,
+          "first_ts": 1694728800,
+          "last_ts": 1761940800,
+          "imported_at": "2026-11-15T10:10:21.867504Z"
+        }
+      ]
+    },
+    {
+      "file": "2023-09_to_2025-10_phase6_sealed/XAUUSD_M15_202310160100_202510312345.csv",
+      "dataset": "2023-09_to_2025-10_phase6_sealed",
+      "purpose": "Phase 6 H6.4 sealed validation block (November 2023 - October 2025, with warm-up from September/October 2023). Spent: used once by H6.4.",
+      "timeframe": "M15",
+      "first_bar_server_time": "202310160100",
+      "last_bar_server_time": "202510312345",
+      "rows": 48454,
+      "bytes": 3040526,
+      "sha256": "877981043457631f52fcaa4399ba2e36d993d13b22ab28fe1167896127ea940d",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5 sealed 2023-2025\\XAUUSD_M15_202310160100_202510312345.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 9,
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "tf": "M15",
+          "rows_read": 48454,
+          "rows_stored": 48454,
+          "first_ts": 1697407200,
+          "last_ts": 1761943500,
+          "imported_at": "2026-11-15T10:10:23.026803Z"
+        }
+      ]
+    },
+    {
+      "file": "2023-09_to_2025-10_phase6_sealed/XAUUSD_M5_202310160100_202405312355.csv",
+      "dataset": "2023-09_to_2025-10_phase6_sealed",
+      "purpose": "Phase 6 H6.4 sealed validation block (November 2023 - October 2025, with warm-up from September/October 2023). Spent: used once by H6.4.",
+      "timeframe": "M5",
+      "first_bar_server_time": "202310160100",
+      "last_bar_server_time": "202405312355",
+      "rows": 44524,
+      "bytes": 2761582,
+      "sha256": "6eca1858f9c4d88a8923b33c3b4f9d5b3f873f07289e0b41df8624d142a29205",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5 sealed 2023-2025\\XAUUSD_M5_202310160100_202405312355.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 11,
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "tf": "M5",
+          "rows_read": 44524,
+          "rows_stored": 44524,
+          "first_ts": 1697407200,
+          "last_ts": 1717188900,
+          "imported_at": "2026-11-15T10:45:34.936728Z"
+        }
+      ]
+    },
+    {
+      "file": "2023-09_to_2025-10_phase6_sealed/XAUUSD_M5_202406030100_202412312355.csv",
+      "dataset": "2023-09_to_2025-10_phase6_sealed",
+      "purpose": "Phase 6 H6.4 sealed validation block (November 2023 - October 2025, with warm-up from September/October 2023). Spent: used once by H6.4.",
+      "timeframe": "M5",
+      "first_bar_server_time": "202406030100",
+      "last_bar_server_time": "202412312355",
+      "rows": 41433,
+      "bytes": 2573180,
+      "sha256": "16e0fdac902e1291387208d977102630704cce183a75857c9dfd354564851d16",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5 sealed 2023-2025\\XAUUSD_M5_202406030100_202412312355.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 12,
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "tf": "M5",
+          "rows_read": 41433,
+          "rows_stored": 41433,
+          "first_ts": 1717365600,
+          "last_ts": 1735682100,
+          "imported_at": "2026-11-15T10:45:39.013983Z"
+        }
+      ]
+    },
+    {
+      "file": "2023-09_to_2025-10_phase6_sealed/XAUUSD_M5_202501020100_202506192010.csv",
+      "dataset": "2023-09_to_2025-10_phase6_sealed",
+      "purpose": "Phase 6 H6.4 sealed validation block (November 2023 - October 2025, with warm-up from September/October 2023). Spent: used once by H6.4.",
+      "timeframe": "M5",
+      "first_bar_server_time": "202501020100",
+      "last_bar_server_time": "202506192010",
+      "rows": 32979,
+      "bytes": 2049577,
+      "sha256": "a75d4e5435554f430afe33806cb5fc06bc3931f21d7989d61fb3c30b8f6c4614",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5 sealed 2023-2025\\XAUUSD_M5_202501020100_202506192010.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 13,
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "tf": "M5",
+          "rows_read": 32979,
+          "rows_stored": 32979,
+          "first_ts": 1735772400,
+          "last_ts": 1750353000,
+          "imported_at": "2026-11-15T10:45:42.474748Z"
+        }
+      ]
+    },
+    {
+      "file": "2023-09_to_2025-10_phase6_sealed/XAUUSD_M5_202506182250_202510312355.csv",
+      "dataset": "2023-09_to_2025-10_phase6_sealed",
+      "purpose": "Phase 6 H6.4 sealed validation block (November 2023 - October 2025, with warm-up from September/October 2023). Spent: used once by H6.4.",
+      "timeframe": "M5",
+      "first_bar_server_time": "202506182250",
+      "last_bar_server_time": "202510312355",
+      "rows": 26658,
+      "bytes": 1668825,
+      "sha256": "7dc7f1d834d49c77f1480a8915930d538e26bbd5e14b84eb587fde759f4fd9a1",
+      "source": "C:\\Users\\moham\\OneDrive\\Desktop\\Imported mt5 sealed 2023-2025\\XAUUSD_M5_202506182250_202510312355.csv",
+      "copied_unchanged": true,
+      "imported_as": [
+        {
+          "id": 10,
+          "series": "csv:vantage-mt5-xauusd-sealed-2023-2025",
+          "tf": "M5",
+          "rows_read": 26658,
+          "rows_stored": 26658,
+          "first_ts": 1750276200,
+          "last_ts": 1761944100,
+          "imported_at": "2026-11-15T10:10:28.392579Z"
+        }
+      ]
+    }
+  ]
+}
