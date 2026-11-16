@@ -90,13 +90,15 @@ python research.py        # or: python -m goldscalp.monthly   ->  http://127.0.0
   screen; it can read neither the sealed block nor forward data. See PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md.
 - **Research candidates.** Step 6 of the page lists the published rule sets registered for a proper test later
   (`config/research/candidates/`, `GET /api/monthly/research-candidates`): P7-FIX and P7-TOD, each with its source, its
-  rules exactly as screened, a fingerprint, its evidence and its caveats. A candidate is not validated.
+  rules exactly as screened, a fingerprint, its evidence and its caveats. A candidate is not validated. **Since
+  16 November 2026 P7-FIX is the only active candidate**: P7-TOD was archived at the owner's request (status
+  `archived`, record and rules kept, shown under "Archived candidates"), and its two Strategy Lab legs were archived.
   `python -m goldscalp.research.candidates --check` confirms the rules are unchanged; `--reproduce` re-runs the stored
   evidence.
   - **Strategy Lab form (16 November 2026, at the owner's request).** The builder gained a **clock-time** condition
     (times in UTC, New York or London time, so daylight saving is followed) and a stop type **none**. With them the
     candidates exist as Strategy Lab strategies (`config/research/candidates/LAB_STRATEGIES.json`): P7-FIX v1 as
-    screened, P7-FIX v2 with a protective stop of 3.0 x ATR(14) on M15, and the two legs of P7-TOD. On the screen
+    screened, P7-FIX v2 with a protective stop of 3.0 x ATR(14) on M15, and the two legs of P7-TOD (archived). On the screen
     window the Lab forms place exactly the screened trades (20 of 20 each, `research/pre_phase7/lab-parity.json`).
     Existing strategy fingerprints did not change.
   - **Longer history.** P7-FIX as registered, over the 2026 history research had already used (1 January to 29 May and

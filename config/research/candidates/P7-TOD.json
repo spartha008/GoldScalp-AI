@@ -2,7 +2,7 @@
   "definition": "research-candidate@1",
   "id": "P7-TOD",
   "name": "Gold time-of-day: long 11:00 to 02:00, short 02:00 to 11:00 New York",
-  "status": "research candidate",
+  "status": "archived",
   "registered": "2026-11-16",
   "origin": {
     "stage": "Pre-Phase 7 screen, stage 2",
@@ -109,5 +109,12 @@
     "The rules are frozen as screened. A changed rule is a new candidate with a new id.",
     "Development data already used for it: 20 July to 31 October 2026. Those months are not validation data.",
     "Any validation must use data research has not touched (forward data from 14 November 2026) under a registered, frozen protocol."
-  ]
+  ],
+  "archived": {
+    "on": "2026-11-16",
+    "by": "owner",
+    "reason": "At the owner's request, P7-FIX stays the only active research candidate. P7-TOD passed the 10-day screen (+0.646 nominal R per trade over 20 trades) but did not hold over the 11-week run (+0.009 R, -$326 over 110 trades): the long leg lost $588, the short leg made $262. Its record, rules and evidence are kept unchanged; it is not deleted.",
+    "strategy_lab": "Both legs archived in Strategy Lab (strategies 5 and 6); their versions are kept.",
+    "status_before": "research candidate"
+  }
 }

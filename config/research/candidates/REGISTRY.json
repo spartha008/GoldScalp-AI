@@ -1,6 +1,6 @@
 {
   "definition": "research-candidate@1",
-  "note": "Research candidates, in the order they were registered. See goldscalp/research/candidates.py.",
+  "note": "Research candidates, in the order they were registered. See goldscalp/research/candidates.py. Each file's status says whether it is active (\"research candidate\") or \"archived\"; archived candidates keep their record. Since 16 November 2026 P7-FIX is the only active candidate.",
   "candidates": [
     "P7-FIX",
     "P7-TOD"

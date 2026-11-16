@@ -35,7 +35,9 @@ from goldscalp.core.config import PROJECT_ROOT
 DEFINITION = "research-candidate@1"
 DIR = PROJECT_ROOT / "config" / "research" / "candidates"
 PRE7 = PROJECT_ROOT / "research" / "pre_phase7"
-STATUS = "research candidate"
+STATUS = "research candidate"                 # active
+ARCHIVED = "archived"                         # kept with its record and rules, no longer researched
+STATUSES = (STATUS, ARCHIVED)
 BANNER = ("Research candidates are published rule sets that passed a short screen on development data. They are not "
           "validated, not shown to be profitable and not trading-ready. Since 16 November 2026 each also has a Strategy "
           "Lab form, added at the owner's request; what that form does live or on the MT5 demo account is not a "
@@ -92,8 +94,10 @@ def check(directory: Path | None = None, declaration: Path | None = None) -> dic
                      "fingerprint_ok": fingerprint(c["rule"], c["params"]) == c["fingerprint"],
                      "matches_declaration": bool(d) and d["rule"] == c["rule"] and d["params"] == c["params"],
                      "status": c["status"]})
-    ok = bool(rows) and all(r["rule_known"] and r["fingerprint_ok"] and r["matches_declaration"] and r["status"] == STATUS for r in rows)
-    return {"definition": DEFINITION, "candidates": len(rows), "unchanged": ok, "rows": rows}
+    ok = bool(rows) and all(r["rule_known"] and r["fingerprint_ok"] and r["matches_declaration"] and r["status"] in STATUSES
+                            for r in rows)
+    return {"definition": DEFINITION, "candidates": len(rows), "active": [r["id"] for r in rows if r["status"] == STATUS],
+            "archived": [r["id"] for r in rows if r["status"] == ARCHIVED], "unchanged": ok, "rows": rows}
 
 
 # ------------------------------------------------------------------ evidence, from the stored screen results
@@ -177,9 +181,11 @@ def overview(directory: Path | None = None, pre7: Path | None = None) -> dict[st
         lab[item["candidate"]].append({"key": item["key"], "strategy_name": item["strategy_name"],
                                        "versions": [{k: v.get(k) for k in ("label", "as_screened", "difference", "fingerprint", "fingerprint_ok")}
                                                     for v in item["versions"]]})
+    cands = sorted(load_all(directory), key=lambda c: c["status"] != STATUS)     # active first, then archived
     return {"definition": DEFINITION, "banner": BANNER,
+            "active": [c["id"] for c in cands if c["status"] == STATUS],
             "candidates": [{**c, "check": chk.get(c["id"]), "evidence": evidence(c, pre7), "lab": lab.get(c["id"], [])}
-                           for c in load_all(directory)]}
+                           for c in cands]}
 
 
 @router.get("")

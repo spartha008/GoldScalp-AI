@@ -527,3 +527,18 @@ stretch of the year for this rule; required for monitoring, not evidence)
   `tests/test_research_candidates.py` (the longer history is shown only when it was stored).
 - The Phase 5 closure, Phase 6 protocol and sealed-run checks report unchanged. Both archives report unchanged and
   read-only. The forward guard is locked on both services, with no unlock protocol.
+
+## 13. P7-TOD archived (16 November 2026)
+
+At your request P7-FIX stays the only active research candidate, and P7-TOD is archived. Nothing was deleted.
+
+- **Why.** P7-TOD passed the 10-day screen (+0.646 nominal R per trade over 20 trades, +$282) but did not hold over the
+  11-week run (+0.009 R, −$326 over 110 trades). Its long leg lost $588 (−0.301 R) and its short leg made $262
+  (+0.319 R), in a market that fell about 11%.
+- **Candidate registry.** `config/research/candidates/P7-TOD.json` now has status `archived` and an `archived` record
+  (date, reason, previous status). Its rule, parameters, fingerprint and evidence are unchanged, and
+  `python -m goldscalp.research.candidates --check` still verifies them; it reports P7-FIX as the only active candidate.
+- **Strategy Lab.** Both legs (strategies 5 and 6) were archived in the app; their versions and their Lab run stay
+  stored. Neither was ever monitored or linked to demo execution.
+- **Monthly Backtest, step 6.** P7-FIX is the only active card; P7-TOD is under "Archived candidates". Its screen
+  results stay in the research library.

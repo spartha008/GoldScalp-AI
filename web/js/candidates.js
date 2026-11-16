@@ -52,8 +52,13 @@ export async function openCandidates() {
 function render(root) {
   C.charts = [];
   const cs = C.data.candidates;
+  const active = cs.filter((c) => c.status !== "archived");
+  const archived = cs.filter((c) => c.status === "archived");
   clear(root).append(el("p", { class: "notice warn compact", text: C.data.banner }),
-    ...(cs.length ? cs.map(card) : [el("p", { class: "muted", text: "No research candidate is registered." })]));
+    ...(active.length ? active.map(card) : [el("p", { class: "muted", text: "No active research candidate." })]),
+    archived.length ? el("details", { class: "more cand-archived" }, [
+      el("summary", { text: `Archived candidates (${archived.length}): kept with their rules and evidence, no longer researched` }),
+      ...archived.map(card)]) : null);
   drawCharts();
 }
 
@@ -162,8 +167,10 @@ function card(c) {
     ...placebo(ev), ...historyBlock(ev)] : [el("p", { class: "muted small", text: "The stored screen results were not found, so only the registration record is shown." })];
   return el("section", { class: "panel cand", "aria-labelledby": `cand-${c.id}` }, [
     el("header", {}, [el("h2", { id: `cand-${c.id}`, text: c.name }), el("span", { class: "spacer" }), chip(c.id, "muted plain"),
-      chip(c.status, "info"), chip(ok ? "rules unchanged" : "rules changed", ok ? "ok" : "err")]),
+      chip(c.status, c.status === "archived" ? "muted" : "info"), chip(ok ? "rules unchanged" : "rules changed", ok ? "ok" : "err")]),
     el("div", { class: "body" }, [
+      c.archived ? el("p", { class: "notice compact" }, [el("strong", { text: `Archived ${day(c.archived.on)} ${c.archived.on.slice(0, 4)}. ` }),
+        c.archived.reason, c.archived.strategy_lab ? ` ${c.archived.strategy_lab}` : ""]) : null,
       el("p", { class: "cand-lede", text: c.assessment }),
       el("div", { class: "cand-cols" }, [el("div", { class: "cand-col" }, [el("h3", { text: "Rules, exactly as screened" }), rules, ...labBlock(c)]),
         el("div", { class: "cand-col" }, [el("h3", { text: "Evidence at registration" }), ...evidence])]),

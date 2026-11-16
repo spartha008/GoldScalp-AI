@@ -26,7 +26,7 @@ def test_registered_candidates_are_exactly_the_screened_rule_sets():
     assert [c["id"] for c in cands] == ["P7-FIX", "P7-TOD"]
     for c in cands:
         d = declared[c["id"]]
-        assert c["definition"] == cd.DEFINITION and c["status"] == "research candidate"
+        assert c["definition"] == cd.DEFINITION and c["status"] == {"P7-FIX": cd.STATUS, "P7-TOD": cd.ARCHIVED}[c["id"]]
         assert c["rule"] == d["rule"] and c["params"] == d["params"]                  # no silent rule change
         assert c["source"] == d["source"] and c["original_rules"] == d["original_rules"] and c["deviations"] == d["deviations"]
         assert c["fingerprint"] == cd.fingerprint(c["rule"], c["params"]) and c["rule"] in external_rules.RULES
@@ -37,6 +37,21 @@ def test_registered_candidates_are_exactly_the_screened_rule_sets():
         assert "schema" not in c and "strategy@1" not in json.dumps(c)                 # not a Strategy Lab strategy
     chk = cd.check()
     assert chk["unchanged"] and chk["candidates"] == 2
+    assert chk["active"] == ["P7-FIX"] and chk["archived"] == ["P7-TOD"]          # 16 Nov 2026, at the owner's request
+    tod = next(c for c in cands if c["id"] == "P7-TOD")
+    assert tod["archived"]["on"] == "2026-11-16" and tod["archived"]["status_before"] == cd.STATUS
+    assert "P7-FIX stays the only active research candidate" in tod["archived"]["reason"]
+
+
+def test_an_unknown_status_is_not_accepted(tmp_path):
+    d = tmp_path / "candidates"
+    shutil.copytree(cd.DIR, d)
+    doc = json.loads((d / "P7-TOD.json").read_text(encoding="utf-8"))
+    doc["status"] = "promoted"
+    (d / "P7-TOD.json").write_text(json.dumps(doc), encoding="utf-8")
+    cd._cache.clear()
+    assert not cd.check(d)["unchanged"]
+    cd._cache.clear()
 
 
 def test_a_changed_rule_is_detected(tmp_path):
@@ -124,7 +139,8 @@ def test_api_is_read_only_and_says_what_a_candidate_is_not(tmp_path):
         r = c.get("/api/monthly/research-candidates")
         assert r.status_code == 200
         body = r.json()
-        assert [x["id"] for x in body["candidates"]] == ["P7-FIX", "P7-TOD"]
+        assert [x["id"] for x in body["candidates"]] == ["P7-FIX", "P7-TOD"] and body["active"] == ["P7-FIX"]
+        assert [x["status"] for x in body["candidates"]] == ["research candidate", "archived"]
         assert "not validated" in body["banner"] and "not a validation" in body["banner"]
         assert all(x["check"]["fingerprint_ok"] and x["check"]["matches_declaration"] for x in body["candidates"])
         for method in (c.post, c.put, c.delete):

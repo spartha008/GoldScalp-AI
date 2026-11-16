@@ -35,7 +35,7 @@
       <div class="stat"><div class="label">Build period</div><div class="value">13&ndash;16 Nov 2026</div></div>
       <div class="stat"><div class="label">Phases</div><div class="value">10 + audit, all concluded</div></div>
       <div class="stat"><div class="label">Phase 7</div><div class="value">Not started</div></div>
-      <div class="stat"><div class="label">Automated tests passing</div><div class="value">740</div></div>
+      <div class="stat"><div class="label">Automated tests passing</div><div class="value">741</div></div>
       <div class="stat"><div class="label">Pages</div><div class="value">8</div></div>
       <div class="stat"><div class="label">Running now</div><div class="value">3 paper monitors, 1 demo link</div></div>
       <div class="stat"><div class="label">Edge that held up out of sample</div><div class="value">None found</div></div>
@@ -400,7 +400,7 @@
               <div><h4>GitHub</h4><div class="result-box">
                 <span class="small">Commit <code>1ff3899</code>, &ldquo;GoldScalp AI: Phases 1-6, research archive and forward-data guard&rdquo;, pushed to the public repository <code>spartha008/GoldScalp-AI</code> (branch <code>main</code>) at 19:11 UTC.</span>
                 <span class="small">Kept local by <code>.gitignore</code>: <code>.env</code>, every database, the raw export CSV files (broker data) and the archive database snapshots. Their hashes are published, so a local copy can be verified.</span>
-                <span class="small">When this page was updated, everything after that commit (the pre-Phase 7 screen, the research candidates, the P7-FIX versions, the order ticket and this page) was still local and uncommitted.</span>
+                <span class="small">Commit <code>4f740a0</code>, &ldquo;GoldScalp AI: pre-Phase 7 research, P7-FIX on MT5 demo, Dashboard order ticket&rdquo;, pushed to <code>main</code> on 16 November with everything after <code>1ff3899</code>: the pre-Phase 7 screen, the research candidates, the P7-FIX versions, the order ticket and this page. No co-author line.</span>
               </div></div>
             </div>
             <div class="docs"><code>data/mt5_exports/README.md</code><code>data/mt5_exports/MANIFEST.json</code></div>
@@ -435,12 +435,12 @@
         <section class="panel">
           <header><span class="id">Candidates</span><h2>Research candidates P7-FIX and P7-TOD, and their Strategy Lab forms</h2><span class="spacer"></span><span class="when">16 Nov 2026</span><span class="chip info">not validated</span></header>
           <div class="body">
-            <p class="lede">The two rule sets that met the declared 10-day screen rule were registered as research candidates, exactly as screened. Later the same day, at the owner's request, they were given a Strategy Lab form so they can be backtested and monitored.</p>
+            <p class="lede">The two rule sets that met the declared 10-day screen rule were registered as research candidates, exactly as screened. Later the same day, at the owner's request, they were given a Strategy Lab form so they can be backtested and monitored. At the owner's request P7-FIX is now the only active candidate: P7-TOD and its two Strategy Lab legs were archived on 16 November (records kept, nothing deleted).</p>
             <div class="phase-cols">
               <div><h4>What was added</h4><ul>
                 <li>Research candidates (Monthly Backtest, step 6): <code>config/research/candidates/P7-FIX.json</code> and <code>P7-TOD.json</code>, each with its source, original and screened rules, a fingerprint, its evidence, caveats and restrictions. <code>python -m goldscalp.research.candidates --check</code> confirms the rules are unchanged, and <code>--reproduce</code> matched the stored evidence exactly.</li>
                 <li>Two additions to the strategy builder: a <strong>clock-time</strong> condition (true in the minutes after listed times, in UTC, New York or London time, so daylight saving is followed) and a stop type <strong>none</strong>, which cannot be combined with an R-multiple target, break-even or a trailing stop. Every existing strategy's fingerprint is unchanged.</li>
-                <li>Strategy Lab forms (<code>LAB_STRATEGIES.json</code>): P7-FIX v1 as screened (no stop), P7-FIX v2 with a protective stop of 3 &times; ATR(14) on M15, and the long and short legs of P7-TOD. On the screen window the forms place exactly the screened trades (20 of 20).</li>
+                <li>Strategy Lab forms (<code>LAB_STRATEGIES.json</code>): P7-FIX v1 as screened (no stop), P7-FIX v2 with a protective stop of 3 &times; ATR(14) on M15, and the long and short legs of P7-TOD (archived on 16 November). On the screen window the forms place exactly the screened trades (20 of 20).</li>
               </ul></div>
               <div><h4>P7-FIX over all of 2026</h4><div class="result-box">
                 <span><b>Not stable across the year.</b> The rule as registered, on 1 January &ndash; 29 May and 22 June &ndash; 13 November 2026: data research had already used, run after registration, so exploratory.</span>
@@ -582,7 +582,7 @@
           <thead><tr><th scope="col">Strategy</th><th scope="col">What it is</th><th scope="col">How it did</th><th scope="col">Verdict</th></tr></thead>
           <tbody>
         <tr><td class="s">P7-FIX</td><td class="wrap">Short gold in the half hours around the two London fixes (05:05 and 09:35 New York), closed after 30 minutes; no stop</td><td class="wrap">10-day screen +0.216 (20); 11 weeks +0.202 (110), both windows positive; all of 2026 +0.063 (420), negative in January&ndash;June; nominal R</td><td><span class="chip info">research candidate</span></td></tr>
-        <tr><td class="s">P7-TOD</td><td class="wrap">Long 11:00 to 02:00 New York, short 02:00 to 11:00; no stop</td><td class="wrap">10-day screen +0.646 (20); 11 weeks +0.009 (110) and &minus;$326: not supported; nominal R</td><td><span class="chip info">research candidate</span></td></tr>
+        <tr><td class="s">P7-TOD</td><td class="wrap">Long 11:00 to 02:00 New York, short 02:00 to 11:00; no stop</td><td class="wrap">10-day screen +0.646 (20); 11 weeks +0.009 (110) and &minus;$326: not supported; nominal R</td><td><span class="chip muted">archived</span></td></tr>
           </tbody>
         </table></div>
         <p class="small muted">Registered on 16 November 2026 because they met the declared 10-day screen rule. The same day each was given a Strategy Lab form, and at the owner's request P7-FIX v2, v3 and v4 are monitored and v3 is linked to the MT5 demo account (<a href="#pfixdemo">P7-FIX on demo</a>); that is observation, not validation. The other 16 screened rule sets are in <code>PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md</code>.</p>
@@ -612,6 +612,7 @@
       <div class="principle cand-col"><b>What Phase 7 inherits</b>
         <span><b>Tools:</b> the forward-data guard and its unlock-protocol format (not yet wired to any endpoint), the research library, the candidate registry, the indicator library and rule simulator, and the builder's clock-time condition and stop type none.</span>
         <span><b>Ideas:</b> the stage 2 shortlist (P7-FIX, P7-ARBG, P7-HALF, P7-PCTB) and its suggested order, none of it started: re-run on January&ndash;May 2026 (spent, but a different market), freeze the rules of whatever survives, then test once on forward data under a registered unlock protocol.</span>
+        <span><b>Active research candidate:</b> P7-FIX only. P7-TOD was archived on 16 November at the owner's request.</span>
         <span><b>Evidence in progress:</b> P7-FIX's paper and demo record from 16 November, which is observation, not validation.</span>
         <span><b>Benchmarks:</b> the 883 archived versions, as documented controls only.</span>
       </div>
@@ -643,7 +644,7 @@
         <tr><td><code>FORWARD_DATA_GUARD_REPORT.md</code></td><td class="wrap">The forward-data guard: boundary, design, endpoints, tests and the restart checks</td></tr>
         <tr><td><code>data/mt5_exports/README.md</code>, <code>data/mt5_exports/MANIFEST.json</code></td><td class="wrap">The manual MT5 exports behind the research and their hashes (the CSV files stay local)</td></tr>
         <tr><td><code>PRE_PHASE_7_EXTERNAL_STRATEGY_RESEARCH_REPORT.md</code></td><td class="wrap">Pre-Phase 7 stage 1: sources, the 14 concepts and the first screen</td></tr>
-        <tr><td><code>PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md</code></td><td class="wrap">Stage 2 tools and screen; sections 10&ndash;12: the research candidates, their Strategy Lab forms, the 2026 history and P7-FIX v2&ndash;v4 on paper and demo</td></tr>
+        <tr><td><code>PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md</code></td><td class="wrap">Stage 2 tools and screen; sections 10&ndash;13: the research candidates, their Strategy Lab forms, the 2026 history, P7-FIX v2&ndash;v4 on paper and demo, and P7-TOD archived</td></tr>
         <tr><td><code>config/research/candidates/</code>, <code>research/pre_phase7/</code></td><td class="wrap">The candidate files and Strategy Lab forms, and the stored screening results</td></tr>
       </tbody>
     </table></div>

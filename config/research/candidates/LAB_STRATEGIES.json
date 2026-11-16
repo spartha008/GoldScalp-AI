@@ -353,7 +353,11 @@
           },
           "fingerprint": "15d5609077b5839bacdb75e60ac57e4c186dca6ba02cc0ea36af6bbac078c0e3"
         }
-      ]
+      ],
+      "archived": {
+        "on": "2026-11-16",
+        "note": "archived in Strategy Lab with the candidate; versions kept"
+      }
     },
     {
       "key": "P7-TOD-SHORT",
@@ -424,7 +428,11 @@
           },
           "fingerprint": "1e33f22e5a9344478a9aa42be2abf95008552e34ae83ec1f09ede089f8e42930"
         }
-      ]
+      ],
+      "archived": {
+        "on": "2026-11-16",
+        "note": "archived in Strategy Lab with the candidate; versions kept"
+      }
     }
   ]
 }
