@@ -1,0 +1,44 @@
+{
+  "P7-FIX v1 vs screened": {
+    "bt1_trades": 20,
+    "screened_trades": 20,
+    "identical": true,
+    "largest_net_difference_usd": 0.0,
+    "bt1_net": 86.04,
+    "screened_net": 86.04
+  },
+  "P7-TOD legs vs screened": {
+    "bt1_trades": 20,
+    "screened_trades": 20,
+    "identical": true,
+    "largest_net_difference_usd": 0.0,
+    "bt1_net": 281.9,
+    "screened_net": 281.9
+  },
+  "P7-FIX v2 (protective stop), screen window": {
+    "trades": 20,
+    "win_rate": 0.8,
+    "sum_r": 2.122,
+    "expectancy_r": 0.1061,
+    "profit_factor": 2.106,
+    "max_dd_r": 1.006,
+    "net_usd": 85.77,
+    "expectancy_r_costs_x2": 0.0911,
+    "expectancy_r_costs_x3": 0.0762,
+    "exits": {
+      "time": 19,
+      "stop": 1
+    },
+    "stopped": [
+      [
+        "2026-10-16T13:35:00Z",
+        -42.27,
+        -1.006
+      ]
+    ]
+  },
+  "P7-FIX v1, screen window (bt@1)": {
+    "trades": 20,
+    "net_usd": 86.04
+  }
+}

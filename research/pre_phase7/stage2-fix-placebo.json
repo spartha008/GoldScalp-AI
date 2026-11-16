@@ -1,0 +1,491 @@
+{
+  "window": {
+    "start": "2026-08-17T00:00:00Z",
+    "end": "2026-10-31T00:00:00Z",
+    "note": "Supplementary, about 11 weeks of the same spent development series. Once-a-day rules cannot reach 15 trades in 10 trading days; this run shows more trades for them. It does not classify anything and is not validation."
+  },
+  "side": "short",
+  "hold_minutes": 30,
+  "note": "Exploratory placebo, run after the screen.",
+  "positive_windows": 18,
+  "windows": [
+    {
+      "enter_new_york": "00:05",
+      "trades": 55,
+      "net_usd_per_trade": 0.41,
+      "t_stat": 0.31,
+      "win_rate": 0.509,
+      "expectancy_r": 0.013,
+      "cost_usd_per_trade": 0.76,
+      "rank": 14
+    },
+    {
+      "enter_new_york": "00:35",
+      "trades": 55,
+      "net_usd_per_trade": -1.84,
+      "t_stat": -1.68,
+      "win_rate": 0.4,
+      "expectancy_r": -0.0584,
+      "cost_usd_per_trade": 0.76,
+      "rank": 35
+    },
+    {
+      "enter_new_york": "01:05",
+      "trades": 55,
+      "net_usd_per_trade": -0.23,
+      "t_stat": -0.11,
+      "win_rate": 0.564,
+      "expectancy_r": 0.0206,
+      "cost_usd_per_trade": 0.76,
+      "rank": 21
+    },
+    {
+      "enter_new_york": "01:35",
+      "trades": 55,
+      "net_usd_per_trade": 0.54,
+      "t_stat": 0.24,
+      "win_rate": 0.564,
+      "expectancy_r": 0.0531,
+      "cost_usd_per_trade": 0.76,
+      "rank": 13
+    },
+    {
+      "enter_new_york": "02:05",
+      "trades": 55,
+      "net_usd_per_trade": -0.71,
+      "t_stat": -0.41,
+      "win_rate": 0.455,
+      "expectancy_r": -0.0251,
+      "cost_usd_per_trade": 0.76,
+      "rank": 26
+    },
+    {
+      "enter_new_york": "02:35",
+      "trades": 55,
+      "net_usd_per_trade": -4.23,
+      "t_stat": -2.57,
+      "win_rate": 0.327,
+      "expectancy_r": -0.2014,
+      "cost_usd_per_trade": 0.76,
+      "rank": 46
+    },
+    {
+      "enter_new_york": "03:05",
+      "trades": 55,
+      "net_usd_per_trade": -0.51,
+      "t_stat": -0.29,
+      "win_rate": 0.473,
+      "expectancy_r": -0.0374,
+      "cost_usd_per_trade": 0.76,
+      "rank": 24
+    },
+    {
+      "enter_new_york": "03:35",
+      "trades": 55,
+      "net_usd_per_trade": 0.64,
+      "t_stat": 0.35,
+      "win_rate": 0.509,
+      "expectancy_r": 0.0288,
+      "cost_usd_per_trade": 0.76,
+      "rank": 12
+    },
+    {
+      "enter_new_york": "04:05",
+      "trades": 54,
+      "net_usd_per_trade": 2.05,
+      "t_stat": 0.91,
+      "win_rate": 0.537,
+      "expectancy_r": 0.0829,
+      "cost_usd_per_trade": 0.76,
+      "rank": 8
+    },
+    {
+      "enter_new_york": "04:35",
+      "trades": 55,
+      "net_usd_per_trade": 0.35,
+      "t_stat": 0.23,
+      "win_rate": 0.6,
+      "expectancy_r": 0.0164,
+      "cost_usd_per_trade": 0.76,
+      "rank": 16
+    },
+    {
+      "enter_new_york": "05:05",
+      "trades": 55,
+      "net_usd_per_trade": 3.84,
+      "t_stat": 2.92,
+      "win_rate": 0.636,
+      "expectancy_r": 0.174,
+      "cost_usd_per_trade": 0.76,
+      "rank": 2
+    },
+    {
+      "enter_new_york": "05:35",
+      "trades": 55,
+      "net_usd_per_trade": -1.16,
+      "t_stat": -0.65,
+      "win_rate": 0.455,
+      "expectancy_r": -0.0323,
+      "cost_usd_per_trade": 0.76,
+      "rank": 31
+    },
+    {
+      "enter_new_york": "06:05",
+      "trades": 54,
+      "net_usd_per_trade": -2.37,
+      "t_stat": -1.36,
+      "win_rate": 0.426,
+      "expectancy_r": -0.0941,
+      "cost_usd_per_trade": 0.76,
+      "rank": 39
+    },
+    {
+      "enter_new_york": "06:35",
+      "trades": 55,
+      "net_usd_per_trade": -3.12,
+      "t_stat": -1.96,
+      "win_rate": 0.382,
+      "expectancy_r": -0.1518,
+      "cost_usd_per_trade": 0.76,
+      "rank": 42
+    },
+    {
+      "enter_new_york": "07:05",
+      "trades": 55,
+      "net_usd_per_trade": -2.13,
+      "t_stat": -1.35,
+      "win_rate": 0.418,
+      "expectancy_r": -0.104,
+      "cost_usd_per_trade": 0.76,
+      "rank": 37
+    },
+    {
+      "enter_new_york": "07:35",
+      "trades": 55,
+      "net_usd_per_trade": -0.92,
+      "t_stat": -0.43,
+      "win_rate": 0.418,
+      "expectancy_r": -0.0457,
+      "cost_usd_per_trade": 0.76,
+      "rank": 28
+    },
+    {
+      "enter_new_york": "08:05",
+      "trades": 55,
+      "net_usd_per_trade": 3.53,
+      "t_stat": 0.78,
+      "win_rate": 0.582,
+      "expectancy_r": 0.2352,
+      "cost_usd_per_trade": 0.76,
+      "rank": 3
+    },
+    {
+      "enter_new_york": "08:35",
+      "trades": 55,
+      "net_usd_per_trade": -2.24,
+      "t_stat": -0.57,
+      "win_rate": 0.545,
+      "expectancy_r": -0.0688,
+      "cost_usd_per_trade": 0.76,
+      "rank": 38
+    },
+    {
+      "enter_new_york": "09:05",
+      "trades": 55,
+      "net_usd_per_trade": -1.87,
+      "t_stat": -0.58,
+      "win_rate": 0.509,
+      "expectancy_r": -0.0374,
+      "cost_usd_per_trade": 0.76,
+      "rank": 36
+    },
+    {
+      "enter_new_york": "09:35",
+      "trades": 55,
+      "net_usd_per_trade": 5.73,
+      "t_stat": 1.88,
+      "win_rate": 0.636,
+      "expectancy_r": 0.2299,
+      "cost_usd_per_trade": 0.76,
+      "rank": 1
+    },
+    {
+      "enter_new_york": "10:05",
+      "trades": 55,
+      "net_usd_per_trade": -4.13,
+      "t_stat": -1.34,
+      "win_rate": 0.436,
+      "expectancy_r": -0.1195,
+      "cost_usd_per_trade": 0.76,
+      "rank": 45
+    },
+    {
+      "enter_new_york": "10:35",
+      "trades": 55,
+      "net_usd_per_trade": -0.71,
+      "t_stat": -0.22,
+      "win_rate": 0.491,
+      "expectancy_r": -0.0522,
+      "cost_usd_per_trade": 0.76,
+      "rank": 27
+    },
+    {
+      "enter_new_york": "11:05",
+      "trades": 55,
+      "net_usd_per_trade": -0.47,
+      "t_stat": -0.22,
+      "win_rate": 0.418,
+      "expectancy_r": -0.0173,
+      "cost_usd_per_trade": 0.76,
+      "rank": 23
+    },
+    {
+      "enter_new_york": "11:35",
+      "trades": 55,
+      "net_usd_per_trade": 2.14,
+      "t_stat": 0.92,
+      "win_rate": 0.545,
+      "expectancy_r": 0.058,
+      "cost_usd_per_trade": 0.76,
+      "rank": 6
+    },
+    {
+      "enter_new_york": "12:05",
+      "trades": 55,
+      "net_usd_per_trade": 2.11,
+      "t_stat": 0.82,
+      "win_rate": 0.564,
+      "expectancy_r": 0.0355,
+      "cost_usd_per_trade": 0.76,
+      "rank": 7
+    },
+    {
+      "enter_new_york": "12:35",
+      "trades": 55,
+      "net_usd_per_trade": -1.56,
+      "t_stat": -1.05,
+      "win_rate": 0.473,
+      "expectancy_r": -0.0553,
+      "cost_usd_per_trade": 0.76,
+      "rank": 33
+    },
+    {
+      "enter_new_york": "13:05",
+      "trades": 55,
+      "net_usd_per_trade": -0.97,
+      "t_stat": -0.69,
+      "win_rate": 0.418,
+      "expectancy_r": -0.0495,
+      "cost_usd_per_trade": 0.76,
+      "rank": 29
+    },
+    {
+      "enter_new_york": "13:35",
+      "trades": 55,
+      "net_usd_per_trade": 0.89,
+      "t_stat": 0.44,
+      "win_rate": 0.491,
+      "expectancy_r": 0.0126,
+      "cost_usd_per_trade": 0.76,
+      "rank": 10
+    },
+    {
+      "enter_new_york": "14:05",
+      "trades": 55,
+      "net_usd_per_trade": 3.29,
+      "t_stat": 1.43,
+      "win_rate": 0.582,
+      "expectancy_r": 0.1101,
+      "cost_usd_per_trade": 0.76,
+      "rank": 4
+    },
+    {
+      "enter_new_york": "14:35",
+      "trades": 54,
+      "net_usd_per_trade": 0.08,
+      "t_stat": 0.04,
+      "win_rate": 0.463,
+      "expectancy_r": 0.0,
+      "cost_usd_per_trade": 0.76,
+      "rank": 18
+    },
+    {
+      "enter_new_york": "15:05",
+      "trades": 53,
+      "net_usd_per_trade": -4.07,
+      "t_stat": -2.17,
+      "win_rate": 0.396,
+      "expectancy_r": -0.1581,
+      "cost_usd_per_trade": 0.76,
+      "rank": 44
+    },
+    {
+      "enter_new_york": "15:35",
+      "trades": 54,
+      "net_usd_per_trade": -1.1,
+      "t_stat": -0.71,
+      "win_rate": 0.519,
+      "expectancy_r": -0.0369,
+      "cost_usd_per_trade": 0.76,
+      "rank": 30
+    },
+    {
+      "enter_new_york": "16:05",
+      "trades": 54,
+      "net_usd_per_trade": 2.8,
+      "t_stat": 2.27,
+      "win_rate": 0.685,
+      "expectancy_r": 0.0967,
+      "cost_usd_per_trade": 0.86,
+      "rank": 5
+    },
+    {
+      "enter_new_york": "16:35",
+      "trades": 54,
+      "net_usd_per_trade": -3.68,
+      "t_stat": -2.62,
+      "win_rate": 0.222,
+      "expectancy_r": -0.1936,
+      "cost_usd_per_trade": 0.86,
+      "rank": 43
+    },
+    {
+      "enter_new_york": "17:05",
+      "trades": 0,
+      "net_usd_per_trade": null,
+      "t_stat": null,
+      "win_rate": null,
+      "expectancy_r": null,
+      "cost_usd_per_trade": null
+    },
+    {
+      "enter_new_york": "17:35",
+      "trades": 0,
+      "net_usd_per_trade": null,
+      "t_stat": null,
+      "win_rate": null,
+      "expectancy_r": null,
+      "cost_usd_per_trade": null
+    },
+    {
+      "enter_new_york": "18:05",
+      "trades": 54,
+      "net_usd_per_trade": -0.01,
+      "t_stat": -0.01,
+      "win_rate": 0.556,
+      "expectancy_r": 0.0118,
+      "cost_usd_per_trade": 0.76,
+      "rank": 19
+    },
+    {
+      "enter_new_york": "18:35",
+      "trades": 54,
+      "net_usd_per_trade": -0.51,
+      "t_stat": -0.42,
+      "win_rate": 0.481,
+      "expectancy_r": 0.0042,
+      "cost_usd_per_trade": 0.76,
+      "rank": 25
+    },
+    {
+      "enter_new_york": "19:05",
+      "trades": 54,
+      "net_usd_per_trade": -0.29,
+      "t_stat": -0.21,
+      "win_rate": 0.5,
+      "expectancy_r": -0.0226,
+      "cost_usd_per_trade": 0.76,
+      "rank": 22
+    },
+    {
+      "enter_new_york": "19:35",
+      "trades": 54,
+      "net_usd_per_trade": -0.01,
+      "t_stat": -0.01,
+      "win_rate": 0.556,
+      "expectancy_r": 0.0107,
+      "cost_usd_per_trade": 0.76,
+      "rank": 20
+    },
+    {
+      "enter_new_york": "20:05",
+      "trades": 55,
+      "net_usd_per_trade": 0.96,
+      "t_stat": 0.39,
+      "win_rate": 0.509,
+      "expectancy_r": 0.0522,
+      "cost_usd_per_trade": 0.76,
+      "rank": 9
+    },
+    {
+      "enter_new_york": "20:35",
+      "trades": 55,
+      "net_usd_per_trade": -2.42,
+      "t_stat": -1.0,
+      "win_rate": 0.509,
+      "expectancy_r": -0.1098,
+      "cost_usd_per_trade": 0.76,
+      "rank": 40
+    },
+    {
+      "enter_new_york": "21:05",
+      "trades": 55,
+      "net_usd_per_trade": -2.53,
+      "t_stat": -0.97,
+      "win_rate": 0.509,
+      "expectancy_r": -0.1244,
+      "cost_usd_per_trade": 0.76,
+      "rank": 41
+    },
+    {
+      "enter_new_york": "21:35",
+      "trades": 55,
+      "net_usd_per_trade": 0.77,
+      "t_stat": 0.29,
+      "win_rate": 0.527,
+      "expectancy_r": 0.0373,
+      "cost_usd_per_trade": 0.76,
+      "rank": 11
+    },
+    {
+      "enter_new_york": "22:05",
+      "trades": 55,
+      "net_usd_per_trade": -1.66,
+      "t_stat": -0.7,
+      "win_rate": 0.473,
+      "expectancy_r": -0.1058,
+      "cost_usd_per_trade": 0.76,
+      "rank": 34
+    },
+    {
+      "enter_new_york": "22:35",
+      "trades": 55,
+      "net_usd_per_trade": -1.34,
+      "t_stat": -0.58,
+      "win_rate": 0.436,
+      "expectancy_r": -0.0903,
+      "cost_usd_per_trade": 0.76,
+      "rank": 32
+    },
+    {
+      "enter_new_york": "23:05",
+      "trades": 55,
+      "net_usd_per_trade": 0.4,
+      "t_stat": 0.26,
+      "win_rate": 0.436,
+      "expectancy_r": 0.0261,
+      "cost_usd_per_trade": 0.76,
+      "rank": 15
+    },
+    {
+      "enter_new_york": "23:35",
+      "trades": 55,
+      "net_usd_per_trade": 0.29,
+      "t_stat": 0.17,
+      "win_rate": 0.545,
+      "expectancy_r": -0.0026,
+      "cost_usd_per_trade": 0.76,
+      "rank": 17
+    }
+  ]
+}

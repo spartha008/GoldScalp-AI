@@ -1,0 +1,116 @@
+{
+  "definition": "research-candidate@1",
+  "id": "P7-FIX",
+  "name": "Short before the London fixes",
+  "status": "research candidate",
+  "registered": "2026-11-16",
+  "origin": {
+    "stage": "Pre-Phase 7 screen, stage 2",
+    "declaration": "config/research/pre_phase7/candidates_stage2.json",
+    "screen_classification": "WORTH FURTHER RESEARCH",
+    "why": [
+      "+0.216 R/trade over 20 trades, PF 2.113, passes every screen"
+    ],
+    "report": "PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md"
+  },
+  "source": "Donati & Jung 2019 (same thesis); context: Caminschi & Heaney, Journal of Futures Markets 2014",
+  "original_rules": "Short 05:05-05:35 and 09:35-10:05 New York time (around the AM and PM London fixes). No stops.",
+  "implementation": "As stated, in New York time.",
+  "deviations": [
+    "London and New York change clocks on different dates; the thesis's New York times were kept.",
+    "No stop in the source: nominal R."
+  ],
+  "rule": "clock_trades",
+  "params": {
+    "tz": "America/New_York",
+    "trades": [
+      {
+        "enter": "05:05",
+        "side": "short",
+        "exit": "05:35",
+        "tag": "AM fix"
+      },
+      {
+        "enter": "09:35",
+        "side": "short",
+        "exit": "10:05",
+        "tag": "PM fix"
+      }
+    ]
+  },
+  "fingerprint": "1addb63f0512de11907802c83d63b0f0ca302bdf94b30ee03478849c4ce581da",
+  "execution": {
+    "simulator": "goldscalp.research.rulesim",
+    "bars": "M5 bid candles",
+    "lots": "0.02",
+    "costs": "frozen Phase 5 cost model: candle spread (0.30 fallback), commission 3.50 USD/lot/side, slippage 0.05 USD per fill",
+    "stop": "none in the source",
+    "r_unit": "The source has no stop: R is a NOMINAL unit of 1.5 x ATR(14) on M15 at entry (GoldScalp's default ATR stop size). Marked nominal; USD results are always reported too."
+  },
+  "evidence_at_registration": {
+    "screen": {
+      "trades": 20,
+      "win_rate": 0.8,
+      "expectancy_r": 0.2157,
+      "profit_factor": 2.113,
+      "sum_r": 4.313,
+      "max_dd_r": 2.023,
+      "net_usd": 86.04,
+      "expectancy_r_costs_x2": 0.1854,
+      "expectancy_r_costs_x3": 0.1551,
+      "usd_per_trade": 4.3,
+      "days_traded": 10,
+      "positive_days": 7,
+      "sum_r_without_best_day": 2.075,
+      "nominal_r": true,
+      "range": {
+        "start": "2026-10-05T00:00:00Z",
+        "end": "2026-10-19T00:00:00Z",
+        "note": "The same 14 calendar days (10 trading days) as stage 1. Classification uses this window only."
+      },
+      "delayed_expectancy_r": 0.2273
+    },
+    "context": {
+      "trades": 110,
+      "win_rate": 0.6364,
+      "expectancy_r": 0.2019,
+      "profit_factor": 2.174,
+      "sum_r": 22.213,
+      "max_dd_r": 3.6,
+      "net_usd": 526.4,
+      "expectancy_r_costs_x2": 0.1754,
+      "expectancy_r_costs_x3": 0.1488,
+      "usd_per_trade": 4.79,
+      "days_traded": 55,
+      "positive_days": 37,
+      "sum_r_without_best_day": 19.603,
+      "nominal_r": true,
+      "range": {
+        "start": "2026-08-17T00:00:00Z",
+        "end": "2026-10-31T00:00:00Z",
+        "note": "Supplementary, about 11 weeks of the same spent development series. Once-a-day rules cannot reach 15 trades in 10 trading days; this run shows more trades for them. It does not classify anything and is not validation."
+      }
+    },
+    "note": "Both windows are development data. The context window contains the screen days."
+  },
+  "assessment": "The most consistent result of the screen. It passed the 10-day screen, held over the 11-week context run in both its morning and afternoon windows, and its two half hours ranked 1st and 2nd of 46 in a placebo test. A longer run over 2026, made after registration, was much weaker: it lost money in January to June.",
+  "caveats": [
+    "Short-only, and gold fell about 11 % over the 11 weeks.",
+    "Not stable across 2026: over 1 January to 13 November (420 trades) it made +0.063 nominal R per trade, but lost $168 over 224 trades in January to June and made $774 over 196 trades from July.",
+    "Most of the 2026 result is the morning fix; the afternoon fix is about break-even once costs are doubled.",
+    "Almost flat in August, when the market was flat (+$14 over 22 trades).",
+    "The source reports the effect in some years only.",
+    "No stop in the source: the risk per trade is undefined, and R is a nominal unit."
+  ],
+  "next_questions": [
+    "Does it survive a rising market (for example January-May 2026, already-used data)?",
+    "What stop gives a defined risk without changing the idea?"
+  ],
+  "restrictions": [
+    "Screening only: not validated, not shown to be profitable, not trading-ready.",
+    "Its Strategy Lab form (LAB_STRATEGIES.json) was added on 16 November 2026 at the owner's request. Live or demo results of that form are not a validation of this candidate.",
+    "The rules are frozen as screened. A changed rule is a new candidate with a new id.",
+    "Development data already used for it: all 2026 history before the forward boundary (1 January to 29 May and 22 June to 13 November 2026). None of it is validation data.",
+    "Any validation must use data research has not touched (forward data from 14 November 2026) under a registered, frozen protocol."
+  ]
+}

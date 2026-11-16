@@ -166,7 +166,7 @@ def plan_trade(config: dict[str, Any], side: str, snap: dict[str, Any], bid: Dec
     tick = Decimal(10) ** -int(spec.price_decimals)            # paper SL/TP levels on the instrument's price grid
     stop = None if stop is None else stop.quantize(tick)
     target = None if target is None else target.quantize(tick)
-    return {"side": side_e.value, "entry_estimate": str(round(entry, 3)),
+    plan = {"side": side_e.value, "entry_estimate": str(round(entry, 3)),
             "entry_assumption": f"simulated market fill at the {'ask' if side_e is Side.BUY else 'bid'} plus the paper "
                                 f"slippage {slippage} when the cut-off is processed",
             "stop": None if stop is None else str(stop), "stop_source": stop_source,
@@ -176,6 +176,10 @@ def plan_trade(config: dict[str, Any], side: str, snap: dict[str, Any], bid: Dec
             "max_holding_minutes": config["exit"]["max_holding_minutes"],
             "exit_on_structure_flip": config["exit"]["exit_on_structure_flip"],
             "max_entry_delay_minutes": config["entry"]["max_entry_delay_minutes"]}
+    be = config["exit"].get("breakeven") or {}
+    if be.get("enabled"):                                     # only then: plans without break-even are unchanged
+        plan["breakeven"] = {"trigger_r": be["trigger_r"], "lock_r": be["lock_r"]}
+    return plan
 
 
 class _Q:
@@ -193,6 +197,10 @@ def invalidation(plan: dict[str, Any], side: str) -> list[dict[str, Any]]:
         px = "bid" if side == "long" else "ask"
         cmp = "at or below" if side == "long" else "at or above"
         out.append({"kind": "stop", "evidence": f"a {px} {cmp} {plan['stop']} invalidates the setup ({plan['stop_source']})"})
+    be = plan.get("breakeven")
+    if be:
+        lock = f" + {be['lock_r']}R" if be["lock_r"] else ""
+        out.append({"kind": "breakeven", "evidence": f"after +{be['trigger_r']}R in its favour the stop moves to the entry{lock}"})
     if plan.get("max_holding_minutes"):
         out.append({"kind": "time", "evidence": f"unresolved after {plan['max_holding_minutes']} minutes: time exit"})
     flip = plan.get("exit_on_structure_flip") or {}
@@ -261,6 +269,7 @@ class LiveMonitor:
                     self.last_error = f"monitored {m['id']}: {type(exc).__name__}: {exc}"
                     log.exception("monitor step failed for monitored strategy %s", m["id"])
             self.on_quote_excursions(now)
+            self._manage_breakeven(now)
             self._manage_open_trades(now)
             if self.demo is not None:
                 try:
@@ -555,6 +564,42 @@ class LiveMonitor:
                 live_repo.update_excursions(con, t["id"], str(max(mfe, fav)), str(max(mae, adv)),
                                             t["close_time"] if fav > mfe else t["mfe_at"],
                                             t["close_time"] if adv > mae else t["mae_at"])
+
+    def _manage_breakeven(self, now: datetime) -> None:
+        """The break-even stop of the backtest engine (engine.run, manage): once a trade's MFE reaches trigger_r times
+        its risk per ounce (the fill to the initial stop), the SIMULATED stop moves to the fill plus lock_r times that
+        risk (BUY; minus for SELL). Stops only ever tighten. The backtest moves it at a bar close; here it moves on the
+        next monitor cycle. If the price is already back through the level, the position is closed at once, as the
+        backtest's stop would fill on the next bar."""
+        with self.gs.db.read() as con:
+            open_trades = live_repo.trades(con, status="open")
+        tick = Decimal(10) ** -int(self.gs.spec.price_decimals)
+        for t in open_trades:
+            be = (t.get("plan") or {}).get("breakeven")
+            if not be or t["position_status"] != "open" or not t["plan"].get("stop"):
+                continue
+            entry, initial = Decimal(t["open_price"]), Decimal(t["plan"]["stop"])
+            risk = abs(entry - initial)
+            if not risk or Decimal(t["mfe"]) < Decimal(str(be["trigger_r"])) * risk:
+                continue
+            lock = Decimal(str(be["lock_r"])) * risk
+            buy = t["side"] == "buy"
+            level = (entry + lock if buy else entry - lock).quantize(tick)
+            current = Decimal(str(t["stop_loss"])) if t["stop_loss"] is not None else None
+            if current is not None and (current >= level if buy else current <= level):
+                continue                                        # already at or beyond the break-even level
+            why = f"MFE {t['mfe']} reached +{be['trigger_r']}R ({risk.quantize(tick)} per oz): stop moved to {level}"
+            try:
+                self.gs.engine.modify_protection(t["position_id"], level, t["take_profit"], account_id=t["account_id"])
+            except OrderRejected as exc:
+                if self._close(t, CloseReason.STOP_LOSS, now, f"break-even: {why}, but the price is already back "
+                                                              f"through it ({exc})"):
+                    with self.gs.db.transaction() as con:
+                        live_repo.append_check(con, t["id"], {"at": iso(now), "breakeven": str(level), "why": why,
+                                                              "closed_at_once": True})
+                continue
+            with self.gs.db.transaction() as con:
+                live_repo.append_check(con, t["id"], {"at": iso(now), "breakeven": str(level), "why": why})
 
     def _manage_open_trades(self, now: datetime) -> None:
         with self.gs.db.read() as con:

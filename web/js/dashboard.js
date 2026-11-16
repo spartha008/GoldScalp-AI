@@ -8,6 +8,7 @@ import {
   renderVolatility, signalBadge,
 } from "./intel-panels.js";
 import { subscribeQuotes } from "./market-stream.js";
+import { initTicket, ticketQuote } from "./ticket.js";
 import { initTradingView } from "./tradingview.js";
 import {
   announce, clear, el, fmtAge, fmtMoney, fmtPrice, fmtTime, kindBadge, num, pnlClass, setDisplayZone, setText,
@@ -28,6 +29,7 @@ function renderQuote(envelope) {
   const snap = envelope && envelope.data;
   if (!snap) return;
   state.snapshot = snap;
+  ticketQuote(snap);                                  // MT5 demo order ticket: live estimates and position P/L
   const q = snap.quote;
   document.getElementById("mkt-state").replaceChildren(stateBadge(snap.state));
   document.getElementById("top-state").replaceChildren(stateBadge(snap.state));
@@ -475,6 +477,7 @@ async function main() {
     setText("chart-zone", `Times shown in ${config.display_timezone || "UTC"}`);
   } catch (_) { /* defaults */ }
   subscribeQuotes(renderQuote, (t) => setText("mkt-transport", t === "stream" ? "live updates (SSE)" : t));
+  initTicket(() => state.chart);
   try { initTradingView(config); } catch (_) { /* optional panel stays hidden */ }
   await refreshSeriesList();
   await refreshCandles();

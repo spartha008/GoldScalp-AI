@@ -26,8 +26,10 @@ from goldscalp.core.config import PROJECT_ROOT
 router = APIRouter(prefix="/api/monthly/library")
 DEFINITION = "library@1"
 REPORTS = PROJECT_ROOT / "var" / "monthly" / "reports"
+PRE7 = PROJECT_ROOT / "research" / "pre_phase7"
 DOCS_ROOT = PROJECT_ROOT
-ROOT_DOCS = ("PHASE_5_IMPLEMENTATION_REPORT.md", "PHASE_5_2_RESEARCH_REPORT.md", "PHASE_5_3_VALIDATION_REPORT.md",
+ROOT_DOCS = ("PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md", "PRE_PHASE_7_EXTERNAL_STRATEGY_RESEARCH_REPORT.md",
+             "PHASE_5_IMPLEMENTATION_REPORT.md", "PHASE_5_2_RESEARCH_REPORT.md", "PHASE_5_3_VALIDATION_REPORT.md",
              "PHASE_6_PROTOCOL.md", "PHASE_6_H64_REGISTRATION.md")
 METRICS = ("trades", "win_rate", "sum_r", "expectancy_r", "profit_factor", "max_dd_r", "net_usd",
            "expectancy_r_costs_x2", "expectancy_r_costs_x3", "max_dd_pct", "return_pct")
@@ -326,9 +328,86 @@ def documents(root: Path | None = None, reports: Path | None = None) -> list[dic
     return [meta for meta, _ in _doc_files(root, reports)]
 
 
-def build(con: sqlite3.Connection, reports: Path | None = None) -> dict[str, Any]:
+# ------------------------------------------------------------------ Pre-Phase 7: external strategy screens
+def _months_from_trades(trades: list[dict[str, Any]], partial: set[str]) -> dict[str, dict[str, Any]]:
+    groups: dict[str, list[dict[str, Any]]] = {}
+    for t in trades:
+        groups.setdefault(t["entry"][:7], []).append(t)
+    out = {}
+    for m, ts in groups.items():
+        rs = [t["r"] for t in ts if t.get("r") is not None]
+        out[m] = {"status": "COMPLETED", "trades": len(ts), "win_rate": round(sum(1 for t in ts if t["net"] > 0) / len(ts), 4),
+                  "sum_r": round(sum(rs), 3), "expectancy_r": round(sum(rs) / len(rs), 4) if rs else None,
+                  "profit_factor": None, "net_usd": round(sum(t["net"] for t in ts), 2), "partial": m in partial}
+    return out
+
+
+def _partial_months(start: str, end: str) -> set[str]:
+    """Months a window covers only in part (so the charts can mark them)."""
+    out = set()
+    if start[8:10] != "01":
+        out.add(start[:7])
+    if end[8:10] != "01":
+        out.add(end[:7])
+    return out
+
+
+def prephase7(pre7: Path) -> list[dict[str, Any]]:
+    """The pre-Phase 7 screens: stage 1 (strategy builder, bt@1) and stage 2 (rule simulator), screen and context."""
+    out = []
+    flags = ["development data", "screening only"]
+    s1 = _load(pre7 / "screening-results.json")
+    if isinstance(s1, dict) and "results" in s1:
+        w = s1["window"]
+        st = study("p7s1-screen", "P7", "Stage 1: 10-day screen (strategy builder)", status="COMPLETED", period=w["start"][:7],
+                   kind="screen", flags=flags, finished_at=s1.get("ran_at"), source="research/pre_phase7/screening-results.json",
+                   summary=f"Published concepts the strategy builder could express, {w['start'][:10]} to {w['end'][:10]}. "
+                           "A screen is not validation.")
+        partial = _partial_months(w["start"], w["end"])
+        for key, tfs in s1["results"].items():
+            cls = (s1.get("classifications") or {}).get(key) or {}
+            for tf, e in tfs.items():
+                st["results"].append(result(st, f"{key}|{tf}", f"{key} · {tf} · 10-day screen", strategy=key, timeframe=tf,
+                                            pooled=e["stats"], months=_months_from_trades(e["trades"], partial), role="screened rule set",
+                                            cls=cls.get("classification") if tf == "M5" else None,
+                                            why="; ".join(cls.get("why", [])) or None, scope="10-day screen, bt@1"))
+        out.append(st)
+    s2 = _load(pre7 / "stage2-results.json")
+    ctx = _load(pre7 / "stage2-builder-context.json")
+    if isinstance(s2, dict) and "results" in s2:
+        titles = {"screen": "Stage 2: 10-day screen (rule simulator)", "context": "Stage 2: 11-week context run"}
+        for wname in ("screen", "context"):
+            w = s2["windows"][wname]
+            st = study(f"p7s2-{wname}", "P7", titles[wname], status="COMPLETED", period=_span([w["start"][:7], w["end"][:7]]),
+                       kind="screen", flags=flags, finished_at=s2.get("ran_at"), source="research/pre_phase7/stage2-results.json",
+                       summary=w.get("note"))
+            partial = _partial_months(w["start"], w["end"])
+            for key, both in s2["results"].items():
+                e = both.get(wname)
+                if not e:
+                    continue
+                cls = (s2.get("classifications") or {}).get(key) or {}
+                st["results"].append(result(
+                    st, key, f"{key} · {'10-day screen' if wname == 'screen' else '11 weeks'}", strategy=key,
+                    timeframe=e.get("frame", "M5"), pooled=e["stats"],
+                    months=_months_from_trades(e["trades"], partial),
+                    role="baseline (market drift)" if key.startswith("BASE-") else "screened rule set",
+                    cls=cls.get("classification") if wname == "screen" else None,
+                    why="; ".join(cls.get("why", [])) or None,
+                    scope=f"{w['start'][:10]} to {w['end'][:10]}, rule simulator",
+                    extra={"flags": flags + (["nominal R (no stop)"] if e.get("nominal_r") else [])}))
+            if wname == "context" and isinstance(ctx, dict):
+                for key, e in ctx.get("results", {}).items():
+                    st["results"].append(result(st, f"{key}|bt1", f"{key} · 11 weeks (bt@1)", strategy=key, timeframe="M5", pooled=e["stats"],
+                                                months=_months_from_trades(e["trades"], partial),
+                                                role="stage 1 rule set or archived benchmark", scope="context window, bt@1 engine"))
+            out.append(st)
+    return out
+
+
+def build(con: sqlite3.Connection, reports: Path | None = None, pre7: Path | None = None) -> dict[str, Any]:
     reports = reports or REPORTS
-    studies = phase5(con) + phase52(con, reports) + phase53(reports) + phase6(con) + h64(con)
+    studies = phase5(con) + phase52(con, reports) + phase53(reports) + phase6(con) + h64(con) + prephase7(pre7 or PRE7)
     return {"definition": DEFINITION, "generated_at": datetime.now(UTC).isoformat().replace("+00:00", "Z"),
             "studies": studies, "results": sum(len(s["results"]) for s in studies),
             "documents": documents(reports=reports)}

@@ -452,6 +452,8 @@ def plan_stop_level(stop_cfg: dict[str, Any], side: Side, snap: dict[str, Any], 
     item = snap["tf"].get(stop_cfg["timeframe"]) or {}
     atr = (item.get("vol") or {}).get("atr")
     ref = item.get("ref_low") if side is Side.BUY else item.get("ref_high")
+    if stop_cfg["type"] == "none":                     # the rule has no stop: time limit / target / flip exits only
+        return None, "no stop (the rule has none)", atr
     if stop_cfg["type"] == "fixed":
         d = _d(stop_cfg["distance"])
         return (entry_bid - d if side is Side.BUY else entry_ask + d), f"fixed {stop_cfg['distance']}", atr

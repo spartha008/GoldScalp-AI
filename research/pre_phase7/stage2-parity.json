@@ -1,0 +1,32 @@
+{
+  "P7-ARB": {
+    "compared": 5,
+    "matched": 5,
+    "largest_net_difference_usd": 0.0,
+    "mismatches": []
+  },
+  "P7-PDF": {
+    "compared": 46,
+    "matched": 46,
+    "largest_net_difference_usd": 0.01,
+    "mismatches": []
+  },
+  "P7-EMA": {
+    "compared": 138,
+    "matched": 138,
+    "largest_net_difference_usd": 0.0,
+    "mismatches": []
+  },
+  "BASE-A2": {
+    "compared": 166,
+    "matched": 166,
+    "largest_net_difference_usd": 0.0,
+    "mismatches": []
+  },
+  "BASE-VOLC": {
+    "compared": 81,
+    "matched": 81,
+    "largest_net_difference_usd": 0.0,
+    "mismatches": []
+  }
+}

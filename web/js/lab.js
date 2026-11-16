@@ -118,6 +118,8 @@ function conditionCard(c, index) {
     } else if (p.kind === "tfs" || p.kind === "choices") {
       input = el("span", { class: "multi", id }, (p.choices || []).map((v) => el("label", { class: "check" }, [
         el("input", { type: "checkbox", value: v, checked: (c[name] || []).includes(v) }), ` ${v}`])));
+    } else if (p.kind === "times") {                     // clock times, comma-separated (HH:MM)
+      input = el("input", { type: "text", id, value: (c[name] || []).join(", "), placeholder: "09:30, 15:00", inputmode: "numeric" });
     } else {
       input = el("input", { type: "number", id, value: c[name] === null || c[name] === undefined ? "" : String(c[name]),
                             step: p.kind === "int" ? "1" : "any", min: p.range ? String(p.range[0]) : null, max: p.range ? String(p.range[1]) : null });
@@ -151,6 +153,7 @@ function readConditions() {
       const node = document.getElementById(`cond-${i}-${name}`);
       if (p.kind === "bool") out[name] = node.checked;
       else if (p.kind === "tfs" || p.kind === "choices") out[name] = [...node.querySelectorAll("input:checked")].map((x) => x.value);
+      else if (p.kind === "times") out[name] = node.value.split(",").map((x) => x.trim()).filter(Boolean);
       else if (p.kind === "int") out[name] = node.value === "" ? p.default : Number(node.value);
       else if (p.kind === "numopt") out[name] = node.value === "" ? null : Number(node.value);
       else out[name] = node.value;

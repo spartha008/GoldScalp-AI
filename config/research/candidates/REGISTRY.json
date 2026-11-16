@@ -1,0 +1,8 @@
+{
+  "definition": "research-candidate@1",
+  "note": "Research candidates, in the order they were registered. See goldscalp/research/candidates.py.",
+  "candidates": [
+    "P7-FIX",
+    "P7-TOD"
+  ]
+}

@@ -7,6 +7,7 @@ cannot trigger (the reasons are returned).
 from __future__ import annotations
 
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 
@@ -169,6 +170,14 @@ def _check(c: dict[str, Any], snap: dict[str, Any], side: str) -> tuple[bool, st
         else:
             ok = rsi <= level if side == "long" else rsi >= 100 - level
         return ok, f"{tf} RSI(14) {rsi}"
+    if t == "clock_time":
+        local = cut.to_pydatetime().astimezone(ZoneInfo(c["timezone"]))
+        minute = local.hour * 60 + local.minute
+        for hhmm in c["times"]:
+            start = int(hhmm[:2]) * 60 + int(hhmm[3:])
+            if (minute - start) % 1440 < c["window_minutes"]:
+                return True, f"{local:%H:%M} {c['timezone']} is within {c['window_minutes']} min of {hhmm}"
+        return False, f"{local:%H:%M} {c['timezone']} is not one of {', '.join(c['times'])}"
     if t == "signal_agrees":
         sig = snap.get("signal") or {}
         target = "BULLISH" if side == "long" else "BEARISH"

@@ -28,6 +28,7 @@ from goldscalp.core.forward import ForwardDataLocked
 from goldscalp.monthly import library, service
 from goldscalp.monthly import store as st
 from goldscalp.monthly.data import DataSources
+from goldscalp.research import candidates as research_candidates
 from goldscalp.simulation.instrument import InstrumentSpec
 
 log = logging.getLogger("goldscalp.research")
@@ -103,6 +104,7 @@ def create_research_app(settings: Settings | None = None, *, clock: Clock | None
                             status_code=409)
     app.include_router(service.router)
     app.include_router(library.router)                    # read-only research library (GET only)
+    app.include_router(research_candidates.router)        # read-only research candidates (GET only)
 
     @app.get("/api/health")
     def health() -> dict[str, Any]:

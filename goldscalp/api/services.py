@@ -41,6 +41,7 @@ class AppServices:
     feed: Any = None           # goldscalp.live.feed.FeedMonitor (Phase 4)
     monitor: Any = None        # goldscalp.live.monitor.LiveMonitor (Phase 4)
     demo: Any = None           # goldscalp.execution.mirror.DemoMirror (optional MT5 DEMO-account execution)
+    manual: Any = None         # goldscalp.execution.manual.ManualTicket (Dashboard order ticket, MT5 DEMO account)
 
 
 def services(request: Request) -> AppServices:

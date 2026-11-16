@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Project Overview · GoldScalp AI</title>
-<meta name="description" content="Every GoldScalp AI phase so far: what each one built, what it found, and what comes next.">
+<meta name="description" content="Every GoldScalp AI phase so far: what each one built and found, everything done after Phase 6, and where things stand before Phase 7.">
 <link rel="stylesheet" href="/static/css/tokens.css">
 <link rel="stylesheet" href="/static/css/app.css">
 </head>
@@ -28,26 +28,29 @@
 
 <main id="main" class="page project">
   <section class="hero" aria-labelledby="hero-title">
-    <span class="view-head"><span class="eyebrow">Project overview &middot; updated 15 November 2026</span></span>
+    <span class="view-head"><span class="eyebrow">Project overview &middot; updated 16 November 2026</span></span>
     <h1 id="hero-title">Every phase of <span class="gold">GoldScalp AI</span>, in one place</h1>
-    <p>GoldScalp AI is an educational XAUUSD research and paper-trading application. Between 13 and 15 November 2026 it grew from live market data and a lot-based paper simulator into market-intelligence analysis, a Strategy Lab, live strategy validation on the Vantage MT5 demo feed, and a separate monthly research service. The research found no strategy edge that held up out of sample, and the strategy search is now closed.</p>
+    <p>GoldScalp AI is an educational XAUUSD research and paper-trading application. Between 13 and 15 November 2026 it grew from live market data and a lot-based paper simulator into market-intelligence analysis, a Strategy Lab, live strategy validation on the Vantage MT5 demo feed, and a separate monthly research service. The research found no strategy edge that held up out of sample: Phase 6 closed on 15 November 2026 and strategy discovery is paused. Since then Phases 1&ndash;6 have been archived read-only, forward data has been locked in code and published gold-scalping ideas have been screened. One screened research candidate, P7-FIX, is observed on the MT5 demo account at the owner's request, and the Dashboard gained a manual order ticket for that demo account. Phase 7 has not started.</p>
     <div class="hero-stats">
-      <div class="stat"><div class="label">Build period</div><div class="value">13&ndash;15 Nov 2026</div></div>
+      <div class="stat"><div class="label">Build period</div><div class="value">13&ndash;16 Nov 2026</div></div>
       <div class="stat"><div class="label">Phases</div><div class="value">10 + audit, all concluded</div></div>
-      <div class="stat"><div class="label">Automated tests passing</div><div class="value">653</div></div>
+      <div class="stat"><div class="label">Phase 7</div><div class="value">Not started</div></div>
+      <div class="stat"><div class="label">Automated tests passing</div><div class="value">740</div></div>
       <div class="stat"><div class="label">Pages</div><div class="value">8</div></div>
+      <div class="stat"><div class="label">Running now</div><div class="value">3 paper monitors, 1 demo link</div></div>
       <div class="stat"><div class="label">Edge that held up out of sample</div><div class="value">None found</div></div>
     </div>
   </section>
 
   <section aria-labelledby="principles-title">
-    <div class="section-title"><h2 id="principles-title">Ground rules that applied to every phase</h2></div>
+    <div class="section-title"><h2 id="principles-title">Ground rules that apply to every phase</h2></div>
     <div class="principles">
-      <div class="principle"><b>Simulation first</b><span>Every strategy trade is SIMULATED in the paper simulator. No real-money order path exists; the only order feature is optional, off by default and limited to an MT5 demo account.</span></div>
+      <div class="principle"><b>Simulation first</b><span>Every strategy trade is SIMULATED in the paper simulator. No real-money order path exists. The only order path is optional, off by default (switched on in this installation since 15 November 2026) and limited to an MT5 demo account; it carries the strategy mirror and, since 16 November 2026, a manual order ticket.</span></div>
       <div class="principle"><b>MT5 is read-only for data</b><span>Market data comes through an allowlist of read functions. GoldScalp never asks for, stores or logs the MT5 login or password, and never starts the terminal.</span></div>
       <div class="principle"><b>Research is isolated</b><span>The research service reads the application database read-only, writes only to its own store and never connects to MT5.</span></div>
       <div class="principle"><b>Data is never invented</b><span>Missing, invalid or duplicate candles are reported, never filled. Months without enough data are marked INCOMPLETE.</span></div>
       <div class="principle"><b>Criteria frozen before results</b><span>Evaluation rules are hash-frozen before the data they judge exists, and failed experiments are kept, not hidden.</span></div>
+      <div class="principle"><b>Forward data locked</b><span>Since 15 November 2026 research code cannot read candles from 14 November 2026 onward. No setting turns this off; only a registered, versioned unlock protocol could.</span></div>
       <div class="principle"><b>Local and transparent</b><span>The app binds to 127.0.0.1, providers never switch silently, and every figure is labelled current, historical or simulated.</span></div>
     </div>
   </section>
@@ -57,7 +60,8 @@
     <nav class="phase-index" aria-label="Jump to a phase">
       <a href="#p0">Audit</a><a href="#p1">1</a><a href="#p11">1.1</a><a href="#p2">2</a><a href="#p3">3</a><a href="#p4">4</a>
       <a href="#pdemo">Demo execution</a><a href="#p5">5</a><a href="#p51">5.1</a><a href="#p52">5.2</a><a href="#p53">5.3</a>
-      <a href="#pclose">Closure</a><a href="#pui">Interface refresh</a><a href="#p6">6</a><a href="#strategies">All strategies</a>
+      <a href="#pclose">Closure</a><a href="#pui">Interface refresh</a><a href="#p6">6</a><a href="#p6close">6 closed</a><a href="#parchive">Archive</a><a href="#pguard">Forward guard</a><a href="#pgit">GitHub and exports</a>
+      <a href="#pp7">Pre-7 screening</a><a href="#pcand">Candidates</a><a href="#pfixdemo">P7-FIX on demo</a><a href="#pticket">Order ticket</a><a href="#strategies">All strategies</a><a href="#before7">Before Phase 7</a>
     </nav>
 
     <div class="timeline">
@@ -158,8 +162,8 @@
                 <li>Research assistant with read-only tools; the optional Claude mode is off by default. All of it on the Live Validation page.</li>
               </ul></div>
               <div><h4>Status</h4><div class="result-box">
-                <span class="small">Monitoring A v2, B v2 and C v4 since 14 Nov, 11:57 UTC (paper mode, active).</span>
-                <span class="small">Terminal record PARTIAL (11 pass, 3 warn, 0 fail); a fresh-tick VERIFIED run is pending the market open.</span>
+                <span class="small">Monitored A v2, B v2 and C v4 in paper mode from 14 Nov, 11:57 UTC until they were stopped on 15 Nov, 18:21 UTC, before they recorded any live evaluation, signal or trade (<a href="#parchive">Archive</a>).</span>
+                <span class="small">Terminal record PARTIAL (11 pass, 3 warn, 0 fail); a fresh-tick VERIFIED run was not obtained before Phase 4 was archived.</span>
                 <span class="small">C v4 improvement proposal: inconclusive, not adopted. 505 tests.</span>
               </div></div>
             </div>
@@ -169,16 +173,17 @@
 
       <article class="phase" id="pdemo">
         <section class="panel">
-          <header><span class="id">Feature</span><h2>MT5 demo-account execution (optional)</h2><span class="spacer"></span><span class="when">14 Nov 2026</span><span class="chip muted">off by default</span></header>
+          <header><span class="id">Feature</span><h2>MT5 demo-account execution (optional)</h2><span class="spacer"></span><span class="when">14 Nov 2026</span><span class="chip warn">on &middot; 1 version linked</span></header>
           <div class="body">
             <p class="lede">An unnumbered addition, documented in the README. When switched on and linked, it mirrors the SIMULATED validation trades of a linked strategy version as market orders on an MT5 <strong>demo</strong> account so broker fills can be compared.</p>
             <div class="phase-cols">
               <div><h4>Safeguards</h4><ul>
                 <li>The account is re-read before every order; anything that is not the linked DEMO account is refused, and a real-money account disables every link.</li>
-                <li>Limits: 0.10 lots per order, 3 open demo positions, no late entries, no retries; a "Stop all demo execution" kill switch.</li>
-                <li>Disabled unless <code>GOLDSCALP_DEMO_EXECUTION_ENABLED</code> is set; it is not enabled in this installation.</li>
+                <li>Limits: 3 open demo positions, no late entries, no retries; a "Stop all demo execution" kill switch. The default is 0.10 lots per order; this installation allows 2.00 lots since 16 November 2026 (<a href="#pfixdemo">P7-FIX on demo</a>).</li>
+                <li>A trade without a stop-loss is never sent.</li>
+                <li>Disabled unless <code>GOLDSCALP_DEMO_EXECUTION_ENABLED</code> is set. The owner switched it on on 15 November 2026, with no version linked. On 16 November P7-FIX v2 was linked first (12:27 UTC); since 13:03 UTC the only linked version is P7-FIX v3, a research candidate at the owner's 5% risk per trade (1&times; ATR stop, 2R target, break-even at 1R).</li>
               </ul></div>
-              <div><h4>Note</h4><div class="result-box"><span class="small">Some older documents still say no order path exists at all. That remains true for real-money accounts; this demo-only feature is the one exception.</span></div></div>
+              <div><h4>Note</h4><div class="result-box"><span class="small">Some older documents still say no order path exists at all. That remains true for real-money accounts; this demo-only gateway, used by the strategy mirror and, since 16 November, the <a href="#pticket">Dashboard order ticket</a>, is the one exception.</span></div></div>
             </div>
           </div>
         </section>
@@ -308,7 +313,197 @@
                 <span class="small">&minus;0.006 R per trade over 663 trades, 11 of 24 months positive, negative with doubled costs and on M15. The unfiltered VOL-C made &minus;0.029 R per trade: the development edge did not carry over. Nothing is retuned or promoted.</span>
               </div></div>
             </div>
-            <p class="small muted">Every Phase 5 and Phase 6 study can now be compared side by side, with charts, in the Research library (Monthly Backtest, step 5).</p>
+            <p class="small muted">With H6.4 rejected, Phase 6 closed on 15 November 2026 (<a href="#p6close">Phase 6 closed</a>). Every Phase 5 and Phase 6 study can be compared side by side, with charts, in the Research library (Monthly Backtest, step 5).</p>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase closed" id="p6close">
+        <section class="panel">
+          <header><span class="id">Closure</span><h2>Phase 6 closed, strategy discovery paused, research library</h2><span class="spacer"></span><span class="when">15 Nov 2026</span><span class="chip info">closed</span></header>
+          <div class="body">
+            <p class="lede">H6.4 was the only Phase 6 hypothesis to reach the sealed data, and it was rejected, so Phase 6 closed on 15 November 2026 with nothing retuned or promoted. The owner then paused strategy discovery: no new variants, hypotheses or sealed tests until they set the next direction, with the focus on better evidence rather than more strategies.</p>
+            <div class="phase-cols">
+              <div><h4>Research library (Monthly Backtest, step 5)</h4><ul>
+                <li>Lists every Phase 5 and Phase 6 study, read-only, from the research store and the frozen report files.</li>
+                <li>Compares up to eight results side by side: pooled metrics, cumulative R by month, a monthly R heatmap, costs &times;1 / &times;2 / &times;3 and, for Phase 6, regime breakdowns.</li>
+                <li>Follows one strategy across every study and opens the written reports in a built-in reader. Classes are shown as each study recorded them, never recomputed; incomplete and failed studies stay listed.</li>
+                <li>On 16 November it also gained the pre-Phase 7 screens (filter &ldquo;Pre-7 &middot; Screens&rdquo;).</li>
+              </ul></div>
+              <div><h4>What closing means</h4><div class="result-box">
+                <span class="small">The sealed November 2023 &ndash; October 2025 block is spent: it can no longer serve as unseen data for any idea shaped by this result.</span>
+                <span class="small">The Phase 6 discovery protocol and the H6.4 protocol stay frozen by hash and report unchanged.</span>
+              </div></div>
+            </div>
+            <div class="docs"><code>var/monthly/reports/h64-report.md</code><code>PHASE5_ARCHITECTURE.md &sect;16.2</code></div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="parchive">
+        <section class="panel">
+          <header><span class="id">Archive</span><h2>Phase 4 stopped and Phases 1&ndash;6 archived read-only</h2><span class="spacer"></span><span class="when">15 Nov 2026</span><span class="chip ok">archived</span></header>
+          <div class="body">
+            <p class="lede">Everything from Phases 1&ndash;6 was preserved exactly as recorded: nothing was re-run, retuned or reconstructed, and missing artifacts are listed rather than rebuilt. The Phase 4 monitors were stopped first, so no archived strategy keeps trading.</p>
+            <div class="phase-cols">
+              <div><h4>What was done</h4><ul>
+                <li>Phase 4 monitors 1&ndash;3 (A v2, B v2, C v4) stopped at 18:21 UTC with 0 open positions. They had recorded no live evaluation, signal or trade.</li>
+                <li>Strategies A, B and C archived in the app, with their versions kept. Manual paper account 1 was left as it was.</li>
+                <li><code>research_archive/phase_1_to_6/</code>: every strategy version found in the records, matched by fingerprint, with its configuration, evaluations, trade records and recorded verdicts, plus the frozen protocols, reports and dataset records of every phase.</li>
+                <li><code>archive/generation-1/</code> (database snapshots, a code zip and the Phase 4 final state) copied byte for byte into the archive.</li>
+              </ul></div>
+              <div><h4>Inventory</h4><div class="result-box">
+                <span class="small">18 strategy concepts, 35 headline versions, 883 unique versions, 6,197 evaluation rows and 103 trade-record files: 357 archived files plus two manifest files.</span>
+                <span class="small">Every file re-hashed with SHA-256 after writing: 0 missing, 0 mismatched. No version is classified as successful.</span>
+                <span class="small">Check it any time with <code>python -m goldscalp.research_archive --check</code>.</span>
+              </div></div>
+            </div>
+            <div class="docs"><code>PHASE_1_TO_6_ARCHIVE_REPORT.md</code><code>research_archive/phase_1_to_6/</code></div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="pguard">
+        <section class="panel">
+          <header><span class="id">Guard</span><h2>Forward-data guard in code</h2><span class="spacer"></span><span class="when">15 Nov 2026</span><span class="chip ok">locked</span></header>
+          <div class="body">
+            <p class="lede">Research can no longer read candles from <strong>14 November 2026 00:00:00 UTC</strong> onward, so the only data research has not used stays out of reach until a frozen protocol unlocks it. Finished at 19:03 UTC, before the market reopened at 23:00 UTC.</p>
+            <div class="phase-cols">
+              <div><h4>How it works</h4><ul>
+                <li>One module (<code>goldscalp/core/forward.py</code>, definition <code>forward-guard@1</code>) checks every research request before any data is read, and every candle frame after it is read, including look-back history and outcome candles.</li>
+                <li>A request that touches the forward period is refused with HTTP 409 and its reason; nothing is truncated. This covers the Strategy Lab, Performance, improvement studies and every research-service job.</li>
+                <li>No setting, environment variable or flag turns it off. Unlocking needs a versioned <code>forward-unlock@1</code> protocol registered with its SHA-256; none is registered, and no endpoint accepts one yet.</li>
+                <li>Not guarded, on purpose: live MT5 collection, charts and market endpoints, the dashboard, replay, the live monitor and demo execution.</li>
+              </ul></div>
+              <div><h4>Checked</h4><div class="result-box">
+                <span class="small">17 new tests. After both services restarted (19:01 and 19:02 UTC), a Strategy Lab backtest to 16 November, a Performance run to 20 November and a research request to 1 December were refused with 409, and no run was created.</span>
+                <span class="small"><code>GET /api/research/forward-guard</code> reports locked, boundary 2026-11-14T00:00:00Z, no unlock protocol.</span>
+              </div></div>
+            </div>
+            <div class="docs"><code>FORWARD_DATA_GUARD_REPORT.md</code></div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="pgit">
+        <section class="panel">
+          <header><span class="id">Repository</span><h2>GitHub push and the MT5 exports</h2><span class="spacer"></span><span class="when">15 Nov 2026</span><span class="chip ok">pushed</span></header>
+          <div class="body">
+            <p class="lede">The raw MT5 exports behind the research were gathered in one place with their hashes, and the project was published to GitHub as one commit.</p>
+            <div class="phase-cols">
+              <div><h4>MT5 exports in <code>data/mt5_exports/</code></h4><ul>
+                <li>13 manual Vantage XAUUSD bar exports copied unchanged from the Desktop (MT5 server time, bid prices); the originals stay where they were.</li>
+                <li>Three folders by purpose: <code>2026-05_to_2026-10_phase5</code> (Phases 5&ndash;5.2), <code>2025-11_to_2026-05_phase5_3_validation</code> (Phase 5.3) and <code>2023-09_to_2025-10_phase6_sealed</code> (the H6.4 sealed block, spent).</li>
+                <li><code>MANIFEST.json</code> records each file's SHA-256, rows, size and range, and the research-store import that used it: all 13 match.</li>
+                <li>Every period in them has already been used in research. None is fresh validation data, and none holds forward data.</li>
+              </ul></div>
+              <div><h4>GitHub</h4><div class="result-box">
+                <span class="small">Commit <code>1ff3899</code>, &ldquo;GoldScalp AI: Phases 1-6, research archive and forward-data guard&rdquo;, pushed to the public repository <code>spartha008/GoldScalp-AI</code> (branch <code>main</code>) at 19:11 UTC.</span>
+                <span class="small">Kept local by <code>.gitignore</code>: <code>.env</code>, every database, the raw export CSV files (broker data) and the archive database snapshots. Their hashes are published, so a local copy can be verified.</span>
+                <span class="small">When this page was updated, everything after that commit (the pre-Phase 7 screen, the research candidates, the P7-FIX versions, the order ticket and this page) was still local and uncommitted.</span>
+              </div></div>
+            </div>
+            <div class="docs"><code>data/mt5_exports/README.md</code><code>data/mt5_exports/MANIFEST.json</code></div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase research" id="pp7">
+        <section class="panel">
+          <header><span class="id">Pre-7</span><h2>External strategy research and screening</h2><span class="spacer"></span><span class="when">15&ndash;16 Nov 2026</span><span class="chip info">screening only</span></header>
+          <div class="body">
+            <p class="lede">Before any Phase 7: a search for publicly documented gold scalping ideas, each screened on development data that research had already used. A short screen is not validation, and nothing was promoted.</p>
+            <div class="phase-cols">
+              <div><h4>What was done</h4><ul>
+                <li>14 documented concepts collected from papers, books, broker education and vendor posts, with their rules, evidence and limits recorded.</li>
+                <li>Stage 1 (15 November): the 3 concepts the strategy builder could express, screened on 5&ndash;19 October 2026 (10 trading days). All 3 inconclusive; none qualified as worth further research.</li>
+                <li>Stage 2 (16 November): new research tools (an indicator library and a rule simulator with clock-time entries, stop orders and reversals, using the backtester's fills and costs), then 15 rule sets covering every remaining concept, on the same 10 trading days plus an 11-week context run (17 August &ndash; 31 October).</li>
+                <li>Tool checks: 436 of 436 backtester trades replayed with the same exit and net result, and no look-ahead. The screen's loader refuses the sealed block and forward data; every read ended by 31 October 2026.</li>
+              </ul></div>
+              <div><h4>What came out</h4><div class="result-box">
+                <span><b>No strategy is validated.</b> On the 10-day screen 2 rule sets passed, 8 had too few trades and 5 were rejected.</span>
+                <span class="small">Over 11 weeks the &ldquo;short gold before the London fixes&rdquo; rule held up (+0.20 R per trade over 110 trades; its two half hours ranked 1st and 2nd of 46 in a placebo test) and the gold London-breakout rule did well (+0.26 R over 52 trades), while the time-of-day rule that passed the screen fell to zero. All of it is spent development data from a market that fell about 11 %; any real test needs untouched data under a frozen protocol.</span>
+                <span class="small">The stage 2 report's shortlist for Phase 7, none of it started: P7-FIX, P7-ARBG (London breakout), P7-HALF (last-half-hour momentum) and P7-PCTB (Bollinger %b, only with a stop).</span>
+              </div></div>
+            </div>
+            <p class="small muted">The two rule sets that passed the screen became research candidates (<a href="#pcand">Candidates</a>). Reports: <code>PRE_PHASE_7_EXTERNAL_STRATEGY_RESEARCH_REPORT.md</code> and <code>PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md</code>.</p>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase research" id="pcand">
+        <section class="panel">
+          <header><span class="id">Candidates</span><h2>Research candidates P7-FIX and P7-TOD, and their Strategy Lab forms</h2><span class="spacer"></span><span class="when">16 Nov 2026</span><span class="chip info">not validated</span></header>
+          <div class="body">
+            <p class="lede">The two rule sets that met the declared 10-day screen rule were registered as research candidates, exactly as screened. Later the same day, at the owner's request, they were given a Strategy Lab form so they can be backtested and monitored.</p>
+            <div class="phase-cols">
+              <div><h4>What was added</h4><ul>
+                <li>Research candidates (Monthly Backtest, step 6): <code>config/research/candidates/P7-FIX.json</code> and <code>P7-TOD.json</code>, each with its source, original and screened rules, a fingerprint, its evidence, caveats and restrictions. <code>python -m goldscalp.research.candidates --check</code> confirms the rules are unchanged, and <code>--reproduce</code> matched the stored evidence exactly.</li>
+                <li>Two additions to the strategy builder: a <strong>clock-time</strong> condition (true in the minutes after listed times, in UTC, New York or London time, so daylight saving is followed) and a stop type <strong>none</strong>, which cannot be combined with an R-multiple target, break-even or a trailing stop. Every existing strategy's fingerprint is unchanged.</li>
+                <li>Strategy Lab forms (<code>LAB_STRATEGIES.json</code>): P7-FIX v1 as screened (no stop), P7-FIX v2 with a protective stop of 3 &times; ATR(14) on M15, and the long and short legs of P7-TOD. On the screen window the forms place exactly the screened trades (20 of 20).</li>
+              </ul></div>
+              <div><h4>P7-FIX over all of 2026</h4><div class="result-box">
+                <span><b>Not stable across the year.</b> The rule as registered, on 1 January &ndash; 29 May and 22 June &ndash; 13 November 2026: data research had already used, run after registration, so exploratory.</span>
+                <span class="small">Whole run: +0.063 nominal R per trade over 420 trades, profit factor 1.17, +$607; +0.040 R with costs doubled.</span>
+                <span class="small">January&ndash;June: &minus;0.038 R over 224 trades, &minus;$168. July&ndash;13 November: +0.179 R over 196 trades, +$774. The morning fix carries most of it.</span>
+                <span class="small">Gold rose over the first stretch and fell over the second. A short-only rule doing well in a falling market is the simplest explanation, and this run cannot rule it out.</span>
+              </div></div>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="pfixdemo">
+        <section class="panel">
+          <header><span class="id">Demo</span><h2>P7-FIX on MT5 demo execution</h2><span class="spacer"></span><span class="when">16 Nov 2026</span><span class="chip warn">observation only</span></header>
+          <div class="body">
+            <p class="lede">At the owner's request P7-FIX is monitored in Live Validation and mirrored on the Vantage MT5 <strong>demo</strong> account (virtual funds). This is observation of an unvalidated research candidate: not a validation, not a promotion and not a Phase 7 result.</p>
+            <div class="phase-cols">
+              <div><h4>What happened, in order (UTC)</h4><ul>
+                <li>12:27: P7-FIX v2 (3 &times; ATR stop, 0.02 lots) monitored in paper mode (monitor 4) and linked to demo execution, the first link.</li>
+                <li>The owner then set their risk rule: 5% of equity at risk per trade, 1.5R to 2R targets and break-even at 1R. With v2's wide stop only 1 of 40 trades reached +1R within 30 minutes, so the owner chose a 1 &times; ATR(14) M15 stop and kept the 30-minute exit.</li>
+                <li>13:03: v2 unlinked from demo (its paper monitor 4 keeps running as a baseline); v3 monitored (monitor 5) and linked to demo; v4 monitored on paper only (monitor 6).</li>
+                <li>Entries at 05:05 and 09:35 New York time (10:05 and 14:35 UTC in winter), each closed 30 minutes later, on trading days.</li>
+              </ul></div>
+              <div><h4>Changes that made it work</h4><div class="result-box">
+                <span class="small"><b>Live break-even.</b> The live monitor now moves a SIMULATED stop to the entry once the trade is +1R, as the backtest does (one monitor cycle later rather than at a bar close). The broker-side demo stop stays at the original stop, and GoldScalp closes the demo position when the simulated trade closes.</span>
+                <span class="small"><b>Demo lot limit 2.00.</b> 5% of $10,000 with a stop of about $7.60 is about 0.66 lots, so the 0.10-lot default would have refused every order. At the owner's choice the limit is 2.00 lots per order, with at most 3 positions.</span>
+                <span class="small"><b>Simulated leverage 1:500.</b> Simulated accounts used 1:1, which cannot hold such a position. New accounts and Lab runs now use the demo account's 1:500: v3 and v4 run at 1:500, v2 stays at 1:1.</span>
+              </div></div>
+            </div>
+            <div class="table-wrap"><table class="data">
+              <thead><tr><th scope="col">P7-FIX</th><th scope="col">Stop</th><th scope="col">Target</th><th scope="col">Break-even</th><th scope="col">Size</th><th scope="col">Where</th></tr></thead>
+              <tbody>
+                <tr><td>v1</td><td>none (as screened)</td><td>none</td><td>no</td><td>0.02 lots</td><td>Strategy Lab only: without a stop it cannot be mirrored</td></tr>
+                <tr><td>v2</td><td>3 &times; ATR(14) M15</td><td>none</td><td>no</td><td>0.02 lots</td><td>Monitor 4, paper only since 13:03 UTC</td></tr>
+                <tr><td>v3</td><td>1 &times; ATR(14) M15</td><td>2R</td><td>at +1R</td><td>5% at risk, at most 2.00 lots</td><td>Monitor 5, linked to MT5 demo</td></tr>
+                <tr><td>v4</td><td>1 &times; ATR(14) M15</td><td>1.5R</td><td>at +1R</td><td>5% at risk, at most 2.00 lots</td><td>Monitor 6, paper only</td></tr>
+              </tbody>
+            </table></div>
+            <p class="small muted">Every version has the same entries and the 30-minute exit. v3 and v4 were not screened and not run over the rest of 2026; their Strategy Lab run (19 October &ndash; 13 November, development data and the strongest stretch of the year for this rule) exists because monitoring requires one, and it is not evidence. At 5% risk, ten losing trades in a row would cost about 40% of the account. Their trades from 16 November onward are their only fresh evidence, so their rules stay exactly as they are: a changed rule is a new version whose record starts again. No P7-FIX order had been mirrored to the demo account when this page was updated (16 November, 13:25 UTC).</p>
+          </div>
+        </section>
+      </article>
+
+      <article class="phase" id="pticket">
+        <section class="panel">
+          <header><span class="id">Dashboard</span><h2>MT5 demo order ticket</h2><span class="spacer"></span><span class="when">16 Nov 2026</span><span class="chip warn">demo only</span></header>
+          <div class="body">
+            <p class="lede">A panel under the Dashboard's candle chart for the owner's own market orders on the MT5 <strong>demo</strong> account (virtual funds). It is a manual tool, separate from every strategy; its orders are not research and not evidence for any strategy.</p>
+            <div class="phase-cols">
+              <div><h4>How it works</h4><ul>
+                <li>Choose Buy or Sell and the lots. The stop-loss and take-profit are lines on the candle chart: drag them, or type the prices.</li>
+                <li>Before sending, each line's label shows the USD result and the R multiple at that price, and the ticket shows the risk as a share of the balance. The spread is included; the broker's commission and swap are not.</li>
+                <li>&ldquo;Review order&rdquo; opens a confirmation dialog, and only &ldquo;Send &hellip; to MT5 demo&rdquo; in that dialog sends the order.</li>
+                <li>After sending, the position's entry, SL and TP lines stay on the chart with its live P/L. Its SL and TP can be dragged and applied, and it can be closed at market.</li>
+              </ul></div>
+              <div><h4>Safeguards</h4><div class="result-box">
+                <span class="small">The demo-only gateway re-reads the account before every order and refuses anything that is not the DEMO account shown on the ticket. A stop-loss is required, the 2.00-lot limit applies, and demo execution and MT5's Algo Trading must both be on.</span>
+                <span class="small">Kept apart from the strategy mirror: ticket orders carry magic number <code>26111401</code> and the comment <code>GoldScalp manual M&lt;id&gt;</code> (the mirror uses <code>26111400</code>). The mirror and the kill switch never touch ticket positions, and the ticket can change or close only its own.</span>
+                <span class="small">Every request, result and refusal is recorded (<code>manual_orders</code>, migration 0008). 15 tests run against a fake broker, so no test sends a real order.</span>
+              </div></div>
+            </div>
+            <p class="small muted">It was first checked in the browser with the dialog cancelled. The owner placed the first ticket order at 13:23 UTC on 16 November: a 0.10-lot sell with a stop-loss and take-profit, which the owner closed at market at 13:26 UTC from the same ticket. Code: <code>goldscalp/execution/manual.py</code>, <code>goldscalp/api/routers/manual.py</code> and <code>web/js/ticket.js</code>; README section &ldquo;Dashboard order ticket (MT5 demo account)&rdquo;.</p>
           </div>
         </section>
       </article>
@@ -381,6 +576,17 @@
           </tbody>
         </table></div>
       </div>
+      <div class="strat-group">
+        <h3>Research candidates from the pre-Phase 7 screen (screening only, not validated)</h3>
+        <div class="table-wrap"><table class="data strat-table">
+          <thead><tr><th scope="col">Strategy</th><th scope="col">What it is</th><th scope="col">How it did</th><th scope="col">Verdict</th></tr></thead>
+          <tbody>
+        <tr><td class="s">P7-FIX</td><td class="wrap">Short gold in the half hours around the two London fixes (05:05 and 09:35 New York), closed after 30 minutes; no stop</td><td class="wrap">10-day screen +0.216 (20); 11 weeks +0.202 (110), both windows positive; all of 2026 +0.063 (420), negative in January&ndash;June; nominal R</td><td><span class="chip info">research candidate</span></td></tr>
+        <tr><td class="s">P7-TOD</td><td class="wrap">Long 11:00 to 02:00 New York, short 02:00 to 11:00; no stop</td><td class="wrap">10-day screen +0.646 (20); 11 weeks +0.009 (110) and &minus;$326: not supported; nominal R</td><td><span class="chip info">research candidate</span></td></tr>
+          </tbody>
+        </table></div>
+        <p class="small muted">Registered on 16 November 2026 because they met the declared 10-day screen rule. The same day each was given a Strategy Lab form, and at the owner's request P7-FIX v2, v3 and v4 are monitored and v3 is linked to the MT5 demo account (<a href="#pfixdemo">P7-FIX on demo</a>); that is observation, not validation. The other 16 screened rule sets are in <code>PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md</code>.</p>
+      </div>
     </div>
     <div class="result-box strat-summary">
       <span><b>Overall: none showed a reliable edge.</b> Every strategy that looked good on one period lost it on another: R2 v2 went from promising to rejected, and VOL-C from +0.102 in development to negative on 2023&ndash;2025.</span>
@@ -388,13 +594,33 @@
     </div>
   </section>
 
-  <section aria-labelledby="next-title">
-    <div class="section-title"><h2 id="next-title">Where things stand and what comes next</h2></div>
+  <section aria-labelledby="next-title" id="before7">
+    <div class="section-title"><h2 id="next-title">Where things stand before Phase 7</h2><span>as of 16 November 2026</span></div>
     <div class="next-grid">
-      <div class="principle"><b>Archived</b><span>Phases 1&ndash;6 are archived read-only in <code>research_archive/phase_1_to_6</code>: 883 strategy versions, their evaluations, trade records and verdicts. The Phase 4 monitors were stopped on 15 November 2026 before they recorded any live evaluation, and A, B and C are archived in the app. Nothing is running.</span></div>
-      <div class="principle"><b>Unseen data left</b><span>The sealed November 2023 &ndash; October 2025 block has now been used by H6.4. Only forward data from 14 November 2026 is still untouched; any new hypothesis must be confirmed there.</span></div>
-      <div class="principle"><b>Never completed</b><span>A fresh-tick VERIFIED MT5 record after a market open was never obtained, and Phase 4 was archived without live signals or trades, so its live acceptance checks were not completed.</span></div>
+      <div class="principle cand-col"><b>Frozen or locked</b>
+        <span><b>Forward data</b> from 14 November 2026 00:00 UTC: every research read is refused, and no unlock protocol is registered. Live collection keeps storing it.</span>
+        <span><b>The sealed block</b> (November 2023 &ndash; October 2025) is spent by H6.4, and every stored period before 14 November 2026 has been used. None of it can be presented as fresh validation.</span>
+        <span><b>The archives</b> <code>research_archive/phase_1_to_6</code> and <code>archive/generation-1</code> are read-only, and the Phase 5 closure, Phase 5.3, Phase 6 and H6.4 manifests stay frozen by hash.</span>
+        <span><b>P7-FIX's versions</b> keep their rules, so their forward record stays usable.</span>
+      </div>
+      <div class="principle cand-col"><b>Live now</b>
+        <span>Monitors 4, 5 and 6 run in paper mode: P7-FIX v2 (the baseline), v3 and v4. The live monitor loop is running.</span>
+        <span>Demo execution is on with one link: P7-FIX v3 on the Vantage MT5 demo account (DEMO, virtual funds), at most 2.00 lots per order and 3 positions.</span>
+        <span>The Dashboard order ticket is in use for the owner's own demo orders: one position, opened at 13:23 UTC, was open when this page was updated.</span>
+        <span>Monitors 1&ndash;3 stay stopped, and A, B and C stay archived.</span>
+      </div>
+      <div class="principle cand-col"><b>What Phase 7 inherits</b>
+        <span><b>Tools:</b> the forward-data guard and its unlock-protocol format (not yet wired to any endpoint), the research library, the candidate registry, the indicator library and rule simulator, and the builder's clock-time condition and stop type none.</span>
+        <span><b>Ideas:</b> the stage 2 shortlist (P7-FIX, P7-ARBG, P7-HALF, P7-PCTB) and its suggested order, none of it started: re-run on January&ndash;May 2026 (spent, but a different market), freeze the rules of whatever survives, then test once on forward data under a registered unlock protocol.</span>
+        <span><b>Evidence in progress:</b> P7-FIX's paper and demo record from 16 November, which is observation, not validation.</span>
+        <span><b>Benchmarks:</b> the 883 archived versions, as documented controls only.</span>
+      </div>
+      <div class="principle"><b>Never completed</b><span>A fresh-tick VERIFIED MT5 record was not obtained before Phase 4 was archived, and Phase 4 recorded no live signals or trades, so its live acceptance checks were not completed.</span></div>
       <div class="principle"><b>Carried forward</b><span>Tiingo live verification, pending (limit / stop) paper orders, a holiday calendar, Docker image checks and a browser smoke test in CI.</span></div>
+    </div>
+    <div class="result-box strat-summary">
+      <span><b>Phase 7 has not started.</b> No Phase 7 plan, protocol, workspace or registry exists. It waits for the owner, who will start it.</span>
+      <span class="small">Until then no result on this page is validated: every figure is a historical simulation on spent data or an observation on a demo account.</span>
     </div>
   </section>
 
@@ -412,15 +638,20 @@
         <tr><td><code>PHASE_5_2_RESEARCH_REPORT.md</code></td><td>Phase 5.2 results</td></tr>
         <tr><td><code>PHASE_5_3_VALIDATION_REPORT.md</code></td><td>Phase 5.3 results</td></tr>
         <tr><td><code>PHASE_6_PROTOCOL.md</code>, <code>PHASE_6_H64_REGISTRATION.md</code></td><td>Phase 6 hypotheses, rules and the H6.4 registration</td></tr>
-        <tr><td><code>PHASE_1_TO_6_ARCHIVE_REPORT.md</code>, <code>research_archive/phase_1_to_6/</code></td><td>The read-only archive of every strategy, variant, result and verdict from Phases 1&ndash;6</td></tr>
+        <tr><td><code>PHASE_1_TO_6_ARCHIVE_REPORT.md</code>, <code>research_archive/phase_1_to_6/</code></td><td class="wrap">The read-only archive of every strategy, variant, result and verdict from Phases 1&ndash;6</td></tr>
         <tr><td><code>var/monthly/reports/phase6-development.md</code>, <code>var/monthly/reports/h64-report.md</code></td><td>Phase 6 development results and the H6.4 sealed result</td></tr>
+        <tr><td><code>FORWARD_DATA_GUARD_REPORT.md</code></td><td class="wrap">The forward-data guard: boundary, design, endpoints, tests and the restart checks</td></tr>
+        <tr><td><code>data/mt5_exports/README.md</code>, <code>data/mt5_exports/MANIFEST.json</code></td><td class="wrap">The manual MT5 exports behind the research and their hashes (the CSV files stay local)</td></tr>
+        <tr><td><code>PRE_PHASE_7_EXTERNAL_STRATEGY_RESEARCH_REPORT.md</code></td><td class="wrap">Pre-Phase 7 stage 1: sources, the 14 concepts and the first screen</td></tr>
+        <tr><td><code>PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md</code></td><td class="wrap">Stage 2 tools and screen; sections 10&ndash;12: the research candidates, their Strategy Lab forms, the 2026 history and P7-FIX v2&ndash;v4 on paper and demo</td></tr>
+        <tr><td><code>config/research/candidates/</code>, <code>research/pre_phase7/</code></td><td class="wrap">The candidate files and Strategy Lab forms, and the stored screening results</td></tr>
       </tbody>
     </table></div>
   </section>
 </main>
 
 <footer class="site">
-  <span>GoldScalp AI is an educational research and paper-trading tool. Results on this page are historical simulations; they are not trading results and do not predict future performance. Nothing here is financial advice.</span>
+  <span>GoldScalp AI is an educational research and paper-trading tool. Results on this page are historical simulations or observations on an MT5 demo account with virtual funds; they are not real trading results and do not predict future performance. Nothing here is financial advice.</span>
 </footer>
 </body>
 </html>

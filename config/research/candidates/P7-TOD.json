@@ -1,0 +1,113 @@
+{
+  "definition": "research-candidate@1",
+  "id": "P7-TOD",
+  "name": "Gold time-of-day: long 11:00 to 02:00, short 02:00 to 11:00 New York",
+  "status": "research candidate",
+  "registered": "2026-11-16",
+  "origin": {
+    "stage": "Pre-Phase 7 screen, stage 2",
+    "declaration": "config/research/pre_phase7/candidates_stage2.json",
+    "screen_classification": "WORTH FURTHER RESEARCH",
+    "why": [
+      "+0.646 R/trade over 20 trades, PF 1.769, passes every screen"
+    ],
+    "report": "PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md"
+  },
+  "source": "Donati & Jung, 'Gold Price Dynamics Around the Clock', MSc thesis, Copenhagen Business School 2019; COMEX gold",
+  "original_rules": "Long: buy at 11:00, sell at 02:00 the next day (New York time). Short: short at 02:00, cover at 11:00. Combo: both. No stops.",
+  "implementation": "The combo, as stated; both legs are also reported separately.",
+  "deviations": [
+    "Spot XAUUSD instead of COMEX futures.",
+    "No stop in the source: nominal R."
+  ],
+  "rule": "clock_trades",
+  "params": {
+    "tz": "America/New_York",
+    "trades": [
+      {
+        "enter": "11:00",
+        "side": "long",
+        "exit": "02:00",
+        "tag": "long 11:00-02:00"
+      },
+      {
+        "enter": "02:00",
+        "side": "short",
+        "exit": "11:00",
+        "tag": "short 02:00-11:00"
+      }
+    ]
+  },
+  "fingerprint": "c85b9dc51fcf8f61b92194010833d80f2516fdcc7e6003e02138905160ef3fb8",
+  "execution": {
+    "simulator": "goldscalp.research.rulesim",
+    "bars": "M5 bid candles",
+    "lots": "0.02",
+    "costs": "frozen Phase 5 cost model: candle spread (0.30 fallback), commission 3.50 USD/lot/side, slippage 0.05 USD per fill",
+    "stop": "none in the source",
+    "r_unit": "The source has no stop: R is a NOMINAL unit of 1.5 x ATR(14) on M15 at entry (GoldScalp's default ATR stop size). Marked nominal; USD results are always reported too."
+  },
+  "evidence_at_registration": {
+    "screen": {
+      "trades": 20,
+      "win_rate": 0.55,
+      "expectancy_r": 0.646,
+      "profit_factor": 1.769,
+      "sum_r": 12.919,
+      "max_dd_r": 9.618,
+      "net_usd": 281.9,
+      "expectancy_r_costs_x2": 0.6171,
+      "expectancy_r_costs_x3": 0.5883,
+      "usd_per_trade": 14.1,
+      "days_traded": 10,
+      "positive_days": 6,
+      "sum_r_without_best_day": 4.787,
+      "nominal_r": true,
+      "range": {
+        "start": "2026-10-05T00:00:00Z",
+        "end": "2026-10-19T00:00:00Z",
+        "note": "The same 14 calendar days (10 trading days) as stage 1. Classification uses this window only."
+      },
+      "delayed_expectancy_r": 0.675
+    },
+    "context": {
+      "trades": 110,
+      "win_rate": 0.4727,
+      "expectancy_r": 0.0091,
+      "profit_factor": 0.898,
+      "sum_r": 1.006,
+      "max_dd_r": 25.542,
+      "net_usd": -325.86,
+      "expectancy_r_costs_x2": -0.0159,
+      "expectancy_r_costs_x3": -0.0409,
+      "usd_per_trade": -2.96,
+      "days_traded": 55,
+      "positive_days": 30,
+      "sum_r_without_best_day": -7.126,
+      "nominal_r": true,
+      "range": {
+        "start": "2026-08-17T00:00:00Z",
+        "end": "2026-10-31T00:00:00Z",
+        "note": "Supplementary, about 11 weeks of the same spent development series. Once-a-day rules cannot reach 15 trades in 10 trading days; this run shows more trades for them. It does not classify anything and is not validation."
+      }
+    },
+    "note": "Both windows are development data. The context window contains the screen days."
+  },
+  "assessment": "It met the declared screen rule on 10 trading days, which is why it is registered. The 11-week context run does not support it: about zero in R and a loss in USD, with the long leg losing. Not recommended for further work unless a new reason appears.",
+  "caveats": [
+    "Outside the 10 screen days it made -0.132 R per trade over 90 trades.",
+    "Month by month it swung from -22 R to +22 R: no steady effect.",
+    "Positions are held 9 and 15 hours without a stop; R is a nominal unit.",
+    "The source's own net-of-cost effect is small and decaying."
+  ],
+  "next_questions": [
+    "Is there any regime in which the long leg works, as the source claims?"
+  ],
+  "restrictions": [
+    "Screening only: not validated, not shown to be profitable, not trading-ready.",
+    "Its Strategy Lab form (LAB_STRATEGIES.json) was added on 16 November 2026 at the owner's request. Live or demo results of that form are not a validation of this candidate.",
+    "The rules are frozen as screened. A changed rule is a new candidate with a new id.",
+    "Development data already used for it: 20 July to 31 October 2026. Those months are not validation data.",
+    "Any validation must use data research has not touched (forward data from 14 November 2026) under a registered, frozen protocol."
+  ]
+}

@@ -1,0 +1,627 @@
+{
+  "definition": "pre-phase7-screen@1",
+  "written_before_results": true,
+  "purpose": "Short historical screen of externally documented strategy concepts. Not validation; decides nothing about profitability.",
+  "series": {
+    "store": "research",
+    "key": "csv:vantage-mt5-xauusd"
+  },
+  "window": {
+    "start": "2026-10-05T00:00:00Z",
+    "end": "2026-10-19T00:00:00Z",
+    "note": "14 calendar days (10 trading days) of development data already used by Phases 5-5.2; not sealed, not forward."
+  },
+  "timeframes": [
+    "M5",
+    "M15"
+  ],
+  "costs": "frozen Phase 5 cost model: market spread (configured 0.30 fallback), commission 3.50 USD/lot/side, slippage 0.05 USD",
+  "decision": {
+    "min_trades": 15,
+    "min_profit_factor": 1.1,
+    "rules": [
+      "INCONCLUSIVE if fewer than 15 M5 trades (or not screened for lack of an indicator).",
+      "REJECTED if M5 expectancy after costs <= 0, or the concept is unsuitable for GoldScalp's data or its own source shows it unprofitable.",
+      "WORTH FURTHER RESEARCH only if M5 expectancy > 0, PF >= 1.1, still positive without its best day, positive with costs x2, and M15 execution not negative.",
+      "Otherwise INCONCLUSIVE."
+    ]
+  },
+  "baselines": [
+    {
+      "key": "BASE-A2",
+      "name": "Example A v2 (archived Phase 3/4 example, documented benchmark)",
+      "config": {
+        "conditions": [
+          {
+            "enabled": true,
+            "id": "h1",
+            "state": "with",
+            "timeframe": "H1",
+            "type": "structure_state"
+          },
+          {
+            "enabled": true,
+            "id": "m15",
+            "state": "with",
+            "timeframe": "M15",
+            "type": "structure_state"
+          },
+          {
+            "direction": "with",
+            "enabled": true,
+            "event": "BOS",
+            "id": "bos",
+            "timeframe": "M5",
+            "type": "structure_event",
+            "within_candles": 3
+          },
+          {
+            "enabled": true,
+            "id": "spread",
+            "if_unknown": "fail",
+            "max_spread": 0.5,
+            "max_spread_atr": null,
+            "type": "spread"
+          }
+        ],
+        "description": "H1 and M15 structure in the trade direction, a fresh M5 BOS in the same direction, and an acceptable spread. An example, not a claim of profitability.",
+        "direction": "both",
+        "entry": {
+          "max_entry_delay_minutes": 10,
+          "trigger": "on_change"
+        },
+        "evaluation": {
+          "step_timeframe": "M5",
+          "window": {
+            "days": 10,
+            "end": null,
+            "mode": "all",
+            "start": null
+          }
+        },
+        "exit": {
+          "exit_on_structure_flip": {
+            "enabled": false,
+            "timeframe": "M5"
+          },
+          "max_holding_minutes": 60,
+          "stop": {
+            "atr_multiple": 1.5,
+            "buffer_atr": 0.1,
+            "distance": null,
+            "timeframe": "M5",
+            "type": "structure"
+          },
+          "target": {
+            "atr_multiple": null,
+            "distance": null,
+            "r": 2.0,
+            "timeframe": "M5",
+            "type": "r_multiple"
+          }
+        },
+        "name": "Example A: aligned structure + M5 BOS",
+        "risk": {
+          "lots": "0.02",
+          "max_exposure_lots": "1.00",
+          "max_open_positions": 1,
+          "risk_percent": 0.5,
+          "sizing": "fixed_lots"
+        },
+        "schema": "strategy@1"
+      }
+    },
+    {
+      "key": "BASE-VOLC",
+      "name": "Phase 6 VOL-C plain continuation (archived, documented benchmark)",
+      "config": {
+        "schema": "strategy@1",
+        "name": "Phase 6 VOL-C: trend continuation (baseline)",
+        "description": "H6.1 baseline. Research only.",
+        "direction": "both",
+        "evaluation": {
+          "step_timeframe": "M5",
+          "window": {
+            "mode": "all",
+            "days": 10,
+            "start": null,
+            "end": null
+          }
+        },
+        "conditions": [
+          {
+            "id": "h1",
+            "type": "structure_state",
+            "enabled": true,
+            "timeframe": "H1",
+            "state": "with"
+          },
+          {
+            "id": "bos",
+            "type": "structure_event",
+            "enabled": true,
+            "timeframe": "M15",
+            "event": "BOS",
+            "direction": "with",
+            "within_candles": 2
+          },
+          {
+            "id": "spread",
+            "type": "spread",
+            "enabled": true,
+            "max_spread": 0.5,
+            "max_spread_atr": null,
+            "if_unknown": "fail"
+          }
+        ],
+        "entry": {
+          "trigger": "on_change",
+          "max_entry_delay_minutes": 10
+        },
+        "exit": {
+          "stop": {
+            "type": "structure",
+            "timeframe": "M15",
+            "buffer_atr": 0.1,
+            "atr_multiple": 1.5,
+            "distance": null
+          },
+          "target": {
+            "type": "r_multiple",
+            "r": 2.0,
+            "atr_multiple": null,
+            "distance": null,
+            "timeframe": "M15"
+          },
+          "max_holding_minutes": 240,
+          "exit_on_structure_flip": {
+            "enabled": false,
+            "timeframe": "M15"
+          }
+        },
+        "risk": {
+          "sizing": "fixed_lots",
+          "lots": "0.02",
+          "risk_percent": 0.5,
+          "max_open_positions": 1,
+          "max_exposure_lots": "1.00"
+        }
+      }
+    }
+  ],
+  "candidates": [
+    {
+      "key": "P7-ARB",
+      "name": "London breakout of the Asian range",
+      "family": "session breakout",
+      "sources": [
+        {
+          "title": "London Breakout Strategy",
+          "org": "The Right Trader (educational, vendor of tools)",
+          "url": "https://therighttrader.com/learn/trading-strategies/london-breakout-strategy",
+          "type": "educational (FX)"
+        },
+        {
+          "title": "London Breakout on Gold: 3.7 Years of Backtests",
+          "org": "S. Pinjori, MQL5 blog, 2026",
+          "url": "https://www.mql5.com/en/blogs/post/777540",
+          "type": "promotional (sells an EA)"
+        }
+      ],
+      "original_rules": "M15. Range = high/low of 00:00-07:00 UTC; skip if range < 0.25x or > 0.80x daily ATR(14). Entry 07:00-10:00 UTC on the first M15 CLOSE beyond the range (earlier side wins). Stop: opposite side of the range. Target 1R. Exit at the first M15 close at or after 12:00 UTC. One trade per day.",
+      "evidence": "FX source: none (says no reliable published win rate). Gold source: vendor backtest 2023-2026, PF 1.37-1.38 on ~715 trades, costs not stated, bull-market sample.",
+      "screened": true,
+      "implementation": "level_break of completed SESSION highs/lows on M15, known within 1 candle; London session with the New York overlap excluded (07:00-12:00 UTC in October); spread <= 0.50; structure stop beyond the last unbroken M15 swing (+0.1 ATR); 1R target; 300-minute time limit.",
+      "deviations": [
+        "The engine's session levels are the most recent COMPLETED Asian (00:00-09:00 UTC), London and New York sessions, not a 00:00-07:00 range, so Asian levels exist only from 09:00 UTC and earlier breaks use the previous day's sessions.",
+        "Stop at the last M15 swing instead of the opposite side of the range (a range stop is not available).",
+        "No range-size filter; entries until 12:00 UTC instead of 10:00; not limited to one trade per day (one open position at a time)."
+      ],
+      "config": {
+        "schema": "strategy@1",
+        "name": "P7 screen ARB: London breakout of the Asian range",
+        "description": "Pre-Phase 7 screening candidate (research only).",
+        "direction": "both",
+        "evaluation": {
+          "step_timeframe": "M5",
+          "window": {
+            "mode": "all",
+            "days": 10,
+            "start": null,
+            "end": null
+          }
+        },
+        "conditions": [
+          {
+            "id": "brk",
+            "type": "level_break",
+            "timeframe": "M15",
+            "within_candles": 1,
+            "level_types": [
+              "session"
+            ]
+          },
+          {
+            "id": "sess",
+            "type": "session",
+            "sessions": [
+              "London"
+            ],
+            "overlap": "excluded"
+          },
+          {
+            "id": "spread",
+            "type": "spread",
+            "max_spread": 0.5
+          }
+        ],
+        "entry": {
+          "trigger": "on_change",
+          "max_entry_delay_minutes": 10
+        },
+        "exit": {
+          "stop": {
+            "type": "structure",
+            "timeframe": "M15",
+            "buffer_atr": 0.1
+          },
+          "target": {
+            "type": "r_multiple",
+            "r": 1.0
+          },
+          "max_holding_minutes": 300,
+          "exit_on_structure_flip": {
+            "enabled": false,
+            "timeframe": "M15"
+          }
+        },
+        "risk": {
+          "sizing": "fixed_lots",
+          "lots": "0.02",
+          "risk_percent": 0.5,
+          "max_open_positions": 1,
+          "max_exposure_lots": "1.00"
+        }
+      }
+    },
+    {
+      "key": "P7-PDF",
+      "name": "Previous-day high/low false-breakout fade",
+      "family": "reversal",
+      "sources": [
+        {
+          "title": "Intraday Strategies on Gold that Trade Against the Trend",
+          "org": "Unger Academy",
+          "url": "https://ungeracademy.com/blog/intraday-strategies-on-gold-that-trade-against-the-trend-or-or-rules-performance",
+          "type": "promotional (video transcript)"
+        },
+        {
+          "title": "Street Smarts (80-20 setup, related)",
+          "org": "L. Connors & L. Raschke, 1995",
+          "url": null,
+          "type": "book (secondary summary)"
+        }
+      ],
+      "original_rules": "CME gold futures, M15: if price breaks below the previous day's low and comes back above it, go long; if it breaks above the previous day's high and crosses back below it, go short. Flat by the end of the day. Stop, target and filters not specified by the source.",
+      "evidence": "Author-reported out-of-sample results since 2018 (average trades ~$135 and ~$100 net); not verifiable; the short side did poorly out of sample.",
+      "screened": true,
+      "implementation": "liquidity_sweep of the previous-day high/low (PD levels, previous trading day at the 17:00 New York rollover) on M15, confirmed within 1 candle; spread <= 0.50; structure stop beyond the last M15 swing (+0.1 ATR); no target; 360-minute time limit.",
+      "deviations": [
+        "Stop and target are not specified by the source: a structure stop beyond the sweep swing and no target were used.",
+        "'Flat by the end of the day' approximated by a 6-hour holding limit.",
+        "Spot XAUUSD and the broker's previous day instead of CME futures."
+      ],
+      "config": {
+        "schema": "strategy@1",
+        "name": "P7 screen PDF: previous-day false-breakout fade",
+        "description": "Pre-Phase 7 screening candidate (research only).",
+        "direction": "both",
+        "evaluation": {
+          "step_timeframe": "M5",
+          "window": {
+            "mode": "all",
+            "days": 10,
+            "start": null,
+            "end": null
+          }
+        },
+        "conditions": [
+          {
+            "id": "sweep",
+            "type": "liquidity_sweep",
+            "timeframe": "M15",
+            "within_candles": 1,
+            "level_types": [
+              "PD"
+            ]
+          },
+          {
+            "id": "spread",
+            "type": "spread",
+            "max_spread": 0.5
+          }
+        ],
+        "entry": {
+          "trigger": "on_change",
+          "max_entry_delay_minutes": 10
+        },
+        "exit": {
+          "stop": {
+            "type": "structure",
+            "timeframe": "M15",
+            "buffer_atr": 0.1
+          },
+          "target": {
+            "type": "none",
+            "r": 2.0
+          },
+          "max_holding_minutes": 360,
+          "exit_on_structure_flip": {
+            "enabled": false,
+            "timeframe": "M15"
+          }
+        },
+        "risk": {
+          "sizing": "fixed_lots",
+          "lots": "0.02",
+          "risk_percent": 0.5,
+          "max_open_positions": 1,
+          "max_exposure_lots": "1.00"
+        }
+      }
+    },
+    {
+      "key": "P7-EMA",
+      "name": "EMA trend-pullback scalp",
+      "family": "trend",
+      "sources": [
+        {
+          "title": "Short-term momentum scalping in the forex market",
+          "org": "J. Stanley (DailyFX), IG",
+          "url": "https://ig.com/sg/trading-strategies/short-term-momentum-scalping-in-the-forex-market-220929",
+          "type": "broker education"
+        },
+        {
+          "title": "Four simple scalping trading strategies",
+          "org": "IG, ~2019",
+          "url": "https://www.ig.com/en/trading-strategies/four-simple-scalping-trading-strategies-190131",
+          "type": "broker education"
+        }
+      ],
+      "original_rules": "H1 trend: 8 EMA above 34 EMA and price above both (mirror for shorts). M5 entry after a pullback to/through the 8 EMA when trend-side momentum returns. Stop beyond the previous swing. Target not specified. No overnight holds.",
+      "evidence": "None; the author says crossover systems have not worked well for him long-term.",
+      "screened": true,
+      "implementation": "ema_trend on H1 (9 vs 50 EMA, price and fast beyond slow); M5 swing_sequence 'pullback' (last low a higher low for longs) and a fresh M5 BOS in the trend direction within 2 candles; spread <= 0.50; structure stop beyond the last M5 swing (+0.1 ATR); 2R target; 240 minutes.",
+      "deviations": [
+        "8/34 EMAs are not available: the nearest available pair 9/50 was used.",
+        "'Pullback to the 8 EMA, then momentum returns' (discretionary) expressed as an M5 higher-low pullback followed by a fresh M5 break of structure.",
+        "Target not specified by the source: GoldScalp's standard 2R and 240-minute limit, for comparability with the baselines."
+      ],
+      "config": {
+        "schema": "strategy@1",
+        "name": "P7 screen EMA: EMA trend-pullback scalp",
+        "description": "Pre-Phase 7 screening candidate (research only).",
+        "direction": "both",
+        "evaluation": {
+          "step_timeframe": "M5",
+          "window": {
+            "mode": "all",
+            "days": 10,
+            "start": null,
+            "end": null
+          }
+        },
+        "conditions": [
+          {
+            "id": "h1",
+            "type": "ema_trend",
+            "timeframe": "H1",
+            "fast": "9",
+            "slow": "50",
+            "mode": "both"
+          },
+          {
+            "id": "pb",
+            "type": "swing_sequence",
+            "timeframe": "M5",
+            "pattern": "pullback"
+          },
+          {
+            "id": "bos",
+            "type": "structure_event",
+            "timeframe": "M5",
+            "event": "BOS",
+            "direction": "with",
+            "within_candles": 2
+          },
+          {
+            "id": "spread",
+            "type": "spread",
+            "max_spread": 0.5
+          }
+        ],
+        "entry": {
+          "trigger": "on_change",
+          "max_entry_delay_minutes": 10
+        },
+        "exit": {
+          "stop": {
+            "type": "structure",
+            "timeframe": "M5",
+            "buffer_atr": 0.1
+          },
+          "target": {
+            "type": "r_multiple",
+            "r": 2.0
+          },
+          "max_holding_minutes": 240,
+          "exit_on_structure_flip": {
+            "enabled": false,
+            "timeframe": "M15"
+          }
+        },
+        "risk": {
+          "sizing": "fixed_lots",
+          "lots": "0.02",
+          "risk_percent": 0.5,
+          "max_open_positions": 1,
+          "max_exposure_lots": "1.00"
+        }
+      }
+    },
+    {
+      "key": "P7-CRB",
+      "name": "Crabel opening-range stretch breakout with NR4/NR7",
+      "family": null,
+      "sources": [
+        {
+          "summary": "book (Crabel 1990, not accessed) + research blog (Oxford Capital) + academic ORB on crude oil"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Needs the session/day open, a 10-day stretch average and NR4/NR7 day ranges; no such levels exist in the builder. The documented version is a multi-day swing system on daily bars.",
+      "pre_classification": "INCONCLUSIVE",
+      "config": null
+    },
+    {
+      "key": "P7-ORB5",
+      "name": "5-minute opening-range breakout in the first candle's direction (Zarattini & Aziz)",
+      "family": null,
+      "sources": [
+        {
+          "summary": "academic working paper (SSRN 4416622) + independent replication (MQL5 blog, 2026)"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Needs a first-N-minute opening range from a chosen anchor; not available. An independent replication on five indices found the gross edge disappears net of spread and slippage.",
+      "pre_classification": "INCONCLUSIVE",
+      "config": null
+    },
+    {
+      "key": "P7-NOISE",
+      "name": "Noise-area intraday momentum (Zarattini, Aziz & Barbon)",
+      "family": null,
+      "sources": [
+        {
+          "summary": "academic working paper (SPY)"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Needs time-of-day volatility bands from the session open and half-hour checks; not available. SPY-only evidence.",
+      "pre_classification": "INCONCLUSIVE",
+      "config": null
+    },
+    {
+      "key": "P7-HALF",
+      "name": "First-half-hour to last-half-hour intraday momentum (Gao et al.)",
+      "family": null,
+      "sources": [
+        {
+          "summary": "peer-reviewed (JFE 2018) + GLD study (Resources Policy 2020)"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Needs time-of-day returns and clock-time entries; not available. For GLD the predictive half-hour is not necessarily the first.",
+      "pre_classification": "INCONCLUSIVE",
+      "config": null
+    },
+    {
+      "key": "P7-VWAP",
+      "name": "VWAP trend (Zarattini & Aziz)",
+      "family": null,
+      "sources": [
+        {
+          "summary": "academic working paper (QQQ)"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Needs real traded volume to build VWAP; spot XAUUSD has only broker tick volume. Always-in-market flipping is extremely cost-sensitive. Unsuitable for GoldScalp's data.",
+      "pre_classification": "REJECTED",
+      "config": null
+    },
+    {
+      "key": "P7-TSOUP",
+      "name": "Turtle Soup failed 20-bar breakout (Connors & Raschke)",
+      "family": null,
+      "sources": [
+        {
+          "summary": "book (secondary summaries)"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Needs a 20-bar extreme at least 4 bars old; the nearest builder analogue (sweep of equal highs/lows or session levels) was already tested as VOL-F, R3 and R8, all rejected or not supported. No target in the source; daily-bar rules.",
+      "pre_classification": "INCONCLUSIVE",
+      "config": null
+    },
+    {
+      "key": "P7-RSI2",
+      "name": "RSI(2) extreme mean reversion (Connors & Alvarez)",
+      "family": null,
+      "sources": [
+        {
+          "summary": "book + educational + MQL5 article"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Needs RSI(2) at extremes (<= 5-10 / >= 90-95), a 200 SMA and a 5 SMA exit; the builder has RSI(14) confirmation only. No gold or intraday evidence; no stop in the original.",
+      "pre_classification": "INCONCLUSIVE",
+      "config": null
+    },
+    {
+      "key": "P7-PCTB",
+      "name": "Bollinger %b mean reversion (Connors)",
+      "family": null,
+      "sources": [
+        {
+          "summary": "book (secondary) + academic (Lento et al. 2007)"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Needs Bollinger %b and a 200 SMA; not available. Academic evidence: Bollinger signals do not beat buy-and-hold after costs.",
+      "pre_classification": "INCONCLUSIVE",
+      "config": null
+    },
+    {
+      "key": "P7-SQZ",
+      "name": "Bollinger / TTM squeeze breakout (Bollinger; Carter)",
+      "family": null,
+      "sources": [
+        {
+          "summary": "books + educational"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Needs Bollinger and Keltner bands and a momentum histogram; not available. The closest earlier analogue, R9 volatility-squeeze breakout, was rejected. No quantitative evidence.",
+      "pre_classification": "INCONCLUSIVE",
+      "config": null
+    },
+    {
+      "key": "P7-MAX",
+      "name": "5-minute moving-average crossover on gold (Urquhart et al.)",
+      "family": null,
+      "sources": [
+        {
+          "summary": "academic working paper (SSRN 2652637), gold-specific"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Always-in-market crossover rules cannot be expressed (no crossover exit). The source's own evidence: standard parameters are not profitable even before costs; the best rules come from a 66,297-rule search (data-mining) with no costs. Not worth implementing.",
+      "pre_classification": "REJECTED",
+      "config": null
+    },
+    {
+      "key": "P7-TOD",
+      "name": "Gold time-of-day and pre-London-fix short (Donati & Jung)",
+      "family": null,
+      "sources": [
+        {
+          "summary": "MSc thesis (gold-specific) + peer-reviewed context"
+        }
+      ],
+      "screened": false,
+      "not_screened_reason": "Needs clock-time entries and exits (11:00 and 02:00 New York); not available. The source's net-of-spread returns fell to about 1.7% a year in 2013-18 and the effect is decaying.",
+      "pre_classification": "INCONCLUSIVE",
+      "config": null
+    }
+  ]
+}

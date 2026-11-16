@@ -168,6 +168,31 @@
       </div>
     </section>
 
+    <section class="panel ticket" aria-labelledby="ticket-title" id="ticket-panel">
+      <header><h2 id="ticket-title">MT5 demo order ticket</h2><span class="spacer"></span><span class="badge kind-current" title="Orders go to your MT5 DEMO account (virtual funds)">MT5 DEMO</span></header>
+      <div class="body">
+        <p class="notice warn compact" id="tk-problems" role="status" hidden></p>
+        <dl class="kv ticket-acct" id="tk-acct"></dl>
+        <div class="ticket-row">
+          <div class="seg" role="group" aria-label="Side">
+            <button type="button" class="buy" id="tk-buy" aria-pressed="true">Buy</button><button type="button" class="sell" id="tk-sell" aria-pressed="false">Sell</button>
+          </div>
+          <label>Lots<input type="number" id="tk-lots" min="0.01" step="0.01" value="0.10" inputmode="decimal"></label>
+          <label>Stop-loss<input type="number" id="tk-sl" step="0.01" inputmode="decimal"></label>
+          <label>Take-profit<input type="number" id="tk-tp" step="0.01" inputmode="decimal" placeholder="none"></label>
+          <label class="check"><input type="checkbox" id="tk-preview" checked> Show on chart</label>
+        </div>
+        <div class="stat-grid ticket-est" id="tk-est" aria-live="polite"></div>
+        <p class="muted small" id="tk-why" hidden></p>
+        <div class="toolbar"><button type="button" class="btn" id="tk-reset">Reset levels</button><button type="button" class="btn primary" id="tk-review" disabled>Review order&hellip;</button></div>
+        <p class="notice" id="tk-result" role="status" hidden></p>
+        <h3 class="ticket-h">Open manual positions</h3>
+        <div id="tk-positions"></div>
+        <details class="ticket-orders"><summary class="small">Recent ticket orders</summary><div id="tk-orders"></div></details>
+        <p class="muted small">Drag the SL and TP lines on the candle chart, or type the prices. The chart shows the result at each line before you send, and the open position's live P/L after. Orders go to your MT5 <strong>DEMO</strong> account only (virtual funds): GoldScalp checks the account before every order and refuses real-money accounts. Estimates include the spread, not the broker's commission or swap. Strategy orders from demo execution are not shown here and cannot be changed here.</p>
+      </div>
+    </section>
+
     <section class="panel" aria-labelledby="mtf-title">
       <header><h2 id="mtf-title">Multi-timeframe analysis</h2><span id="mtf-kind"></span><span class="spacer"></span><span class="muted small" id="mtf-asof"></span></header>
       <div class="body" id="mtf-body"><p class="muted small">Loading&hellip;</p></div>
@@ -242,6 +267,11 @@
       <div class="body" id="vol-body"><p class="muted small">&mdash;</p></div>
     </section>
   </div>
+  <dialog id="tk-dialog" class="ticket-dialog" aria-labelledby="tk-dialog-title">
+    <h2 id="tk-dialog-title">Confirm</h2>
+    <div id="tk-dialog-body"></div>
+    <div class="toolbar"><button type="button" class="btn" id="tk-dialog-cancel">Cancel</button><button type="button" class="btn primary" id="tk-dialog-ok">Send</button></div>
+  </dialog>
 </main>
 
 <footer class="site">

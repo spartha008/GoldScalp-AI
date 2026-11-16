@@ -83,6 +83,31 @@ python research.py        # or: python -m goldscalp.monthly   ->  http://127.0.0
   Performance, improvement studies, Monthly Backtest and every research job refuse such a request with HTTP 409;
   nothing is ever truncated. Charts, the dashboard and live MT5 collection are unaffected. Unlocking needs a registered,
   versioned `forward-unlock@1` protocol. See FORWARD_DATA_GUARD_REPORT.md and `GET /api/research/forward-guard`.
+- **Pre-Phase 7 screening tools (research only).** `goldscalp/research/indicators.py` (moving averages, RSI, ATR,
+  Bollinger and Keltner bands, squeeze momentum, clock-time and trading-day helpers), `rulesim.py` (a rule simulator with
+  clock-time entries and exits, stop-entry orders and reversals, using the bt@1 fills and costs) and
+  `external_rules.py` (15 published rule sets). `python -m goldscalp.research.screening_ext --run` re-runs the stage 2
+  screen; it can read neither the sealed block nor forward data. See PRE_PHASE_7_STAGE_2_SCREENING_REPORT.md.
+- **Research candidates.** Step 6 of the page lists the published rule sets registered for a proper test later
+  (`config/research/candidates/`, `GET /api/monthly/research-candidates`): P7-FIX and P7-TOD, each with its source, its
+  rules exactly as screened, a fingerprint, its evidence and its caveats. A candidate is not validated.
+  `python -m goldscalp.research.candidates --check` confirms the rules are unchanged; `--reproduce` re-runs the stored
+  evidence.
+  - **Strategy Lab form (16 November 2026, at the owner's request).** The builder gained a **clock-time** condition
+    (times in UTC, New York or London time, so daylight saving is followed) and a stop type **none**. With them the
+    candidates exist as Strategy Lab strategies (`config/research/candidates/LAB_STRATEGIES.json`): P7-FIX v1 as
+    screened, P7-FIX v2 with a protective stop of 3.0 x ATR(14) on M15, and the two legs of P7-TOD. On the screen
+    window the Lab forms place exactly the screened trades (20 of 20 each, `research/pre_phase7/lab-parity.json`).
+    Existing strategy fingerprints did not change.
+  - **Longer history.** P7-FIX as registered, over the 2026 history research had already used (1 January to 29 May and
+    22 June to 13 November): 420 trades, +0.063 nominal R per trade, profit factor 1.17, +$607. It is uneven:
+    -$168 over 224 trades in January to June, +$774 over 196 trades from July. The morning fix carries most of it.
+    Exploratory, not validation (`research/pre_phase7/candidates-2026-history.json`; shown on the candidate card).
+  - **Monitored and on demo.** At the owner's request (16 November 2026) P7-FIX **v3** is monitored in paper mode
+    (monitor 5) and linked to MT5 demo execution: 5% of equity at risk per trade, stop 1.0 x ATR(14) on M15,
+    target 2R, break-even at +1R, same entries and 30-minute exit. **v4** (the same with a 1.5R target) is monitored in
+    paper mode only (monitor 6). v2 (3 x ATR stop, 0.02 lots) was unlinked from demo; its paper monitor 4 still
+    runs as a baseline. This is observation on a demo account, not a validation and not a promotion.
 - **Research library.** Step 5 of the page collects every Phase 5 and Phase 6 study, read-only, from the research
   store and the frozen report files (`GET /api/monthly/library`).
   - Pick up to eight results from any study to compare them side by side: pooled metrics, cumulative R by month, a
@@ -121,6 +146,9 @@ Details: [PHASE_4_IMPLEMENTATION_REPORT.md](PHASE_4_IMPLEMENTATION_REPORT.md).
 > live evaluation, and the strategies are archived. Phases 1–6 are preserved read-only in
 > `research_archive/phase_1_to_6/`; see [PHASE_1_TO_6_ARCHIVE_REPORT.md](PHASE_1_TO_6_ARCHIVE_REPORT.md) and verify
 > with `python -m goldscalp.research_archive --check`.
+>
+> **Since 16 November 2026** one version is monitored again: P7-FIX v2 (monitor 4, paper mode, linked to MT5 demo
+> execution), a pre-Phase 7 research candidate added at the owner's request. Monitors 1–3 stay stopped and archived.
 
 - **Terminal verification.** A read-only checklist runs against the running terminal and stores its evidence:
   - the broker must be Vantage: from `terminal_info().company` on a Vantage-branded terminal, or, on the generic
@@ -174,7 +202,15 @@ next to the simulated ones. It is off until you switch it on, and it works only 
 - **Never late, never twice.** An entry is not sent more than 90 s after the simulated entry. A failed or
   rejected order is recorded and never retried. If an order's reply is lost, the position is adopted by its
   comment instead of being sent again.
-- **Limits** (`.env`): 0.10 lots per order, 3 open GoldScalp demo positions, 30 points deviation.
+- **Always a stop-loss.** A simulated trade without a stop-loss is never sent: it is recorded as refused. A
+  strategy whose stop type is `none` can be backtested and monitored, but not mirrored.
+- **Limits** (`.env`): 0.10 lots per order by default, 3 open GoldScalp demo positions, 30 points deviation. This
+  installation allows 2.00 lots per order (`GOLDSCALP_DEMO_EXECUTION_MAX_LOTS=2.00`, set on 16 November 2026 for the
+  owner's 5%-risk P7-FIX version) and gives simulated accounts the demo account's 1:500 leverage
+  (`GOLDSCALP_PAPER_LEVERAGE=500`; it affects new accounts and Lab runs, not existing accounts).
+- **Break-even stops.** A monitored version with break-even moves its SIMULATED stop to the entry once the trade has
+  gone +trigger R in its favour, as the backtest does (one monitor cycle later instead of at a bar close). The demo
+  position keeps its original stop-loss at the broker; GoldScalp closes it when the simulated trade closes.
 - **Kill switch.** *Stop all demo execution* on the Demo Execution tab disables every link and can close every
   open GoldScalp demo position.
 - GoldScalp still never asks for or stores MT5 credentials.
@@ -186,6 +222,32 @@ next to the simulated ones. It is off until you switch it on, and it works only 
 3. Open **Live → Demo Execution**. The account must show `DEMO` and `RETAIL_HEDGING`. Then click **Link to demo**
    on each paper-mode monitored version and type `DEMO` to confirm.
 
+### Dashboard order ticket (MT5 demo account)
+
+The Dashboard has an **MT5 demo order ticket** under the candle chart, for your own market orders on the same demo
+account (16 November 2026).
+
+- **Set it up on the chart.** Choose Buy or Sell and the lots. The stop-loss and take-profit are lines on the candle
+  chart: drag them, or type the prices.
+- **P&L before you send.** Each line's label shows the USD result and the R multiple at that price, and the ticket
+  shows the risk as a share of the balance. A BUY fills at the ask and its levels are hit by the bid (a SELL the other
+  way round), so the spread is included; the broker's commission and swap are not.
+- **Confirm.** *Review order* opens a summary (account, side, lots, entry, both levels and their results); only
+  *Send ... to MT5 demo* in that dialog sends the order.
+- **P&L after you send.** The open position's entry, SL and TP lines stay on the chart with its live P/L. Drag its SL or
+  TP and click *Apply SL/TP*, or close it at market.
+- **Safety.** It uses the demo-only gateway: the account is re-read before every order, and anything that is not the
+  DEMO account shown on the ticket is refused. A stop-loss is required. It needs demo execution switched on and MT5's
+  Algo Trading button, and it respects the lot limit.
+- **Kept apart from strategy orders.** Ticket orders carry magic number `26111401` and the comment
+  `GoldScalp manual M<id>`. The strategy mirror (magic `26111400`) never counts, adopts or closes them, and the ticket
+  can change or close only its own positions. The kill switch on the Demo Execution tab does not close them.
+- **Recorded.** Every request, result and refusal is stored (`manual_orders`, migration 0008).
+- **API.** `GET /api/live/demo/manual`, `POST /api/live/demo/manual/orders`,
+  `POST /api/live/demo/manual/positions/{ticket}/protection` and `POST /api/live/demo/manual/positions/{ticket}/close`.
+  Code: `goldscalp/execution/manual.py`, `web/js/ticket.js`; tests: `tests/test_manual_ticket.py` (fake broker, no real
+  order).
+
 ## Strategy Lab (Phase 3)
 
 Build strategy configurations from Phase 2 observations and evaluate them on stored history at
@@ -195,6 +257,8 @@ automated. Details: [PHASE_3_IMPLEMENTATION_REPORT.md](PHASE_3_IMPLEMENTATION_RE
 - **Strategy Builder.**
   - Combine BOS/CHoCH, HH/HL/LH/LL, liquidity sweeps, FVG, order-block candidates, timeframe
     alignment, sessions, volatility regime, ATR range, spread and the Phase 2 signal.
+  - A **clock-time** condition is true in the minutes after listed local times (UTC, New York or London), for rules
+    that trade by the clock.
   - Conditions can be switched on or off, and evaluation timeframes and windows are configurable.
   - Strategies are versioned and fingerprinted, and can be exported or imported as JSON.
   - Three example templates are included; they are examples, not claims of profitability.
@@ -202,7 +266,7 @@ automated. Details: [PHASE_3_IMPLEMENTATION_REPORT.md](PHASE_3_IMPLEMENTATION_RE
   step.
   - Entries fill at the next candle open, with spread, commission, adverse slippage and margin (the
     paper simulator's formulas).
-  - Stops (structure, ATR or fixed), targets (R, ATR or fixed), time and structure-flip exits;
+  - Stops (structure, ATR, fixed or none), targets (R, ATR or fixed), time and structure-flip exits;
     exposure limits; fixed or risk-% sizing.
   - Gaps are handled. When one candle touches both stop and target, the ambiguity is explicit
     (stop-first by default, and flagged).

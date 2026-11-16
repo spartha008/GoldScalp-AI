@@ -19,6 +19,7 @@ from fastapi.staticfiles import StaticFiles
 from goldscalp.api.routers import analysis as analysis_routes
 from goldscalp.api.routers import data as data_routes
 from goldscalp.api.routers import demo as demo_routes
+from goldscalp.api.routers import manual as manual_routes
 from goldscalp.api.routers import improvement as improvement_routes
 from goldscalp.api.routers import live as live_routes
 from goldscalp.api.routers import market as market_routes
@@ -36,6 +37,7 @@ from goldscalp.core.forward import ForwardDataLocked
 from goldscalp.core.timeframes import Timeframe
 from goldscalp.data.hub import NAMES, MarketHub, ProviderOption
 from goldscalp.data.live import MarketDataService, RequestBudget
+from goldscalp.execution.manual import ManualTicket
 from goldscalp.execution.mirror import DemoMirror
 from goldscalp.live.feed import FeedMonitor
 from goldscalp.live.monitor import LiveMonitor
@@ -202,6 +204,9 @@ def create_app(settings: Settings | None = None, *, clock: Clock | None = None, 
     app.state.gs.demo = DemoMirror(app.state.gs, lambda: getattr(getattr(market, "service", None), "provider", None)
                                    if market.active == "mt5" else None)
     app.state.gs.monitor.demo = app.state.gs.demo
+    # Dashboard order ticket: manual orders on the same DEMO account, through the same demo-only gateway, with their own
+    # magic number so the mirror above never touches them (goldscalp/execution/manual.py).
+    app.state.gs.manual = ManualTicket(app.state.gs.demo)
     market.listeners.append(app.state.gs.monitor.on_quote)   # Phase 4: excursions of open simulated trades
 
     token = settings.auth_token.get_secret_value() if settings.auth_token else None
@@ -233,7 +238,7 @@ def create_app(settings: Settings | None = None, *, clock: Clock | None = None, 
         return response
 
     for module in (market_routes, analysis_routes, replay_routes, performance_routes, strategy_routes, research_routes,
-                   simulation_routes, data_routes, live_routes, improvement_routes, demo_routes):
+                   simulation_routes, data_routes, live_routes, improvement_routes, demo_routes, manual_routes):
         app.include_router(module.router)
     @app.exception_handler(ForwardDataLocked)
     async def forward_locked(request: Request, exc: ForwardDataLocked) -> JSONResponse:

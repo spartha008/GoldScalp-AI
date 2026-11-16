@@ -23,6 +23,7 @@ STEP_TIMEFRAMES = ("M1", "M5", "M15", "H1")
 SESSION_NAMES = ("Asian", "London", "New York")
 LEVEL_TYPES = ("EQ", "PD", "PW", "session")
 VOL_REGIMES = ("contracting", "normal", "expanding")
+CLOCK_TIMEZONES = ("UTC", "America/New_York", "Europe/London")
 DETAIL_TYPES = {"liquidity_sweep", "level_break", "level_retest", "fvg", "order_block"}
 
 
@@ -30,7 +31,7 @@ class StrategyError(ValueError):
     pass
 
 
-# Parameter specs: (kind, default, rule). kind: tf | choice | int | num | bool | tfs | choices | numopt
+# Parameter specs: (kind, default, rule). kind: tf | choice | int | num | bool | tfs | choices | numopt | times
 CONDITIONS: dict[str, dict[str, Any]] = {
     "structure_state": {
         "label": "Structure state", "help": "The timeframe's structure@2 state (bullish / bearish / ranging).",
@@ -106,13 +107,22 @@ CONDITIONS: dict[str, dict[str, Any]] = {
                                               "not_extreme: RSI(14) <= level for a long (>= 100 - level for a short).",
         "params": {"timeframe": ("tf", "M5", None), "level": ("int", 55, (50, 90)),
                    "mode": ("choice", "confirm", ("confirm", "not_extreme"))}},
+    "clock_time": {
+        "label": "Clock time", "help": "Pre-Phase 7. The step candle closed at one of the listed clock times (HH:MM) in the "
+                                       "timezone, or up to window_minutes later. Daylight-saving aware. It is the same for "
+                                       "longs and shorts, so set the strategy direction to long or short.",
+        "params": {"timezone": ("choice", "America/New_York", CLOCK_TIMEZONES), "times": ("times", ["09:30"], (1, 12)),
+                   "window_minutes": ("int", 5, (1, 240))}},
     "signal_agrees": {
         "label": "Phase 2 signal agrees", "help": "The signal@1 classification is in the strategy direction with "
                                                   "|score| >= min_abs_score.",
         "params": {"min_abs_score": ("int", 4, (0, 20))}},
 }
 
-STOP_TYPES = ("structure", "atr", "fixed")
+#: "none" (Pre-Phase 7): no stop, for rules whose source has none. The position leaves by its target, its time limit
+#: or a structure flip only, R is undefined, and demo execution refuses such trades (it never sends an order without a
+#: stop-loss).
+STOP_TYPES = ("structure", "atr", "fixed", "none")
 TARGET_TYPES = ("r_multiple", "atr", "fixed", "none")
 
 
@@ -185,6 +195,10 @@ def _condition(raw: Any, i: int, seen: set[str]) -> dict[str, Any]:
             if not isinstance(value, list) or not value or len(set(value)) != len(value) \
                     or any(v not in rule for v in value):
                 raise StrategyError(f"{p} must be a non-empty list of distinct values from {list(rule)}")
+        elif kind == "times":
+            if not isinstance(value, list) or not rule[0] <= len(value) <= rule[1] or len(set(value)) != len(value) \
+                    or any(not isinstance(v, str) or not re.fullmatch(r"([01]\d|2[0-3]):[0-5]\d", v) for v in value):
+                raise StrategyError(f"{p} must be a list of {rule[0]}-{rule[1]} distinct clock times like 09:30")
         out[name] = value
     if ctype == "htf_alignment" and out["min_agree"] > len(out["timeframes"]):
         raise StrategyError(f"{path}.min_agree cannot exceed the number of timeframes")
@@ -263,6 +277,9 @@ def validate(data: Any) -> dict[str, Any]:
         raise StrategyError(f"exit.stop.timeframe must be one of {list(TIMEFRAMES)}")
     if stop["type"] == "fixed" and stop["distance"] is None:
         raise StrategyError("exit.stop.distance is required for a fixed stop")
+    if stop["type"] == "none" and (ex.get("breakeven") or {}).get("enabled") or \
+            stop["type"] == "none" and (ex.get("trail") or {}).get("enabled"):
+        raise StrategyError("a break-even or trailing stop needs a stop: exit.stop.type must not be none")
     tg = _keys(ex.get("target", {}), {"type", "r", "atr_multiple", "distance", "timeframe"}, "exit.target")
     target = {"type": tg.get("type", "r_multiple"), "r": _num(tg.get("r", 2.0), "exit.target.r", 0.1, 50),
               "atr_multiple": None if tg.get("atr_multiple") is None else
@@ -277,6 +294,8 @@ def validate(data: Any) -> dict[str, Any]:
         raise StrategyError("exit.target.atr_multiple is required for an ATR target")
     if target["type"] == "fixed" and target["distance"] is None:
         raise StrategyError("exit.target.distance is required for a fixed target")
+    if stop["type"] == "none" and target["type"] == "r_multiple":
+        raise StrategyError("an R-multiple target needs a stop: with exit.stop.type none, use target type none, atr or fixed")
     flip = _keys(ex.get("exit_on_structure_flip", {}), {"enabled", "timeframe"}, "exit.exit_on_structure_flip")
     flip_out = {"enabled": flip.get("enabled", False), "timeframe": flip.get("timeframe", "M5")}
     if not isinstance(flip_out["enabled"], bool) or flip_out["timeframe"] not in TIMEFRAMES:
@@ -330,7 +349,7 @@ def fingerprint(config: dict[str, Any]) -> str:
 
 def timeframes_used(config: dict[str, Any]) -> set[str]:
     out = {config["evaluation"]["step_timeframe"]}
-    if config["exit"]["stop"]["type"] != "fixed":                  # structure / ATR stops read that timeframe
+    if config["exit"]["stop"]["type"] in ("structure", "atr"):     # structure / ATR stops read that timeframe
         out.add(config["exit"]["stop"]["timeframe"])
     if config["exit"]["target"]["type"] == "atr":
         out.add(config["exit"]["target"]["timeframe"])

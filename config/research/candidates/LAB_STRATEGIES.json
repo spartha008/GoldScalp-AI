@@ -1,0 +1,430 @@
+{
+  "definition": "candidate-lab-strategies@1",
+  "written": "2026-11-16",
+  "note": "The Strategy Lab form of the research candidates, added at the user's request so they can be backtested in the Lab, monitored in Live Validation and (with a stop-loss) linked to MT5 DEMO execution. The research candidates themselves stay as screened. None of this is validation. On 16 November 2026 the owner also asked for 5% risk per trade, 1.5R to 2R targets and break-even at 1R: versions v3 and v4 of P7-FIX.",
+  "why_two_legs": "A strategy has one direction-neutral condition set and one holding time, so P7-TOD's long and short legs are two strategies. Together they place the same trades as the screened rule set.",
+  "strategies": [
+    {
+      "key": "P7-FIX",
+      "candidate": "P7-FIX",
+      "strategy_name": "P7-FIX: short before the London fixes",
+      "versions": [
+        {
+          "label": "v1: as screened (no stop)",
+          "as_screened": true,
+          "config": {
+            "schema": "strategy@1",
+            "name": "P7-FIX: short before the London fixes",
+            "description": "Research candidate P7-FIX exactly as screened: short at 05:05 and 09:35 New York, closed after 30 minutes, no stop (Donati & Jung 2019). Screening only: not validated.",
+            "direction": "short",
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "mode": "all",
+                "days": 10,
+                "start": null,
+                "end": null
+              }
+            },
+            "conditions": [
+              {
+                "id": "clock",
+                "type": "clock_time",
+                "enabled": true,
+                "timezone": "America/New_York",
+                "times": [
+                  "05:05",
+                  "09:35"
+                ],
+                "window_minutes": 5
+              }
+            ],
+            "entry": {
+              "trigger": "on_change",
+              "max_entry_delay_minutes": 10
+            },
+            "exit": {
+              "stop": {
+                "type": "none",
+                "timeframe": "M5",
+                "buffer_atr": 0.1,
+                "atr_multiple": 1.5,
+                "distance": null
+              },
+              "target": {
+                "type": "none",
+                "r": 2.0,
+                "atr_multiple": null,
+                "distance": null,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 30,
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              }
+            },
+            "risk": {
+              "sizing": "fixed_lots",
+              "lots": "0.02",
+              "risk_percent": 0.5,
+              "max_open_positions": 1,
+              "max_exposure_lots": "1.00"
+            }
+          },
+          "fingerprint": "8162c0cf0864527fd4103537e3fddabc6c03779f0d43354b05092e5364bdf356"
+        },
+        {
+          "label": "v2: protective stop for demo execution",
+          "as_screened": false,
+          "difference": "Adds a protective stop 3.0 x ATR(14) on M15 from the entry (twice the nominal R unit). It exists because demo execution never sends an order without a stop-loss. Entries, direction, size and the 30-minute exit are unchanged. Its results can differ from the screened rule set whenever the stop is reached.",
+          "config": {
+            "schema": "strategy@1",
+            "name": "P7-FIX: short before the London fixes",
+            "description": "P7-FIX with a protective stop (3.0 x ATR on M15) so that demo execution can carry a stop-loss. Entries and the 30-minute exit are as screened. Screening only: not validated.",
+            "direction": "short",
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "mode": "all",
+                "days": 10,
+                "start": null,
+                "end": null
+              }
+            },
+            "conditions": [
+              {
+                "id": "clock",
+                "type": "clock_time",
+                "enabled": true,
+                "timezone": "America/New_York",
+                "times": [
+                  "05:05",
+                  "09:35"
+                ],
+                "window_minutes": 5
+              }
+            ],
+            "entry": {
+              "trigger": "on_change",
+              "max_entry_delay_minutes": 10
+            },
+            "exit": {
+              "stop": {
+                "type": "atr",
+                "timeframe": "M15",
+                "buffer_atr": 0.1,
+                "atr_multiple": 3.0,
+                "distance": null
+              },
+              "target": {
+                "type": "none",
+                "r": 2.0,
+                "atr_multiple": null,
+                "distance": null,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 30,
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              }
+            },
+            "risk": {
+              "sizing": "fixed_lots",
+              "lots": "0.02",
+              "risk_percent": 0.5,
+              "max_open_positions": 1,
+              "max_exposure_lots": "1.00"
+            }
+          },
+          "fingerprint": "7510c1e8482384420594f4a2af361ff181b6208e4cc7b1e2849610c8143b2bee"
+        },
+        {
+          "label": "v3: 5% risk, 1x ATR stop, 2R target, break-even at 1R (demo)",
+          "as_screened": false,
+          "difference": "Owner's rule, 16 Nov 2026: risk 5% of equity per trade, aim for 1:1.5 to 1:2, break-even at 1:1. The stop is 1.0 x ATR(14) on M15 (the owner's choice), so that +1R, +1.5R and +2R can be reached inside the 30-minute hold; with the 3 x ATR stop of v2 only 1 of 40 trades reached +1R. Entries, direction and the 30-minute exit are unchanged. This is not the screened rule set.",
+          "config": {
+            "schema": "strategy@1",
+            "name": "P7-FIX: short before the London fixes",
+            "description": "P7-FIX at 5% risk per trade: stop 1.0 x ATR(14) on M15, break-even at +1R, target 2.0R. Entries and the 30-minute exit as screened. Not validated.",
+            "direction": "short",
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "mode": "all",
+                "days": 10,
+                "start": null,
+                "end": null
+              }
+            },
+            "conditions": [
+              {
+                "id": "clock",
+                "type": "clock_time",
+                "enabled": true,
+                "timezone": "America/New_York",
+                "times": [
+                  "05:05",
+                  "09:35"
+                ],
+                "window_minutes": 5
+              }
+            ],
+            "entry": {
+              "trigger": "on_change",
+              "max_entry_delay_minutes": 10
+            },
+            "exit": {
+              "stop": {
+                "type": "atr",
+                "timeframe": "M15",
+                "buffer_atr": 0.1,
+                "atr_multiple": 1.0,
+                "distance": null
+              },
+              "target": {
+                "type": "r_multiple",
+                "r": 2.0,
+                "atr_multiple": null,
+                "distance": null,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 30,
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "breakeven": {
+                "enabled": true,
+                "trigger_r": 1.0,
+                "lock_r": 0.0
+              }
+            },
+            "risk": {
+              "sizing": "risk_percent",
+              "lots": "0.02",
+              "risk_percent": 5.0,
+              "max_open_positions": 1,
+              "max_exposure_lots": "2.00"
+            }
+          },
+          "fingerprint": "a0e7ea75b1c256867bc725cab5a4660951240c43b365e63daafaa1139fc41908"
+        },
+        {
+          "label": "v4: 5% risk, 1x ATR stop, 1.5R target, break-even at 1R (paper only)",
+          "as_screened": false,
+          "difference": "Owner's rule, 16 Nov 2026: risk 5% of equity per trade, aim for 1:1.5 to 1:2, break-even at 1:1. The stop is 1.0 x ATR(14) on M15 (the owner's choice), so that +1R, +1.5R and +2R can be reached inside the 30-minute hold; with the 3 x ATR stop of v2 only 1 of 40 trades reached +1R. Entries, direction and the 30-minute exit are unchanged. This is not the screened rule set.",
+          "config": {
+            "schema": "strategy@1",
+            "name": "P7-FIX: short before the London fixes",
+            "description": "P7-FIX at 5% risk per trade: stop 1.0 x ATR(14) on M15, break-even at +1R, target 1.5R. Entries and the 30-minute exit as screened. Not validated.",
+            "direction": "short",
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "mode": "all",
+                "days": 10,
+                "start": null,
+                "end": null
+              }
+            },
+            "conditions": [
+              {
+                "id": "clock",
+                "type": "clock_time",
+                "enabled": true,
+                "timezone": "America/New_York",
+                "times": [
+                  "05:05",
+                  "09:35"
+                ],
+                "window_minutes": 5
+              }
+            ],
+            "entry": {
+              "trigger": "on_change",
+              "max_entry_delay_minutes": 10
+            },
+            "exit": {
+              "stop": {
+                "type": "atr",
+                "timeframe": "M15",
+                "buffer_atr": 0.1,
+                "atr_multiple": 1.0,
+                "distance": null
+              },
+              "target": {
+                "type": "r_multiple",
+                "r": 1.5,
+                "atr_multiple": null,
+                "distance": null,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 30,
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              },
+              "breakeven": {
+                "enabled": true,
+                "trigger_r": 1.0,
+                "lock_r": 0.0
+              }
+            },
+            "risk": {
+              "sizing": "risk_percent",
+              "lots": "0.02",
+              "risk_percent": 5.0,
+              "max_open_positions": 1,
+              "max_exposure_lots": "2.00"
+            }
+          },
+          "fingerprint": "13f61596f9a3c31986d065611122a9919c2dc76e24432693b2e40204f24a567b"
+        }
+      ]
+    },
+    {
+      "key": "P7-TOD-LONG",
+      "candidate": "P7-TOD",
+      "strategy_name": "P7-TOD long leg: 11:00 to 02:00 New York",
+      "versions": [
+        {
+          "label": "v1: as screened (no stop)",
+          "as_screened": true,
+          "config": {
+            "schema": "strategy@1",
+            "name": "P7-TOD long leg: 11:00 to 02:00 New York",
+            "description": "Long leg of research candidate P7-TOD exactly as screened: buy at 11:00 New York, close 15 hours later, no stop (Donati & Jung 2019). Not supported by the 11-week run.",
+            "direction": "long",
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "mode": "all",
+                "days": 10,
+                "start": null,
+                "end": null
+              }
+            },
+            "conditions": [
+              {
+                "id": "clock",
+                "type": "clock_time",
+                "enabled": true,
+                "timezone": "America/New_York",
+                "times": [
+                  "11:00"
+                ],
+                "window_minutes": 5
+              }
+            ],
+            "entry": {
+              "trigger": "on_change",
+              "max_entry_delay_minutes": 10
+            },
+            "exit": {
+              "stop": {
+                "type": "none",
+                "timeframe": "M5",
+                "buffer_atr": 0.1,
+                "atr_multiple": 1.5,
+                "distance": null
+              },
+              "target": {
+                "type": "none",
+                "r": 2.0,
+                "atr_multiple": null,
+                "distance": null,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 900,
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              }
+            },
+            "risk": {
+              "sizing": "fixed_lots",
+              "lots": "0.02",
+              "risk_percent": 0.5,
+              "max_open_positions": 1,
+              "max_exposure_lots": "1.00"
+            }
+          },
+          "fingerprint": "15d5609077b5839bacdb75e60ac57e4c186dca6ba02cc0ea36af6bbac078c0e3"
+        }
+      ]
+    },
+    {
+      "key": "P7-TOD-SHORT",
+      "candidate": "P7-TOD",
+      "strategy_name": "P7-TOD short leg: 02:00 to 11:00 New York",
+      "versions": [
+        {
+          "label": "v1: as screened (no stop)",
+          "as_screened": true,
+          "config": {
+            "schema": "strategy@1",
+            "name": "P7-TOD short leg: 02:00 to 11:00 New York",
+            "description": "Short leg of research candidate P7-TOD exactly as screened: sell at 02:00 New York, close 9 hours later, no stop (Donati & Jung 2019). Not supported by the 11-week run.",
+            "direction": "short",
+            "evaluation": {
+              "step_timeframe": "M5",
+              "window": {
+                "mode": "all",
+                "days": 10,
+                "start": null,
+                "end": null
+              }
+            },
+            "conditions": [
+              {
+                "id": "clock",
+                "type": "clock_time",
+                "enabled": true,
+                "timezone": "America/New_York",
+                "times": [
+                  "02:00"
+                ],
+                "window_minutes": 5
+              }
+            ],
+            "entry": {
+              "trigger": "on_change",
+              "max_entry_delay_minutes": 10
+            },
+            "exit": {
+              "stop": {
+                "type": "none",
+                "timeframe": "M5",
+                "buffer_atr": 0.1,
+                "atr_multiple": 1.5,
+                "distance": null
+              },
+              "target": {
+                "type": "none",
+                "r": 2.0,
+                "atr_multiple": null,
+                "distance": null,
+                "timeframe": "M5"
+              },
+              "max_holding_minutes": 540,
+              "exit_on_structure_flip": {
+                "enabled": false,
+                "timeframe": "M5"
+              }
+            },
+            "risk": {
+              "sizing": "fixed_lots",
+              "lots": "0.02",
+              "risk_percent": 0.5,
+              "max_open_positions": 1,
+              "max_exposure_lots": "1.00"
+            }
+          },
+          "fingerprint": "1e33f22e5a9344478a9aa42be2abf95008552e34ae83ec1f09ede089f8e42930"
+        }
+      ]
+    }
+  ]
+}

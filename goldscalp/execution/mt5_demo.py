@@ -31,6 +31,7 @@ ACCOUNT_TRADE_MODE_DEMO = 0
 ACCOUNT_MARGIN_MODE = {0: "RETAIL_NETTING", 1: "EXCHANGE", 2: "RETAIL_HEDGING"}
 ACCOUNT_MARGIN_MODE_RETAIL_HEDGING = 2
 TRADE_ACTION_DEAL = 1
+TRADE_ACTION_SLTP = 6                                  # change an open position's stop-loss / take-profit
 ORDER_TYPE_BUY, ORDER_TYPE_SELL = 0, 1
 ORDER_TIME_GTC = 0
 ORDER_FILLING_FOK, ORDER_FILLING_IOC, ORDER_FILLING_RETURN = 0, 1, 2
@@ -164,6 +165,19 @@ def closing_deal(mt5: DemoOnlyMT5, ticket: int) -> dict[str, Any] | None:
             "profit": str(total("profit")), "commission": str(total("commission") + total("fee")), "swap": str(total("swap"))}
 
 
+def symbol_facts(mt5: DemoOnlyMT5, symbol: str) -> dict[str, Any]:
+    """Contract facts and the current tick of ``symbol``, for the order ticket's P&L estimates and its checks."""
+    info, tick = mt5.symbol_info(symbol), mt5.symbol_info_tick(symbol)
+    if info is None or tick is None:
+        return {"available": False, "symbol": symbol, "message": f"no symbol information or tick for {symbol}: {_err(mt5)}"}
+    num = lambda attr, default: float(getattr(info, attr, None) or default)  # noqa: E731
+    return {"available": True, "symbol": symbol, "bid": float(tick.bid), "ask": float(tick.ask),
+            "tick_time": getattr(tick, "time", None), "digits": int(getattr(info, "digits", None) or 2),
+            "point": num("point", 0.01), "contract_size": num("trade_contract_size", 100.0),
+            "volume_min": num("volume_min", 0.01), "volume_max": num("volume_max", 100.0),
+            "volume_step": num("volume_step", 0.01), "stops_level_points": int(getattr(info, "trade_stops_level", 0) or 0)}
+
+
 # ------------------------------------------------------------------------------------------------ orders
 def open_market(mt5: DemoOnlyMT5, *, symbol: str, side: str, volume: Decimal, sl: Decimal, tp: Decimal | None,
                 deviation: int, magic: int, comment: str) -> dict[str, Any]:
@@ -187,6 +201,23 @@ def open_market(mt5: DemoOnlyMT5, *, symbol: str, side: str, volume: Decimal, sl
     reply = _reply(res)
     ok = res.retcode in TRADE_RETCODE_OK
     return {"ok": ok, "stage": "send", "request": request, "reply": reply,
+            "message": f"{res.retcode} {TRADE_RETCODE_OK.get(res.retcode, res.comment)}"}
+
+
+def modify_sltp(mt5: DemoOnlyMT5, *, ticket: int, sl: Decimal | None, tp: Decimal | None, magic: int) -> dict[str, Any]:
+    """Change the broker-side stop-loss and take-profit of one open position carrying ``magic`` (0 removes a level)."""
+    found = mt5.positions_get(ticket=ticket) or ()
+    if not found:
+        return {"ok": False, "stage": "prepare", "message": "the position is no longer open"}
+    p = found[0]
+    if getattr(p, "magic", None) != magic:
+        return {"ok": False, "stage": "prepare", "message": f"position {ticket} does not carry magic number {magic}"}
+    request = {"action": TRADE_ACTION_SLTP, "symbol": p.symbol, "position": ticket, "magic": int(magic),
+               "sl": float(sl) if sl is not None else 0.0, "tp": float(tp) if tp is not None else 0.0}
+    res = mt5.order_send(request)
+    if res is None:
+        return {"ok": False, "stage": "send", "request": request, "message": _err(mt5)}
+    return {"ok": res.retcode in TRADE_RETCODE_OK, "stage": "send", "request": request, "reply": _reply(res),
             "message": f"{res.retcode} {TRADE_RETCODE_OK.get(res.retcode, res.comment)}"}
 
 

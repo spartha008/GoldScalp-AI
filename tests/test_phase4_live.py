@@ -209,6 +209,72 @@ def test_time_exit_and_paused_monitor(lab):
     assert lab.get(f"/api/live/monitor/{m['id']}/evaluations").json()["counts"] == before
 
 
+def test_breakeven_stop_moves_like_the_backtest_and_only_tightens(lab):
+    cfg = {"name": "NY long with break-even", "direction": "long", "evaluation": {"step_timeframe": "M5"},
+           "conditions": [{"id": "ny", "type": "session", "sessions": ["New York"]}],
+           "exit": {"stop": {"type": "fixed", "distance": 5}, "target": {"type": "fixed", "distance": 10},
+                    "max_holding_minutes": 30, "breakeven": {"enabled": True, "trigger_r": 1.0, "lock_r": 0.0}},
+           "risk": {"lots": "0.02"}}
+    sid = lab.post("/api/strategies", json=cfg).json()["id"]
+    with lab.gs.db.read() as con:
+        rec = strategy_repo.get(con, sid)
+    mark_validated(lab.gs, rec)
+    monitor(lab, rec)
+    quote(lab, "3878.30", "3878.51", at=CUT + timedelta(seconds=29))
+    run_cycle(lab, CUT + timedelta(seconds=30))
+    (sig,) = lab.get("/api/live/signals").json()["signals"]
+    assert sig["plan"]["breakeven"] == {"trigger_r": 1.0, "lock_r": 0.0}
+    assert [i["kind"] for i in sig["invalidation"]] == ["stop", "breakeven", "time", "entry_delay"]
+    (t,) = lab.get("/api/live/trades?status=open").json()["trades"]
+    assert (t["open_price"], t["stop_loss"]) == ("3878.56", "3873.30")       # risk 5.26 per oz from the fill
+    # +1.00R not yet reached (MFE 5.24): the stop stays
+    quote(lab, "3883.80", "3884.01", at=CUT + timedelta(seconds=40))
+    run_cycle(lab, CUT + timedelta(seconds=41))
+    assert lab.get(f"/api/live/trades/{t['id']}").json()["trade"]["stop_loss"] == "3873.30"
+    # +1R reached (MFE 5.29): the stop moves to the fill, once
+    quote(lab, "3883.85", "3884.06", at=CUT + timedelta(seconds=50))
+    run_cycle(lab, CUT + timedelta(seconds=51))
+    tr = lab.get(f"/api/live/trades/{t['id']}").json()["trade"]
+    assert tr["stop_loss"] == "3878.56" and tr["take_profit"] == t["take_profit"]
+    run_cycle(lab, CUT + timedelta(seconds=55))
+    checks = lab.get(f"/api/live/trades/{t['id']}").json()["trade"]["checks"]
+    assert [c["breakeven"] for c in checks if "breakeven" in c] == ["3878.56"]
+    # the paper simulator then closes it at the break-even stop
+    lab.clock.set(CUT + timedelta(minutes=2))
+    quote(lab, "3878.50", "3878.71")
+    assert [p.close_reason for p in lab.gs.engine.on_quote()] == ["stop_loss"]
+
+
+def test_breakeven_closes_at_once_when_the_price_is_already_back(lab):
+    cfg = {"name": "NY long, break-even passed", "direction": "long", "evaluation": {"step_timeframe": "M5"},
+           "conditions": [{"id": "ny", "type": "session", "sessions": ["New York"]}],
+           "exit": {"stop": {"type": "fixed", "distance": 5}, "target": {"type": "fixed", "distance": 10},
+                    "max_holding_minutes": 30, "breakeven": {"enabled": True, "trigger_r": 1.0, "lock_r": 0.0}},
+           "risk": {"lots": "0.02"}}
+    sid = lab.post("/api/strategies", json=cfg).json()["id"]
+    with lab.gs.db.read() as con:
+        rec = strategy_repo.get(con, sid)
+    mark_validated(lab.gs, rec)
+    monitor(lab, rec)
+    quote(lab, "3878.30", "3878.51", at=CUT + timedelta(seconds=29))
+    run_cycle(lab, CUT + timedelta(seconds=30))
+    (t,) = lab.get("/api/live/trades?status=open").json()["trades"]
+    quote(lab, "3884.00", "3884.21", at=CUT + timedelta(seconds=40))
+    lab.gs.monitor.on_quote_excursions(lab.clock.now())           # MFE recorded from a quote between two cycles
+    quote(lab, "3878.00", "3878.21", at=CUT + timedelta(seconds=50))
+    run_cycle(lab, CUT + timedelta(seconds=51))
+    tr = lab.get(f"/api/live/trades/{t['id']}").json()["trade"]
+    assert tr["status"] == "closed" and tr["close_reason"] == "stop_loss"
+    assert any(c.get("closed_at_once") for c in tr["checks"])
+
+
+def test_plans_without_breakeven_are_unchanged():
+    cfg = builder.validate({"name": "x", "direction": "long", "evaluation": {"step_timeframe": "M5"},
+                            "conditions": [{"id": "ny", "type": "session", "sessions": ["New York"]}],
+                            "exit": {"stop": {"type": "fixed", "distance": 5}, "target": {"type": "fixed", "distance": 10}}})
+    assert "breakeven" not in cfg["exit"]
+
+
 def test_gates_skip_miss_and_block(lab):
     lab.clock.set(datetime(2026, 11, 13, 14, 20, tzinfo=UTC))
     rec = ny_strategy(lab)
@@ -334,7 +400,7 @@ def test_migration_0006_preserves_paper_positions_and_extends_close_reasons(tmp_
                     "VALUES (1, '2026-11-11T15:00:00Z', 'commission', '-0.035', '9999.965', 1, 'n')")
     with db.read() as con:
         before = [tuple(r) for r in con.execute("SELECT * FROM paper_positions")]
-    assert db.migrate() == [6, 7]          # 0006 (Phase 4) and 0007 (demo execution: new tables only)
+    assert db.migrate() == [6, 7, 8]       # 0006 (Phase 4), 0007 (demo execution) and 0008 (manual orders): new tables only
     with db.read() as con:
         after = [tuple(r) for r in con.execute("SELECT id, account_id, side, lots, ounces, open_price, open_time, "
                                                 "open_quote_time, open_price_state, open_spread, open_spread_source, "

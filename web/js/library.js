@@ -8,10 +8,13 @@ const MAX = 8;                                       // categorical slots s1..s8
 const KEY = "goldscalp.library.selection";
 const SVG = "http://www.w3.org/2000/svg";
 const L = { data: null, byId: new Map(), sel: [], query: "", phase: "all", align: "calendar", docs: [], resize: null };
-const PHASES = [["all", "All"], ["5", "5 · Monthly"], ["5.1", "5.1 · Risk"], ["5.2", "5.2 · Robustness"], ["5.3", "5.3 · Validation"], ["6", "6 · Discovery"]];
+const PHASES = [["all", "All"], ["5", "5 · Monthly"], ["5.1", "5.1 · Risk"], ["5.2", "5.2 · Robustness"], ["5.3", "5.3 · Validation"], ["6", "6 · Discovery"], ["P7", "Pre-7 · Screens"]];
 const PHASE_TITLE = [["5", "Phase 5 · Fixed-lot monthly evaluation"], ["5.1", "Phase 5.1 · Hypothetical risk scenarios"],
-  ["5.2", "Phase 5.2 · Robustness research"], ["5.3", "Phase 5.3 · Frozen validation"], ["6", "Phase 6 · New strategy discovery"]];
-const CLASS_TONE = { promising: "ok", inconclusive: "warn", "inconclusive (not promising)": "warn", rejected: "err" };
+  ["5.2", "Phase 5.2 · Robustness research"], ["5.3", "Phase 5.3 · Frozen validation"], ["6", "Phase 6 · New strategy discovery"],
+  ["P7", "Pre-Phase 7 · External strategy screens"]];
+const CLASS_TONE = { promising: "ok", inconclusive: "warn", "inconclusive (not promising)": "warn", rejected: "err",
+  INCONCLUSIVE: "warn", REJECTED: "err", "WORTH FURTHER RESEARCH": "info" };   // a screen pass is not a success: no green
+const phaseName = (p) => (p === "P7" ? "Pre-Phase 7" : `Phase ${p}`);
 const STATUS_TONE = { COMPLETED: "ok", RUNNING: "run", READY: "muted", INCOMPLETE: "warn", FAILED: "err" };
 
 const r3 = (v) => (v === null || v === undefined ? "—" : `${v > 0 ? "+" : v < 0 ? "−" : ""}${Math.abs(v).toFixed(3)}`);
@@ -48,7 +51,10 @@ function setSelection(ids) { L.sel = []; for (const id of ids) add(id); save(); 
 function toggle(id, on) { if (on) add(id); else remove(id); save(); renderAll(); }
 
 function studyOf(r) { return L.data.studies.find((x) => x.id === r.study); }
-function phaseLabel(r) { const st = studyOf(r); return st ? `${st.phase === "6" ? "Phase 6" : `Phase ${st.phase}`} · ${st.title}` : r.study; }
+function phaseLabel(r) { const st = studyOf(r); return st ? `${phaseName(st.phase)} · ${st.title}` : r.study; }
+
+/** For other views: show these results in the comparison the next time the library opens. */
+export function compare(ids) { L.pending = ids; }
 
 async function load() {
   const root = document.getElementById("lib-root");
@@ -106,6 +112,12 @@ export async function openLibrary() {
       });
       L.resize.observe(document.getElementById("lib-cmp"));
     }
+  }
+  if (L.pending) {                                    // a selection handed over by another view
+    L.sel = [];
+    for (const id of L.pending) add(id);
+    L.pending = null;
+    save();
   }
   renderAll();
   renderDocs();
@@ -189,6 +201,8 @@ function presets() {
   const pick = (f) => all.filter(f).slice(0, MAX).map((r) => r.id);
   const sealed = all.filter((r) => r.study.startsWith("sr_") && !r.label.includes("(dev)"));
   const out = [];
+  const shortlist = ["P7-FIX", "P7-ARBG", "P7-HALF", "P7-PCTB", "P7-TOD", "BASE-DRIFT"];
+  out.push(["Pre-Phase 7 shortlist over 11 weeks", pick((r) => r.study === "p7s2-context" && shortlist.includes(r.strategy))]);
   if (sealed.length) out.push(["H6.4 sealed vs its control", sealed.map((r) => r.id).slice(0, MAX)]);
   out.push(["VOL-C everywhere (M5)", pick((r) => r.strategy === "VOL-C" && r.timeframe === "M5")]);
   out.push(["Phase 6 development baselines", pick((r) => r.phase === "6" && r.study.startsWith("dt_"))]);
@@ -211,7 +225,7 @@ function renderCompare() {
   }
   box.append(
     el("ul", { class: "lib-legend", "aria-label": "Selected results" }, rs.map((r) => el("li", {}, [swatch(r.slot),
-      el("span", { class: "lbl", text: r.label }), el("span", { class: "small muted", text: `Phase ${r.phase}` }),
+      el("span", { class: "lbl", text: r.label }), el("span", { class: "small muted", text: phaseName(r.phase) }),
       el("button", { type: "button", class: "btn ghost sm", "aria-label": `Remove ${r.label}`, text: "×", onclick: () => toggle(r.id, false) })]))),
     ...[caveats(rs), metricsTable(rs), el("div", { id: "lib-charts", class: "lib-charts" }), provenance(rs)].filter(Boolean));
   renderCharts();
@@ -224,6 +238,7 @@ function caveats(rs) {
   if (phases.size > 1 || new Set(rs.map((r) => r.study)).size > 1)
     notes.push("These results come from different months and studies. Compare shapes and signs with care: a sealed or validation result is independent evidence, a development result is not.");
   if (flags.has("development data")) notes.push("Development-data results helped design later tests; they are not independent validation.");
+  if (flags.has("screening only")) notes.push("Screening results come from short runs on development data. A screen pass is not a validation, and a nominal R (no stop) is not comparable with a stop-based R.");
   if (flags.has("HYPOTHETICAL risk scenario")) notes.push("Risk-scenario results use hypothetical compounded percentage sizing, never a real-account setting.");
   return notes.length ? el("div", { class: "notice compact" }, notes.map((n) => el("p", { text: n }))) : null;
 }
@@ -365,7 +380,7 @@ function tipLayer(wrap) {
   };
 }
 
-function lineChart(series, xs, width, { yFmt, tickFmt, markers = false }) {
+export function lineChart(series, xs, width, { yFmt, tickFmt, markers = false }) {
   const direct = series.length <= 4 && width >= 560;
   const M = { l: 56, r: direct ? 150 : 16, t: 12, b: 30 };
   const H = 250;

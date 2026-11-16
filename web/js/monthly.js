@@ -629,7 +629,7 @@ async function refreshRobustness() {
 }
 
 // ------------------------------------------------------------------ views (sidebar steps)
-const VIEWS = ["data", "evaluate", "risk", "research", "library"];
+const VIEWS = ["data", "evaluate", "risk", "research", "library", "candidates"];
 
 function showView(name) {
   const view = VIEWS.includes(name) ? name : "data";
@@ -639,6 +639,9 @@ function showView(name) {
   if (location.hash.slice(1) !== view) history.replaceState(null, "", `#${view}`);
   if (view === "library") {                          // loaded on first visit only; read-only
     import("./library.js").then((m) => m.openLibrary()).catch((e) => say(e.message, "error"));
+  }
+  if (view === "candidates") {                       // read-only registry of research candidates
+    import("./candidates.js").then((m) => m.openCandidates()).catch((e) => say(e.message, "error"));
   }
 }
 

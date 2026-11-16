@@ -1,0 +1,141 @@
+{
+  "P7-FIX": {
+    "spans": [
+      {
+        "store": "research",
+        "series": "csv:vantage-mt5-xauusd-2026-jan-may",
+        "start": "2026-01-01T00:00:00Z",
+        "end": "2026-05-30T00:00:00Z",
+        "bars": 32148,
+        "trades": 210,
+        "first_price": 4327.67,
+        "last_price": 4541.17
+      },
+      {
+        "store": "app",
+        "series": "live:mt5:XAUUSD",
+        "start": "2026-06-22T00:00:00Z",
+        "end": "2026-11-14T00:00:00Z",
+        "bars": 30000,
+        "trades": 210,
+        "first_price": 4147.06,
+        "last_price": 3881.77
+      }
+    ],
+    "stats": {
+      "trades": 420,
+      "win_rate": 0.5452,
+      "sum_r": 26.473,
+      "expectancy_r": 0.063,
+      "profit_factor": 1.167,
+      "max_dd_r": 16.077,
+      "net_usd": 606.68,
+      "expectancy_r_costs_x2": 0.0398,
+      "expectancy_r_costs_x3": 0.0165
+    },
+    "concentration": {
+      "days_traded": 210,
+      "positive_days": 119,
+      "best_day": "2026-04-16",
+      "best_day_sum_r": 3.04,
+      "sum_r": 26.473,
+      "sum_r_without_best_day": 23.433,
+      "expectancy_r_without_best_day": 0.0561,
+      "best_day_share_of_gains": 0.027
+    },
+    "by_month": {
+      "2026-01": {
+        "trades": 42,
+        "sum_r": -3.64,
+        "net_usd": 111.26,
+        "win_rate": 0.333
+      },
+      "2026-02": {
+        "trades": 40,
+        "sum_r": 3.76,
+        "net_usd": 221.9,
+        "win_rate": 0.575
+      },
+      "2026-03": {
+        "trades": 44,
+        "sum_r": -2.58,
+        "net_usd": -208.34,
+        "win_rate": 0.432
+      },
+      "2026-04": {
+        "trades": 42,
+        "sum_r": 4.69,
+        "net_usd": 47.96,
+        "win_rate": 0.548
+      },
+      "2026-05": {
+        "trades": 42,
+        "sum_r": -4.68,
+        "net_usd": -143.96,
+        "win_rate": 0.476
+      },
+      "2026-06": {
+        "trades": 14,
+        "sum_r": -6.07,
+        "net_usd": -196.38,
+        "win_rate": 0.357
+      },
+      "2026-07": {
+        "trades": 46,
+        "sum_r": 3.98,
+        "net_usd": 52.06,
+        "win_rate": 0.63
+      },
+      "2026-08": {
+        "trades": 42,
+        "sum_r": 1.25,
+        "net_usd": 25.3,
+        "win_rate": 0.548
+      },
+      "2026-09": {
+        "trades": 44,
+        "sum_r": 12.33,
+        "net_usd": 300.38,
+        "win_rate": 0.659
+      },
+      "2026-10": {
+        "trades": 44,
+        "sum_r": 9.54,
+        "net_usd": 211.64,
+        "win_rate": 0.659
+      },
+      "2026-11": {
+        "trades": 20,
+        "sum_r": 7.9,
+        "net_usd": 184.86,
+        "win_rate": 0.75
+      }
+    },
+    "legs": {
+      "AM fix": {
+        "trades": 210,
+        "win_rate": 0.581,
+        "sum_r": 21.73,
+        "expectancy_r": 0.1035,
+        "profit_factor": 1.489,
+        "max_dd_r": 3.573,
+        "net_usd": 435.74,
+        "expectancy_r_costs_x2": 0.0786,
+        "expectancy_r_costs_x3": 0.0537
+      },
+      "PM fix": {
+        "trades": 210,
+        "win_rate": 0.5095,
+        "sum_r": 4.743,
+        "expectancy_r": 0.0226,
+        "profit_factor": 1.062,
+        "max_dd_r": 23.074,
+        "net_usd": 170.94,
+        "expectancy_r_costs_x2": 0.001,
+        "expectancy_r_costs_x3": -0.0207
+      }
+    },
+    "positive_months": 8,
+    "months": 11
+  }
+}

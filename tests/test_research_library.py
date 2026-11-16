@@ -98,6 +98,7 @@ def lib(tmp_path, monkeypatch):
     (root / "SECRET.md").write_text("# not listed\n", encoding="utf-8")
     monkeypatch.setattr(lb, "REPORTS", rep)
     monkeypatch.setattr(lb, "DOCS_ROOT", root)
+    monkeypatch.setattr(lb, "PRE7", tmp_path / "pre7")          # isolated from the real pre-Phase 7 results
     return {"store": store, "reports": rep, "root": root, "path": tmp_path / "monthly.sqlite3"}
 
 

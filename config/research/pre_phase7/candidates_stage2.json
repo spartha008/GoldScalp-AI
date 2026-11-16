@@ -1,0 +1,465 @@
+{
+  "definition": "pre-phase7-screen@2",
+  "written_before_results": true,
+  "purpose": "Stage 2 of the pre-Phase 7 screen: the concepts stage 1 could not express, tested with a rule simulator and an indicator library. A screen is not validation and decides nothing about profitability.",
+  "series": {
+    "store": "research",
+    "key": "csv:vantage-mt5-xauusd"
+  },
+  "windows": {
+    "screen": {
+      "start": "2026-10-05T00:00:00Z",
+      "end": "2026-10-19T00:00:00Z",
+      "note": "The same 14 calendar days (10 trading days) as stage 1. Classification uses this window only."
+    },
+    "context": {
+      "start": "2026-08-17T00:00:00Z",
+      "end": "2026-10-31T00:00:00Z",
+      "note": "Supplementary, about 11 weeks of the same spent development series. Once-a-day rules cannot reach 15 trades in 10 trading days; this run shows more trades for them. It does not classify anything and is not validation."
+    }
+  },
+  "history_from": "2026-07-19T00:00:00Z",
+  "execution": {
+    "bars": "M5 bid candles (P7-VWAP: M1 in the screen window)",
+    "lots": "0.02",
+    "one_position_at_a_time": true,
+    "costs": "frozen Phase 5 cost model: candle spread (0.30 fallback), commission 3.50 USD/lot/side, slippage 0.05 USD per fill",
+    "fills": [
+      "A rule decides at a bar's close; market orders fill at the next bar's open.",
+      "Stop-entry orders fill at their price, or at the open if the bar opens beyond it; buys trigger on the ask.",
+      "If a bar touches both the protective stop and the target, the stop counts first.",
+      "On the bar where a stop-entry fills, a touched protective stop counts as hit and a target does not.",
+      "Open positions are closed at the last close of the window."
+    ]
+  },
+  "conventions": {
+    "r_with_stop": "R = |entry - initial stop| per ounce.",
+    "r_without_stop": "The source has no stop: R is a NOMINAL unit of 1.5 x ATR(14) on M15 at entry (GoldScalp's default ATR stop size). Marked nominal; USD results are always reported too.",
+    "unspecified_exits": "Target not specified by a source: 2R. Time exit not specified: 240 minutes. Entry buffer not specified: 0.10 USD.",
+    "daily_rule_ports": "Daily-bar rules without an intraday source are applied to M15 bars.",
+    "clock_times": "Clock times are the source's own, in the source's timezone, daylight-saving aware (literal port).",
+    "no_tuning": "No parameter is changed after a result is seen."
+  },
+  "decision": {
+    "min_trades": 15,
+    "min_profit_factor": 1.1,
+    "delay_bars": 1,
+    "rules": [
+      "Classification uses the screen window only.",
+      "INCONCLUSIVE if fewer than 15 trades.",
+      "REJECTED if expectancy after costs <= 0.",
+      "WORTH FURTHER RESEARCH only if expectancy > 0, PF >= 1.1, still positive without its best day, positive with costs x2, and not negative when every order is delayed by one bar.",
+      "Otherwise INCONCLUSIVE.",
+      "The one-bar delay replaces stage 1's M15-execution check: these rules are defined on fixed bar sizes and clock times, so re-running them on M15 bars would change the rules themselves."
+    ]
+  },
+  "baselines": [
+    {
+      "key": "BASE-DRIFT",
+      "name": "Daily long 00:00 to 21:00 UTC (market drift after costs)",
+      "rule": "clock_trades",
+      "params": {
+        "tz": "UTC",
+        "trades": [
+          {
+            "enter": "00:00",
+            "side": "long",
+            "exit": "21:00",
+            "tag": "drift"
+          }
+        ]
+      }
+    }
+  ],
+  "stage1_context": {
+    "keys": [
+      "P7-ARB",
+      "P7-PDF",
+      "P7-EMA",
+      "BASE-A2",
+      "BASE-VOLC"
+    ],
+    "note": "The three stage 1 candidates and the two archived benchmarks are re-run unchanged (bt@1 engine, M5) over the context window, in monthly pieces, for comparison only."
+  },
+  "not_screened": [
+    {
+      "concept": "IG 5/20/200 MA scalp (M3)",
+      "why": "MA type, stop and target are not specified, and M3 bars are not stored."
+    },
+    {
+      "concept": "Cohen 2022 RSI / Keltner systems on gold futures",
+      "why": "The parameters are not given in the accessible abstract."
+    },
+    {
+      "concept": "Connors & Raschke 80-20",
+      "why": "The stop is not stated in the accessible sources; the previous-day fade (P7-PDF) covers the same idea."
+    },
+    {
+      "concept": "Zarattini 2024 relative-volume ORB",
+      "why": "Needs traded volume across a stock universe."
+    }
+  ],
+  "candidates": [
+    {
+      "key": "P7-ARB2",
+      "name": "London breakout of the Asian range (educational FX rules, clock-time range)",
+      "stage1_concept": "P7-ARB",
+      "rule": "arb_clock",
+      "params": {
+        "tz": "UTC",
+        "range_start": "00:00",
+        "range_end": "07:00",
+        "entry_end": "10:00",
+        "exit": "12:00",
+        "decide_minutes": 15,
+        "min_range_atr": 0.25,
+        "max_range_atr": 0.8,
+        "atr_days": 14,
+        "target_r": 1.0
+      },
+      "source": "The Right Trader, 'London Breakout Strategy' (educational, FX majors)",
+      "original_rules": "M15. Range = high/low of 00:00-07:00 UTC; skip if the range is below 0.25x or above 0.80x daily ATR(14). Entry 07:00-10:00 UTC on the first M15 close beyond the range. Stop: opposite side of the range. Target 1R. Exit at the first M15 close at or after 12:00 UTC. One trade per day.",
+      "implementation": "As stated. Daily ATR(14) from trading days with the 17:00 New York rollover; entry at the next M5 open after the M15 close.",
+      "deviations": [
+        "Spot XAUUSD instead of FX majors."
+      ]
+    },
+    {
+      "key": "P7-ARBG",
+      "name": "London breakout on gold (vendor rules, server-time range, OCO stop orders)",
+      "stage1_concept": "P7-ARB",
+      "rule": "arb_server",
+      "params": {
+        "server_offset_from_ny_hours": 7,
+        "range_start": "03:00",
+        "range_end": "08:00",
+        "exit": "21:00",
+        "buffer": 0.1,
+        "max_stop_frac": 0.006,
+        "target_r": 2.5,
+        "be_trigger_r": 1.5,
+        "min_range_frac": 0.003,
+        "max_range_frac": 0.016
+      },
+      "source": "S. Pinjori, 'London Breakout on Gold: 3.7 Years of Backtests', MQL5 blog 2026 (promotional: sells an EA)",
+      "original_rules": "XAUUSD. Range 03:00-08:00 broker server time. At 08:00 an OCO buy stop above the high and sell stop below the low with a small buffer (size not specified). Stop: opposite side of the range, capped at 0.6% of price. Target 2.5R; stop to break-even at +1.5R. Close at 21:00. One trade per day. Skip if the range is below 0.30% or above 1.60% of price.",
+      "implementation": "As stated, with server time = New York time + 7 hours (the Vantage MT5 server clock). Buffer 0.10 USD.",
+      "deviations": [
+        "The source does not name its brokers' server offset; the common New-York-close server clock was assumed.",
+        "Buffer not specified by the source: 0.10 USD."
+      ]
+    },
+    {
+      "key": "P7-CRB",
+      "name": "Crabel stretch breakout after an NR4 day",
+      "stage1_concept": "P7-CRB",
+      "rule": "crabel",
+      "params": {
+        "stretch_days": 10,
+        "nr": 4,
+        "exit_before_rollover_minutes": 5
+      },
+      "source": "T. Crabel 1990 (book, via secondary summaries); stretch formula per nexusfi; Oxford Capital 'Narrow Range'",
+      "original_rules": "Stretch = 10-day SMA of min(High-Open, Open-Low). Buy stop at Open + Stretch, sell stop at Open - Stretch; the first fill is the position and the other order becomes the protective stop. Trade the day after an NR4/NR7 day. Crabel's own exits: not verified (classic ORB exits at the close).",
+      "implementation": "Trading day = 17:00 New York rollover; Open = the first M5 open of the day. Orders are placed at the close of the day's first M5 bar and stay until 5 minutes before the rollover, when any position is closed. NR4 = the previous day's range is the smallest of the last 4 days (NR7 days are a subset).",
+      "deviations": [
+        "Exit at the end of the trading day (not verified in the source).",
+        "Orders start one M5 bar after the open."
+      ]
+    },
+    {
+      "key": "P7-ORB5",
+      "name": "5-minute opening-range breakout in the first candle's direction",
+      "stage1_concept": "P7-ORB5",
+      "rule": "orb_first_bar",
+      "params": {
+        "tz": "America/New_York",
+        "open": "09:30",
+        "exit": "16:00",
+        "target_r": 10.0
+      },
+      "source": "Zarattini & Aziz, 'Can Day Trading Really Be Profitable?', SSRN 4416622 (2023); QQQ",
+      "original_rules": "First 5-minute bar 09:30-09:35 ET: long if it closed up, short if down, no trade on a doji. Enter at the 09:35 open. Stop: the first bar's low (long) or high (short). Target 10R, otherwise exit at 16:00.",
+      "implementation": "As stated, with the paper's clock times unchanged (literal port to spot gold).",
+      "deviations": [
+        "Gold has no 09:30 opening auction; the paper's clock was kept unchanged."
+      ]
+    },
+    {
+      "key": "P7-NOISE",
+      "name": "Noise-area intraday momentum (base version)",
+      "stage1_concept": "P7-NOISE",
+      "rule": "noise_area",
+      "params": {
+        "tz": "America/New_York",
+        "open": "09:30",
+        "close": "16:00",
+        "lookback_days": 14,
+        "check_minutes": 30
+      },
+      "source": "Zarattini, Aziz & Barbon, 'Beat the Market', SSRN 2024/25; SPY",
+      "original_rules": "sigma(HH:MM) = 14-day average of |Close(HH:MM)/Open(09:30) - 1|. Upper = max(Open, previous close) x (1+sigma), lower = min(Open, previous close) x (1-sigma). Checked at HH:00 and HH:30: long above the upper band, short below the lower. Exit on a cross of the opposite band (then reverse) or at 16:00.",
+      "implementation": "As stated (base version without the VWAP stop), with the paper's clock unchanged. Previous close = the price at 16:00 New York the previous session.",
+      "deviations": [
+        "Gold trades around the clock; the 09:30-16:00 New York session was kept as the 'day'.",
+        "No stop in the source: nominal R."
+      ]
+    },
+    {
+      "key": "P7-HALF",
+      "name": "First-half-hour to last-half-hour intraday momentum",
+      "stage1_concept": "P7-HALF",
+      "rule": "half_hour",
+      "params": {
+        "tz": "America/New_York",
+        "signal": "10:00",
+        "entry": "15:30",
+        "exit": "16:00",
+        "prev_close": "16:00"
+      },
+      "source": "Gao, Han, Li & Zhou, Journal of Financial Economics 2018; SPY",
+      "original_rules": "r1 = return from the previous 16:00 close to 10:00 ET. At 15:30 go long if r1 > 0, short otherwise. Close at 16:00.",
+      "implementation": "As stated, with the paper's clock unchanged.",
+      "deviations": [
+        "No stop in the source: nominal R.",
+        "No trade when r1 is exactly zero."
+      ]
+    },
+    {
+      "key": "P7-VWAP",
+      "name": "VWAP trend (tick-volume proxy)",
+      "stage1_concept": "P7-VWAP",
+      "rule": "vwap_trend",
+      "params": {
+        "tz": "America/New_York",
+        "open": "09:30",
+        "close": "16:00",
+        "flat_bars_before_close": 1
+      },
+      "source": "Zarattini & Aziz, 'VWAP: The Holy Grail for Day Trading Systems', SSRN 4631351 (2023); QQQ",
+      "original_rules": "Session VWAP from the open on 1-minute bars. Long when the 1-minute close is above VWAP, short when below; flip on each cross; flat before the close.",
+      "implementation": "As stated on M1 bars in the screen window, with broker TICK volume as the volume (spot gold has no traded volume).",
+      "deviations": [
+        "Tick volume is a proxy, not traded volume: this is not the source's indicator.",
+        "The context run uses M5 bars (M1 history starts on 28 September 2026).",
+        "No stop in the source: nominal R."
+      ],
+      "frames": {
+        "screen": "M1",
+        "context": "M5"
+      }
+    },
+    {
+      "key": "P7-TSOUP",
+      "name": "Turtle Soup Plus One (failed 20-bar breakout), M15 port",
+      "stage1_concept": "P7-TSOUP",
+      "rule": "turtle_soup",
+      "params": {
+        "bars_minutes": 15,
+        "lookback": 20,
+        "min_bars_since_prior": 4,
+        "buffer": 0.1,
+        "target_r": 2.0,
+        "hold_minutes": 240
+      },
+      "source": "Connors & Raschke, 'Street Smarts' (1995), via secondary summaries",
+      "original_rules": "Daily bars. A new 20-day low with the previous 20-day low at least 4 sessions old; 'Plus One': the setup bar closes at or below the prior low and the entry is the next day with a buy stop at the prior 20-day low. Stop just below the setup low. Target and time exit not specified. Sells mirrored.",
+      "implementation": "The Plus One rules on M15 bars: buy stop at the prior 20-bar low + 0.10 for the next M15 bar only; stop 0.10 below the setup bar's low.",
+      "deviations": [
+        "Daily-bar rules applied to M15 bars: an untested extrapolation.",
+        "Target and time exit not specified: 2R and 240 minutes.",
+        "The source's trailing stop is not specified and was not used."
+      ]
+    },
+    {
+      "key": "P7-RSI2",
+      "name": "RSI(2) extreme mean reversion on M30",
+      "stage1_concept": "P7-RSI2",
+      "rule": "rsi2",
+      "params": {
+        "bars_minutes": 30,
+        "rsi_period": 2,
+        "long_below": 5,
+        "short_above": 95,
+        "trend_sma": 200,
+        "exit_sma": 5,
+        "stop_frac": 0.0015
+      },
+      "source": "Connors & Alvarez 2008 (book, via StockCharts ChartSchool); intraday version Z.K. Chen, MQL5 article 2025",
+      "original_rules": "Long above the 200 SMA when RSI(2) <= 5; short below it when RSI(2) >= 95. Exit longs on a close above the 5 SMA (shorts: below). Chen's M30 version adds a 0.15% stop.",
+      "implementation": "As stated on M30 bars with the 0.15% stop; entries and exits at the next M5 open after the M30 close.",
+      "deviations": [
+        "US500 / daily-stock rules applied to gold."
+      ]
+    },
+    {
+      "key": "P7-PCTB",
+      "name": "Bollinger %b mean reversion, M15 port",
+      "stage1_concept": "P7-PCTB",
+      "rule": "percent_b",
+      "params": {
+        "bars_minutes": 15,
+        "bb_period": 20,
+        "bb_k": 2.0,
+        "trend_sma": 200,
+        "low": 0.2,
+        "high": 0.8,
+        "consecutive": 3
+      },
+      "source": "Connors & Alvarez (book, via Quantified Strategies and Oxford Capital)",
+      "original_rules": "Long: close above the 200 SMA and %b below 0.2 for 3 consecutive bars; exit when %b closes above 0.8. Oxford Capital adds a mirrored short.",
+      "implementation": "As stated on M15 bars with the mirrored short; BB(20,2).",
+      "deviations": [
+        "Daily ETF rules applied to M15 gold bars.",
+        "No stop in the source: nominal R."
+      ]
+    },
+    {
+      "key": "P7-SQZ",
+      "name": "TTM squeeze breakout, M15 port",
+      "stage1_concept": "P7-SQZ",
+      "rule": "ttm_squeeze",
+      "params": {
+        "bars_minutes": 15,
+        "period": 20,
+        "bb_k": 2.0,
+        "kc_mult": 1.5
+      },
+      "source": "J. Carter, 'Mastering the Trade' (via StockCharts ChartSchool 'TTM Squeeze')",
+      "original_rules": "Squeeze on while BB(20,2) is inside KC(20, 1.5 ATR); it fires when the bands move back outside. Long if the momentum histogram is above zero and rising, short if below zero and falling. Exit after 2 consecutive bars of the new histogram colour. Stop not specified.",
+      "implementation": "As stated on M15 bars. Momentum = 20-bar linear-regression value of close - ((highest high + lowest low)/2 + SMA)/2; Keltner = SMA(20) +/- 1.5 x average true range(20).",
+      "deviations": [
+        "The histogram formula differs between platforms; the common one was used.",
+        "No stop in the source: nominal R."
+      ]
+    },
+    {
+      "key": "P7-MAX",
+      "name": "5-minute SMA crossover on gold: the paper's best rule SMA(44, 332)",
+      "stage1_concept": "P7-MAX",
+      "rule": "ma_cross",
+      "params": {
+        "short": 44,
+        "long": 332
+      },
+      "source": "Urquhart, Batten, Lucey, McGroarty & Peat, SSRN 2652637 (2015); 5-minute spot gold 2008-2014",
+      "original_rules": "Long when MA(short) is above MA(long), short when below; always in the market. Standard rules (1,50), (1,100), (1,150), (1,200) are not profitable; the best in-sample SMA rule is (44, 332). No costs in the paper.",
+      "implementation": "SMA(44) vs SMA(332) on M5 closes, flipping at the next open.",
+      "deviations": [
+        "No stop in the source: nominal R."
+      ],
+      "also_report": [
+        {
+          "key": "P7-MAX-1-50",
+          "params": {
+            "short": 1,
+            "long": 50
+          }
+        },
+        {
+          "key": "P7-MAX-1-100",
+          "params": {
+            "short": 1,
+            "long": 100
+          }
+        },
+        {
+          "key": "P7-MAX-1-150",
+          "params": {
+            "short": 1,
+            "long": 150
+          }
+        },
+        {
+          "key": "P7-MAX-1-200",
+          "params": {
+            "short": 1,
+            "long": 200
+          }
+        }
+      ]
+    },
+    {
+      "key": "P7-TOD",
+      "name": "Gold time-of-day: long 11:00 to 02:00, short 02:00 to 11:00 New York",
+      "stage1_concept": "P7-TOD",
+      "rule": "clock_trades",
+      "params": {
+        "tz": "America/New_York",
+        "trades": [
+          {
+            "enter": "11:00",
+            "side": "long",
+            "exit": "02:00",
+            "tag": "long 11:00-02:00"
+          },
+          {
+            "enter": "02:00",
+            "side": "short",
+            "exit": "11:00",
+            "tag": "short 02:00-11:00"
+          }
+        ]
+      },
+      "source": "Donati & Jung, 'Gold Price Dynamics Around the Clock', MSc thesis, Copenhagen Business School 2019; COMEX gold",
+      "original_rules": "Long: buy at 11:00, sell at 02:00 the next day (New York time). Short: short at 02:00, cover at 11:00. Combo: both. No stops.",
+      "implementation": "The combo, as stated; both legs are also reported separately.",
+      "deviations": [
+        "Spot XAUUSD instead of COMEX futures.",
+        "No stop in the source: nominal R."
+      ]
+    },
+    {
+      "key": "P7-FIX",
+      "name": "Short gold in the half hour before the London fixes",
+      "stage1_concept": "P7-TOD",
+      "rule": "clock_trades",
+      "params": {
+        "tz": "America/New_York",
+        "trades": [
+          {
+            "enter": "05:05",
+            "side": "short",
+            "exit": "05:35",
+            "tag": "AM fix"
+          },
+          {
+            "enter": "09:35",
+            "side": "short",
+            "exit": "10:05",
+            "tag": "PM fix"
+          }
+        ]
+      },
+      "source": "Donati & Jung 2019 (same thesis); context: Caminschi & Heaney, Journal of Futures Markets 2014",
+      "original_rules": "Short 05:05-05:35 and 09:35-10:05 New York time (around the AM and PM London fixes). No stops.",
+      "implementation": "As stated, in New York time.",
+      "deviations": [
+        "London and New York change clocks on different dates; the thesis's New York times were kept.",
+        "No stop in the source: nominal R."
+      ]
+    },
+    {
+      "key": "P7-EMA2",
+      "name": "EMA trend-pullback scalp with the source's 8/34 EMAs",
+      "stage1_concept": "P7-EMA",
+      "rule": "ema_pullback",
+      "params": {
+        "trend_minutes": 60,
+        "fast": 8,
+        "slow": 34,
+        "entry_ema": 8,
+        "buffer": 0.1,
+        "target_r": 2.0,
+        "hold_minutes": 240
+      },
+      "source": "J. Stanley (DailyFX), 'Short-term momentum scalping in the forex market', IG (broker education)",
+      "original_rules": "H1: 8 EMA above the 34 EMA with price above both (mirror for shorts). M5: after a pullback to or through the 8 EMA, enter when trend-side momentum comes back. Stop beyond the previous swing. Target not specified.",
+      "implementation": "Pullback = an M5 close at or below the M5 8 EMA while the H1 trend is up; entry = the first later M5 close back above it. Stop 0.10 below the lowest low of the pullback. Mirror for shorts.",
+      "deviations": [
+        "'Momentum comes back' is discretionary in the source; the first close back beyond the 8 EMA was used.",
+        "Target and time exit not specified: 2R and 240 minutes."
+      ]
+    }
+  ]
+}

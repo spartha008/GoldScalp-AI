@@ -36,6 +36,7 @@
     <a href="#risk" data-view="risk"><span class="step">3</span><span class="t">Risk scenarios</span><span class="d">5 / 7.5 / 10 % stress tests</span></a>
     <a href="#research" data-view="research"><span class="step">4</span><span class="t">Robustness research</span><span class="d">Multi-month studies</span></a>
     <a href="#library" data-view="library"><span class="step">5</span><span class="t">Research library</span><span class="d">Compare every study</span></a>
+    <a href="#candidates" data-view="candidates"><span class="step">6</span><span class="t">Research candidates</span><span class="d">Screened, not validated</span></a>
     <div class="side-foot"><span>Separate research service (port 8001)</span><span>Store: <code>var/monthly/monthly.sqlite3</code></span><span>No orders &middot; MT5 never contacted</span></div>
   </aside>
 
@@ -210,9 +211,16 @@
     <!-- STEP 5: RESEARCH LIBRARY -->
     <section class="view" id="view-library" aria-labelledby="v-lib-title" hidden>
       <div class="view-head"><span class="eyebrow">Library</span><h1 id="v-lib-title">Research library</h1>
-        <p>Every Phase 5 and Phase 6 study in one place, read straight from the research store and the frozen report files. Pick results from any study to compare their numbers, monthly curves, cost stress and regime breakdowns side by side, and read each written report here.</p></div>
+        <p>Every Phase 5 and Phase 6 study and the pre-Phase 7 screens in one place, read straight from the research store and the stored result files. Pick results from any study to compare their numbers, monthly curves, cost stress and regime breakdowns side by side, and read each written report here.</p></div>
       <p class="notice compact">Read-only: the library never runs, changes or re-scores a study. Classes are shown exactly as each study recorded them, incomplete and failed studies stay listed, and a sealed test appears only after it has finished.</p>
       <div id="lib-root"><p class="muted small">&mdash;</p></div>
+    </section>
+
+    <!-- STEP 6: RESEARCH CANDIDATES -->
+    <section class="view" id="view-candidates" aria-labelledby="v-cand-title" hidden>
+      <div class="view-head"><span class="eyebrow">Candidates</span><h1 id="v-cand-title">Research candidates</h1>
+        <p>Published rule sets that passed a short screen and are kept here for a proper test later. Each one shows its source, its rules exactly as screened, and the evidence it was registered on.</p></div>
+      <div id="cand-root"><p class="muted small">&mdash;</p></div>
     </section>
 
     <section class="panel" aria-labelledby="rep-title" id="m-report-panel" hidden>
